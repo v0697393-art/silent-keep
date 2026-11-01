@@ -26,6 +26,9 @@ const PAGE = 6; // 道具栏 ui_inventory_bar 画了 6 格（ui_meta.inventory_s
 const MUSIC_UI = { interrogation: 'interrogation', clueboard: 'clueboard', deduction: 'clueboard' };
 
 export class Game {
+  /** 提示条禁区（界面内）：整个审讯人物区（立绘或氛围图上的人物、名牌、侦探头像、对方当前台词都在里面）、出示证据按钮。
+   *  证词卡片不在其中（放不下时允许压在卡片上）。场景对话框 #dialog 另算。 */
+  static TOAST_KEEP_OUT = '.int-portrait, #btn-present';
   constructor({ C, assets, audio, renderer, stage, dom, prepareChapter = null, chParam = null }) {
     Object.assign(this, { C, assets, audio, renderer, stage, dom, prepareChapter, chParam });
     this.S = null; this.stack = []; this.pending = [];
@@ -280,8 +283,14 @@ export class Game {
     const { C } = this;
     const before = e.value - e.delta;
     const tb = tierOf(C, before).id, ta = tierOf(C, e.value).id;
-    const f = el('div', { class: `sanity-float${e.delta < 0 ? ' neg' : ''}`, text: `${e.delta > 0 ? '+' : ''}${e.delta}` });
-    this.dom.sanity.append(f); setTimeout(() => f.remove(), 1600);
+    if (e.delta) {
+      const f = el('div', { class: `sanity-float${e.delta < 0 ? ' neg' : ' pos'}`, text: `${e.delta > 0 ? '+' : ''}${e.delta}` });
+      this.dom.sanity.append(f); setTimeout(() => f.remove(), 1600);
+    } else if ((e.requested ?? 0) < 0) {
+      // 已在下限（sanity.floor）时规则不再扣：不弹“0”，只让烛火抖一下，表示“这一下本该扣，但已经到底了”
+      const n = this.dom.sanity; n.classList.remove('flinch'); void n.offsetWidth; n.classList.add('flinch');
+      clearTimeout(this.flinchT); this.flinchT = setTimeout(() => n.classList.remove('flinch'), 600);
+    }
     if (e.delta < 0) {
       const why = this.sanityReason(e);
       this.lastSanityReason = why;
@@ -443,10 +452,71 @@ export class Game {
   }
   hideDialog() { clearInterval(this.typer); this.dialogCur = null; this.dom.dialogLayer.hidden = true; if (this.renderer?.npcTag) this.renderer.npcTag.hold = false; }
 
+  // ---------- 提示条（toast）：排队 + 竖向错开 ----------
+  // 所有提示（获得道具、新证据、心烛 -N、记下……）都走这里，保证任意两条提示之间、提示和顶部标签栏（HUD / 界面标题栏 / 手记分页）、
+  // 底部道具栏（以及界面底部的说明框）之间都不重叠：可用区间 = [顶栏下沿 + 留白, 底栏上沿 - 留白]，从上往下依次排；放不下的排队，
+  // 等前面的淡出后再出。检视道具界面（.m-item）照旧贴下方从下往上排，不盖道具图。
   toast(html) {
     const t = el('div', { class: 'toast' }); setRich(t, html);
-    this.dom.toasts.append(t);
-    setTimeout(() => t.remove(), 2600);
+    (this.toastQ ??= []).push(t);
+    this.pumpToasts();
+  }
+  /** 提示条可用的纵向区间（舞台坐标）+ 区间里的禁区。
+   *  顶：HUD 或当前界面的标题栏/手记标签；底：道具栏、界面底部消息框。
+   *  禁区（提示条绕开，不能压住）：审讯立绘/名牌、侦探头像、对方当前台词、出示证据按钮，以及场景对话框（头像、名字、台词）。
+   *  审讯和道具特写从底部消息框上方往上堆：先占证词卡片和消息框之间的空当，放不下再压在证词卡片上（卡片不算禁区）。 */
+  toastBand() {
+    const st = this.dom.stage, sr = st.getBoundingClientRect(), k = sr.width / 1080 || 1;
+    const shown = (n) => n && !n.hidden && n.getClientRects().length > 0 && getComputedStyle(n).visibility !== 'hidden';
+    const box = (n) => { const r = n.getBoundingClientRect(); return { top: (r.top - sr.top) / k, bottom: (r.bottom - sr.top) / k }; };
+    const modal = [...this.dom.modalRoot.children].filter(shown).pop();
+    const tops = modal ? [...modal.querySelectorAll('.modal-head, .nb-tabs')].filter(shown) : [this.dom.hud ?? document.getElementById('hud')].filter(shown);
+    const bots = [document.getElementById('inventory')].filter(shown);
+    if (modal) bots.push(...[...modal.querySelectorAll('.modal-msg')].filter((n) => shown(n) && n.textContent.trim()));
+    const GAP = 20;
+    let top = Math.max(120, ...tops.map((n) => box(n).bottom)) + GAP;
+    let bottom = Math.min(1700, ...bots.map((n) => box(n).top).filter((v) => v > top + 80)) - GAP;
+    const fromBottom = !!modal?.matches('.m-item, .m-int');
+    if (modal?.matches('.m-item')) bottom = Math.min(bottom, 1920 - 310);
+    const keep = [...(modal ? modal.querySelectorAll(Game.TOAST_KEEP_OUT) : []), document.getElementById('dialog')].filter(shown);
+    const hard = keep.map(box).filter((b) => b.bottom > top && b.top < bottom).map((b) => [b.top - GAP, b.bottom + GAP]).sort((a, b) => a[0] - b[0]);
+    return { top, bottom, fromBottom, hard, k };
+  }
+  pumpToasts() {
+    const q = this.toastQ ??= [], on = this.toastOn ??= [], box = this.dom.toasts;
+    if (!q.length && !on.length) return;
+    // 界面（审讯/手记等）开关或换页时立刻重排，不等下一帧，避免有一帧压住新出现的标题栏
+    if (!this.toastMO) { this.toastMO = new MutationObserver(() => this.pumpToasts()); this.toastMO.observe(this.dom.modalRoot, { childList: true, subtree: true }); }
+    const band = this.toastBand(), GAP = 16, MAX = 3;
+    // 已显示的重新排一遍（界面开关后可用区间会变）；碰到禁区就跳到禁区另一侧
+    let y = band.fromBottom ? band.bottom : band.top;
+    const place = (t) => {
+      const h = t.offsetHeight;
+      let at = band.fromBottom ? y - h : y;
+      for (let moved = true, n = 0; moved && n < 20; n++) {
+        moved = false;
+        for (const [a, b] of band.hard) if (at < b && at + h > a) { at = band.fromBottom ? a - h : b; moved = true; }
+      }
+      t.style.top = `${Math.round(at)}px`;
+      y = band.fromBottom ? at - GAP : at + h + GAP;
+      return at >= band.top && at + h <= band.bottom;
+    };
+    for (const t of on) place(t);
+    while (q.length && on.length < MAX) {
+      const t = q[0];
+      t.classList.add('measure'); box.append(t);
+      const y0 = y;
+      if (!place(t) && on.length) { t.remove(); t.classList.remove('measure'); y = y0; break; }   // 放不下：留在队里，等前面的淡出
+      q.shift(); t.classList.remove('measure'); on.push(t);
+      setTimeout(() => {
+        t.classList.add('out');
+        setTimeout(() => { t.remove(); const i = on.indexOf(t); if (i >= 0) on.splice(i, 1); this.pumpToasts(); }, 320);
+      }, 2300);
+    }
+    // 排队中或有提示显示时，每帧跟着界面变化重排（如打开/关闭审讯界面）
+    if (!this.toastRaf && (q.length || on.length)) {
+      this.toastRaf = requestAnimationFrame(() => { this.toastRaf = 0; this.pumpToasts(); });
+    }
   }
 
   // ---------- HUD ----------
