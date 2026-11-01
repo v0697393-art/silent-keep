@@ -321,17 +321,13 @@ export class Renderer {
   drawCrow(g, r, now) {
     const win = r.hotspots.find((h) => h.id === 'h_window'); if (!win) return;
     const [x, y, w, hh] = win.rect;
-    const lay = (this.C.artLayers?.[r.id] || []).find((l) => l.id === 'char_crow_perch' && Array.isArray(l.rect));
-    let frame = null, px = lay ? lay.rect[0] : x + w / 2 - 96, py = lay ? lay.rect[1] : y + hh - 230;
+    // 乌鸦画在 bg_r2_scriptorium / _stair_open 的窗台上，got_spectacles 后底图换 *_window_open（窗台空）。
+    // 渲染器只画 char_crow_fly 飞走动画；起点取美术热区文件里乌鸦站位层（layers 里 id 以 char_crow 开头、带 rect 的那条）的左上角，没有就按 h_window 估算
+    const lay = (this.C.artLayers?.[r.id] || []).find((l) => /^char_crow/.test(String(l.id)) && Array.isArray(l.rect));
+    let px = lay ? lay.rect[0] : x + w / 2 - 96, py = lay ? lay.rect[1] : y + hh - 230;
     this.drawnCrow = null;
-    const flying = this.crowFly && now - this.crowFly < 1400;
-    // 乌鸦已画进 bg_r2_scriptorium / _stair_open 的窗台（热区文件 layers 里 char_crow_perch 带 inScene）：不再叠 perch/tilt，
-    // got_spectacles 后底图换 *_window_open（窗台空）；只保留 char_crow_fly 飞走动画
-    if (lay?.inScene && !flying) return;
-    if (flying) {
-      const p = (now - this.crowFly) / 1400; frame = 'char_crow_fly'; px += p * 500; py -= p * 420;
-    } else if (!this.S.flags.got_spectacles) frame = Math.floor(now / 1800) % 3 === 2 ? 'char_crow_tilt' : 'char_crow_perch';
-    if (!frame) return;
+    if (!(this.crowFly && now - this.crowFly < 1400)) return;
+    const p = (now - this.crowFly) / 1400, frame = 'char_crow_fly'; px += p * 500; py -= p * 420;
     this.drawnCrow = frame;
     const img = this.assets.image(frame);
     if (img) g.drawImage(img, px, py, 192, 192);

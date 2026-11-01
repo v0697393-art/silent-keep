@@ -12,7 +12,7 @@ export function edricIds(C, sanity, expr = 'neutral', { avatar = false } = {}) {
   const base = [...new Set([`char_edric_${e}${suf}`, `char_edric_${e}`, `char_edric_neutral${suf}`, 'char_edric_neutral'])];
   return avatar ? base.flatMap((b) => [`${b}_portrait_384`, b]) : base;
 }
-/** 审讯 NPC：chapter1.json portraits 里的 id（如 char_osbert_calm）→ 立绘 / 头像候选 */
+/** 审讯 NPC：portraits 里的 id → 立绘 / 头像候选（第一、二章 portraits 的值已改填氛围图，如 bg_int_osbert；人物只在 sprite 模式下才会走到这里） */
 export function npcIds(portraitId, { avatar = false } = {}) {
   return avatar ? [`${portraitId}_portrait_384`, portraitId] : [portraitId];
 }
