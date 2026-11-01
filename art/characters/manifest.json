@@ -485,36 +485,44 @@
    "purpose": "全身立绘 540x1440 透明（过场/场景内站位/人物阵容）"
   },
   {
-   "file": "art/characters/char_alric_neutral.png",
+   "file": "art/characters/_archive/char_alric_neutral.png",
    "width": 1024,
    "height": 1536,
    "character": "alric",
    "state": "neutral",
-   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 neutral"
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 neutral",
+   "archived": true,
+   "archivedNote": "2026-11-01 归档：第二章人物已画进背景（chapter2.json npcs.*.inScene=true），审讯用 bg_int_*；game/ 代码与 design/*.json 无引用（仅自动生成的 game/assets-manifest.json 列有旧路径，重跑 npm run assets 即消失）。_archive/ 目录被 scan-assets 跳过。"
   },
   {
-   "file": "art/characters/char_alric_neutral_portrait_384.png",
+   "file": "art/characters/_archive/char_alric_neutral_portrait_384.png",
    "width": 384,
    "height": 384,
    "character": "alric",
    "state": "neutral",
-   "purpose": "对话框头像 384x384（由半身裁切）"
+   "purpose": "对话框头像 384x384（由半身裁切）",
+   "archived": true,
+   "archivedNote": "2026-11-01 归档：第二章人物已画进背景（chapter2.json npcs.*.inScene=true），审讯用 bg_int_*；game/ 代码与 design/*.json 无引用（仅自动生成的 game/assets-manifest.json 列有旧路径，重跑 npm run assets 即消失）。_archive/ 目录被 scan-assets 跳过。"
   },
   {
-   "file": "art/characters/char_alric_avatar_256.png",
+   "file": "art/characters/_archive/char_alric_avatar_256.png",
    "width": 256,
    "height": 256,
    "character": "alric",
    "state": "neutral",
-   "purpose": "手记/存档/线索板头像 256x256"
+   "purpose": "手记/存档/线索板头像 256x256",
+   "archived": true,
+   "archivedNote": "2026-11-01 归档：第二章人物已画进背景（chapter2.json npcs.*.inScene=true），审讯用 bg_int_*；game/ 代码与 design/*.json 无引用（仅自动生成的 game/assets-manifest.json 列有旧路径，重跑 npm run assets 即消失）。_archive/ 目录被 scan-assets 跳过。"
   },
   {
-   "file": "art/characters/char_alric_full.png",
+   "file": "art/characters/_archive/char_alric_full.png",
    "width": 540,
    "height": 1440,
    "character": "alric",
    "state": "full",
-   "purpose": "全身立绘 540x1440 透明（过场/场景内站位/人物阵容）"
+   "purpose": "全身立绘 540x1440 透明（过场/场景内站位/人物阵容）",
+   "archived": true,
+   "archivedNote": "2026-11-01 归档：第二章人物已画进背景（chapter2.json npcs.*.inScene=true），审讯用 bg_int_*；game/ 代码与 design/*.json 无引用（仅自动生成的 game/assets-manifest.json 列有旧路径，重跑 npm run assets 即消失）。_archive/ 目录被 scan-assets 跳过。"
   },
   {
    "file": "art/characters/char_mathilde_neutral.png",
@@ -549,36 +557,44 @@
    "purpose": "全身立绘 540x1440 透明（过场/场景内站位/人物阵容）"
   },
   {
-   "file": "art/characters/char_severin_neutral.png",
+   "file": "art/characters/_archive/char_severin_neutral.png",
    "width": 1024,
    "height": 1536,
    "character": "severin",
    "state": "neutral",
-   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 neutral"
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 neutral",
+   "archived": true,
+   "archivedNote": "2026-11-01 归档：第二章人物已画进背景（chapter2.json npcs.*.inScene=true），审讯用 bg_int_*；game/ 代码与 design/*.json 无引用（仅自动生成的 game/assets-manifest.json 列有旧路径，重跑 npm run assets 即消失）。_archive/ 目录被 scan-assets 跳过。"
   },
   {
-   "file": "art/characters/char_severin_neutral_portrait_384.png",
+   "file": "art/characters/_archive/char_severin_neutral_portrait_384.png",
    "width": 384,
    "height": 384,
    "character": "severin",
    "state": "neutral",
-   "purpose": "对话框头像 384x384（由半身裁切）"
+   "purpose": "对话框头像 384x384（由半身裁切）",
+   "archived": true,
+   "archivedNote": "2026-11-01 归档：第二章人物已画进背景（chapter2.json npcs.*.inScene=true），审讯用 bg_int_*；game/ 代码与 design/*.json 无引用（仅自动生成的 game/assets-manifest.json 列有旧路径，重跑 npm run assets 即消失）。_archive/ 目录被 scan-assets 跳过。"
   },
   {
-   "file": "art/characters/char_severin_avatar_256.png",
+   "file": "art/characters/_archive/char_severin_avatar_256.png",
    "width": 256,
    "height": 256,
    "character": "severin",
    "state": "neutral",
-   "purpose": "手记/存档/线索板头像 256x256"
+   "purpose": "手记/存档/线索板头像 256x256",
+   "archived": true,
+   "archivedNote": "2026-11-01 归档：第二章人物已画进背景（chapter2.json npcs.*.inScene=true），审讯用 bg_int_*；game/ 代码与 design/*.json 无引用（仅自动生成的 game/assets-manifest.json 列有旧路径，重跑 npm run assets 即消失）。_archive/ 目录被 scan-assets 跳过。"
   },
   {
-   "file": "art/characters/char_severin_full.png",
+   "file": "art/characters/_archive/char_severin_full.png",
    "width": 540,
    "height": 1440,
    "character": "severin",
    "state": "full",
-   "purpose": "全身立绘 540x1440 透明（过场/场景内站位/人物阵容）"
+   "purpose": "全身立绘 540x1440 透明（过场/场景内站位/人物阵容）",
+   "archived": true,
+   "archivedNote": "2026-11-01 归档：第二章人物已画进背景（chapter2.json npcs.*.inScene=true），审讯用 bg_int_*；game/ 代码与 design/*.json 无引用（仅自动生成的 game/assets-manifest.json 列有旧路径，重跑 npm run assets 即消失）。_archive/ 目录被 scan-assets 跳过。"
   },
   {
    "file": "art/characters/char_brendan_neutral.png",

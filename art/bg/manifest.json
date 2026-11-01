@@ -1,8 +1,8 @@
 {
- "generated": "2026-11-01T01:42:16-04:00",
+ "generated": "2026-11-01T01:21:50-05:00",
  "spec": "design/04_美术素材清单.md",
  "note": "GenerateImage 720x1280 → LANCZOS 放大 1080x1920；家徽为四分格 canonical（art_src/ui/raw/crest_v1.jpg）；差分=裁切局部重绘再羽化贴回；r2 整体上移 120px 使锁箱转盘露出道具栏上方。脚本 art_src/bg/；第二章条目由 art_src/ch2/write_json_ch2.py 追加（脚本 art_src/ch2/）",
- "count": 42,
+ "count": 54,
  "assets": [
   {
    "file": "art/bg/bg_c2_end_01.jpg",
@@ -103,12 +103,28 @@
    "purpose": "审讯全屏氛围图（代替阿尔里克立绘差分）：炭火边的阿尔里克，手按剑柄"
   },
   {
+   "file": "art/bg/bg_int_osbert.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "interrogation": "int_osbert",
+   "purpose": "审讯全屏氛围图（代替奥斯博特立绘差分）：大厅桌尾，管家搓着围裙、低头斜眼，钥匙串挂在腰间"
+  },
+  {
    "file": "art/bg/bg_int_severin.jpg",
    "width": 1080,
    "height": 1920,
    "transparent": false,
    "interrogation": "int_severin",
    "purpose": "审讯全屏氛围图（代替塞弗林立绘差分）：乳母椅上的神父，泪痣与井形戒指可见"
+  },
+  {
+   "file": "art/bg/bg_int_ysolde.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "interrogation": "int_ysolde",
+   "purpose": "审讯全屏氛围图（代替伊瑟尔达立绘差分）：墓穴井室，夫人握念珠，烛光照亮半边脸"
   },
   {
    "file": "art/bg/bg_intro_01.jpg",
@@ -147,7 +163,8 @@
    "transparent": false,
    "room": "r1_hall",
    "state": "base",
-   "purpose": "房间背景（无 NPC/乌鸦，人物另叠图层）"
+   "purpose": "房间背景（人物已直接画进背景，不再另叠立绘图层）",
+   "npcInScene": "奥斯博特（桌尾右侧）"
   },
   {
    "file": "art/bg/bg_r1_hall_door_open.jpg",
@@ -158,7 +175,8 @@
    "state": "door_open",
    "variantOf": "bg_r1_hall",
    "when": "flags: crest_solved",
-   "purpose": "状态差分：以基础图为底局部修改，其余像素对齐"
+   "purpose": "状态差分：以基础图为底局部修改，其余像素对齐",
+   "npcInScene": "奥斯博特（桌尾右侧）"
   },
   {
    "file": "art/bg/bg_r1_hall_hotspots.json",
@@ -172,7 +190,8 @@
    "transparent": false,
    "room": "r2_scriptorium",
    "state": "base",
-   "purpose": "房间背景（无 NPC/乌鸦，人物另叠图层）"
+   "purpose": "房间背景（人物已直接画进背景，不再另叠立绘图层）",
+   "npcInScene": "乌鸦（窗台，got_spectacles 前）"
   },
   {
    "file": "art/bg/bg_r2_scriptorium_hotspots.json",
@@ -188,7 +207,8 @@
    "state": "stair_open",
    "variantOf": "bg_r2_scriptorium",
    "when": "flags: stair_open（优先于 window_open）",
-   "purpose": "状态差分：以基础图为底局部修改，其余像素对齐"
+   "purpose": "状态差分：以基础图为底局部修改，其余像素对齐",
+   "npcInScene": "乌鸦（窗台，got_spectacles 前）"
   },
   {
    "file": "art/bg/bg_r2_scriptorium_stair_window_open.jpg",
@@ -199,7 +219,8 @@
    "state": "stair_window_open",
    "variantOf": "bg_r2_scriptorium",
    "when": "flags: stair_open + got_spectacles（楼梯门开 + 窗开，两处局部合并，像素对齐）",
-   "purpose": "状态差分：以基础图为底局部修改，其余像素对齐"
+   "purpose": "状态差分：以基础图为底局部修改，其余像素对齐",
+   "npcInScene": "无（乌鸦已飞走，窗台空）"
   },
   {
    "file": "art/bg/bg_r2_scriptorium_window_open.jpg",
@@ -210,7 +231,8 @@
    "state": "window_open",
    "variantOf": "bg_r2_scriptorium",
    "when": "flags: got_spectacles",
-   "purpose": "状态差分：以基础图为底局部修改，其余像素对齐"
+   "purpose": "状态差分：以基础图为底局部修改，其余像素对齐",
+   "npcInScene": "无（乌鸦已飞走，窗台空）"
   },
   {
    "file": "art/bg/bg_r3_crypt.jpg",
@@ -219,7 +241,8 @@
    "transparent": false,
    "room": "r3_crypt",
    "state": "base",
-   "purpose": "房间背景（无 NPC/乌鸦，人物另叠图层）"
+   "purpose": "房间背景（人物已直接画进背景，不再另叠立绘图层）",
+   "npcInScene": "伊瑟尔达（左侧石棺龛前）"
   },
   {
    "file": "art/bg/bg_r3_crypt_hotspots.json",
@@ -235,7 +258,8 @@
    "state": "well_open",
    "variantOf": "bg_r3_crypt",
    "when": "flags: dd_final_solved（章末）",
-   "purpose": "状态差分：以基础图为底局部修改，其余像素对齐"
+   "purpose": "状态差分：以基础图为底局部修改，其余像素对齐",
+   "npcInScene": "伊瑟尔达（左侧石棺龛前）"
   },
   {
    "file": "art/bg/bg_r4_bedchamber.jpg",
@@ -332,6 +356,213 @@
    "purpose": "热区/叠加层/特效坐标（1080x1920），rect 实测 + specRect 原值"
   },
   {
+   "file": "art/bg/ovl_r1_ashes_raked.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "room": "r1_hall",
+   "layer": "ovl_r1_ashes_raked",
+   "bbox": [
+    742,
+    1206,
+    210,
+    61
+   ],
+   "show": {
+    "flags": [
+     "got_page"
+    ]
+   },
+   "purpose": "第一章穿帮图（全尺寸，(0,0) 合成）：灰堆被拨开、残页取走后的灰痕；人物奥斯博特在灰堆之前，叠加层在他身上的像素已清零"
+  },
+  {
+   "file": "art/bg/ovl_r1_bread_taken.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "room": "r1_hall",
+   "layer": "ovl_r1_bread_taken",
+   "bbox": [
+    726,
+    1262,
+    227,
+    141
+   ],
+   "show": {
+    "flags": [
+     "got_table"
+    ]
+   },
+   "purpose": "第一章穿帮图（全尺寸，(0,0) 合成）：面包被拿走后：空桌面 + 几粒面包屑"
+  },
+  {
+   "file": "art/bg/ovl_r1_candle_taken.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "room": "r1_hall",
+   "layer": "ovl_r1_candle_taken",
+   "bbox": [
+    660,
+    1228,
+    67,
+    165
+   ],
+   "show": {
+    "flags": [
+     "got_table"
+    ]
+   },
+   "purpose": "第一章穿帮图（全尺寸，(0,0) 合成）：桌上蜡烛被拿走后：只剩空烛盘（got_table：蜡烛与面包同时入包）"
+  },
+  {
+   "file": "art/bg/ovl_r1_poker_taken.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "room": "r1_hall",
+   "layer": "ovl_r1_poker_taken",
+   "bbox": [
+    644,
+    1038,
+    69,
+    230
+   ],
+   "show": {
+    "flags": [
+     "got_poker"
+    ],
+    "notFlags": [
+     "crest_solved"
+    ]
+   },
+   "purpose": "第一章穿帮图（全尺寸，(0,0) 合成）：壁炉边火钳被拿走（底图 bg_r1_hall 用）"
+  },
+  {
+   "file": "art/bg/ovl_r1_poker_taken__door_open.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "room": "r1_hall",
+   "layer": "ovl_r1_poker_taken__door_open",
+   "bbox": [
+    645,
+    1039,
+    66,
+    227
+   ],
+   "show": {
+    "flags": [
+     "got_poker",
+     "crest_solved"
+    ]
+   },
+   "purpose": "第一章穿帮图（全尺寸，(0,0) 合成）：同上，对齐 bg_r1_hall_door_open（门开后的底图）"
+  },
+  {
+   "file": "art/bg/ovl_r2_charcoal_taken.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "room": "r2_scriptorium",
+   "layer": "ovl_r2_charcoal_taken",
+   "bbox": [
+    642,
+    1234,
+    73,
+    71
+   ],
+   "show": {
+    "flags": [
+     "got_ink"
+    ]
+   },
+   "purpose": "第一章穿帮图（全尺寸，(0,0) 合成）：炭条被拿走"
+  },
+  {
+   "file": "art/bg/ovl_r2_chest_open.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "room": "r2_scriptorium",
+   "layer": "ovl_r2_chest_open",
+   "bbox": [
+    70,
+    1360,
+    371,
+    331
+   ],
+   "show": {
+    "flags": [
+     "chest_open"
+    ]
+   },
+   "purpose": "第一章穿帮图（全尺寸，(0,0) 合成）：编年史匣打开后（空匣）"
+  },
+  {
+   "file": "art/bg/ovl_r2_quill_taken.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "room": "r2_scriptorium",
+   "layer": "ovl_r2_quill_taken",
+   "bbox": [
+    618,
+    1070,
+    125,
+    207
+   ],
+   "show": {
+    "flags": [
+     "got_ink"
+    ]
+   },
+   "purpose": "第一章穿帮图（全尺寸，(0,0) 合成）：墨水台上的羽毛笔被拿走（got_ink：炭条/刮刀/羽毛笔同时入包）"
+  },
+  {
+   "file": "art/bg/ovl_r2_scraper_taken.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "room": "r2_scriptorium",
+   "layer": "ovl_r2_scraper_taken",
+   "bbox": [
+    511,
+    1225,
+    137,
+    87
+   ],
+   "show": {
+    "flags": [
+     "got_ink"
+    ]
+   },
+   "purpose": "第一章穿帮图（全尺寸，(0,0) 合成）：刮刀被拿走"
+  },
+  {
+   "file": "art/bg/ovl_r3_crank_fitted.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "room": "r3_crypt",
+   "layer": "ovl_r3_crank_fitted",
+   "bbox": [
+    808,
+    1084,
+    77,
+    129
+   ],
+   "show": {
+    "flags": [
+     "crank_fitted"
+    ],
+    "notFlags": [
+     "dd_final_solved"
+    ]
+   },
+   "purpose": "第一章穿帮图（全尺寸，(0,0) 合成）：绞盘装上摇柄；dd_final_solved 后底图换 bg_r3_crypt_well_open，不再叠"
+  },
+  {
    "file": "art/bg/ovl_r4_coffer_open.png",
    "width": 1080,
    "height": 1920,
@@ -400,7 +631,7 @@
    "layer": "ovl_r4_window_e",
    "bbox": [
     815,
-    233,
+    263,
     121,
     155
    ],
@@ -427,7 +658,7 @@
      "got_easel"
     ]
    },
-   "purpose": "1080x1920 透明叠加层，(0,0) 对齐底图：画架托板上的松节油瓶与抹布；取得后隐藏（三张底图该区域像素一致）"
+   "purpose": "1080x1920 透明叠加层，(0,0) 对齐底图：画架托板上的松脂油瓶与抹布；取得后隐藏（三张底图该区域像素一致）"
   },
   {
    "file": "art/bg/ovl_r6_mobile_eyes.png",

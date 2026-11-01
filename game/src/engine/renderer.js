@@ -1,18 +1,23 @@
 // 场景渲染（Canvas，逻辑坐标 1080×1920）。
 // 有背景图（bg_xxx 或其状态差分，见补丁 bgVariants）就画背景；否则画程序生成的占位房间 + 带标签的热区物件。
 // NPC 全身站姿图层（C.npcLayers，见 chapter.js resolveNpcLayers）只是画面，点击判定只看热点 rect。
-// 补丁 npcPresentation.mode = 'hotspot'（人物不用贴图）时不画立绘，只在人物的可点区域画地面暗影 + 名牌（C.npcSpots）。
+// npcPresentation.mode = 'hotspot'（人物不单独贴立绘，画在背景里）时不画立绘；名牌只在点到人物/对白时短暂出现，人物未画进背景时留地面暗影（C.npcSpots）。
 // 房间特效 rooms[].fx（06 §12.2）画在背景与 NPC 之间。
-// 补丁 bgOverlays：道具拿走后叠在背景上的遮罩裁片（tools/make-taken-overlays.py 生成，art_overlays/）。
+// 美术叠加层 C.artOverlays（ovl_*.png，1080×1920 贴 (0,0)，按 show 条件）先画；再画补丁 bgOverlays（通用机制保留：临时遮罩裁片；
+// 第一章的 candle/bread/poker/inkstand 临时遮罩已删，改用美术 ovl_r*_*_taken；新交付的 ovl_<房间>_<道具>_taken 或 replaces 会自动停用同 id 临时遮罩，见 chapter.js addArtOverlay）。
+// 房间特效按当前背景选美术差分帧（logic.fxVariant：如去漆后的 fx_portrait_eyes_restored、抽屉开的 fx_cradle_rock_open）。
 // 叠加：烛光摇曳、心烛 s3 墨迹触须、s3 假热区微光、点击空白处的热区提示闪光、乌鸦小精灵、换房间墨迹转场、?debug=1 热区框。
 import { W, H, PLAY_RECT, LAYOUT } from './layout.js';
-import { hotspotActive, reqOk, tierHas, tierOf, roomFxActive } from './logic.js';
+import { hotspotActive, reqOk, tierHas, tierOf, roomFxActive, artOverlaysActive, fxVariant } from './logic.js';
 import { PAL, FONT, rng, parchment } from './assets.js';
 
 const ROOM_TINT = {
   r1_hall: { wall: ['#3a2a1e', '#1f1712'], floor: '#2b2119', accent: PAL.amber },
   r2_scriptorium: { wall: ['#2f2a20', '#191510'], floor: '#2a2016', accent: PAL.straw },
   r3_crypt: { wall: ['#1f2b22', '#0f1410'], floor: '#18201a', accent: PAL.olive },
+  r4_bedchamber: { wall: ['#3a1f1c', '#1c1010'], floor: '#2a1916', accent: PAL.amber },
+  r5_gallery: { wall: ['#2c2620', '#15120e'], floor: '#241d16', accent: PAL.straw },
+  r6_nursery: { wall: ['#26282a', '#121314'], floor: '#1d1e1f', accent: PAL.olive },
 };
 const LIGHTS = { h_fireplace: 1, h_candles: 0.8, h_window: 0.5 };
 
@@ -44,7 +49,11 @@ export class Renderer {
   /** 当前要叠在背景上的“道具已拿走”遮罩（补丁 bgOverlays，按 req + 当前背景 id 取对应裁片） */
   overlaysNow(bg) {
     const { C, S } = this;
-    return (C.bgOverlays || []).filter((o) => o.room === S.room && reqOk(S, o.req) && o.variants[bg]).map((o) => ({ id: o.id, ...o.variants[bg] }));
+    return (C.bgOverlays || []).filter((o) => o.room === S.room && !o.replacedBy && reqOk(S, o.req) && o.variants[bg]).map((o) => ({ id: o.id, ...o.variants[bg] }));
+  }
+  /** 当前要画的美术叠加层（整幅贴 (0,0)）；图未交付的跳过 */
+  artOverlaysNow() {
+    return artOverlaysActive(this.C, this.S).filter((o) => this.assets.has(o.id)).map((o) => ({ id: o.id, img: this.assets.image(o.id) }));
   }
   overlayImage(src) {
     this.ovImgs ??= new Map();
@@ -59,8 +68,9 @@ export class Renderer {
   }
   /** 进房间时调用：预加载本房间全部背景差分 + 遮罩，避免状态切换时闪占位图 */
   preloadRoom(roomId = this.S.room) {
-    for (const o of this.C.bgOverlays || []) if (o.room === roomId) for (const v of Object.values(o.variants)) this.overlayImage(v.src);
-    return this.assets.preload(this.roomBgIds(roomId));
+    for (const o of this.C.bgOverlays || []) if (o.room === roomId && !o.replacedBy) for (const v of Object.values(o.variants)) this.overlayImage(v.src);
+    const ovl = (this.C.artOverlays || []).filter((o) => o.room === roomId && this.assets.has(o.id)).map((o) => o.id);
+    return this.assets.preload([...this.roomBgIds(roomId), ...ovl]);
   }
 
   /** 静态层（背景 + 道具遮罩 + 热区物件）缓存，状态变化时重画 */
@@ -72,8 +82,9 @@ export class Renderer {
     // BUGS #10：新背景（差分）还没加载完时，先用本房间已加载的背景顶上，不闪占位图、也不残留上一个房间
     if (!img) for (const id of this.roomBgIds()) { const im = this.assets.image(id); if (im) { bg = id; img = im; break; } }
     const ovs = img ? this.overlaysNow(bg).map((o) => ({ ...o, img: this.overlayImage(o.src) })) : [];
+    const aovs = img ? this.artOverlaysNow() : []; // show 条件含 sanityBelow：心烛变化也会改 key → 重画
     const act = r.hotspots.map((h) => (hotspotActive(S, h) ? 1 : 0)).join('');
-    const key = `${S.room}|${bg}|${img ? 1 : 0}|${ovs.map((o) => o.id + (o.img ? 1 : 0)).join(',')}|${act}|${this.debug}|${this.pixelRatio}`;
+    const key = `${S.room}|${bg}|${img ? 1 : 0}|${aovs.map((o) => o.id + (o.img ? 1 : 0)).join(',')}|${ovs.map((o) => o.id + (o.img ? 1 : 0)).join(',')}|${act}|${this.debug}|${this.pixelRatio}`;
     if (this.cache.key === key) return this.cache.canvas;
     const c = this.cache.canvas ?? document.createElement('canvas');
     c.width = Math.round(W * this.pixelRatio); c.height = Math.round(H * this.pixelRatio);
@@ -81,9 +92,10 @@ export class Renderer {
     g.setTransform(this.pixelRatio, 0, 0, this.pixelRatio, 0, 0);
     if (img) {
       g.drawImage(img, 0, 0, W, H);
+      for (const o of aovs) if (o.img) g.drawImage(o.img, 0, 0, W, H);
       for (const o of ovs) if (o.img) g.drawImage(o.img, ...o.rect);
     } else this.drawPlaceholderRoom(g, r);
-    this.cache = { key, canvas: c, bg, overlays: ovs.filter((o) => o.img).map((o) => o.id) };
+    this.cache = { key, canvas: c, bg, overlays: ovs.filter((o) => o.img).map((o) => o.id), artOverlays: aovs.filter((o) => o.img).map((o) => o.id) };
     return c;
   }
 
@@ -99,17 +111,35 @@ export class Renderer {
     return (C.npcSpots || []).filter((l) => l.room === S.room && reqOk(S, l.req)
       && (!l.hotspot || r.hotspots.some((h) => h.id === l.hotspot && hotspotActive(S, h))));
   }
-  /** 名牌提示：地面一团暗影（有人站在那儿）+ 呼吸的烛光名牌（人名 + “⋯”），不画人物本身 */
-  drawNpcTag(g, sp, t) {
+  /**
+   * 名牌何时出现（npcPresentation.tag）：'onTap'（默认）= 点到该人物后短暂显示 tagMs 毫秒，若随之有对白则一直显示到对白结束；
+   * true / 'always' = 常驻（旧表现）；false = 不显示。审讯界面自有名牌。
+   */
+  showNpcTag(npc, ms) { this.npcTag = { npc, until: performance.now() + (ms ?? this.C.npcPresentation?.tagMs ?? 2200), hold: false }; }
+  npcTagVisible(npc, now = performance.now()) {
+    const P = this.C.npcPresentation || {};
+    if (P.tag === 'always') return true;
+    if (!P.tag) return false;
+    const k = this.npcTag;
+    return !!k && k.npc === npc && (now < k.until || k.hold);
+  }
+  /** 人物没画进背景（!inScene，素材未到的降级）：地面一团暗影提示“有人站在那儿”。画进背景的人物不叠任何东西 */
+  drawNpcShadow(g, sp) {
+    if (sp.inScene) return;
     const [x, y, w, hh] = sp.rect, cx = x + w / 2, foot = y + hh - 18;
-    g.save();
     const sh = g.createRadialGradient(cx, foot, 4, cx, foot, w * 0.62);
     sh.addColorStop(0, 'rgba(0,0,0,.55)'); sh.addColorStop(1, 'rgba(0,0,0,0)');
-    g.fillStyle = sh; g.beginPath(); g.ellipse(cx, foot, w * 0.62, 34, 0, 0, Math.PI * 2); g.fill();
+    g.save(); g.fillStyle = sh; g.beginPath(); g.ellipse(cx, foot, w * 0.62, 34, 0, 0, Math.PI * 2); g.fill(); g.restore();
+  }
+  /** 名牌：呼吸的烛光名牌（人名 + “⋯”），不画人物本身 */
+  drawNpcTag(g, sp, t) {
+    const [x, y, w, hh] = sp.rect, cx = x + w / 2;
+    g.save();
     const name = this.C.npcNames[sp.npc] ?? sp.npc;
     g.font = `bold 34px ${FONT}`;
     const tw = g.measureText(name).width, pw = tw + 92, ph = 60;
-    const px = Math.max(8, Math.min(W - pw - 8, cx - pw / 2)), py = y + hh * 0.42;
+    // 名牌放在人物头顶上方（点人物几乎总会弹对白，对白框在画面下部，放在人物身上会被盖住）；头顶放不下（贴近 HUD）才退回人物身上
+    const px = Math.max(8, Math.min(W - pw - 8, cx - pw / 2)), above = y - ph - 14, py = above >= 130 ? above : y + hh * 0.42;
     const a = 0.78 + 0.18 * Math.sin(t * 2.2);
     g.globalAlpha = a;
     g.fillStyle = 'rgba(20,14,10,.82)'; g.strokeStyle = 'rgba(201,162,90,.9)'; g.lineWidth = 3;
@@ -227,14 +257,21 @@ export class Renderer {
     const t = (now - this.t0) / 1000;
     // 房间特效（06 §12.2：背景之上、热点高亮与 NPC 立绘之下；同 id 多条 OR 合并只画一次；不参与点击判定）
     // BUGS #10：装饰层任何一处出错（坏图、缺 rect）都不能让整帧中断——否则画面会定格在上一个房间
-    this.safe('fx', () => { for (const f of roomFxActive(C, S)) {
+    this.drawnFx = [];
+    this.safe('fx', () => { const bg = this.cache.bg ?? this.bgId(); for (const f0 of roomFxActive(C, S)) {
+      const f = fxVariant(C, S.room, bg, f0);
       const img = this.assets.frameImage(f.id, t, f.fps);
-      if (img && Array.isArray(f.rect)) g.drawImage(img, ...f.rect);
+      if (img && Array.isArray(f.rect)) { g.drawImage(img, ...f.rect); this.drawnFx.push(f.id); }
     } });
     // NPC 全身站姿（每帧画，叠在房间特效之上）
+    this.drawnNpcTags = [];
     this.safe('npc', () => {
       for (const l of this.npcLayersHere()) this.drawNpcLayer(g, l);
-      if (C.npcPresentation?.mode === 'hotspot' && C.npcPresentation.tag) for (const sp of this.npcSpotsHere()) this.drawNpcTag(g, sp, t);
+      this.drawnNpcSpots = [];
+      if (C.npcPresentation?.mode === 'hotspot') for (const sp of this.npcSpotsHere()) {
+        this.drawNpcShadow(g, sp); this.drawnNpcSpots.push(sp.npc);
+        if (this.npcTagVisible(sp.npc)) { this.drawNpcTag(g, sp, t); this.drawnNpcTags.push(sp.npc); }
+      }
     });
     // 烛光摇曳
     for (const h of r.hotspots) {
@@ -255,7 +292,7 @@ export class Renderer {
         g.fillStyle = grd; g.fillRect(x, y, w, hh);
       }
     }
-    this.safe('crow', () => this.drawCrow(g, r, now));
+    this.drawnCrow = null; this.safe('crow', () => this.drawCrow(g, r, now));
     // 提示闪光
     this.flashes = this.flashes.filter((f) => now - f.t < 900);
     for (const f of this.flashes) {
@@ -286,10 +323,16 @@ export class Renderer {
     const [x, y, w, hh] = win.rect;
     const lay = (this.C.artLayers?.[r.id] || []).find((l) => l.id === 'char_crow_perch' && Array.isArray(l.rect));
     let frame = null, px = lay ? lay.rect[0] : x + w / 2 - 96, py = lay ? lay.rect[1] : y + hh - 230;
-    if (this.crowFly && now - this.crowFly < 1400) {
+    this.drawnCrow = null;
+    const flying = this.crowFly && now - this.crowFly < 1400;
+    // 乌鸦已画进 bg_r2_scriptorium / _stair_open 的窗台（热区文件 layers 里 char_crow_perch 带 inScene）：不再叠 perch/tilt，
+    // got_spectacles 后底图换 *_window_open（窗台空）；只保留 char_crow_fly 飞走动画
+    if (lay?.inScene && !flying) return;
+    if (flying) {
       const p = (now - this.crowFly) / 1400; frame = 'char_crow_fly'; px += p * 500; py -= p * 420;
     } else if (!this.S.flags.got_spectacles) frame = Math.floor(now / 1800) % 3 === 2 ? 'char_crow_tilt' : 'char_crow_perch';
     if (!frame) return;
+    this.drawnCrow = frame;
     const img = this.assets.image(frame);
     if (img) g.drawImage(img, px, py, 192, 192);
     else { // 占位乌鸦剪影

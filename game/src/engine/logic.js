@@ -69,6 +69,32 @@ export function roomFxActive(C, S, roomId = S.room) {
   return [...out.values()];
 }
 
+/**
+ * 美术交付的显示条件（art/bg/*_hotspots.json 的 overlays[].show / fx[].show，manifest assets[].show）：
+ * req 键（flags/notFlags/items/…）+ sanityBelow + any:[子条件]（任一满足）。
+ */
+export function showOk(S, show) {
+  if (!show) return true;
+  if (!reqOk(S, show)) return false;
+  if (show.sanityBelow != null && !(S.sanity < show.sanityBelow)) return false;
+  if (Array.isArray(show.any) && show.any.length && !show.any.some((x) => showOk(S, x))) return false;
+  return true;
+}
+
+/** 当前房间要叠的美术叠加层（C.artOverlays，1080×1920 透明 PNG 贴 (0,0)） */
+export const artOverlaysActive = (C, S, roomId = S.room) => (C.artOverlays || []).filter((o) => o.room === roomId && showOk(S, o.show));
+
+/**
+ * 房间特效的美术差分：显示与否仍按章节 json（roomFxActive），画哪一套帧按当前背景选——
+ * 美术热区文件 fx[] 里 id 等于 f.id 或以 `${f.id}_` 开头、且 onBg 含当前背景的那条（rect/fps 用美术实测值）。
+ */
+export function fxVariant(C, roomId, bg, f) {
+  const fam = (C.artFx?.[roomId] || []).filter((e) => e.id === f.id || e.id.startsWith(`${f.id}_`));
+  const v = fam.find((e) => Array.isArray(e.onBg) && e.onBg.includes(bg)) ?? fam.find((e) => !Array.isArray(e.onBg) && e.id === f.id);
+  if (!v) return { ...f, base: f.id };
+  return { ...f, base: f.id, id: v.id, rect: v.rect ?? f.rect, fps: v.fps ?? f.fps, loop: v.loop ?? f.loop, art: v };
+}
+
 // ---------- 心烛 ----------
 export function clampSanity(C, v) {
   const { floor = 20, max = 100 } = C.sanity;

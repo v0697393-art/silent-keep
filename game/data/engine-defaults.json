@@ -1,27 +1,19 @@
 {
- "_说明": "引擎默认（与章节无关）：每章先套这里，再套该章补丁（data/chapter<n>.patch.json，对象字段浅合并、章补丁优先）。第二章（design/06 §13，无补丁）直接继承：人物不用贴图、心烛扣减原因、审讯引导与道具栏等试玩后修订的界面文案。文案待剧情策划确认，确认后可并入各章 json 的 uiText。",
- "_说明_npcPresentation": "npcPresentation：人物不用贴图（Vicente：“交互人物可以不用贴图”）。mode:'hotspot' = 场景里不画 NPC 立绘（npcLayers 停用），人物只留可点区域 + 名牌提示（tag）+ 字幕；审讯界面不显示 NPC 半身像，改为名牌 + 神色文字（moodLabels，对应 interrogations[].portraits 的键）。改回 'sprite' 即恢复旧立绘表现。",
+ "_说明": "引擎默认（与章节无关）：每章先套这里，再套该章补丁（data/chapter<n>.patch.json，对象字段浅合并、章补丁优先）。第二章（design/06 §13，无补丁）直接继承：人物不用贴图、审讯引导与道具栏等试玩后修订的界面文案。文案待剧情策划确认，确认后可并入各章 json 的 uiText。",
+ "_说明_npcPresentation": "npcPresentation：人物保留，但不单独贴立绘——由美术直接画进房间背景（Vicente 本意，经 Pip 纠正）。mode:'hotspot' = 场景不画 NPC 立绘（npcLayers 停用）；人物热区对准背景里画出的人物：美术在 art/bg/<bg>_hotspots.json 里给 rect（hotspots 条目带 npc 字段，或 id 为 <npc>/npc_<npc>/char_<npc>，或 npcs:{<npc>:rect}），引擎把该人物的审讯入口热点对准它，并视为 inScene（不叠地面暗影）；美术没给时留地面暗影作降级提示。tag：名牌何时出现——'onTap' = 点到人物后显示 tagMs 毫秒、有对白则保持到对白结束；true/'always' = 常驻；false = 不显示。审讯界面：interrogations.*.bg 全屏氛围图，json 没写时按 bg_int_<npc> 自动查找，素材未到降级为名牌 + 神色文字（moodLabels，json 本场审讯的优先）。改 mode 为 'sprite' 恢复旧立绘表现。",
  "npcPresentation": {
   "mode": "hotspot",
-  "tag": true,
+  "tag": "onTap",
   "moodLabels": {
    "calm": "神色平静",
    "nervous": "神色慌乱",
    "cold": "神色冰冷",
    "shaken": "神色动摇",
    "broken": "彻底崩溃"
-  }
+  },
+  "tagMs": 2200
  },
- "_说明_sanityReasons": "心烛扣减时的原因提示（试玩反馈：错答扣心烛不说明原因）：按扣减时所在界面类型取文案，scene = 场景事件",
- "sanityReasons": {
-  "interrogation": "出示的证据驳不倒这句证词，对方的冷笑让你心里发虚。",
-  "clueboard": "连错了线索，思路一乱，心里更慌。",
-  "deduction": "推理出了岔子，心烛跟着一晃。",
-  "puzzle": "机关反噬，心头一紧。",
-  "closeup": "看到了不该看的东西。",
-  "scene": "这里的东西让你脊背发凉。"
- },
- "_说明_uiTextOverrides": "试玩反馈后的通用界面文案（覆盖 json uiText）。puzzleProgress：rotate_grid 在 puzzleFeedback 提示带 progress:true 时显示“已归位 n/总数”。",
+ "_说明_uiTextOverrides": "试玩反馈后的通用界面文案（覆盖 json uiText）。puzzleProgress：rotate_grid 在 puzzleFeedback 提示带 progress:true 时显示“已归位 n/总数”。 章节衔接（06 §13.1，第二章接入新增，待剧情策划确认）：chapterNext 结局页“继续：第{cn}章”按钮、chapterNextSub 有下一章时的结局页副句、chapterEnd 最后一章的副句（原写死的“未完待续。”）、backToTitle。",
  "uiTextOverrides": {
   "itemHint": "点场景使用 · 点另一件组合 · 再点查看",
   "intSelect": "先点一条证词，再出示能驳倒它的证据。",
@@ -30,6 +22,11 @@
   "intWrong": "这件证据驳不倒这句话。换一件，或换一条证词。",
   "noNotesHasEvidence": "笔记会在关键推断后自动记下。你已收集 {n} 件证据，在「证据」页查看。",
   "closeupUse": "对它用道具：",
-  "puzzleProgress": "已归位 {n}/{total}"
- }
+  "puzzleProgress": "已归位 {n}/{total}",
+  "chapterNext": "继续：第{cn}章",
+  "chapterNextSub": "故事还没有结束。",
+  "chapterEnd": "未完待续。",
+  "backToTitle": "回到标题"
+ },
+ "_说明_sanityReasonsMoved": "sanityReasons 已移出：chapter1.json v1.3 顶层收录（json 优先）；章节 json 没写时（第二章）引擎沿用第一章 json 的这份（chapter.js withSeriesFallbacks）。"
 }

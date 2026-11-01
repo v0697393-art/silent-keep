@@ -134,7 +134,7 @@ export class Menu extends Modal {
       el('button', { class: 'parch-btn', onclick: () => this.close() }, '继续调查'),
       el('button', { class: 'parch-btn', 'data-action': 'mute', onclick: () => { g.toggleMute(); this.render(); } }, g.audio.muted ? '打开声音' : '静音'),
       el('button', { class: 'parch-btn', onclick: () => { this.close(); g.toTitle(); } }, '回到标题'),
-      el('button', { class: 'parch-btn', 'data-action': 'restart', onclick: () => { this.close(); g.newGame(); } }, '重新开始本章')));
+      el('button', { class: 'parch-btn', 'data-action': 'restart', onclick: () => { this.close(); g.restartChapter(); } }, '重新开始本章')));
   }
 }
 

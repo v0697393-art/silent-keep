@@ -144,7 +144,8 @@
     210,
     560
    ],
-   "note": "540x1440 scaled 0.389; in front of lower coffins, left of the well"
+   "note": "已画进 bg_r3_crypt / _well_open（inScene），不再单独叠立绘；需 chapter1.json npcs.ysolde.inScene=true（原注：540x1440 scaled 0.389; in front of lower coffins, left of the well）",
+   "inScene": true
   }
  ],
  "fakeHotspots": [
@@ -163,5 +164,62 @@
    ],
    "note": "unchanged; vault/arch area above the back arch, no overlap"
   }
- ]
+ ],
+ "overlays": [
+  {
+   "id": "ovl_r3_crank_fitted",
+   "file": "art/bg/ovl_r3_crank_fitted.png",
+   "size": [
+    1080,
+    1920
+   ],
+   "bbox": [
+    808,
+    1084,
+    77,
+    129
+   ],
+   "show": {
+    "flags": [
+     "crank_fitted"
+    ],
+    "notFlags": [
+     "dd_final_solved"
+    ]
+   },
+   "note": "绞盘装上摇柄；dd_final_solved 后底图换 bg_r3_crypt_well_open，不再叠"
+  }
+ ],
+ "npcInScene": [
+  {
+   "npc": "ysolde",
+   "hotspot": "h_lady",
+   "rect": [
+    70,
+    1100,
+    210,
+    560
+   ],
+   "paintedBBox": [
+    54,
+    1101,
+    247,
+    544
+   ],
+   "variants": [
+    "bg_r3_crypt",
+    "bg_r3_crypt_well_open"
+   ],
+   "show": "always",
+   "note": "伊瑟尔达夫人画进背景：最下层石棺龛前，侧身朝井、双手握念珠祈祷。dd_final_solved 后仍在场（h_lady 回退台词 t_ysolde_after），两张状态图都有她，无“她不在”状态图。热区 rect 不变。"
+  }
+ ],
+ "npcs": {
+  "ysolde": [
+   70,
+   1100,
+   210,
+   560
+  ]
+ }
 }

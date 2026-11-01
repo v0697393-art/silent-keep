@@ -1,11 +1,12 @@
-// 启动：章节数据（design/data/chapter1.json + 补丁）+ 素材清单 + 美术热区覆盖 → 各模块 → 标题页
+// 启动：章节数据（章节表 CHAPTERS：design/data/chapter<n>.json + 补丁）+ 素材清单 + 美术热区覆盖/叠加层 → 各模块 → 标题页
+// ?ch=2 直接进第二章（测试用）；缺省 = 存档进度里的章节（hushwold_progress.maxChapter），都没有为 1。
 import { Stage } from './engine/stage.js';
 import { TapInput, preventBrowserGestures } from './engine/input.js';
 import { Assets } from './engine/assets.js';
 import { AudioManager } from './engine/audio.js';
 import { Renderer } from './engine/renderer.js';
-import { loadChapter, applyHotspotFile, resolveNpcLayers } from './engine/chapter.js';
-import { prefs } from './engine/save.js';
+import { loadChapter, applyHotspotFile, applyArtOverlayDefs, finalizeChapter, chapterInfo } from './engine/chapter.js';
+import { prefs, getProgress } from './engine/save.js';
 import { Game } from './engine/game.js';
 
 const $ = (s) => document.querySelector(s);
@@ -46,16 +47,24 @@ async function preloadUi(assets) {
 
 async function boot() {
   preventBrowserGestures();
-  const [C, manifest] = await Promise.all([
-    loadChapter((u) => fetchJson(u)),
-    fetchJson('assets-manifest.json', { art: [], audio: [], hotspots: [], audioManifest: null }),
-  ]);
-  // 美术交付的 *hotspots*.json 覆盖热区坐标（清单里有才请求，避免 404）
-  for (const rel of manifest.hotspots || []) {
-    const data = await fetchJson(`../art/${rel}`, null);
-    if (data) applyHotspotFile(C, rel, data);
-  }
-  resolveNpcLayers(C); // NPC 站位：json → 美术热区文件 layers → 补丁 npcLayers → 入口热点
+  const manifest = await fetchJson('assets-manifest.json', { art: [], audio: [], hotspots: [], audioManifest: null });
+  const hotspotData = new Map(); // 热区文件只拉一次，切章时复用
+  /** 载入第 n 章并接好美术数据（热区坐标、叠加层、特效差分、NPC 站位）；章节衔接时 Game 再调用 */
+  const prepareChapter = async (n) => {
+    const C = await loadChapter((u) => fetchJson(u), { n });
+    // 美术交付的 *hotspots*.json 覆盖热区坐标（清单里有才请求，避免 404）；不属于本章房间的文件自动跳过
+    for (const rel of manifest.hotspots || []) {
+      if (!hotspotData.has(rel)) hotspotData.set(rel, await fetchJson(`../art/${rel}`, null));
+      const data = hotspotData.get(rel);
+      if (data) applyHotspotFile(C, rel, data);
+    }
+    applyArtOverlayDefs(C, manifest.overlayDefs || []); // art/bg/manifest.json 里带 layer+show 的叠加层
+    finalizeChapter(C); // 热区收进游戏区（记 C.rectClamps）→ NPC 站位：json → 美术热区文件 layers → 补丁 npcLayers → 入口热点（inScene 不画）
+    return C;
+  };
+  const chParam = params.has('ch') ? Number(params.get('ch')) : null;
+  const startCh = chapterInfo(chParam) ? chParam : chapterInfo(getProgress()?.maxChapter) ? getProgress().maxChapter : 1;
+  const C = await prepareChapter(startCh);
   // 音频清单优先用 audio/audio_manifest.json（音乐那边更新后不必重跑扫描也能拿到最新循环点）
   const audioManifest = await fetchJson('../audio/audio_manifest.json', null) ?? manifest.audioManifest ?? null;
 
@@ -80,7 +89,7 @@ async function boot() {
     toasts: $('#toasts'), modalRoot: $('#modal-root'), cutscene: $('#cutscene'),
   };
   dom.btnMute.classList.toggle('muted', audio.muted);
-  const game = new Game({ C, assets, audio, renderer, stage, dom });
+  const game = new Game({ C, assets, audio, renderer, stage, dom, prepareChapter, chParam: chapterInfo(chParam) ? chParam : null });
 
   // 首次触摸解锁音频（iOS/Chrome 自动播放策略）
   const unlock = () => audio.unlock();
@@ -103,7 +112,7 @@ async function boot() {
   };
   requestAnimationFrame(loop);
   game.toTitle();
-  window.__game = { game, C, stage, assets, audio, snap: () => game.snapshot(), point: (id, item) => game.clientPointFor(id, item) };
+  window.__game = { game, get C() { return game.C; }, stage, assets, audio, prepareChapter, snap: () => game.snapshot(), point: (id, item) => game.clientPointFor(id, item) };
 }
 
 boot().catch((e) => {

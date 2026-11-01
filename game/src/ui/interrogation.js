@@ -1,5 +1,5 @@
 // 审讯：选一条证词 → 出示证据 → 拆穿（盖章“拆穿！”、NPC 立绘换表情、侦探头像切 press）。
-// 人物不用贴图（补丁 npcPresentation.mode = 'hotspot'）时：不显示 NPC 半身像，改为烛光名牌（人名 + 神色文字，
+// 人物不用贴图（npcPresentation.mode = 'hotspot'，或该场审讯有 bg 氛围图）时：不显示 NPC 半身像，改为烛光名牌（人名 + 神色文字，
 // 神色随 portraits 的表情键切换，如“神色平静 → 神色慌乱 → 彻底崩溃”），面板更矮，证词区更大。
 // 数据：chapter1.json interrogations[id]（npc / portraits / intro / statements[accept,nearMiss,requires,onBreak] / onWrongEvidence / onComplete）
 import { Modal } from './modal.js';
@@ -23,8 +23,22 @@ export class Interrogation extends Modal {
     super(game, { type: 'interrogation', id, title: game.C.npcNames[it.npc] ?? it.npc, sub: '审讯 · 出示证据拆穿谎言', cls: 'm-int' });
     this.it = it; this.selected = null;
     this.expr = intDone(game.C, game.S, id) ? (Object.keys(it.portraits).pop()) : 'calm';
-    this.noSprite = game.C.npcPresentation?.mode === 'hotspot';
+    // 审讯氛围图（06 §14：interrogations.*.bg，第二章 bg_int_alric / bg_int_severin）：全屏画在证词面板后面，有 bg 时跳过立绘层
+    // （任何模式都不取 portraits / char_<npc>_*），只显示名牌 + 神色文字。图片缺失：不盖占位图，面板照旧（底下是当前房间）。
+// 没写 bg 时按约定 bg_int_<npc> 自动查找（两章通用）。
+    // 第一章 json 没写 bg 时按约定找 bg_int_<npc>（美术给奥斯博特出 bg_int_osbert）；写了 bg 但素材没到 → 降级为现在的名牌样式
+    const sceneId = it.bg ?? `bg_int_${it.npc}`;
+    this.sceneId = game.assets.has(sceneId) ? sceneId : null;
+    this.sceneWanted = sceneId;
+    this.noSprite = game.C.npcPresentation?.mode === 'hotspot' || !!this.sceneId;
     this.portraitBox = el('div', { class: `int-portrait${this.noSprite ? ' no-sprite' : ''}` });
+    if (this.sceneId && game.assets.has(this.sceneId)) {
+      const bg = el('div', { class: 'int-bg', 'data-bg': this.sceneId });
+      bg.style.backgroundImage = `url(../art/${game.assets.path(this.sceneId)})`;
+      this.root.classList.add('has-int-bg');
+      this.root.dataset.intBg = this.sceneId;
+      this.root.prepend(bg);
+    }
     this.detective = el('div', { class: 'int-detective' });
     this.speech = el('div', { class: 'int-speech' });
     this.portraitBox.append(this.speech, this.detective);
@@ -38,7 +52,7 @@ export class Interrogation extends Modal {
     if (expr && this.it.portraits[expr]) this.expr = expr;
     if (this.noSprite) {
       const name = game.C.npcNames[this.it.npc] ?? this.it.npc;
-      const mood = game.C.npcPresentation.moodLabels?.[this.expr] ?? '';
+      const mood = this.it.moodLabels?.[this.expr] ?? game.C.npcPresentation.moodLabels?.[this.expr] ?? ''; // 本场审讯的 moodLabels（json）优先
       const plate = el('div', { class: `int-nameplate mood-${this.expr}`, 'data-expr': this.expr },
         el('div', { class: 'int-np-name', text: name }), mood ? el('div', { class: 'int-np-mood', text: mood }) : null);
       this.portraitImg?.remove();

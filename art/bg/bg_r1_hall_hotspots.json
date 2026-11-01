@@ -192,7 +192,8 @@
     190,
     507
    ],
-   "note": "540x1440 scaled 0.352; feet ~y1660; only while steward present"
+   "note": "已画进 bg_r1_hall / _door_open（inScene），不再单独叠立绘；需 chapter1.json npcs.osbert.inScene=true（原注：540x1440 scaled 0.352; feet ~y1660; only while steward present）",
+   "inScene": true
   }
  ],
  "fakeHotspots": [
@@ -211,5 +212,143 @@
    ],
    "note": "moved from [500,900,120,120] (that sits on the crest-door disc and would block it at s3); now under the left end of the table, matching the text"
   }
- ]
+ ],
+ "overlays": [
+  {
+   "id": "ovl_r1_candle_taken",
+   "file": "art/bg/ovl_r1_candle_taken.png",
+   "size": [
+    1080,
+    1920
+   ],
+   "bbox": [
+    660,
+    1228,
+    67,
+    165
+   ],
+   "show": {
+    "flags": [
+     "got_table"
+    ]
+   },
+   "note": "桌上蜡烛被拿走后：只剩空烛盘（got_table：蜡烛与面包同时入包）"
+  },
+  {
+   "id": "ovl_r1_bread_taken",
+   "file": "art/bg/ovl_r1_bread_taken.png",
+   "size": [
+    1080,
+    1920
+   ],
+   "bbox": [
+    726,
+    1262,
+    227,
+    141
+   ],
+   "show": {
+    "flags": [
+     "got_table"
+    ]
+   },
+   "note": "面包被拿走后：空桌面 + 几粒面包屑"
+  },
+  {
+   "id": "ovl_r1_poker_taken",
+   "file": "art/bg/ovl_r1_poker_taken.png",
+   "size": [
+    1080,
+    1920
+   ],
+   "bbox": [
+    644,
+    1038,
+    69,
+    230
+   ],
+   "show": {
+    "flags": [
+     "got_poker"
+    ],
+    "notFlags": [
+     "crest_solved"
+    ]
+   },
+   "note": "壁炉边火钳被拿走（底图 bg_r1_hall 用）"
+  },
+  {
+   "id": "ovl_r1_poker_taken__door_open",
+   "file": "art/bg/ovl_r1_poker_taken__door_open.png",
+   "size": [
+    1080,
+    1920
+   ],
+   "bbox": [
+    645,
+    1039,
+    66,
+    227
+   ],
+   "show": {
+    "flags": [
+     "got_poker",
+     "crest_solved"
+    ]
+   },
+   "note": "同上，对齐 bg_r1_hall_door_open（门开后的底图）"
+  },
+  {
+   "id": "ovl_r1_ashes_raked",
+   "file": "art/bg/ovl_r1_ashes_raked.png",
+   "size": [
+    1080,
+    1920
+   ],
+   "bbox": [
+    742,
+    1206,
+    210,
+    61
+   ],
+   "show": {
+    "flags": [
+     "got_page"
+    ]
+   },
+   "note": "灰堆被拨开、残页取走后的灰痕；人物奥斯博特在灰堆之前，叠加层在他身上的像素已清零"
+  }
+ ],
+ "npcInScene": [
+  {
+   "npc": "osbert",
+   "hotspot": "h_steward",
+   "rect": [
+    890,
+    1120,
+    190,
+    507
+   ],
+   "paintedBBox": [
+    920,
+    1083,
+    160,
+    526
+   ],
+   "variants": [
+    "bg_r1_hall",
+    "bg_r1_hall_door_open"
+   ],
+   "show": "always",
+   "note": "管家奥斯博特画进背景：桌尾右侧、壁炉右柱前，桌面与面包在他之前。全章不离场（int_osbert_done 后仍在原地，只换台词 t_osbert_after），无“他不在”状态图。热区 rect 不变。"
+  }
+ ],
+ "npcs": {
+  "osbert": [
+   890,
+   1120,
+   190,
+   507
+  ]
+ }
 }
