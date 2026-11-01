@@ -1,0 +1,267 @@
+{
+ "room": "r6_nursery",
+ "bg": "bg_r6_nursery",
+ "size": [
+  1080,
+  1920
+ ],
+ "playArea": [
+  0,
+  120,
+  1080,
+  1540
+ ],
+ "variants": [
+  {
+   "id": "bg_r6_nursery_empty_chair",
+   "when": "flag dd_bloodline_solved（优先；抽屉也开着）"
+  },
+  {
+   "id": "bg_r6_nursery_drawer_open",
+   "when": "flag cradle_drawer_open"
+  }
+ ],
+ "hotspots": [
+  {
+   "id": "h_r6_window",
+   "rect": [
+    110,
+    205,
+    190,
+    425
+   ],
+   "specRect": [
+    80,
+    220,
+    230,
+    380
+   ],
+   "changed": true,
+   "note": "左上小窗（雪光，恢复点）"
+  },
+  {
+   "id": "h_r6_mobile",
+   "rect": [
+    385,
+    400,
+    305,
+    295
+   ],
+   "specRect": [
+    380,
+    400,
+    320,
+    320
+   ],
+   "changed": true,
+   "note": "闭眼木月亮吊饰；心烛<40 叠 ovl_r6_mobile_eyes（月亮睁眼）"
+  },
+  {
+   "id": "h_r6_severin",
+   "rect": [
+    637,
+    630,
+    440,
+    890
+   ],
+   "specRect": [
+    790,
+    760,
+    260,
+    640
+   ],
+   "changed": true,
+   "note": "塞弗林画在背景里（坐乳母椅，逆光）；empty_chair 底图里人已离开"
+  },
+  {
+   "id": "h_r6_cradle",
+   "rect": [
+    165,
+    915,
+    550,
+    510
+   ],
+   "specRect": [
+    330,
+    880,
+    420,
+    420
+   ],
+   "changed": true,
+   "note": "橡木摇篮（床头 5 空槽、底座抽屉）；成图摇篮更大更偏左"
+  },
+  {
+   "id": "h_r6_basket",
+   "rect": [
+    5,
+    1190,
+    315,
+    340
+   ],
+   "specRect": [
+    60,
+    1180,
+    260,
+    280
+   ],
+   "changed": true,
+   "note": "左下针线篮+绣绷"
+  },
+  {
+   "id": "h_r6_blocks",
+   "rect": [
+    185,
+    1460,
+    380,
+    295
+   ],
+   "specRect": [
+    360,
+    1400,
+    380,
+    220
+   ],
+   "changed": true,
+   "note": "地上的字母积木（只看不拿，画在底图）"
+  }
+ ],
+ "overlays": [
+  {
+   "id": "ovl_r6_mobile_eyes",
+   "file": "art/bg/ovl_r6_mobile_eyes.png",
+   "size": [
+    1080,
+    1920
+   ],
+   "bbox": [
+    386,
+    459,
+    303,
+    231
+   ],
+   "show": {
+    "sanityBelow": 40
+   },
+   "note": "月亮吊饰睁眼"
+  }
+ ],
+ "fx": [
+  {
+   "id": "fx_cradle_rock",
+   "frames": [
+    "art/fx/fx_cradle_rock_01.png",
+    "art/fx/fx_cradle_rock_02.png",
+    "art/fx/fx_cradle_rock_03.png",
+    "art/fx/fx_cradle_rock_04.png"
+   ],
+   "rect": [
+    154,
+    909,
+    558,
+    533
+   ],
+   "specRect": [
+    330,
+    900,
+    420,
+    400
+   ],
+   "fps": 4,
+   "show": {
+    "any": [
+     {
+      "sanityBelow": 40
+     },
+     {
+      "flags": [
+       "int_severin_done"
+      ]
+     }
+    ]
+   },
+   "onBg": [
+    "bg_r6_nursery"
+   ],
+   "note": "抽屉关"
+  },
+  {
+   "id": "fx_cradle_rock_open",
+   "frames": [
+    "art/fx/fx_cradle_rock_open_01.png",
+    "art/fx/fx_cradle_rock_open_02.png",
+    "art/fx/fx_cradle_rock_open_03.png",
+    "art/fx/fx_cradle_rock_open_04.png"
+   ],
+   "rect": [
+    154,
+    909,
+    558,
+    533
+   ],
+   "specRect": [
+    330,
+    900,
+    420,
+    400
+   ],
+   "fps": 4,
+   "show": {
+    "any": [
+     {
+      "sanityBelow": 40
+     },
+     {
+      "flags": [
+       "int_severin_done"
+      ]
+     }
+    ]
+   },
+   "onBg": [
+    "bg_r6_nursery_drawer_open"
+   ],
+   "note": "抽屉开"
+  },
+  {
+   "id": "fx_cradle_rock_empty",
+   "frames": [
+    "art/fx/fx_cradle_rock_empty_01.png",
+    "art/fx/fx_cradle_rock_empty_02.png",
+    "art/fx/fx_cradle_rock_empty_03.png",
+    "art/fx/fx_cradle_rock_empty_04.png"
+   ],
+   "rect": [
+    154,
+    909,
+    558,
+    533
+   ],
+   "specRect": [
+    330,
+    900,
+    420,
+    400
+   ],
+   "fps": 4,
+   "show": {
+    "any": [
+     {
+      "sanityBelow": 40
+     },
+     {
+      "flags": [
+       "int_severin_done"
+      ]
+     }
+    ]
+   },
+   "onBg": [
+    "bg_r6_nursery_empty_chair"
+   ],
+   "note": "神父离开后"
+  }
+ ],
+ "layers": [],
+ "drawOrder": "bg/variant → overlays → fx",
+ "note": "摇篮特效按当前底图选 fx_cradle_rock / _open / _empty（三者 rect 相同）。"
+}

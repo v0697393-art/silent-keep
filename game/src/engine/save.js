@@ -36,6 +36,7 @@ export function loadGame(C) {
     once: s.once && typeof s.once === 'object' ? s.once : {},
     interrogations: s.interrogations && typeof s.interrogations === 'object' ? s.interrogations : {},
     clueboards: s.clueboards && typeof s.clueboards === 'object' ? s.clueboards : {},
+    seen: arr(s.seen, (x) => typeof x === 'string'), // 旧档没有 seen：按“都没看过”处理，只影响重复点击时的台词
     ended: !!s.ended,
   };
 }

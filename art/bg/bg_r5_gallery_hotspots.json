@@ -1,0 +1,246 @@
+{
+ "room": "r5_gallery",
+ "bg": "bg_r5_gallery",
+ "size": [
+  1080,
+  1920
+ ],
+ "playArea": [
+  0,
+  120,
+  1080,
+  1540
+ ],
+ "variants": [
+  {
+   "id": "bg_r5_gallery_door_open",
+   "when": "flag nursery_open（优先；画像必然已去漆）"
+  },
+  {
+   "id": "bg_r5_gallery_restored",
+   "when": "flag portrait_restored"
+  }
+ ],
+ "hotspots": [
+  {
+   "id": "h_r5_founder",
+   "rect": [
+    45,
+    205,
+    315,
+    445
+   ],
+   "specRect": [
+    40,
+    200,
+    300,
+    440
+   ],
+   "changed": true,
+   "note": "1238 先祖像（含泪痣神父）"
+  },
+  {
+   "id": "h_r5_nursery_door",
+   "rect": [
+    445,
+    600,
+    195,
+    415
+   ],
+   "specRect": [
+    420,
+    540,
+    260,
+    460
+   ],
+   "changed": true,
+   "note": "远处育婴室白漆矮门，2×2 木牌"
+  },
+  {
+   "id": "h_r5_family",
+   "rect": [
+    724,
+    244,
+    320,
+    493
+   ],
+   "specRect": [
+    740,
+    240,
+    300,
+    500
+   ],
+   "changed": true,
+   "note": "1312 全家像；去漆前后由底图差分切换"
+  },
+  {
+   "id": "h_r5_rozelyn",
+   "rect": [
+    45,
+    690,
+    295,
+    410
+   ],
+   "specRect": [
+    40,
+    700,
+    280,
+    400
+   ],
+   "changed": true,
+   "note": "1275 罗泽琳一家（女孩无脸）"
+  },
+  {
+   "id": "h_r5_easel",
+   "rect": [
+    665,
+    805,
+    410,
+    1035
+   ],
+   "specRect": [
+    720,
+    1060,
+    320,
+    480
+   ],
+   "changed": true,
+   "note": "右下画架；松节油和布为叠加层 ovl_r5_easel_supplies"
+  },
+  {
+   "id": "h_r5_board",
+   "rect": [
+    65,
+    1170,
+    340,
+    425
+   ],
+   "specRect": [
+    60,
+    1160,
+    360,
+    420
+   ],
+   "changed": true,
+   "note": "左下空画框＝线索板"
+  },
+  {
+   "id": "h_r5_lamp",
+   "rect": [
+    460,
+    1310,
+    170,
+    255
+   ],
+   "specRect": [
+    470,
+    1380,
+    170,
+    220
+   ],
+   "changed": true,
+   "note": "壁龛油灯（恢复点）"
+  }
+ ],
+ "overlays": [
+  {
+   "id": "ovl_r5_easel_supplies",
+   "file": "art/bg/ovl_r5_easel_supplies.png",
+   "size": [
+    1080,
+    1920
+   ],
+   "bbox": [
+    706,
+    1295,
+    308,
+    295
+   ],
+   "show": {
+    "notFlags": [
+     "got_easel"
+    ]
+   },
+   "note": "画架托板上的松节油瓶与抹布；取得后隐藏（三张底图该区域像素一致）"
+  }
+ ],
+ "fx": [
+  {
+   "id": "fx_portrait_eyes",
+   "frames": [
+    "art/fx/fx_portrait_eyes_01.png",
+    "art/fx/fx_portrait_eyes_02.png",
+    "art/fx/fx_portrait_eyes_03.png",
+    "art/fx/fx_portrait_eyes_04.png"
+   ],
+   "rect": [
+    724,
+    244,
+    320,
+    493
+   ],
+   "specRect": [
+    740,
+    260,
+    300,
+    460
+   ],
+   "fps": 3,
+   "show": {
+    "sanityBelow": 40,
+    "notFlags": [
+     "portrait_restored"
+    ]
+   },
+   "onBg": [
+    "bg_r5_gallery"
+   ],
+   "note": "去漆前"
+  },
+  {
+   "id": "fx_portrait_eyes_restored",
+   "frames": [
+    "art/fx/fx_portrait_eyes_restored_01.png",
+    "art/fx/fx_portrait_eyes_restored_02.png",
+    "art/fx/fx_portrait_eyes_restored_03.png",
+    "art/fx/fx_portrait_eyes_restored_04.png"
+   ],
+   "rect": [
+    724,
+    244,
+    320,
+    493
+   ],
+   "specRect": [
+    740,
+    260,
+    300,
+    460
+   ],
+   "fps": 3,
+   "show": {
+    "any": [
+     {
+      "sanityBelow": 40
+     },
+     {
+      "flags": [
+       "cb_bloodline_solved"
+      ]
+     }
+    ],
+    "flags": [
+     "portrait_restored"
+    ]
+   },
+   "onBg": [
+    "bg_r5_gallery_restored",
+    "bg_r5_gallery_door_open"
+   ],
+   "note": "去漆后（含婴儿灰眼）"
+  }
+ ],
+ "layers": [],
+ "drawOrder": "bg/variant → overlays → fx",
+ "note": "chapter2.json 的 fx_portrait_eyes 只有一个 id；去漆后请改用 fx_portrait_eyes_restored（或程序按 portrait_restored 切换前缀）。"
+}

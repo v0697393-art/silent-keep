@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-31T19:11:07-04:00",
+ "generated": "2026-11-01T01:42:16-04:00",
  "spec": "design/04_美术素材清单.md",
- "note": "256x256 透明 PNG；GenerateImage 图标表切格 + rembg(isnet) 抠图；念珠由珠子精灵程序拼（rosary 7 灰缺 1；rosary_full 7 灰+1 黑）。阴影统一落向右下。脚本 art_src/items/build_items.py",
- "count": 17,
+ "note": "256x256 透明 PNG；GenerateImage 图标表切格 + rembg(isnet) 抠图；念珠由珠子精灵程序拼（rosary 7 灰缺 1；rosary_full 7 灰+1 黑）。阴影统一落向右下。脚本 art_src/items/build_items.py；第二章：art_src/ch2/build_items_ch2.py",
+ "count": 24,
  "assets": [
   {
    "file": "art/items/item_black_bead.png",
@@ -86,6 +86,42 @@
    "purpose": "道具栏图标"
   },
   {
+   "file": "art/items/item_cup_ice.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "cup_ice",
+   "name": "冻住的水杯",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_cup_warm.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "cup_warm",
+   "name": "温水杯",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_gallery_key.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "gallery_key",
+   "name": "长廊钥匙",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_pine_oil.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "pine_oil",
+   "name": "松节油",
+   "purpose": "道具栏图标"
+  },
+  {
    "file": "art/items/item_poker.png",
    "width": 256,
    "height": 256,
@@ -101,6 +137,15 @@
    "transparent": true,
    "item": "quill",
    "name": "鹅毛笔",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_rag.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "rag",
+   "name": "抹布",
    "purpose": "道具栏图标"
   },
   {
@@ -140,12 +185,30 @@
    "purpose": "道具栏图标"
   },
   {
+   "file": "art/items/item_solvent_rag.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "solvent_rag",
+   "name": "浸了松节油的布",
+   "purpose": "道具栏图标"
+  },
+  {
    "file": "art/items/item_spectacles.png",
    "width": 256,
    "height": 256,
    "transparent": true,
    "item": "spectacles",
    "name": "布伦丹的眼镜",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_swaddling.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "swaddling",
+   "name": "旧襁褓",
    "purpose": "道具栏图标"
   },
   {

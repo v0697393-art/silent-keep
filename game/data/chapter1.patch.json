@@ -1,26 +1,720 @@
 {
-  "_说明": "开发补丁：只放 design/data/chapter1.json 里没有对应字段的数据。v1.1 起文本表、房间名、热点名、NPC 名、过场字幕、结局标题、卡片图、谜题标题/背景改读 json（06 §11）；v1.2 起 uiText、bgVariants、symbolNames、uiSfx、uiBgm、hotspotSfx 也并入 json（06 §12.3），本文件对应字段已删除。现只剩 audioAlias 与 npcLayers（兜底站位）。引擎仍保留“json 优先、补丁兜底”的合并逻辑。",
-  "audioAlias": {},
-  "_说明_audioAlias": "audioAlias：音频 id 别名（chapter1.json 引用 id → audio_manifest.json 里的 id）。音频第一版 id 已与 chapter1.json 完全一致，故清空；verify 会检查所有引用都在清单里。",
-  "npcLayers": {
-    "_说明": "NPC 全身站姿图层的兜底站位（仅当 chapter1.json npcs 没有 rect、美术热区文件 layers 里也没有该站姿图时才用）。rect 与审讯入口热点一致，底边贴地；立绘只画在画布上，不参与点击判定。",
-    "osbert": {
-      "room": "r1_hall",
-      "rect": [
-        890,
-        1120,
-        190,
-        507
+ "_说明": "开发补丁（第一章专属）：只放 design/data/chapter1.json 里没有对应字段的数据（json 优先、补丁兜底）。现有：audioAlias；hotspots（交互完成后的状态/渐进提示/cantUse，引擎通用机制）；addHotspots；texts（新增台词，待剧情策划确认）；bgOverlays（道具拿走遮罩）；puzzleFeedback；effectPatches（在 json 效果列表指定位置插入效果）。与章节无关的 npcPresentation / sanityReasons / 通用 uiTextOverrides 已移到 data/engine-defaults.json（每章共用，第二章直接继承）。旧补丁备份：tools/out/chapter1.patch.before-steer.json。",
+ "audioAlias": {},
+ "_说明_audioAlias": "audioAlias：音频 id 别名（chapter1.json 引用 id → audio_manifest.json 里的 id）。音频第一版 id 已与 chapter1.json 完全一致，故清空；verify 会检查所有引用都在清单里。",
+ "_说明_hotspots": "hotspots：热点“完成后”状态。chapter1.json 的交互一条不改，只能 ① prepend：在该热点交互表最前面插入带完成条件的交互（首个满足 req 的交互生效，所以完成后它会盖过 json 里的交互前台词）；② hideWhen：满足即隐藏热点（不响应、不闪提示、点击落到下层热点）。req 除 06 §10 的 items/flags/notFlags/evidence 外，引擎还支持 notItems/notEvidence/seen/notSeen（seen：'h_id' 点过该热点，'h_id:t_key' 该热点显示过这条文本；只能用于纯表现交互）。状态全部来自存档里的 S，读档后自动正确。verify 第 D 节会检查：每个热点在它触发的 flag/物品/证据变化后，不再显示交互前文案（或已隐藏）。",
+ "hotspots": {
+  "h_table": {
+   "_说明": "拿走蜡烛和面包后，json 兜底是 t_too_dark（不对）→ 空桌台词",
+   "prepend": [
+    {
+     "default": true,
+     "req": {
+      "flags": [
+       "got_table"
       ]
-    },
-    "ysolde": {
-      "room": "r3_crypt",
-      "rect": [
-        70,
-        1100,
-        210,
-        560
-      ]
+     },
+     "effects": [
+      {
+       "type": "text",
+       "key": "t_table_after"
+      }
+     ]
     }
+   ]
+  },
+  "h_table_under": {
+   "_说明": "念珠拿走后隐藏",
+   "hideWhen": {
+    "flags": [
+     "got_rosary"
+    ]
+   }
+  },
+  "h_fireplace": {
+   "_说明": "拨火棍和残页都拿走后，t_fire_warm 仍说“灰下面压着什么”→ 已拨开",
+   "prepend": [
+    {
+     "default": true,
+     "req": {
+      "flags": [
+       "got_poker",
+       "got_page"
+      ]
+     },
+     "effects": [
+      {
+       "type": "text",
+       "key": "t_fire_after"
+      }
+     ]
+    }
+   ]
+  },
+  "h_ashes": {
+   "_说明": "残页拨出后隐藏（点击落到壁炉 → t_fire_after）",
+   "hideWhen": {
+    "flags": [
+     "got_page"
+    ]
+   }
+  },
+  "h_armor": {
+   "_说明": "曲柄取出后 json 无交互（热点直接失效）→ 改为显示空盔甲台词，免得点了没反应",
+   "prepend": [
+    {
+     "default": true,
+     "req": {
+      "flags": [
+       "got_crank"
+      ]
+     },
+     "effects": [
+      {
+       "type": "text",
+       "key": "t_armor_after"
+      }
+     ]
+    }
+   ]
+  },
+  "h_tapestry": {
+   "_说明": "看过一次后（线索板未解前）不再重复“刚才它们是不是动了一下”",
+   "prepend": [
+    {
+     "default": true,
+     "req": {
+      "flags": [
+       "seen_tapestry"
+      ],
+      "notFlags": [
+       "cb_cycle_solved"
+      ]
+     },
+     "effects": [
+      {
+       "type": "open",
+       "ui": "closeup",
+       "id": "cu_tapestry"
+      },
+      {
+       "type": "text",
+       "key": "t_tapestry_seen"
+      }
+     ]
+    }
+   ]
+  },
+  "h_portrait": {
+   "_说明": "第二次起换台词",
+   "prepend": [
+    {
+     "default": true,
+     "req": {
+      "seen": [
+       "h_portrait"
+      ]
+     },
+     "effects": [
+      {
+       "type": "text",
+       "key": "t_portrait_again"
+      }
+     ]
+    }
+   ]
+  },
+  "h_desk_copy": {
+   "_说明": "证据已入手后换台词（仍可打开特写重读）",
+   "prepend": [
+    {
+     "default": true,
+     "req": {
+      "evidence": [
+       "ev_brendan_notes"
+      ]
+     },
+     "effects": [
+      {
+       "type": "open",
+       "ui": "closeup",
+       "id": "cu_brendan_copy"
+      },
+      {
+       "type": "text",
+       "key": "t_brendan_notes_again"
+      }
+     ]
+    }
+   ]
+  },
+  "h_window": {
+   "_说明": "BUGS #4/#5：乌鸦叼走面包（got_spectacles）后窗扇已开（背景换 window_open 差分，玻璃不再起雾），窗/乌鸦热点隐藏；窗缝 h_window_air 是 06 设计的心烛恢复点，保留",
+   "hideWhen": {
+    "flags": [
+     "got_spectacles"
+    ]
+   }
+  },
+  "h_drawing": {
+   "_说明": "证据已入手后换台词",
+   "prepend": [
+    {
+     "default": true,
+     "req": {
+      "evidence": [
+       "ev_child_drawing"
+      ]
+     },
+     "effects": [
+      {
+       "type": "open",
+       "ui": "closeup",
+       "id": "cu_child_drawing"
+      },
+      {
+       "type": "text",
+       "key": "t_drawing_again"
+      }
+     ]
+    }
+   ]
+  },
+  "h_coffins": {
+   "_说明": "证据已入手后换台词",
+   "prepend": [
+    {
+     "default": true,
+     "req": {
+      "evidence": [
+       "ev_blank_coffins"
+      ]
+     },
+     "effects": [
+      {
+       "type": "text",
+       "key": "t_coffins_again"
+      }
+     ]
+    }
+   ]
+  },
+  "h_chain": {
+   "_说明": "证据已入手后换台词；井盖吊起（dd_final_solved）后另一句",
+   "prepend": [
+    {
+     "default": true,
+     "req": {
+      "evidence": [
+       "ev_wet_chain"
+      ],
+      "notFlags": [
+       "dd_final_solved"
+      ]
+     },
+     "effects": [
+      {
+       "type": "open",
+       "ui": "closeup",
+       "id": "cu_well_lid"
+      },
+      {
+       "type": "text",
+       "key": "t_chain_again"
+      }
+     ]
+    },
+    {
+     "default": true,
+     "req": {
+      "flags": [
+       "dd_final_solved"
+      ],
+      "evidence": [
+       "ev_wet_chain"
+      ]
+     },
+     "effects": [
+      {
+       "type": "text",
+       "key": "t_chain_open"
+      }
+     ]
+    }
+   ]
+  },
+  "h_relief": {
+   "_说明": "闭眼/睁眼两种状态各自看过后换台词（避免重复“画面上只有很多闭着的眼皮”）",
+   "prepend": [
+    {
+     "default": true,
+     "req": {
+      "flags": [
+       "int_ysolde_done"
+      ],
+      "seen": [
+       "h_relief:t_relief_open"
+      ]
+     },
+     "effects": [
+      {
+       "type": "open",
+       "ui": "closeup",
+       "id": "cu_relief"
+      },
+      {
+       "type": "text",
+       "key": "t_relief_open_again"
+      }
+     ]
+    },
+    {
+     "default": true,
+     "req": {
+      "notFlags": [
+       "int_ysolde_done"
+      ],
+      "seen": [
+       "h_relief:t_relief"
+      ]
+     },
+     "effects": [
+      {
+       "type": "open",
+       "ui": "closeup",
+       "id": "cu_relief"
+      },
+      {
+       "type": "text",
+       "key": "t_relief_again"
+      }
+     ]
+    }
+   ]
+  },
+  "h_desk_original": {
+   "_说明": "BUGS #8：刮痕的解法（03/06）= 墨水台拿到炭条/刮刀/鹅毛笔 → 炭条+刮刀=炭粉 → 炭粉+鹅毛笔=显影刷 → 显影刷用在家谱上。json 只有一句“肉眼看不清”，没有任何指向墨水台/炭粉的线索；补三档渐进提示 + 错用道具的针对性回应",
+   "prepend": [
+    {
+     "default": true,
+     "req": {
+      "notFlags": [
+       "tree_revealed",
+       "got_ink"
+      ]
+     },
+     "effects": [
+      {
+       "type": "open",
+       "ui": "closeup",
+       "id": "cu_genealogy"
+      },
+      {
+       "type": "text",
+       "key": "t_scratches_hint_ink"
+      }
+     ]
+    },
+    {
+     "default": true,
+     "req": {
+      "flags": [
+       "got_ink"
+      ],
+      "notFlags": [
+       "tree_revealed"
+      ],
+      "notItems": [
+       "reveal_brush"
+      ]
+     },
+     "effects": [
+      {
+       "type": "open",
+       "ui": "closeup",
+       "id": "cu_genealogy"
+      },
+      {
+       "type": "text",
+       "key": "t_scratches_hint_brush"
+      }
+     ]
+    },
+    {
+     "default": true,
+     "req": {
+      "items": [
+       "reveal_brush"
+      ],
+      "notFlags": [
+       "tree_revealed"
+      ]
+     },
+     "effects": [
+      {
+       "type": "open",
+       "ui": "closeup",
+       "id": "cu_genealogy"
+      },
+      {
+       "type": "text",
+       "key": "t_scratches_hint_ready"
+      }
+     ]
+    }
+   ],
+   "cantUse": {
+    "spectacles": "t_scratches_cant_spectacles",
+    "candle_lit": "t_scratches_cant_candle",
+    "candle": "t_scratches_cant_candle",
+    "charcoal": "t_scratches_cant_charcoal",
+    "charcoal_dust": "t_scratches_cant_dust",
+    "scraper": "t_scratches_cant_scraper",
+    "quill": "t_scratches_cant_quill"
+   }
+  },
+  "h_chest": {
+   "_说明": "线索加强（BUGS 其他）：家谱显影后、线索板未完成前，提示“被遗忘者”就是家谱上被刮掉的三人；转盘界面里另给年份提示（puzzleFeedback.pz_dial）",
+   "prepend": [
+    {
+     "default": true,
+     "req": {
+      "flags": [
+       "tree_revealed"
+      ],
+      "notFlags": [
+       "cb_cycle_solved",
+       "chest_open"
+      ]
+     },
+     "effects": [
+      {
+       "type": "text",
+       "key": "t_chest_hint_tree"
+      }
+     ]
+    }
+   ]
+  },
+  "h_stair_door": {
+   "_说明": "线索加强：井形锁指向“井形钥匙在编年史匣里”；拿到钥匙后提示怎么用",
+   "prepend": [
+    {
+     "default": true,
+     "req": {
+      "notFlags": [
+       "stair_open"
+      ],
+      "notItems": [
+       "well_key"
+      ]
+     },
+     "effects": [
+      {
+       "type": "text",
+       "key": "t_stair_hint_nokey"
+      }
+     ]
+    },
+    {
+     "default": true,
+     "req": {
+      "notFlags": [
+       "stair_open"
+      ],
+      "items": [
+       "well_key"
+      ]
+     },
+     "effects": [
+      {
+       "type": "text",
+       "key": "t_stair_hint_key"
+      }
+     ]
+    }
+   ],
+   "cantUse": {
+    "*": "t_stair_cant"
+   }
   }
+ },
+ "_说明_texts": "texts：上面 hotspots 用到的完成后台词，chapter1.json 里没有，开发先补，【待剧情策划确认/改写后并入 chapter1.json texts】（json 有同名 key 时 json 优先）。",
+ "texts": {
+  "t_table_after": "残宴已经冷透，桌上只剩倒下的杯子和空盘子。",
+  "t_fire_after": "余烬微红。灰堆已经被我拨开了，下面什么也不剩。",
+  "t_armor_after": "面罩敞开着，盔甲里空空的——摸上去却还是温的。",
+  "t_tapestry_seen": "挂毯上那个破洞还在。家徽只看得清左上“<k>闭眼</k>”与右上“<k>水纹</k>”。那些线头……我不想再盯着看。",
+  "t_portrait_again": "那张被抹平的脸还朝着我。名牌依旧空白。",
+  "t_brendan_notes_again": "布伦丹的页边笔记，我已经记进手记了：“今年冬至，‘轮到了’。”",
+  "t_drawing_again": "玛蒂尔的蜡笔画，我已经记下了：没有脸的高个子，被牵向<k>黑色圆圈</k>的灰袍人。",
+  "t_coffins_again": "三具被磨平名字的石棺。我已经记下了。",
+  "t_chain_again": "链子上的黑泥还是湿的。井在下面一呼一吸。",
+  "t_chain_open": "井盖已经吊起，湿链子绷得笔直，垂进黑暗里。",
+  "t_relief_again": "浮雕上那些闭着的眼皮一动不动。我还读不懂它们在等什么。",
+  "t_relief_open_again": "睁开的眼皮依旧齐齐望着井口。",
+  "t_scratches_hint_ink": "家谱原本上有三处刮痕，肉眼看不清。刮痕里还留着细细的凹槽——要是有<k>炭粉</k>扫进去，字迹也许会显出来。门边的<k>墨水台</k>上好像有画炭和工具。",
+  "t_scratches_hint_brush": "三处刮痕，凹槽很浅。炭条太粗，得先用<k>刮刀</k>把<k>炭条</k>刮成粉，再用<k>鹅毛笔</k>的羽毛蘸着扫上去。（在行囊里点一件道具，再点另一件即可组合）",
+  "t_scratches_hint_ready": "刮痕就在眼前。用<k>显影刷</k>扫过去试试——在下面的道具栏点它，或者回到场景选中它再点家谱。",
+  "t_scratches_cant_spectacles": "眼镜让字更清楚，可刮掉的地方本来就没有字——得让凹槽自己显出来。也许<k>炭粉</k>能行。",
+  "t_scratches_cant_candle": "烛光斜照，只看出凹槽的走向，还是读不出字。得把什么<k>扫进</k>凹槽里。",
+  "t_scratches_cant_charcoal": "炭条太粗，直接涂会把整页涂黑。先用<k>刮刀</k>把它刮成粉。",
+  "t_scratches_cant_dust": "炭粉直接撒上去会糊成一片——得有支软羽把它<k>扫</k>进刮痕。<k>鹅毛笔</k>？",
+  "t_scratches_cant_scraper": "再刮下去，最后一点凹痕也没了。刮刀该用来刮<k>炭条</k>。",
+  "t_scratches_cant_quill": "空羽毛扫过去，什么也没留下。得先蘸上<k>炭粉</k>。",
+  "t_chest_hint_tree": "匣盖上刻着“<k>依次念出被遗忘者离去之年的尾数</k>”。被遗忘者……家谱上被刮掉的那三个人？可我还没想清他们为什么会被抹去——先在<k>线索板</k>上把证据连起来。",
+  "t_dial_hint_years": "家谱显影：希尔德布兰 <k>1238</k>、罗泽琳 <k>1275</k>、无名的孩子 <k>1312</k>——“尾数”就是每个年份的<k>最后一位</k>。",
+  "t_crest_solved": "四块石盘归位：<k>眼闭，水静，钥沉，井默</k>。石门沉闷地沉入地面……",
+  "t_stair_hint_nokey": "通往楼下礼拜堂的楼梯门，被一把<k>井形锁</k>锁住——锁孔是一口小井的形状，和家徽上的井一样。这么要紧的钥匙，大概锁在这屋里某个<k>上锁的匣子</k>里。",
+  "t_stair_hint_key": "井形锁的锁孔，和匣子里那把<k>井形钥匙</k>正好吻合。选中钥匙，再点这扇门。",
+  "t_stair_cant": "这把<k>井形锁</k>只认井形的钥匙。",
+  "t_torch": "墙上的烛台，蜡烛快燃到底了。拿不下来，也没必要——这点火光是大厅里唯一让人安心的东西。",
+  "t_crest_hint_order": "按家训的顺序，从左上起逐块转对。",
+  "t_crest_hint_nomotto": "下面两块褪了色，认不出该转成什么——先去问问记得家训的人。",
+  "t_dial_unlock": "咔哒——三格转盘同时落位，匣盖弹开了。"
+ },
+ "_说明_addHotspots": "追加到房间热点表最上层的新热点（BUGS #11：背景左墙的烛台落在盔甲热点里，点烛台会出盔甲台词 → 给烛台单独一个热点和台词）",
+ "addHotspots": {
+  "r1_hall": [
+   {
+    "id": "h_torch",
+    "label": "壁上烛台",
+    "rect": [
+     0,
+     585,
+     78,
+     190
+    ],
+    "interactions": [
+     {
+      "default": true,
+      "effects": [
+       {
+        "type": "text",
+        "key": "t_torch"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "_说明_bgOverlays": "道具拿走后的背景遮罩（BUGS #2/#3）：art/ 里没有“道具已拿走”的差分，game/tools/make-taken-overlays.py 从现有背景（只读）克隆/镜像/取样桌面纹理生成羽化 PNG 裁片，放 game/art_overlays/，按当前背景差分 id 取对应裁片叠在背景上。美术若出正式差分，删掉对应条目改用 bgVariants 即可",
+ "bgOverlays": [
+  {
+   "id": "candle",
+   "room": "r1_hall",
+   "req": {
+    "flags": [
+     "got_table"
+    ]
+   },
+   "variants": {
+    "bg_r1_hall": {
+     "src": "art_overlays/bg_r1_hall__candle.png",
+     "rect": [
+      634,
+      1210,
+      117,
+      191
+     ]
+    },
+    "bg_r1_hall_door_open": {
+     "src": "art_overlays/bg_r1_hall_door_open__candle.png",
+     "rect": [
+      634,
+      1210,
+      117,
+      191
+     ]
+    }
+   }
+  },
+  {
+   "id": "bread",
+   "room": "r1_hall",
+   "req": {
+    "flags": [
+     "got_table"
+    ]
+   },
+   "variants": {
+    "bg_r1_hall": {
+     "src": "art_overlays/bg_r1_hall__bread.png",
+     "rect": [
+      718,
+      1250,
+      243,
+      161
+     ]
+    },
+    "bg_r1_hall_door_open": {
+     "src": "art_overlays/bg_r1_hall_door_open__bread.png",
+     "rect": [
+      718,
+      1250,
+      243,
+      161
+     ]
+    }
+   }
+  },
+  {
+   "id": "poker",
+   "room": "r1_hall",
+   "req": {
+    "flags": [
+     "got_poker"
+    ]
+   },
+   "variants": {
+    "bg_r1_hall": {
+     "src": "art_overlays/bg_r1_hall__poker.png",
+     "rect": [
+      630,
+      1020,
+      95,
+      263
+     ]
+    },
+    "bg_r1_hall_door_open": {
+     "src": "art_overlays/bg_r1_hall_door_open__poker.png",
+     "rect": [
+      630,
+      1020,
+      95,
+      263
+     ]
+    }
+   }
+  },
+  {
+   "id": "inkstand",
+   "room": "r2_scriptorium",
+   "req": {
+    "flags": [
+     "got_ink"
+    ]
+   },
+   "variants": {
+    "bg_r2_scriptorium": {
+     "src": "art_overlays/bg_r2_scriptorium__inkstand.png",
+     "rect": [
+      510,
+      1060,
+      243,
+      259
+     ]
+    },
+    "bg_r2_scriptorium_stair_open": {
+     "src": "art_overlays/bg_r2_scriptorium_stair_open__inkstand.png",
+     "rect": [
+      510,
+      1060,
+      243,
+      259
+     ]
+    },
+    "bg_r2_scriptorium_window_open": {
+     "src": "art_overlays/bg_r2_scriptorium_window_open__inkstand.png",
+     "rect": [
+      510,
+      1060,
+      243,
+      259
+     ]
+    },
+    "bg_r2_scriptorium_stair_window_open": {
+     "src": "art_overlays/bg_r2_scriptorium_stair_window_open__inkstand.png",
+     "rect": [
+      510,
+      1060,
+      243,
+      259
+     ]
+    }
+   }
+  }
+ ],
+ "_说明_puzzleFeedback": "谜题解开反馈与界面内提示（BUGS #6 + 箱子年份线索）：solvedText 解开时先在弹窗显示 holdMs 再执行 onSolved（不给 solvedText 时弹窗显示 onSolved 里第一条 text，如 pz_dial 的 t_dial_unlock）；hints [{req,text,progress?}] 取第一条满足的显示在谜题底部，progress:true 时 rotate_grid 附“已归位 n/总数”；mottoReq：rotate_grid 顶部格言（uiText.crestHint）的显示条件",
+ "puzzleFeedback": {
+  "pz_crest": {
+   "solvedText": "t_crest_solved",
+   "holdMs": 2300,
+   "mottoReq": {
+    "flags": [
+     "has_motto"
+    ]
+   },
+   "hints": [
+    {
+     "req": {
+      "flags": [
+       "has_motto"
+      ]
+     },
+     "text": "t_crest_hint_order",
+     "progress": true
+    },
+    {
+     "text": "t_crest_hint_nomotto"
+    }
+   ]
+  },
+  "pz_dial": {
+   "holdMs": 2000,
+   "hints": [
+    {
+     "req": {
+      "flags": [
+       "tree_revealed"
+      ]
+     },
+     "text": "t_dial_hint_years"
+    }
+   ]
+  }
+ },
+ "_说明_effectPatches": "在 chapter1.json 的效果列表里精确插入效果（chapter.js applyEffectPatches）：target 定位交互/谜题，after 定位插入点（插在其后），before 校验紧随其后的那条；insert 已存在于 json 时自动跳过（策划并入正式 json 后补丁无需删除）。定位失败 verify 报错。待策划并入：① h_stair_door 用 well_key：flag stair_open 之后、goto r3_crypt 之前插 sfx sfx_lock_unlock；② pz_dial.onSolved：flag chest_open 之后插 sfx sfx_lock_unlock + text t_dial_unlock（开锁字幕，解开时在转盘弹窗里显示，BUGS #6）。",
+ "effectPatches": [
+  {
+   "target": {
+    "hotspot": "h_stair_door",
+    "useItem": "well_key"
+   },
+   "after": {
+    "type": "flag",
+    "set": "stair_open"
+   },
+   "before": {
+    "type": "goto",
+    "room": "r3_crypt"
+   },
+   "insert": [
+    {
+     "type": "sfx",
+     "id": "sfx_lock_unlock"
+    }
+   ]
+  },
+  {
+   "target": {
+    "puzzle": "pz_dial"
+   },
+   "after": {
+    "type": "flag",
+    "set": "chest_open"
+   },
+   "insert": [
+    {
+     "type": "sfx",
+     "id": "sfx_lock_unlock"
+    },
+    {
+     "type": "text",
+     "key": "t_dial_unlock"
+    }
+   ]
+  }
+ ]
 }

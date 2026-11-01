@@ -1,0 +1,15 @@
+{
+ "frames": 4,
+ "fps": 3,
+ "frame_w": 320,
+ "frame_h": 493,
+ "rect": [
+  724,
+  244,
+  320,
+  493
+ ],
+ "loop": true,
+ "show": "sanity<40 或 cb_bloodline 解开后常驻（去漆后 / 门开时）",
+ "note": "同上，含婴儿的灰眼睛；叠在 bg_r5_gallery_restored 与 bg_r5_gallery_door_open 上（两图画像区域像素一致）"
+}

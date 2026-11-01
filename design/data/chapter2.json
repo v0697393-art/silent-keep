@@ -1,0 +1,2536 @@
+{
+ "meta": {
+  "title": "缄默堡",
+  "chapter": 2,
+  "name": "血脉",
+  "resolution": [
+   1080,
+   1920
+  ],
+  "start": "r4_bedchamber",
+  "version": "v2.0",
+  "intro": "cs_ch2_intro",
+  "ending": "cs_ch2_end",
+  "endingTitle": "t_ch2_ending_title"
+ },
+ "items": {
+  "swaddling": {
+   "name": "襁褓残片",
+   "icon": "item_swaddling",
+   "consumable": false,
+   "desc": "随身带了三十七年的旧布。角上半个闭眼纹，绣着 EDRIC。"
+  },
+  "cup_ice": {
+   "name": "结冰的杯子",
+   "icon": "item_cup_ice",
+   "consumable": true,
+   "desc": "锡杯，杯底冻着一层冰。"
+  },
+  "cup_warm": {
+   "name": "温水",
+   "icon": "item_cup_warm",
+   "consumable": true,
+   "desc": "炭火化开的温水，还冒着一点热气。"
+  },
+  "gallery_key": {
+   "name": "长廊钥匙",
+   "icon": "item_gallery_key",
+   "consumable": true,
+   "desc": "黄铜钥匙，柄上缠着一截褪色的蓝线。"
+  },
+  "pine_oil": {
+   "name": "松脂油",
+   "icon": "item_pine_oil",
+   "consumable": true,
+   "desc": "画师用的松脂油，能化开新上的漆。"
+  },
+  "rag": {
+   "name": "画布破布",
+   "icon": "item_rag",
+   "consumable": true,
+   "desc": "一块沾着颜料的破布。"
+  },
+  "solvent_rag": {
+   "name": "浸油的布",
+   "icon": "item_solvent_rag",
+   "consumable": true,
+   "desc": "浸透松脂油的布——可以擦掉覆盖上去的漆。"
+  }
+ },
+ "combine": [
+  {
+   "a": "pine_oil",
+   "b": "rag",
+   "result": "solvent_rag",
+   "consume": [
+    "pine_oil",
+    "rag"
+   ]
+  }
+ ],
+ "evidence": {
+  "ev_swaddling": {
+   "name": "襁褓残片",
+   "img": "ev_swaddling",
+   "desc": "随身带了三十七年。角上半个闭眼纹，绣着名字 EDRIC（埃德里克）。院长说：1312 年冬至夜，我被放在灰烛修道院门口，约莫三周大。"
+  },
+  "ev_rattle": {
+   "name": "银摇铃",
+   "img": "ev_rattle",
+   "desc": "老领主攥在手心的银摇铃。铃柄刻着 MCCCXII · XII · III，和一只闭着的眼。"
+  },
+  "ev_prayer_book": {
+   "name": "老领主的祷告簿",
+   "img": "ev_prayer_book",
+   "desc": "三十七年，每一页都是同一段祷词：“我把我第一个儿子的名字交给了井。我想不起它，只记得他母亲绣的第一针是一个 E。”"
+  },
+  "ev_aelind_letter": {
+   "name": "艾琳德的信",
+   "img": "ev_aelind_letter",
+   "desc": "“他们说冬至那夜要带走我们第一个孩子的名字。那我就把名字缝进布里——线比墨长久。我每晚给他唱：线轴转，银铃响，小羊睡，月亮闭眼。若有一天他回来，让他唱给育婴室的门听。”——艾琳德，MCCCXII 年降临节。"
+  },
+  "ev_family_portrait": {
+   "name": "戈德温一家（1312）",
+   "img": "ev_family_portrait",
+   "desc": "灰漆下是艾琳德怀里的婴儿：襁褓角上半个闭眼纹，手里攥着银摇铃。他们身后站着持牧杖的神父，左眼下一颗泪痣。"
+  },
+  "ev_ageless_priest": {
+   "name": "不老的神父",
+   "img": "ev_ageless_priest",
+   "desc": "1238 年先祖身后、1275 年罗泽琳一家身后、1312 年戈德温身后，站着同一个神父：同一颗泪痣，一天也没老。"
+  },
+  "ev_cloth_match": {
+   "name": "补全的家徽",
+   "img": "ev_cloth_match",
+   "desc": "我的襁褓残片和育婴室绣绷上的布，撕口严丝合缝。它出自这间育婴室，出自艾琳德的手。"
+  },
+  "ev_baptism_record": {
+   "name": "受洗记录",
+   "img": "ev_baptism_record",
+   "desc": "“MCCCXII 年 XII 月 III 日生，戈德温与艾琳德之长子，冬至前受洗，名 E▇▇▇▇。主礼：塞弗林。”名字只剩第一个字母。"
+  },
+  "ev_severin_confession": {
+   "name": "塞弗林的供述",
+   "img": "ev_severin_confession",
+   "desc": "“我抱进井室的是一卷空襁褓……井吃下了‘埃德里克’，世上却还剩一个叫这个名字的身体。它等了你三十七年。”"
+  }
+ },
+ "rooms": [
+  {
+   "id": "r4_bedchamber",
+   "bg": "bg_r4_bedchamber",
+   "bgm": "bgm_r4_bedchamber",
+   "amb": "amb_bedchamber_breath",
+   "name": "领主寝室",
+   "fx": [
+    {
+     "id": "fx_curtain_breathe",
+     "rect": [
+      260,
+      760,
+      560,
+      520
+     ],
+     "fps": 4,
+     "loop": true,
+     "sanityBelow": 40,
+     "_说明": "床帐随呼吸起伏（s3 动摇档）"
+    }
+   ],
+   "hotspots": [
+    {
+     "id": "h_r4_gallery_door",
+     "rect": [
+      400,
+      160,
+      300,
+      540
+     ],
+     "label": "长廊门",
+     "interactions": [
+      {
+       "useItem": "gallery_key",
+       "effects": [
+        {
+         "type": "take",
+         "item": "gallery_key"
+        },
+        {
+         "type": "flag",
+         "set": "gallery_open"
+        },
+        {
+         "type": "sfx",
+         "id": "sfx_door_unlock"
+        },
+        {
+         "type": "goto",
+         "room": "r5_gallery"
+        }
+       ],
+       "req": {
+        "flags": [
+         "int_alric_done"
+        ],
+        "notFlags": [
+         "gallery_open"
+        ]
+       }
+      },
+      {
+       "useItem": "gallery_key",
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_r4_door_blocked"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "int_alric_done"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "goto",
+         "room": "r5_gallery"
+        }
+       ],
+       "req": {
+        "flags": [
+         "gallery_open"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_r4_door_locked"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r4_window",
+     "rect": [
+      740,
+      180,
+      270,
+      400
+     ],
+     "label": "结霜的窗",
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_r4_window"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r4_mirror",
+     "rect": [
+      60,
+      260,
+      230,
+      360
+     ],
+     "label": "铜镜",
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "give",
+         "item": "swaddling"
+        },
+        {
+         "type": "evidence",
+         "add": "ev_swaddling"
+        },
+        {
+         "type": "flag",
+         "set": "got_swaddling"
+        },
+        {
+         "type": "sanity",
+         "delta": -5,
+         "once": true
+        },
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_swaddling"
+        },
+        {
+         "type": "text",
+         "key": "t_r4_mirror"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "got_swaddling"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_swaddling"
+        },
+        {
+         "type": "text",
+         "key": "t_r4_mirror_again"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r4_priedieu",
+     "rect": [
+      60,
+      680,
+      200,
+      340
+     ],
+     "label": "祈祷台",
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "evidence",
+         "add": "ev_prayer_book"
+        },
+        {
+         "type": "flag",
+         "set": "got_prayer"
+        },
+        {
+         "type": "sanity",
+         "delta": -5,
+         "once": true
+        },
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_prayer_book"
+        },
+        {
+         "type": "text",
+         "key": "t_r4_priedieu"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "got_prayer"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_prayer_book"
+        },
+        {
+         "type": "text",
+         "key": "t_r4_priedieu_again"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r4_bed",
+     "rect": [
+      290,
+      760,
+      540,
+      560
+     ],
+     "label": "老领主的床",
+     "interactions": [
+      {
+       "useItem": "cup_warm",
+       "effects": [
+        {
+         "type": "take",
+         "item": "cup_warm"
+        },
+        {
+         "type": "evidence",
+         "add": "ev_rattle"
+        },
+        {
+         "type": "flag",
+         "set": "got_rattle"
+        },
+        {
+         "type": "sfx",
+         "id": "sfx_rattle"
+        },
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_rattle"
+        },
+        {
+         "type": "text",
+         "key": "t_r4_bed_drink"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "got_rattle"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_r4_bed_sleep"
+        }
+       ],
+       "req": {
+        "flags": [
+         "got_rattle"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "flag",
+         "set": "heard_godwin"
+        },
+        {
+         "type": "sanity",
+         "delta": -5,
+         "once": true
+        },
+        {
+         "type": "text",
+         "key": "t_r4_bed"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "heard_godwin"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_r4_bed_again"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r4_alric",
+     "rect": [
+      860,
+      760,
+      200,
+      580
+     ],
+     "label": "阿尔里克",
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "interrogation",
+         "id": "int_alric"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "int_alric_done"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_alric_after"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r4_washstand",
+     "rect": [
+      40,
+      1080,
+      220,
+      300
+     ],
+     "label": "盥洗架",
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "give",
+         "item": "cup_ice"
+        },
+        {
+         "type": "flag",
+         "set": "got_cup"
+        },
+        {
+         "type": "text",
+         "key": "t_r4_washstand"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "got_cup"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_r4_washstand_empty"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r4_brazier",
+     "rect": [
+      330,
+      1400,
+      300,
+      230
+     ],
+     "label": "炭火盆",
+     "interactions": [
+      {
+       "useItem": "cup_ice",
+       "effects": [
+        {
+         "type": "take",
+         "item": "cup_ice"
+        },
+        {
+         "type": "give",
+         "item": "cup_warm"
+        },
+        {
+         "type": "sfx",
+         "id": "sfx_ice_hiss"
+        },
+        {
+         "type": "text",
+         "key": "t_r4_ice_melt"
+        }
+       ]
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "restore",
+         "point": "r4_brazier"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r4_coffer",
+     "rect": [
+      700,
+      1400,
+      320,
+      230
+     ],
+     "label": "床头铁匣",
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_r4_coffer_ready"
+        },
+        {
+         "type": "open",
+         "ui": "puzzle",
+         "id": "pz_coffer"
+        }
+       ],
+       "req": {
+        "evidence": [
+         "ev_rattle"
+        ],
+        "notFlags": [
+         "coffer_open"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_r4_coffer_locked"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "coffer_open"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_aelind_letter"
+        },
+        {
+         "type": "text",
+         "key": "t_r4_coffer_empty"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "r5_gallery",
+   "bg": "bg_r5_gallery",
+   "bgm": "bgm_r5_gallery",
+   "amb": "amb_gallery_draft",
+   "name": "长廊画像馆",
+   "fx": [
+    {
+     "id": "fx_portrait_eyes",
+     "rect": [
+      740,
+      260,
+      300,
+      460
+     ],
+     "fps": 3,
+     "loop": true,
+     "sanityBelow": 40,
+     "_说明": "全家像里人物眼珠跟随（s3）"
+    },
+    {
+     "id": "fx_portrait_eyes",
+     "rect": [
+      740,
+      260,
+      300,
+      460
+     ],
+     "fps": 3,
+     "loop": true,
+     "req": {
+      "flags": [
+       "cb_bloodline_solved"
+      ]
+     },
+     "_说明": "cb_bloodline 解开后常驻"
+    }
+   ],
+   "hotspots": [
+    {
+     "id": "h_r5_founder",
+     "rect": [
+      40,
+      200,
+      300,
+      440
+     ],
+     "label": "先祖画像（1238）",
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "flag",
+         "set": "seen_priest_1238"
+        },
+        {
+         "type": "evidence",
+         "add": "ev_ageless_priest"
+        },
+        {
+         "type": "flag",
+         "set": "got_ageless"
+        },
+        {
+         "type": "sanity",
+         "delta": -10,
+         "once": true
+        },
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_portrait_founder"
+        },
+        {
+         "type": "text",
+         "key": "t_r5_ageless"
+        }
+       ],
+       "req": {
+        "flags": [
+         "portrait_restored"
+        ],
+        "notFlags": [
+         "got_ageless"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "flag",
+         "set": "seen_priest_1238"
+        },
+        {
+         "type": "sanity",
+         "delta": -5,
+         "once": true
+        },
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_portrait_founder"
+        },
+        {
+         "type": "text",
+         "key": "t_r5_founder"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "seen_priest_1238"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_portrait_founder"
+        },
+        {
+         "type": "text",
+         "key": "t_r5_founder_again"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r5_nursery_door",
+     "rect": [
+      420,
+      540,
+      260,
+      460
+     ],
+     "label": "育婴室门",
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "goto",
+         "room": "r6_nursery"
+        }
+       ],
+       "req": {
+        "flags": [
+         "nursery_open"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_r5_door_ready"
+        },
+        {
+         "type": "open",
+         "ui": "puzzle",
+         "id": "pz_nursery_door"
+        }
+       ],
+       "req": {
+        "flags": [
+         "cb_bloodline_solved"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_r5_door_locked"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r5_family",
+     "rect": [
+      740,
+      240,
+      300,
+      500
+     ],
+     "label": "全家像（1312）",
+     "interactions": [
+      {
+       "useItem": "solvent_rag",
+       "effects": [
+        {
+         "type": "take",
+         "item": "solvent_rag"
+        },
+        {
+         "type": "evidence",
+         "add": "ev_family_portrait"
+        },
+        {
+         "type": "flag",
+         "set": "portrait_restored"
+        },
+        {
+         "type": "sfx",
+         "id": "sfx_solvent_wipe"
+        },
+        {
+         "type": "sanity",
+         "delta": -10,
+         "once": true
+        },
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_family_portrait"
+        },
+        {
+         "type": "text",
+         "key": "t_r5_family_restore"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "portrait_restored"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "evidence",
+         "add": "ev_ageless_priest"
+        },
+        {
+         "type": "flag",
+         "set": "got_ageless"
+        },
+        {
+         "type": "sanity",
+         "delta": -10,
+         "once": true
+        },
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_family_portrait"
+        },
+        {
+         "type": "text",
+         "key": "t_r5_ageless"
+        }
+       ],
+       "req": {
+        "flags": [
+         "portrait_restored",
+         "seen_priest_1238"
+        ],
+        "notFlags": [
+         "got_ageless"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_family_portrait"
+        },
+        {
+         "type": "text",
+         "key": "t_r5_family_again"
+        }
+       ],
+       "req": {
+        "flags": [
+         "portrait_restored"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_family_portrait"
+        },
+        {
+         "type": "text",
+         "key": "t_r5_family"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r5_rozelyn",
+     "rect": [
+      40,
+      700,
+      280,
+      400
+     ],
+     "label": "罗泽琳一家（1275）",
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "flag",
+         "set": "seen_rozelyn"
+        },
+        {
+         "type": "sanity",
+         "delta": -5,
+         "once": true
+        },
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_portrait_1275"
+        },
+        {
+         "type": "text",
+         "key": "t_r5_rozelyn"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "seen_rozelyn"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_portrait_1275"
+        },
+        {
+         "type": "text",
+         "key": "t_r5_rozelyn_again"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r5_easel",
+     "rect": [
+      720,
+      1060,
+      320,
+      480
+     ],
+     "label": "画架",
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "give",
+         "item": "pine_oil"
+        },
+        {
+         "type": "give",
+         "item": "rag"
+        },
+        {
+         "type": "flag",
+         "set": "got_easel"
+        },
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_easel"
+        },
+        {
+         "type": "text",
+         "key": "t_r5_easel"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "got_easel"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_easel"
+        },
+        {
+         "type": "text",
+         "key": "t_r5_easel_again"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r5_board",
+     "rect": [
+      60,
+      1160,
+      360,
+      420
+     ],
+     "label": "空画框（线索板）",
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "clueboard",
+         "id": "cb_bloodline"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r5_lamp",
+     "rect": [
+      470,
+      1380,
+      170,
+      220
+     ],
+     "label": "壁龛油灯",
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "restore",
+         "point": "r5_lamp"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "r6_nursery",
+   "bg": "bg_r6_nursery",
+   "bgm": "bgm_r6_nursery",
+   "amb": "amb_nursery_creak",
+   "name": "育婴室",
+   "fx": [
+    {
+     "id": "fx_cradle_rock",
+     "rect": [
+      330,
+      900,
+      420,
+      400
+     ],
+     "fps": 4,
+     "loop": true,
+     "sanityBelow": 40,
+     "_说明": "空摇篮自己摇（s3）"
+    },
+    {
+     "id": "fx_cradle_rock",
+     "rect": [
+      330,
+      900,
+      420,
+      400
+     ],
+     "fps": 4,
+     "loop": true,
+     "req": {
+      "flags": [
+       "int_severin_done"
+      ]
+     },
+     "_说明": "神父起身后摇篮仍在摇，常驻"
+    }
+   ],
+   "hotspots": [
+    {
+     "id": "h_r6_window",
+     "rect": [
+      80,
+      220,
+      230,
+      380
+     ],
+     "label": "小窗（雪光）",
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "restore",
+         "point": "r6_window"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r6_mobile",
+     "rect": [
+      380,
+      400,
+      320,
+      320
+     ],
+     "label": "月亮吊饰",
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "flag",
+         "set": "seen_mobile"
+        },
+        {
+         "type": "sanity",
+         "delta": -5,
+         "once": true
+        },
+        {
+         "type": "text",
+         "key": "t_r6_mobile"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "seen_mobile"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_r6_mobile_again"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r6_severin",
+     "rect": [
+      790,
+      760,
+      260,
+      640
+     ],
+     "label": "塞弗林神父",
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "interrogation",
+         "id": "int_severin"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "int_severin_done"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "deduction",
+         "id": "dd_bloodline"
+        }
+       ],
+       "req": {
+        "flags": [
+         "int_severin_done"
+        ],
+        "notFlags": [
+         "dd_bloodline_solved"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_severin_gone"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r6_cradle",
+     "rect": [
+      330,
+      880,
+      420,
+      420
+     ],
+     "label": "摇篮",
+     "interactions": [
+      {
+       "useItem": "swaddling",
+       "effects": [
+        {
+         "type": "sfx",
+         "id": "sfx_thread_stitch"
+        },
+        {
+         "type": "cutscene",
+         "id": "cs_ch2_end"
+        }
+       ],
+       "req": {
+        "flags": [
+         "dd_bloodline_solved"
+        ]
+       }
+      },
+      {
+       "useItem": "swaddling",
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_r6_cradle_notyet"
+        }
+       ]
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "flag",
+         "set": "seen_cradle"
+        },
+        {
+         "type": "sanity",
+         "delta": -5,
+         "once": true
+        },
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_cradle"
+        },
+        {
+         "type": "text",
+         "key": "t_r6_cradle"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "seen_cradle"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_r6_drawer_ready"
+        },
+        {
+         "type": "open",
+         "ui": "puzzle",
+         "id": "pz_cradle_drawer"
+        }
+       ],
+       "req": {
+        "flags": [
+         "seen_blocks"
+        ],
+        "notFlags": [
+         "cradle_drawer_open"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_cradle"
+        },
+        {
+         "type": "text",
+         "key": "t_r6_cradle_again"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "cradle_drawer_open"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_cradle"
+        },
+        {
+         "type": "text",
+         "key": "t_r6_cradle_after"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r6_basket",
+     "rect": [
+      60,
+      1180,
+      260,
+      280
+     ],
+     "label": "针线篮",
+     "interactions": [
+      {
+       "useItem": "swaddling",
+       "effects": [
+        {
+         "type": "evidence",
+         "add": "ev_cloth_match"
+        },
+        {
+         "type": "flag",
+         "set": "cloth_matched"
+        },
+        {
+         "type": "sanity",
+         "delta": -10,
+         "once": true
+        },
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_sewing_basket"
+        },
+        {
+         "type": "text",
+         "key": "t_r6_cloth_match"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "cloth_matched"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_sewing_basket"
+        },
+        {
+         "type": "text",
+         "key": "t_r6_basket_after"
+        }
+       ],
+       "req": {
+        "flags": [
+         "cloth_matched"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_sewing_basket"
+        },
+        {
+         "type": "text",
+         "key": "t_r6_basket"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "h_r6_blocks",
+     "rect": [
+      360,
+      1400,
+      380,
+      220
+     ],
+     "label": "字母积木",
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "flag",
+         "set": "seen_blocks"
+        },
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_alphabet_blocks"
+        },
+        {
+         "type": "note",
+         "add": "字母积木（字母·侧面的数）：A·2　L·8　E·3　D·7　R·1　I·9　C·4"
+        },
+        {
+         "type": "text",
+         "key": "t_r6_blocks"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "seen_blocks"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_alphabet_blocks"
+        },
+        {
+         "type": "text",
+         "key": "t_r6_blocks_again"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "puzzles": {
+  "pz_coffer": {
+   "type": "dial",
+   "digits": 4,
+   "answer": "1203",
+   "title": "床头铁匣",
+   "bg": "cu_coffer_lock",
+   "onSolved": [
+    {
+     "type": "give",
+     "item": "gallery_key"
+    },
+    {
+     "type": "evidence",
+     "add": "ev_aelind_letter"
+    },
+    {
+     "type": "flag",
+     "set": "coffer_open"
+    },
+    {
+     "type": "open",
+     "ui": "closeup",
+     "id": "cu_aelind_letter"
+    },
+    {
+     "type": "text",
+     "key": "t_r4_coffer_open"
+    }
+   ]
+  },
+  "pz_nursery_door": {
+   "type": "rotate_grid",
+   "cols": 2,
+   "rows": 2,
+   "symbols": [
+    "moon",
+    "lamb",
+    "bell",
+    "spool"
+   ],
+   "initial": [
+    "lamb",
+    "moon",
+    "spool",
+    "bell"
+   ],
+   "answer": [
+    "spool",
+    "bell",
+    "lamb",
+    "moon"
+   ],
+   "title": "育婴室门",
+   "bg": "cu_nursery_door",
+   "onSolved": [
+    {
+     "type": "flag",
+     "set": "nursery_open"
+    },
+    {
+     "type": "sfx",
+     "id": "sfx_nursery_door"
+    },
+    {
+     "type": "goto",
+     "room": "r6_nursery"
+    }
+   ]
+  },
+  "pz_cradle_drawer": {
+   "type": "dial",
+   "digits": 5,
+   "answer": "37194",
+   "title": "摇篮抽屉",
+   "bg": "cu_cradle_drawer",
+   "onSolved": [
+    {
+     "type": "evidence",
+     "add": "ev_baptism_record"
+    },
+    {
+     "type": "flag",
+     "set": "cradle_drawer_open"
+    },
+    {
+     "type": "sanity",
+     "delta": -5,
+     "once": true
+    },
+    {
+     "type": "open",
+     "ui": "closeup",
+     "id": "cu_baptism_record"
+    },
+    {
+     "type": "text",
+     "key": "t_r6_record"
+    }
+   ]
+  }
+ },
+ "clueboards": {
+  "cb_bloodline": {
+   "unlock": {
+    "evidence": [
+     "ev_swaddling",
+     "ev_rattle",
+     "ev_prayer_book",
+     "ev_aelind_letter",
+     "ev_family_portrait"
+    ],
+    "flags": [
+     "int_alric_done"
+    ]
+   },
+   "cards": [
+    {
+     "id": "c_rattle",
+     "label": "银摇铃 · MCCCXII",
+     "img": "ev_rattle"
+    },
+    {
+     "id": "c_alric",
+     "label": "阿尔里克 · 1315",
+     "img": "card_alric_1315"
+    },
+    {
+     "id": "c_prayer",
+     "label": "祷告簿 · 第一针是 E",
+     "img": "ev_prayer_book"
+    },
+    {
+     "id": "c_well",
+     "label": "井壁 · 1312 · 埃德里克",
+     "img": "card_well_1312"
+    },
+    {
+     "id": "c_portrait",
+     "label": "戈德温一家 · 1312",
+     "img": "ev_family_portrait"
+    },
+    {
+     "id": "c_letter",
+     "label": "艾琳德的信",
+     "img": "ev_aelind_letter"
+    },
+    {
+     "id": "c_cloth",
+     "label": "襁褓残片 · EDRIC",
+     "img": "ev_swaddling"
+    }
+   ],
+   "links": [
+    {
+     "id": "l1",
+     "a": "c_rattle",
+     "b": "c_alric",
+     "options": [
+      "摇铃是阿尔里克小时候玩的",
+      "摇铃比阿尔里克早三年：他之前还有一个孩子",
+      "二者无关"
+     ],
+     "answer": 1
+    },
+    {
+     "id": "l2",
+     "a": "c_rattle",
+     "b": "c_portrait",
+     "options": [
+      "画中婴儿手里攥的就是这只摇铃",
+      "摇铃只是画师的道具",
+      "画比摇铃晚了一百年"
+     ],
+     "answer": 0
+    },
+    {
+     "id": "l3",
+     "a": "c_portrait",
+     "b": "c_letter",
+     "options": [
+      "这幅画是伪作",
+      "二者无关",
+      "画里被涂掉的婴儿，就是信里“我们第一个孩子”"
+     ],
+     "answer": 2
+    },
+    {
+     "id": "l4",
+     "a": "c_prayer",
+     "b": "c_well",
+     "options": [
+      "老领主献出的名字，就是井壁上 1312 年那个“埃德里克”",
+      "祷告簿写的是布伦丹修士",
+      "二者无关"
+     ],
+     "answer": 0
+    },
+    {
+     "id": "l5",
+     "a": "c_cloth",
+     "b": "c_portrait",
+     "options": [
+      "这种布到处都有，不足为凭",
+      "同样的半个闭眼纹，同样的回针",
+      "画里的婴儿没有襁褓"
+     ],
+     "answer": 1
+    }
+   ],
+   "onWrongLink": [
+    {
+     "type": "sanity",
+     "delta": -3,
+     "once": false
+    },
+    {
+     "type": "text",
+     "key": "t_c2_wrong_link"
+    }
+   ],
+   "conclusion": "dd_who_1312",
+   "onSolved": [
+    {
+     "type": "flag",
+     "set": "cb_bloodline_solved"
+    },
+    {
+     "type": "text",
+     "key": "t_bloodline_done"
+    },
+    {
+     "type": "note",
+     "add": "1312 年冬至被献名的：戈德温与艾琳德的长子、阿尔里克的哥哥，名字以 E 开头。画中婴儿的襁褓……和我的一样。"
+    }
+   ]
+  }
+ },
+ "interrogations": {
+  "int_alric": {
+   "npc": "alric",
+   "portraits": {
+    "calm": "char_alric_calm",
+    "wary": "char_alric_wary",
+    "shaken": "char_alric_shaken"
+   },
+   "intro": "t_alric_intro",
+   "order": "free",
+   "statements": [
+    {
+     "id": "s1",
+     "text": "t_alric_s1",
+     "lie": true,
+     "accept": [
+      "ev_rattle"
+     ],
+     "nearMiss": {
+      "ev_swaddling": "t_alric_near_cloth"
+     },
+     "onBreak": {
+      "text": "t_alric_b1",
+      "portrait": "wary"
+     }
+    },
+    {
+     "id": "s2",
+     "text": "t_alric_s2",
+     "lie": true,
+     "accept": [
+      "ev_aelind_letter"
+     ],
+     "onBreak": {
+      "text": "t_alric_b2",
+      "portrait": "shaken"
+     }
+    },
+    {
+     "id": "p1",
+     "text": "t_alric_p1",
+     "lie": true,
+     "accept": [
+      "ev_swaddling"
+     ],
+     "requires": [
+      "s1",
+      "s2"
+     ],
+     "onBreak": {
+      "text": "t_alric_b3",
+      "portrait": "shaken"
+     }
+    }
+   ],
+   "onWrongEvidence": [
+    {
+     "type": "sanity",
+     "delta": -3,
+     "once": false
+    },
+    {
+     "type": "text",
+     "key": "t_wrong_evidence"
+    }
+   ],
+   "onComplete": [
+    {
+     "type": "flag",
+     "set": "int_alric_done"
+    },
+    {
+     "type": "note",
+     "add": "阿尔里克：次子，生于 1315 年，不记得自己有过哥哥。他认出了襁褓上母亲的针法。"
+    }
+   ]
+  },
+  "int_severin": {
+   "npc": "severin",
+   "portraits": {
+    "calm": "char_severin_calm",
+    "smile": "char_severin_smile",
+    "cold": "char_severin_cold",
+    "unmasked": "char_severin_unmasked"
+   },
+   "intro": "t_severin_intro",
+   "order": "free",
+   "statements": [
+    {
+     "id": "s1",
+     "text": "t_severin_s1",
+     "lie": true,
+     "accept": [
+      "ev_cloth_match"
+     ],
+     "nearMiss": {
+      "ev_swaddling": "t_severin_near_cloth"
+     },
+     "onBreak": {
+      "text": "t_severin_b1",
+      "portrait": "cold"
+     }
+    },
+    {
+     "id": "s2",
+     "text": "t_severin_s2",
+     "lie": true,
+     "accept": [
+      "ev_ageless_priest"
+     ],
+     "onBreak": {
+      "text": "t_severin_b2",
+      "portrait": "cold"
+     }
+    },
+    {
+     "id": "s3",
+     "text": "t_severin_s3",
+     "lie": true,
+     "accept": [
+      "ev_aelind_letter"
+     ],
+     "onBreak": {
+      "text": "t_severin_b3",
+      "portrait": "smile"
+     }
+    },
+    {
+     "id": "p1",
+     "text": "t_severin_p1",
+     "lie": true,
+     "accept": [
+      "ev_baptism_record"
+     ],
+     "requires": [
+      "s1",
+      "s2",
+      "s3"
+     ],
+     "nearMiss": {
+      "ev_swaddling": "t_severin_near_p1"
+     },
+     "onBreak": {
+      "text": "t_severin_confess",
+      "portrait": "unmasked"
+     }
+    }
+   ],
+   "onWrongEvidence": [
+    {
+     "type": "sanity",
+     "delta": -3,
+     "once": false
+    },
+    {
+     "type": "text",
+     "key": "t_wrong_evidence"
+    }
+   ],
+   "onComplete": [
+    {
+     "type": "evidence",
+     "add": "ev_severin_confession"
+    },
+    {
+     "type": "flag",
+     "set": "int_severin_done"
+    },
+    {
+     "type": "sanity",
+     "delta": -10,
+     "once": true
+    }
+   ]
+  }
+ },
+ "deductions": {
+  "dd_who_1312": {
+   "questions": [
+    {
+     "q": "t_dd_who_q",
+     "options": [
+      "阿尔里克的姐姐",
+      "戈德温与艾琳德的长子，阿尔里克的哥哥",
+      "神父从沼地抱来的弃婴"
+     ],
+     "answer": 1
+    }
+   ],
+   "onWrong": [
+    {
+     "type": "sanity",
+     "delta": -3,
+     "once": false
+    }
+   ],
+   "onSolved": []
+  },
+  "dd_bloodline": {
+   "req": {
+    "flags": [
+     "int_severin_done"
+    ]
+   },
+   "submit": "all",
+   "questions": [
+    {
+     "q": "t_dd_c2_q1",
+     "options": [
+      "伊瑟尔达夫人与戈德温",
+      "戈德温与艾琳德",
+      "塞弗林神父",
+      "无人知晓"
+     ],
+     "answer": 1,
+     "hint": "t_hint_c2_portrait"
+    },
+    {
+     "q": "t_dd_c2_q2",
+     "options": [
+      "神父心软，放走了他",
+      "母亲把名字缝进襁褓，用一卷空襁褓换走了他，送到修道院门口",
+      "井不收婴儿的身体"
+     ],
+     "answer": 1,
+     "hint": "t_hint_c2_letter"
+    },
+    {
+     "q": "t_dd_c2_q3",
+     "options": [
+      "死在了那年冬天",
+      "在井下抄写，和布伦丹在一起",
+      "就在这里：他就是我，埃德里克·霍洛"
+     ],
+     "answer": 2,
+     "hint": "t_hint_c2_record"
+    }
+   ],
+   "onWrong": [
+    {
+     "type": "sanity",
+     "delta": -5,
+     "once": false
+    },
+    {
+     "type": "text",
+     "key": "t_c2_dd_wrong"
+    },
+    {
+     "type": "hint",
+     "mode": "firstWrong"
+    }
+   ],
+   "onSolved": [
+    {
+     "type": "flag",
+     "set": "dd_bloodline_solved"
+    },
+    {
+     "type": "text",
+     "key": "t_c2_dd_solved"
+    },
+    {
+     "type": "note",
+     "add": "我是戈德温与艾琳德的长子。1312 年冬至，母亲用空襁褓换下了我。井吃掉了“埃德里克”，却没有吃到我。"
+    }
+   ]
+  }
+ },
+ "sanity": {
+  "max": 100,
+  "start": 100,
+  "floor": 20,
+  "chapterResetMin": 70,
+  "tiers": [
+   {
+    "id": "s1",
+    "min": 70
+   },
+   {
+    "id": "s2",
+    "min": 40,
+    "fx": [
+     "fx_vignette_s2",
+     "amb_whisper_low",
+     "portrait_s2"
+    ]
+   },
+   {
+    "id": "s3",
+    "min": 20,
+    "fx": [
+     "fx_vignette_s3",
+     "fx_ink_tendril",
+     "amb_whisper_near",
+     "portrait_s3",
+     "text_glitch",
+     "fake_hotspots"
+    ]
+   }
+  ],
+  "restorePoints": {
+   "r4_brazier": {
+    "delta": 10,
+    "cooldownSec": 60
+   },
+   "r5_lamp": {
+    "delta": 10,
+    "cooldownSec": 60
+   },
+   "r6_window": {
+    "delta": 15,
+    "cooldownSec": 60
+   }
+  },
+  "textGlitch": {
+   "chance": 0.15,
+   "protectKeys": true
+  },
+  "fakeHotspots": {
+   "r4_bedchamber": [
+    {
+     "rect": [
+      700,
+      630,
+      130,
+      110
+     ],
+     "text": "帐幔缝里有一只眼睛在看你。你再看，是一颗铜扣。"
+    }
+   ],
+   "r5_gallery": [
+    {
+     "rect": [
+      460,
+      1080,
+      150,
+      150
+     ],
+     "text": "有一幅你没注意过的小画像，画的是你。走近了，是一面蒙尘的镜子。"
+    }
+   ],
+   "r6_nursery": [
+    {
+     "rect": [
+      80,
+      700,
+      170,
+      220
+     ],
+     "text": "墙角的小床上鼓起一个人形。掀开，只有叠好的襁褓。"
+    }
+   ]
+  },
+  "lowSanityReveals": [
+   {
+    "room": "r4_bedchamber",
+    "hotspot": "h_r4_mirror",
+    "below": 40,
+    "text": "镜中的你嘴唇在动，一遍遍念着同一个字母：E。"
+   },
+   {
+    "room": "r4_bedchamber",
+    "hotspot": "h_r4_window",
+    "below": 40,
+    "text": "霜花慢慢退开，留下一个指尖写的字母：E。是从窗外写的。"
+   },
+   {
+    "room": "r5_gallery",
+    "hotspot": "h_r5_family",
+    "below": 40,
+    "text": "名牌上被刮掉的名字只剩一个字母，像从缮写室那份家谱上原样拓下来的：E。"
+   },
+   {
+    "room": "r6_nursery",
+    "hotspot": "h_r6_cradle",
+    "below": 40,
+    "text": "空槽里浮出另外四个字母的影子：D、R、I、C。你还没念完，它们就沉回了木头里。"
+   },
+   {
+    "room": "r6_nursery",
+    "hotspot": "h_r6_mobile",
+    "below": 40,
+    "text": "木月亮一起睁开了眼，又一起闭上。"
+   }
+  ]
+ },
+ "cutscenes": {
+  "cs_ch2_intro": [
+   "bg_c2_intro_01",
+   "bg_c2_intro_02",
+   "bg_c2_intro_03"
+  ],
+  "cs_ch2_end": [
+   "bg_c2_end_01",
+   "bg_c2_end_02",
+   "bg_c2_end_03"
+  ]
+ },
+ "npcs": {
+  "alric": {
+   "name": "阿尔里克",
+   "fullBody": "char_alric_full"
+  },
+  "severin": {
+   "name": "塞弗林神父",
+   "fullBody": "char_severin_full",
+   "req": {
+    "notFlags": [
+     "dd_bloodline_solved"
+    ]
+   }
+  }
+ },
+ "cutsceneCaptions": {
+  "cs_ch2_intro": [
+   "t_cs_c2_intro_1",
+   "t_cs_c2_intro_2",
+   "t_cs_c2_intro_3"
+  ],
+  "cs_ch2_end": [
+   "t_cs_c2_end_1",
+   "t_cs_c2_end_2",
+   "t_cs_c2_end_3"
+  ]
+ },
+ "texts": {
+  "t_r4_mirror": "铜镜里的人有一双灰眼睛，和帐幔里那位老人一模一样。我摸出随身带了三十七年的旧襁褓残片：角上半个闭眼纹，绣着一个名字——<k>EDRIC</k>。第一个字母的针脚比别的都密。",
+  "t_r4_mirror_again": "镜子里还是那双灰眼睛。我开始不喜欢照镜子了。",
+  "t_r4_washstand": "盥洗架上的水罐冻透了，锡杯底也结着一层冰。我把杯子拿上。",
+  "t_r4_washstand_empty": "水罐里的冰裂成一张脸的形状。只是裂纹。",
+  "t_r4_ice_melt": "炭火舔着杯底，冰化成了温水。",
+  "t_r4_bed": "老领主戈德温在帐幔里咳嗽，右手攥着什么不放，嘴唇干裂：“水……别把他的……名字……”",
+  "t_r4_bed_drink": "他喝下温水，呼吸慢慢平稳，攥紧的手松开了：掌心里是一只小小的银摇铃。铃柄上刻着 <k>MCCCXII · XII · III</k>，和一只闭着的眼。",
+  "t_r4_bed_again": "老人又咳了一阵，干裂的嘴唇一直在动：“水……”",
+  "t_r4_bed_sleep": "老人睡着了，手指还在被面上一下一下地数着什么。",
+  "t_r4_priedieu": "祈祷台上摊着一本祷告簿。每一页都是同一段祷词：“主啊，我把我第一个儿子的名字交给了井。我想不起它了，只记得他母亲绣襁褓时，第一针绣的是一个 <k>E</k>。”整整三十七年。",
+  "t_r4_priedieu_again": "祷词的墨色从褐到黑，一年比一年写得用力。",
+  "t_r4_coffer_locked": "床头的铁匣上有四个转轮，匣盖刻着：<k>“长子降生之日，月在前，日在后。”</k>我还不知道这家的长子是哪天生的。",
+  "t_r4_coffer_ready": "“长子降生之日，月在前，日在后。”……那只银摇铃上刻着一个日子。",
+  "t_r4_coffer_open": "匣里是一把长廊钥匙，还有一封折了很多遍的信。是艾琳德写给丈夫的，从没寄出去。",
+  "t_r4_coffer_empty": "铁匣空了，底部有一圈指甲划出来的痕迹。",
+  "t_r4_window": "窗上的霜花长成了蕨叶的形状。",
+  "t_r4_door_locked": "通往长廊的门锁着。",
+  "t_r4_door_blocked": "阿尔里克横跨一步挡在门前：“那是我家的长廊。先回答我，你到底是谁？”",
+  "t_alric_after": "阿尔里克盯着父亲松开的手，很久没有说话。",
+  "t_alric_intro": "阿尔里克：“你从井里爬出来，嘴里念着一个我们家不许念的名字。说吧，外乡人，你想要什么？”",
+  "t_alric_s1": "我是莫尔德雷克家的长子。在我之前，父亲没有过别的孩子。",
+  "t_alric_near_cloth": "“一块旧布？沼地上每个弃婴身上都裹着一块。”看来得拿出这个家里自己的东西。",
+  "t_alric_b1": "他盯着铃柄看了很久：“MCCCXII，是 1312 年。我生于 <k>1315</k> 年。这只铃……比我还早三年。”",
+  "t_alric_s2": "我母亲艾琳德只生过我一个。生下我那年冬天，她就病死了。",
+  "t_alric_b2": "“这是她的字……‘我们第一个孩子’。”他的声音低下去，“她从没提过。也许提过，是我忘了。”",
+  "t_alric_p1": "就算我真有过一个哥哥，也和你这个外人无关。",
+  "t_alric_b3": "他接过那块布，手指停在针脚上：“这种回针……我小时候的毯子也是这么缝的，是母亲的针法。”他把门让了出来：“她的画像在长廊。去看吧，别让神父看见。”",
+  "t_wrong_evidence": "对方一脸迷惑。埃德里克自嘲：这可拆穿不了什么。",
+  "t_r5_founder": "先祖埃尔温·莫尔德雷克，1238。他闭着眼。身后的阴影里站着一个持牧杖的神父，<k>左眼下一颗泪痣</k>。",
+  "t_r5_founder_again": "先祖的眼皮画得很薄，像随时会睁开。",
+  "t_r5_ageless": "1238 年站在先祖身后的神父，和 1312 年站在戈德温身后的，是同一张脸、同一颗泪痣。七十四年，他一天也没老。",
+  "t_r5_rozelyn": "1275 年的全家像。画里小女孩的脸只是一块空白的底色，名牌写着罗泽琳。角落里又是那个神父，左眼下一颗痣。",
+  "t_r5_rozelyn_again": "空白的脸上落了一层灰，灰上有一道指印，像有人想替她把脸擦出来。",
+  "t_r5_family": "《戈德温与艾琳德，MCCCXII》。艾琳德的双臂弯成抱孩子的姿势，臂弯里却是一块颜色更新的灰漆。名牌上第三个名字被刮掉了。",
+  "t_r5_family_restore": "松脂油化开了灰漆。艾琳德怀里是一个裹着襁褓的婴儿，襁褓角上绣着半个闭眼纹，小手攥着一只银摇铃。他们身后站着持牧杖的神父，左眼下一颗痣。",
+  "t_r5_family_again": "画里的婴儿还在看着母亲。不，是在看着我。",
+  "t_r5_easel": "画架上是一幅没画完的小像：玛蒂尔。她身后被人用炭笔添了一个高个子，没有脸，却披着一件旅行斗篷——和我身上这件一样。画架下有一瓶松脂油和几块破布，我拿上了。",
+  "t_r5_easel_again": "斗篷的下摆，她画得很仔细，连我补过的那块都画上了。",
+  "t_r5_board": "一个空画框，画像不知被谁取走了。正好用来钉线索。",
+  "t_r5_door_locked": "尽头是一扇刷过白漆的矮门。门上四块木牌可以转动，刻着月亮、小羊、银铃、线轴。门楣上写着：<k>“为长子唱的歌。”</k>我还不知道这家的长子是谁。",
+  "t_r5_door_ready": "为长子唱的歌……艾琳德的信里写过那首歌。",
+  "t_bloodline_done": "线全连上了：1312 年冬至被献名的，是戈德温与艾琳德的长子，阿尔里克的哥哥。他的名字以 <k>E</k> 开头。",
+  "t_c2_wrong_link": "红线绷断了。埃德里克揉了揉眉心：不对。",
+  "t_dd_who_q": "1312 年冬至被献出名字的婴儿，是谁？",
+  "t_r6_cradle": "橡木摇篮，床头刻着：“此处安睡着我们的长子。”下面一排五个字母槽，全是空的，只有第一个槽里还留着一个浅浅的 <k>E</k>。若我在缮写室没有看错，家谱 1312 那一行刮剩的，也是这个字母。摇篮底座有个带五个转轮的小抽屉，抽屉面上刻着：<k>“把他的名字排好，读出它们的数。”</k>",
+  "t_r6_drawer_ready": "五个转轮。“把他的名字排好，读出它们的数。”——地上那些积木。",
+  "t_r6_record": "抽屉里是一页受洗记录：“MCCCXII 年 XII 月 III 日生，戈德温与艾琳德之<k>长子</k>，冬至前受洗，名 E▇▇▇▇。主礼：塞弗林。”名字只剩第一个字母。主礼人的签名，墨色新得像昨天才写。",
+  "t_r6_cradle_again": "抽屉面上的字：“把他的名字排好，读出它们的数。”五个转轮，五个空槽。",
+  "t_r6_cradle_after": "床头那排空槽里，第一个 E 好像比刚才深了一点。",
+  "t_r6_cradle_notyet": "我把襁褓贴近床头，针脚在发烫。还不是时候，我得先弄清楚它为什么会在我身上。",
+  "t_r6_blocks": "七块木积木，正面各刻一个字母，侧面画着一个数：<k>A·2　L·8　E·3　D·7　R·1　I·9　C·4</k>。七个字母，正好够拼出两个名字。",
+  "t_r6_blocks_again": "积木底下刻着一行小字：“给我们的孩子们。”是复数。",
+  "t_r6_basket": "针线篮里的绣绷上绷着一块没绣完的襁褓布，绣着家徽另外三格：静水、沉钥、井。左上角被撕掉了一块。",
+  "t_r6_cloth_match": "我把随身那块残片按上去。撕口严丝合缝，闭眼纹补全了家徽。三十七年，它一直在等这一角。",
+  "t_r6_basket_after": "补全的家徽躺在绣绷上。针还别在布边，好像她只是出去一下。",
+  "t_r6_mobile": "摇篮上方吊着一圈木雕月亮，每一枚都闭着眼。",
+  "t_r6_mobile_again": "木月亮转得很慢，没有风。",
+  "t_severin_intro": "塞弗林神父坐在乳母的椅子上，用脚尖轻轻推着空摇篮。他看上去五十岁，也可能一百五十岁。“寻踪人。我等你很久了，比你以为的还要久。”",
+  "t_severin_s1": "1312 年冬至，那孩子的名字和身体一起走进了井里。我亲眼看着的。",
+  "t_severin_near_cloth": "“灰烛修道院门口捡来的布，”他微笑，“每一块都像谁的襁褓。”得证明这块布出自这间屋子。",
+  "t_severin_b1": "他的脚停了，摇篮还在晃。“……她把孩子从我手里换走了。我抱进井室的，是一卷空襁褓。”",
+  "t_severin_s2": "“塞弗林”是这座礼拜堂神父的职名。我是第四个叫这个名字的人，来这里不过三十年。",
+  "t_severin_b2": "“一颗痣。”他摸了摸左眼下，“画师们总是太仔细。”他第一次没有笑。“我早就没有自己的名字了，寻踪人。我把它也交了出去，换来看守这口井。”",
+  "t_severin_s3": "老爷是自愿的。孩子是他亲手交给我的，这个家里没有一个人反对。",
+  "t_severin_b3": "“艾琳德。”他念这个名字，像在念一行要刮掉的字，“她反对。她缝了一整夜，那一针一针，比我的经文还难拆。”",
+  "t_severin_p1": "可你凭什么说，那个孩子就是你？",
+  "t_severin_near_p1": "“一个名字而已。北海边上叫埃德里克的人，不止一个。”我需要一份写着日子的记录。",
+  "t_severin_confess": "他看着受洗记录上残存的 E，又看看我。“XII 月 III 日生，冬至前受洗。那年冬至夜，灰烛修道院门口多了一个三周大的婴儿。”他站起身，椅子还在摇。“井吃下了‘埃德里克’，世上却还剩一个叫这个名字的身体。它等了你三十七年。欢迎回家，莫尔德雷克家的长子。”",
+  "t_severin_gone": "乳母的椅子空着，还在轻轻摇。楼梯上传来牧杖点地的声音，一路往下，往井的方向去了。",
+  "t_dd_c2_q1": "1312 年冬至被献名的婴儿，父母是谁？",
+  "t_dd_c2_q2": "那个婴儿为什么没有随名字一起走进井里？",
+  "t_dd_c2_q3": "那个婴儿如今在哪里？",
+  "t_hint_c2_portrait": "长廊里那幅被涂掉的全家像，抱着孩子的是谁？",
+  "t_hint_c2_letter": "艾琳德的信：线比墨长久。神父也承认，他抱进井室的是一卷空襁褓。",
+  "t_hint_c2_record": "受洗记录上的生日，修道院门口的日子，对一对。",
+  "t_c2_dd_solved": "我不是被丢掉的，我是被藏起来的。我的名字叫埃德里克，我是这家的长子。",
+  "t_c2_dd_wrong": "推理接不上。埃德里克把证据重新摊开。",
+  "t_cs_c2_intro_1": "井盖合上之前，那个声音又说了一遍：“欢迎回家。”我爬出墓穴时，火把已经围了上来。",
+  "t_cs_c2_intro_2": "举火把的男人自称阿尔里克·莫尔德雷克，这座城堡的继承人。“父亲醒了，”他说，“他听见了你的名字。”",
+  "t_cs_c2_intro_3": "领主寝室里，老人从帐幔间伸出一只手，抓住的却是空气：“埃德里克……别把他的名字……”",
+  "t_cs_c2_end_1": "线从襁褓里爬出来，一针一针，把五个字母缝回床头的空槽：E、D、R、I、C。",
+  "t_cs_c2_end_2": "长廊里，画中母亲怀里的婴儿睁开了眼睛。灰色的，和我的一样。",
+  "t_cs_c2_end_3": "墓穴深处，塞弗林对着井口低声说：“长子回来了。三十七年前欠下的那一份，可以收齐了。”井用我的声音，念出一个完整的名字：埃德里克·莫尔德雷克。",
+  "t_ch2_ending_title": "第二章 · 血脉　完"
+ },
+ "closeups": {
+  "_说明": "第二章特写表（结构同第一章 v1.2，见 06 §12）。states 自上而下取第一条满足的；overlays 为叠加透明层。",
+  "cu_swaddling": {
+   "title": "襁褓残片",
+   "states": [
+    {
+     "req": {
+      "flags": [
+       "cloth_matched"
+      ]
+     },
+     "img": "cu_swaddling_matched"
+    },
+    {
+     "img": "cu_swaddling"
+    }
+   ],
+   "overlays": [
+    {
+     "img": "cu_swaddling_lowsan",
+     "sanityBelow": 40
+    }
+   ]
+  },
+  "cu_rattle": {
+   "title": "银摇铃",
+   "states": [
+    {
+     "img": "cu_rattle"
+    }
+   ]
+  },
+  "cu_prayer_book": {
+   "title": "老领主的祷告簿",
+   "states": [
+    {
+     "img": "cu_prayer_book"
+    }
+   ],
+   "overlays": [
+    {
+     "img": "cu_prayer_book_lowsan",
+     "sanityBelow": 40
+    }
+   ]
+  },
+  "cu_aelind_letter": {
+   "title": "艾琳德的信",
+   "states": [
+    {
+     "img": "cu_aelind_letter"
+    }
+   ]
+  },
+  "cu_portrait_founder": {
+   "title": "先祖画像 · 1238",
+   "states": [
+    {
+     "sanityBelow": 40,
+     "img": "cu_portrait_founder_lowsan"
+    },
+    {
+     "img": "cu_portrait_founder"
+    }
+   ]
+  },
+  "cu_portrait_1275": {
+   "title": "罗泽琳一家 · 1275",
+   "states": [
+    {
+     "img": "cu_portrait_1275"
+    }
+   ]
+  },
+  "cu_family_portrait": {
+   "title": "戈德温与艾琳德 · 1312",
+   "states": [
+    {
+     "req": {
+      "flags": [
+       "portrait_restored"
+      ]
+     },
+     "img": "cu_family_portrait_restored"
+    },
+    {
+     "img": "cu_family_portrait"
+    }
+   ],
+   "overlays": [
+    {
+     "img": "cu_family_portrait_lowsan",
+     "sanityBelow": 40
+    }
+   ]
+  },
+  "cu_easel": {
+   "title": "玛蒂尔的小像",
+   "states": [
+    {
+     "img": "cu_easel"
+    }
+   ]
+  },
+  "cu_cradle": {
+   "title": "摇篮床头",
+   "states": [
+    {
+     "req": {
+      "flags": [
+       "cradle_drawer_open"
+      ]
+     },
+     "img": "cu_cradle_drawer_open"
+    },
+    {
+     "img": "cu_cradle"
+    }
+   ],
+   "overlays": [
+    {
+     "img": "cu_cradle_lowsan",
+     "sanityBelow": 40
+    }
+   ]
+  },
+  "cu_alphabet_blocks": {
+   "title": "字母积木",
+   "states": [
+    {
+     "img": "cu_alphabet_blocks"
+    }
+   ]
+  },
+  "cu_sewing_basket": {
+   "title": "针线篮与绣绷",
+   "states": [
+    {
+     "req": {
+      "flags": [
+       "cloth_matched"
+      ]
+     },
+     "img": "cu_sewing_basket_matched"
+    },
+    {
+     "img": "cu_sewing_basket"
+    }
+   ]
+  },
+  "cu_baptism_record": {
+   "title": "受洗记录",
+   "states": [
+    {
+     "img": "cu_baptism_record"
+    }
+   ]
+  }
+ },
+ "uiText": {
+  "cantUse": "这里用不上【{item}】。",
+  "cantCombine": "【{a}】和【{b}】组合不到一起。",
+  "nothing": "",
+  "restoreOk": "心神稍定。（心烛 +{delta}）",
+  "restoreCooldown": "还需要再缓一缓（约 {sec} 秒）。",
+  "cbLocked": "线索还不够，板上空空如也。",
+  "cbNoRelation": "这两件事之间看不出关系。",
+  "missingEvidence": "还缺一件关键证据。",
+  "dialWrong": "锁舌纹丝不动。",
+  "crestHint": "",
+  "crestTap": "轻触木牌旋转图案",
+  "intDone": "（对方已经无话可说。）",
+  "intSelect": "先选一条证词，再出示证据。",
+  "presentNone": "你手里还没有任何证据。",
+  "cbPick": "依次轻触（或拖动）两张卡片，牵一条红线。",
+  "cbAlready": "这两张已经连上了。",
+  "cbConclusion": "得出结论",
+  "cbDone": "线索板已完成。",
+  "ddPick": "每个问题选一个答案，然后提交。",
+  "ddWrong": "推理不成立。",
+  "ddSolved": "推理成立",
+  "itemHint": "轻触场景使用 · 轻触另一件道具组合 · 再点一次查看",
+  "useItem": "使用",
+  "noEvidence": "手记里还没有证据。",
+  "noNotes": "还没有记下什么。",
+  "cbLockedTab": "线索板需要这些关键证据：",
+  "noDeduction": "还没有可以推理的问题。"
+ },
+ "bgVariants": {
+  "r4_bedchamber": [
+   {
+    "req": {
+     "flags": [
+      "gallery_open"
+     ]
+    },
+    "bg": "bg_r4_bedchamber_door_open"
+   }
+  ],
+  "r5_gallery": [
+   {
+    "req": {
+     "flags": [
+      "nursery_open"
+     ]
+    },
+    "bg": "bg_r5_gallery_door_open"
+   },
+   {
+    "req": {
+     "flags": [
+      "portrait_restored"
+     ]
+    },
+    "bg": "bg_r5_gallery_restored"
+   }
+  ],
+  "r6_nursery": [
+   {
+    "req": {
+     "flags": [
+      "dd_bloodline_solved"
+     ]
+    },
+    "bg": "bg_r6_nursery_empty_chair"
+   },
+   {
+    "req": {
+     "flags": [
+      "cradle_drawer_open"
+     ]
+    },
+    "bg": "bg_r6_nursery_drawer_open"
+   }
+  ]
+ },
+ "symbolNames": {
+  "moon": "月亮",
+  "lamb": "小羊",
+  "bell": "银铃",
+  "spool": "线轴"
+ },
+ "uiSfx": {
+  "tap": "sfx_tap",
+  "pickup": "sfx_pickup",
+  "evidence": "sfx_page_turn",
+  "combineOk": "sfx_combine_success",
+  "combineFail": "sfx_combine_fail",
+  "use": "sfx_item_use",
+  "wrong": "sfx_wrong",
+  "clueOk": "sfx_clue_connect",
+  "clueFail": "sfx_clue_fail",
+  "testimony": "sfx_testimony_flip",
+  "break": "stinger_contradiction",
+  "deduce": "stinger_deduction",
+  "dial": "sfx_dial_click",
+  "rotate": "sfx_crest_rotate",
+  "boxOpen": "sfx_box_open",
+  "restore": "sfx_sanity_restore",
+  "page": "sfx_page_turn"
+ },
+ "uiBgm": {
+  "title": "bgm_title",
+  "interrogation": "bgm_interrogation",
+  "clueboard": "bgm_clueboard",
+  "ending": "bgm_ending_ch2"
+ },
+ "hotspotSfx": {
+  "h_r6_window": "sfx_window_wind",
+  "h_r4_brazier": "sfx_brazier_crackle",
+  "h_r6_mobile": "sfx_cradle_creak"
+ }
+}

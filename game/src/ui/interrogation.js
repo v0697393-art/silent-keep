@@ -1,4 +1,6 @@
 // 审讯：选一条证词 → 出示证据 → 拆穿（盖章“拆穿！”、NPC 立绘换表情、侦探头像切 press）。
+// 人物不用贴图（补丁 npcPresentation.mode = 'hotspot'）时：不显示 NPC 半身像，改为烛光名牌（人名 + 神色文字，
+// 神色随 portraits 的表情键切换，如“神色平静 → 神色慌乱 → 彻底崩溃”），面板更矮，证词区更大。
 // 数据：chapter1.json interrogations[id]（npc / portraits / intro / statements[accept,nearMiss,requires,onBreak] / onWrongEvidence / onComplete）
 import { Modal } from './modal.js';
 import { el, setRich } from './dom.js';
@@ -21,7 +23,8 @@ export class Interrogation extends Modal {
     super(game, { type: 'interrogation', id, title: game.C.npcNames[it.npc] ?? it.npc, sub: '审讯 · 出示证据拆穿谎言', cls: 'm-int' });
     this.it = it; this.selected = null;
     this.expr = intDone(game.C, game.S, id) ? (Object.keys(it.portraits).pop()) : 'calm';
-    this.portraitBox = el('div', { class: 'int-portrait' });
+    this.noSprite = game.C.npcPresentation?.mode === 'hotspot';
+    this.portraitBox = el('div', { class: `int-portrait${this.noSprite ? ' no-sprite' : ''}` });
     this.detective = el('div', { class: 'int-detective' });
     this.speech = el('div', { class: 'int-speech' });
     this.portraitBox.append(this.speech, this.detective);
@@ -33,6 +36,16 @@ export class Interrogation extends Modal {
   setPortrait(expr) {
     const { game } = this;
     if (expr && this.it.portraits[expr]) this.expr = expr;
+    if (this.noSprite) {
+      const name = game.C.npcNames[this.it.npc] ?? this.it.npc;
+      const mood = game.C.npcPresentation.moodLabels?.[this.expr] ?? '';
+      const plate = el('div', { class: `int-nameplate mood-${this.expr}`, 'data-expr': this.expr },
+        el('div', { class: 'int-np-name', text: name }), mood ? el('div', { class: 'int-np-mood', text: mood }) : null);
+      this.portraitImg?.remove();
+      this.portraitImg = plate;
+      this.portraitBox.prepend(plate);
+      return;
+    }
     const pid = this.it.portraits[this.expr] ?? Object.values(this.it.portraits)[0];
     const img = game.assets.element(game.assets.first(npcIds(pid)), () => portraitPh(this.it.npc, this.expr, game.C.npcNames[this.it.npc]));
     this.portraitImg?.remove();
@@ -48,15 +61,27 @@ export class Interrogation extends Modal {
     const { C, S } = this.game;
     this.setPortrait(); this.setDetective('neutral');
     this.renderStmts();
-    this.message(intDone(C, S, this.id) ? C.uiText.intDone : C.uiText.intSelect);
+    this.message(intDone(C, S, this.id) ? C.uiText.intDone : this.guide());
+  }
+  /** BUGS #7：按当前状态给下一步引导——未选：先选证词；已选：去出示证据；拆穿过：还剩几条、选下一条 */
+  guide() {
+    const { C, S } = this.game, U = C.uiText;
+    if (this.selected) return U.intSelected ?? U.intSelect;
+    const broken = intState(S, this.id).broken;
+    const left = availableStatements(C, S, this.id).filter((s) => !broken.includes(s.id)).length;
+    if (broken.length && left) return (U.intNext ?? U.intSelect).replace('{n}', left);
+    return U.intSelect;
   }
   renderStmts(fresh = null) {
     const { C, S } = this.game;
     const broken = intState(S, this.id).broken;
-    this.stmts.replaceChildren(...availableStatements(C, S, this.id).map((s) => {
+    const avail = availableStatements(C, S, this.id);
+    // 拆穿过至少一条、且当前没选时，给下一条未拆的证词一个呼吸描边，引导到第二条
+    const nextId = !this.selected && broken.length ? avail.find((s) => !broken.includes(s.id))?.id : null;
+    this.stmts.replaceChildren(...avail.map((s) => {
       const b = broken.includes(s.id);
-      return el('button', { class: `stmt${b ? ' broken' : ''}${this.selected === s.id ? ' selected' : ''}`, 'data-id': s.id, disabled: b || null,
-        onclick: () => { this.selected = s.id; this.game.sfx('tap'); this.renderStmts(); } },
+      return el('button', { class: `stmt${b ? ' broken' : ''}${this.selected === s.id ? ' selected' : ''}${nextId === s.id ? ' next' : ''}`, 'data-id': s.id, disabled: b || null,
+        onclick: () => { this.selected = s.id; this.game.sfx('tap'); this.renderStmts(); this.message(this.guide()); } },
       resolveText(C, s.text), b ? el('span', { class: `stamp${fresh === s.id ? ' fresh' : ''}`, text: '拆' }) : null);
     }));
     const done = intDone(C, S, this.id);
@@ -83,9 +108,9 @@ export class Interrogation extends Modal {
       game.sfx('break');
       this.setPortrait(b.portrait); this.setDetective('press');
       this.say(b.text);
-      this.message(`<k>拆穿！</k>`);
       const st = this.selected; this.selected = null;
       this.renderStmts(st);
+      this.message(`<k>拆穿！</k>　${this.guide()}`);
       this.stampFx(st);
       game.commit(r.events.filter((e) => e.type !== 'break'));
       vo(game, NPC_VO[this.it.npc]?.[r.complete ? 'complete' : 'break'], 450);
@@ -95,6 +120,7 @@ export class Interrogation extends Modal {
       this.message('……');
     } else if (r.result === 'wrong') {
       this.setDetective('wry'); game.sfx('wrong'); vo(game, NPC_VO[this.it.npc]?.wrong, 300);
+      if (game.C.uiText.intWrong) this.message(game.C.uiText.intWrong);
       game.commit(r.events);
     }
   }

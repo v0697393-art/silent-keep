@@ -1,9 +1,19 @@
 {
- "generated": "2026-10-31T19:11:07-04:00",
+ "generated": "2026-11-01T01:42:16-04:00",
  "spec": "design/04_美术素材清单.md",
- "note": "360x480 透明 PNG（毛边羊皮纸卡 + 插图 + 标题 + 铜图钉）。脚本 art_src/evidence/build_cards.py",
- "count": 14,
+ "note": "360x480 透明 PNG（毛边羊皮纸卡 + 插图 + 标题 + 铜图钉）。脚本 art_src/evidence/build_cards.py；第二章：art_src/ch2/build_cards_ch2.py",
+ "count": 25,
  "assets": [
+  {
+   "file": "art/evidence/card_alric_1315.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": null,
+   "card": "c_alric",
+   "name": null,
+   "purpose": "线索板卡：受洗银币“阿尔里克 · 1315”"
+  },
   {
    "file": "art/evidence/card_blank_1312.png",
    "width": 360,
@@ -35,6 +45,16 @@
    "purpose": "证据卡/线索板卡"
   },
   {
+   "file": "art/evidence/card_well_1312.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": null,
+   "card": "c_well",
+   "name": null,
+   "purpose": "线索板卡：井壁拓片“1312 · 埃德里克”（取自 bg_end_02）"
+  },
+  {
    "file": "art/evidence/card_year_1349.png",
    "width": 360,
    "height": 480,
@@ -43,6 +63,36 @@
    "card": "c_1349",
    "name": null,
    "purpose": "证据卡/线索板卡"
+  },
+  {
+   "file": "art/evidence/ev_aelind_letter.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_aelind_letter",
+   "card": null,
+   "name": "艾琳德的信",
+   "purpose": "证据卡"
+  },
+  {
+   "file": "art/evidence/ev_ageless_priest.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_ageless_priest",
+   "card": null,
+   "name": "不老的神父",
+   "purpose": "证据卡"
+  },
+  {
+   "file": "art/evidence/ev_baptism_record.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_baptism_record",
+   "card": null,
+   "name": "受洗记录",
+   "purpose": "证据卡"
   },
   {
    "file": "art/evidence/ev_black_bead.png",
@@ -95,6 +145,16 @@
    "purpose": "证据卡/线索板卡"
   },
   {
+   "file": "art/evidence/ev_cloth_match.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_cloth_match",
+   "card": null,
+   "name": "布料吻合",
+   "purpose": "证据卡"
+  },
+  {
    "file": "art/evidence/ev_confession.png",
    "width": 360,
    "height": 480,
@@ -103,6 +163,36 @@
    "card": null,
    "name": "伊瑟尔达的供词",
    "purpose": "证据卡/线索板卡"
+  },
+  {
+   "file": "art/evidence/ev_family_portrait.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_family_portrait",
+   "card": null,
+   "name": "1312 全家像",
+   "purpose": "证据卡"
+  },
+  {
+   "file": "art/evidence/ev_prayer_book.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_prayer_book",
+   "card": null,
+   "name": "祷告簿",
+   "purpose": "证据卡"
+  },
+  {
+   "file": "art/evidence/ev_rattle.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_rattle",
+   "card": null,
+   "name": "银摇铃",
+   "purpose": "证据卡"
   },
   {
    "file": "art/evidence/ev_revealed_tree.png",
@@ -133,6 +223,26 @@
    "card": null,
    "name": "牧杖纹封蜡",
    "purpose": "证据卡/线索板卡"
+  },
+  {
+   "file": "art/evidence/ev_severin_confession.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_severin_confession",
+   "card": null,
+   "name": "神父的供词",
+   "purpose": "证据卡"
+  },
+  {
+   "file": "art/evidence/ev_swaddling.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_swaddling",
+   "card": null,
+   "name": "旧襁褓",
+   "purpose": "证据卡"
   },
   {
    "file": "art/evidence/ev_wet_chain.png",

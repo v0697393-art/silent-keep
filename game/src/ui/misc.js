@@ -2,7 +2,7 @@
 import { Modal } from './modal.js';
 import { el, setRich } from './dom.js';
 import { itemIcon, evidenceCard } from '../engine/assets.js';
-import { closeupView } from '../engine/logic.js';
+import { closeupView, hotspotActive } from '../engine/logic.js';
 
 export class ItemDetail extends Modal {
   constructor(game, item) {
@@ -77,7 +77,36 @@ export class CloseUp extends Modal {
     }
     if (this.frames.length > 1) view.onclick = () => { this.game.sfx('page'); this.show(this.idx + 1); };
     const dots = this.frames.length > 1 ? el('div', { class: 'cu-dots' }, ...this.frames.map((_, i) => el('span', { class: i === this.idx ? 'on' : '' }))) : null;
-    this.body.replaceChildren(...[view, dots].filter(Boolean));
+    const row = this.itemRow();
+    this.root.classList.toggle('has-items', !!row);
+    this.body.replaceChildren(...[view, dots, row].filter(Boolean));
+  }
+  /** 打开这个特写的场景热点（它的某条交互 open 了本特写，且它接受道具 useItem / 有 cantUse 提示） */
+  sourceHotspot() {
+    const { C, S } = this.game;
+    return (C.roomById[S.room]?.hotspots || []).find((h) => hotspotActive(S, h)
+      && (h.interactions || []).some((it) => (it.effects || []).some((e) => e.type === 'open' && e.id === this.id))
+      && ((h.interactions || []).some((it) => it.useItem) || h.cantUse));
+  }
+  /** BUGS #8：特写里也能直接用道具——以前只能退出特写、在场景里选道具再点，试玩时被当成“用什么都没用”。
+   *  点道具 = 对来源热点使用该道具；不对就在特写里给针对性提示（热点 cantUse），对了就关特写交给场景。 */
+  itemRow() {
+    const g = this.game, { S, C } = g;
+    const src = this.sourceHotspot();
+    if (!src || !S.inventory.length) return null;
+    const row = el('div', { class: 'cu-items', 'data-hotspot': src.id },
+      el('div', { class: 'cu-items-label', text: C.uiText.closeupUse ?? '对它用道具：' }),
+      el('div', { class: 'cu-items-list' }, S.inventory.map((id) => el('button', {
+        class: 'cu-item', 'data-item': id, 'aria-label': g.itemName(id),
+        onclick: (ev) => {
+          ev.stopPropagation();
+          const it = (src.interactions || []).find((x) => x.useItem === id && g.reqOkNow(x.req));
+          if (!it) { g.sfx('wrong'); this.message(g.cantUseText(src.id, id)); return; }
+          this.close();
+          setTimeout(() => g.useOn(src.id, id), 0);
+        },
+      }, g.itemEl(id), el('span', { text: g.itemName(id) })))));
+    return row;
   }
 }
 

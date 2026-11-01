@@ -32,7 +32,9 @@ export class Notebook extends Modal {
         setRich(detail, `<k>${ev?.name ?? id}</k>　${ev?.desc ?? ''}`);
       } }, this.game.evidenceEl(id), el('div', { class: 'ev-name', text: C.evidence[id]?.name ?? id })))), detail);
     } else if (this.tab === 'notes') {
-      if (!S.notes.length) return p.append(el('div', { class: 'empty', text: C.uiText.noNotes }));
+      // 试玩反馈：已有证据时笔记页仍写“还没有记下什么”像是坏了——改为说明证据在哪一页、笔记何时出现
+      if (!S.notes.length) return p.append(el('div', { class: 'empty', text: S.evidence.length && C.uiText.noNotesHasEvidence
+        ? C.uiText.noNotesHasEvidence.replace('{n}', S.evidence.length) : C.uiText.noNotes }));
       p.append(el('h3', { text: '笔记' }), el('ul', { class: 'notes' }, S.notes.map((n) => el('li', { text: n }))));
     } else if (this.tab === 'clueboard') {
       const ids = Object.keys(C.clueboards);

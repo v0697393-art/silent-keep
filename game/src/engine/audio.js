@@ -21,6 +21,13 @@ export const SUGGESTED_GAIN = {
   sfx_stone_sink: 1.0, sfx_crest_rotate: 0.9, sfx_dial_click: 0.7, sfx_box_open: 0.9, sfx_page_turn: 0.8, sfx_charcoal_reveal: 0.9,
   sfx_crow: 0.8, sfx_window_wind: 0.9, sfx_candle_light: 0.8, sfx_candle_out: 0.8, sfx_winch_chain: 0.9, sfx_well_cover: 1.0,
   sfx_clue_connect: 0.8, sfx_clue_fail: 0.8, sfx_testimony_flip: 0.7, sfx_wrong: 0.8, sfx_tap: 0.6, sfx_sanity_restore: 0.9,
+  sfx_lock_unlock: 1.0, // 清单外补交：机关/铁锁解开（第一章 h_stair_door、pz_dial 的开锁反馈）
+  // 第二章《血脉》（audio/README.md「第二章新增」建议音量；bgm_ending_ch2 与 ch1 一样只播一次）
+  bgm_r4_bedchamber: 0.8, bgm_r5_gallery: 0.7, bgm_r6_nursery: 0.7, bgm_ending_ch2: 1.0,
+  amb_bedchamber_breath: 0.6, amb_gallery_draft: 0.6, amb_nursery_creak: 0.6,
+  sfx_door_unlock: 1.0, sfx_rattle: 0.8, sfx_ice_hiss: 0.8, sfx_brazier_crackle: 0.8, sfx_solvent_wipe: 0.9, sfx_nursery_door: 1.0,
+  sfx_cradle_creak: 0.8, sfx_thread_stitch: 0.9,
+  vo_alric_scoff: 1.0, vo_alric_breath: 1.0, vo_severin_hum: 1.0, vo_severin_sigh: 1.0, vo_godwin_cough: 1.0,
 };
 /** 心烛阶段参数（README 推荐值）：0 正常 / 1 轻微 / 2 不安(s2) / 3 动摇(s3) */
 export const SANITY_STAGE = [

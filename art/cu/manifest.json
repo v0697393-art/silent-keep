@@ -1,9 +1,33 @@
 {
- "generated": "2026-10-31T19:11:07-04:00",
+ "generated": "2026-11-01T01:42:16-04:00",
  "spec": "design/04_美术素材清单.md",
- "note": "脚本 art_src/cu/build_cu.py（谜题/契约）+ build_cu2.py（挂毯/家谱/抄本/画/浮雕/井盖）；符号来自 art_src/cu/crest_tiles.py",
- "count": 23,
+ "note": "脚本 art_src/cu/build_cu.py（谜题/契约）+ build_cu2.py（挂毯/家谱/抄本/画/浮雕/井盖）；符号来自 art_src/cu/crest_tiles.py；第二章：art_src/ch2/build_cu_ch2.py",
+ "count": 51,
  "assets": [
+  {
+   "file": "art/cu/cu_aelind_letter.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "艾琳德的信：四行摇篮曲旁配线轴/银铃/小羊/月亮小图"
+  },
+  {
+   "file": "art/cu/cu_alphabet_blocks.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "七块积木 A·2 L·8 E·3 D·7 R·1 I·9 C·4（抽屉密码来源）"
+  },
+  {
+   "file": "art/cu/cu_baptism_record.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "受洗记录：MCCCXII 年 XII 月 III 日生……名 E▇▇▇▇，主礼塞弗林，牧杖封蜡"
+  },
   {
    "file": "art/cu/cu_brendan_copy.jpg",
    "width": 1080,
@@ -27,6 +51,14 @@
    "transparent": false,
    "puzzle": null,
    "purpose": "玛蒂尔的画特写 1080x1080"
+  },
+  {
+   "file": "art/cu/cu_coffer_lock.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": "pz_coffer",
+   "purpose": "铁匣四位转轮底图；铭文“长子降生之日，月在前，日在后”"
   },
   {
    "file": "art/cu/cu_contract.jpg",
@@ -53,12 +85,52 @@
    "purpose": "牧杖纹封蜡特写"
   },
   {
+   "file": "art/cu/cu_cradle.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "摇篮床头：“此处安睡着我们的长子”，五空槽仅首槽浅 E；抽屉面刻字"
+  },
+  {
+   "file": "art/cu/cu_cradle_drawer.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": "pz_cradle_drawer",
+   "purpose": "摇篮抽屉五位转轮底图（中间留空给 DOM 转轮）＋铭文"
+  },
+  {
+   "file": "art/cu/cu_cradle_drawer_open.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "抽屉拉开（羊皮纸已取出后的空抽屉）"
+  },
+  {
+   "file": "art/cu/cu_cradle_lowsan.png",
+   "width": 1080,
+   "height": 1080,
+   "transparent": true,
+   "puzzle": null,
+   "purpose": "透明叠加：后四槽 D R I C 虚影"
+  },
+  {
    "file": "art/cu/cu_crest_door.jpg",
    "width": 1080,
    "height": 1080,
    "transparent": false,
    "puzzle": "pz_crest",
    "purpose": "pz_crest 背景：空白 2x2 家徽石盘（1080x1080）"
+  },
+  {
+   "file": "art/cu/cu_crest_door_bell.png",
+   "width": 330,
+   "height": 330,
+   "transparent": true,
+   "puzzle": "pz_nursery_door",
+   "purpose": "门牌：银铃 330x330"
   },
   {
    "file": "art/cu/cu_crest_door_eye_closed.png",
@@ -79,6 +151,30 @@
    "purpose": "rotate_grid 格子符号 260x260 透明（叠在 CSS 苔绿/赭色格上）"
   },
   {
+   "file": "art/cu/cu_crest_door_lamb.png",
+   "width": 330,
+   "height": 330,
+   "transparent": true,
+   "puzzle": "pz_nursery_door",
+   "purpose": "门牌：小羊 330x330"
+  },
+  {
+   "file": "art/cu/cu_crest_door_moon.png",
+   "width": 330,
+   "height": 330,
+   "transparent": true,
+   "puzzle": "pz_nursery_door",
+   "purpose": "门牌：闭眼的月亮 330x330"
+  },
+  {
+   "file": "art/cu/cu_crest_door_spool.png",
+   "width": 330,
+   "height": 330,
+   "transparent": true,
+   "puzzle": "pz_nursery_door",
+   "purpose": "门牌：线轴 330x330"
+  },
+  {
    "file": "art/cu/cu_crest_door_water.png",
    "width": 260,
    "height": 260,
@@ -95,6 +191,38 @@
    "puzzle": "pz_crest",
    "symbol": "well",
    "purpose": "rotate_grid 格子符号 260x260 透明（叠在 CSS 苔绿/赭色格上）"
+  },
+  {
+   "file": "art/cu/cu_easel.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "玛蒂尔未完成小像：身后无脸披旅行斗篷的高个子"
+  },
+  {
+   "file": "art/cu/cu_family_portrait.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "1312 全家像去漆前：母亲怀里灰漆，名牌第三名被刮"
+  },
+  {
+   "file": "art/cu/cu_family_portrait_lowsan.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "puzzle": null,
+   "purpose": "透明叠加：名牌浮出 E"
+  },
+  {
+   "file": "art/cu/cu_family_portrait_restored.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "去漆后：婴儿（闭眼纹襁褓、银摇铃、灰眼睛）＋身后泪痣神父"
   },
   {
    "file": "art/cu/cu_genealogy.jpg",
@@ -129,6 +257,62 @@
    "purpose": "炭粉拓显后：希尔德布兰 1238 / 罗泽琳 1275 / ▇▇ 1312，均“生卒不详”"
   },
   {
+   "file": "art/cu/cu_nursery_door.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": "pz_nursery_door",
+   "purpose": "育婴室门 2×2 木牌底图，门楣“为长子唱的歌”"
+  },
+  {
+   "file": "art/cu/cu_portrait_1275.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "1275 罗泽琳一家：女孩脸空白，角落同一泪痣神父，铭牌 MCCLXXV"
+  },
+  {
+   "file": "art/cu/cu_portrait_founder.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "1238 先祖像（闭眼）＋泪痣神父，铭牌 MCCXXXVIII"
+  },
+  {
+   "file": "art/cu/cu_portrait_founder_lowsan.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "整张替换：神父睁眼看向观者"
+  },
+  {
+   "file": "art/cu/cu_prayer_book.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "翻开的祷告簿，页边写满“原谅我”"
+  },
+  {
+   "file": "art/cu/cu_prayer_book_lowsan.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "puzzle": null,
+   "purpose": "透明叠加：页面上的 E 浮起发光"
+  },
+  {
+   "file": "art/cu/cu_rattle.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "银摇铃：柄上刻 MCCCXII · XII · III + 闭眼纹，红丝带（铁匣密码来源）"
+  },
+  {
    "file": "art/cu/cu_relief.jpg",
    "width": 1080,
    "height": 1080,
@@ -143,6 +327,46 @@
    "transparent": false,
    "puzzle": null,
    "purpose": "浮雕低理智帧：墙上睁开无数眼睛，像素对齐 cu_relief"
+  },
+  {
+   "file": "art/cu/cu_sewing_basket.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "绣绷：家徽缺左上（闭眼）"
+  },
+  {
+   "file": "art/cu/cu_sewing_basket_matched.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "襁褓残片补上左上闭眼"
+  },
+  {
+   "file": "art/cu/cu_swaddling.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "旧襁褓：中左一个闭眼纹，绣 EDRIC，E 针脚最密最旧"
+  },
+  {
+   "file": "art/cu/cu_swaddling_lowsan.png",
+   "width": 1080,
+   "height": 1080,
+   "transparent": true,
+   "puzzle": null,
+   "purpose": "透明叠加：E 发琥珀光，D R I C 褪色"
+  },
+  {
+   "file": "art/cu/cu_swaddling_matched.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "襁褓与绣绷家徽拼合"
   },
   {
    "file": "art/cu/cu_tapestry.jpg",
