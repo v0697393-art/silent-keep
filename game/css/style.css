@@ -97,11 +97,18 @@ button:disabled { opacity: .35; cursor: default; }
 .glitch { color: var(--ink); letter-spacing: -2px; }
 
 /* ---------- 提示条 ---------- */
-#toasts { position: absolute; left: 0; right: 0; top: 140px; z-index: 45; display: flex; flex-direction: column; align-items: center; gap: 12px; pointer-events: none; }
-.toast { padding: 14px 34px; border-radius: 40px; background: rgba(26,20,16,.92); border: 2px solid var(--amber); color: var(--bone); font-size: 32px;
-  animation: toast 2.6s ease forwards; box-shadow: 0 6px 18px rgba(0,0,0,.6); }
+/* 提示条：位置由 game.pumpToasts() 逐条算 top（排队 + 竖向错开，避开顶栏/底栏），这里只管样式；动画只改透明度，不位移，包围盒始终不重叠 */
+#toasts { position: absolute; inset: 0; z-index: 45; pointer-events: none; }
+.toast { position: absolute; left: 0; right: 0; margin: 0 auto; width: fit-content; max-width: 960px; box-sizing: border-box;
+  padding: 14px 34px; border-radius: 40px; background: rgba(26,20,16,.92); border: 2px solid var(--amber); color: var(--bone); font-size: 32px; line-height: 1.4;
+  animation: toastIn .25s ease forwards; transition: opacity .3s; box-shadow: 0 6px 18px rgba(0,0,0,.6); }
+.toast.measure { visibility: hidden; animation: none; }
+.toast.out { opacity: 0; }
 .toast b { color: var(--amber); font-weight: normal; }
-@keyframes toast { from { opacity: 0; transform: translateY(-14px); } 10%, 80% { opacity: 1; transform: none; } to { opacity: 0; } }
+@keyframes toastIn { from { opacity: 0; } to { opacity: 1; } }
+/* 心烛已在下限时再扣：不弹数字，烛火抖一下 */
+#sanity.flinch .hc-flame, #sanity.flinch .flame { animation: flameFlinch .5s ease-in-out !important; }
+@keyframes flameFlinch { 0%, 100% { transform: none; opacity: 1; } 20% { transform: translateX(-6px) scaleY(.82); opacity: .55; } 45% { transform: translateX(5px) scaleY(1.06); } 70% { transform: translateX(-3px) scaleY(.92); opacity: .8; } }
 
 /* ---------- 模态界面通用 ---------- */
 #modal-root { position: absolute; inset: 0; z-index: 30; pointer-events: none; }
@@ -328,8 +335,7 @@ button:disabled { opacity: .35; cursor: default; }
 #cutscene .cs-caption { top: 1380px; bottom: 170px; left: 70px; right: 70px; display: flex; align-items: center; justify-content: center; }
 #cutscene .cs-tap { bottom: 70px; }
 
-/* 检视道具时提示条（如“心神稍定”）挪到下方，不再盖住道具图 */
-:has(> #modal-root .m-item) > #toasts { top: auto; bottom: 310px; }
+/* 检视道具时提示条（如“心神稍定”）挪到下方、从下往上排，不再盖住道具图：见 game.toastBand()（fromBottom） */
 
 /* 标题：主标题用 h2（“缄默堡”），h1 同名只保留给读屏；美术皮肤下整张标题卡用 ui_loading */
 #title-screen h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
