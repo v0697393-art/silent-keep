@@ -59,6 +59,7 @@ button:disabled { opacity: .35; cursor: default; }
   background: linear-gradient(rgba(26,20,16,.0), rgba(26,20,16,.9) 40px, #2b2119 40px, #3a2a1e 46px, #2b2119 80px, #21180f); border-top: 0; box-shadow: 0 -8px 20px rgba(0,0,0,.6); }
 #inv-label { height: 40px; line-height: 40px; text-align: center; font-size: 28px; color: var(--straw); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 20px; }
 #inv-label b { color: var(--amber); font-weight: normal; }
+#inv-label.sel { font-size: 25px; letter-spacing: 0; }
 .inv-row { display: flex; align-items: center; height: 220px; padding: 0 8px; gap: 6px; border-top: 6px solid var(--walnut); }
 .nav-arrow { width: 100px; height: 170px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: var(--amber); }
 .nav-arrow .arrow { font-size: 48px; } .nav-arrow .nav-name { font-size: 22px; color: var(--straw); max-width: 100px; line-height: 1.1; }
@@ -165,9 +166,13 @@ button:disabled { opacity: .35; cursor: default; }
   background: radial-gradient(circle at 35% 35%, #d46a5c, var(--blood)); box-shadow: 0 3px 4px rgba(0,0,0,.6); }
 .cb-board .card.selected { outline: 8px solid var(--amber); }
 .cb-board .card.dragging { opacity: .8; }
-.cb-locked { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; color: var(--umber); font-size: 40px; text-align: center; padding: 80px; }
-.cb-locked .slots-need { display: flex; gap: 20px; }
-.cb-locked .slots-need div { width: 200px; height: 260px; border: 4px dashed var(--umber); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 30px; padding: 10px; }
+.cb-locked { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 70px; color: var(--umber); font-size: 40px; text-align: center; padding: 80px; }
+/* BUGS #9：标题独立成一块羊皮纸标签，和下面的虚线格之间留足间距，不再重叠 */
+.cb-locked .cb-locked-title { position: relative; z-index: 1; background: rgba(233,216,178,.94); color: #2a1d12; padding: 26px 44px; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,.45); line-height: 1.45; max-width: 820px; }
+.cb-locked .cb-locked-title small { display: block; margin-top: 8px; font-size: 30px; color: #6b4a2b; }
+.cb-locked .slots-need { display: flex; gap: 28px; }
+.cb-locked .slots-need div { width: 210px; height: 270px; border: 4px dashed #3b2a1a; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 30px; padding: 12px; background: rgba(233,216,178,.55); color: #2a1d12; line-height: 1.35; }
+.cb-locked .slots-need div.got { border-style: solid; background: rgba(233,216,178,.85); }
 .cb-options { position: absolute; left: 60px; right: 60px; top: 50%; transform: translateY(-50%); padding: 40px; z-index: 4; display: flex; flex-direction: column; gap: 22px; }
 .cb-options .q { font-size: 36px; text-align: center; margin-bottom: 8px; }
 .link-opt { padding: 24px; font-size: 38px; color: var(--umber); background: #eadcbc; border: 3px solid var(--ink); border-radius: 6px; }
@@ -486,3 +491,29 @@ button:disabled { opacity: .35; cursor: default; }
 /* 静音键：♪ 字符图标（美术没有 mute 图标）；选择器加 #hud 以盖过上面的通用 ::before */
 .ui-art #hud #btn-mute::before { content: '♪'; inset: 0; font-size: 46px; line-height: 96px; text-align: center; color: var(--bone); background: none; }
 .ui-art #hud #btn-notebook::before { inset: 22px; }
+/* 人物不用贴图（npcPresentation.mode = hotspot）：审讯不显示 NPC 半身像，改为烛光名牌 + 神色文字；面板变矮，证词区更大 */
+.int-portrait.no-sprite { height: 460px; align-items: flex-start; }
+.int-nameplate { margin-top: 70px; margin-left: 150px; padding: 18px 48px 20px; text-align: center; border: 3px solid var(--bronze); border-radius: 46px;
+  background: radial-gradient(ellipse at 50% 120%, rgba(201,162,90,.28), transparent 70%), rgba(20,14,10,.85); box-shadow: 0 0 40px rgba(201,162,90,.18); transition: border-color .4s, box-shadow .4s; }
+.int-np-name { font-size: 48px; font-weight: bold; letter-spacing: 6px; color: var(--bone); }
+.int-np-mood { margin-top: 6px; font-size: 32px; letter-spacing: 4px; color: var(--amber); }
+.int-nameplate.mood-nervous, .int-nameplate.mood-shaken { border-color: var(--amber); }
+.int-nameplate.mood-cold { border-color: #6e7a8a; }
+.int-nameplate.mood-broken { border-color: var(--blood); box-shadow: 0 0 46px rgba(122,46,37,.45); }
+.int-nameplate.mood-broken .int-np-mood { color: #c0645a; }
+.tier-s3 .int-nameplate { filter: hue-rotate(40deg) contrast(1.2); }
+
+/* BUGS #8：特写里的“对它用道具”行 */
+.m-closeup.has-items .cu-view { height: 1060px; }
+.m-closeup.has-items .cu-stack .cu-base { max-height: 1060px; }
+.cu-items { width: 940px; display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
+.cu-items-label { font-size: 28px; color: var(--straw); letter-spacing: 2px; }
+.cu-items-list { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 6px; }
+.cu-item { flex: 0 0 auto; width: 150px; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 4px; border-radius: 10px; border: 3px solid var(--walnut); background: rgba(20,14,10,.75); color: var(--bone); font-size: 22px; line-height: 1.2; }
+.cu-item img, .cu-item canvas { width: 96px; height: 96px; object-fit: contain; }
+.cu-item:active { border-color: var(--amber); }
+/* BUGS #7：拆穿一条后，下一条待拆证词呼吸描边 */
+.stmt.next { animation: stmtNext 1.6s ease-in-out infinite; }
+@keyframes stmtNext { 0%,100% { box-shadow: 0 0 0 0 rgba(212,160,74,0); } 50% { box-shadow: 0 0 0 6px rgba(212,160,74,.75); } }
+/* BUGS #6：谜题解开时底部提示变色 */
+.pz-hint.done { color: var(--amber); }

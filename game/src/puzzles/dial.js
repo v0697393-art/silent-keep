@@ -1,7 +1,7 @@
 // dial：N 位密码轮（0–9），点“开锁”核对。可选 hintFlag（06 §10：flag 为真时显示 uiText.dialHint，只提示不锁输入）。
 // v1.1 的 pz_dial 已去掉 hintFlag，改由 h_chest 的 req（cb_cycle_solved）锁住入口。
 import { PuzzleBase } from './base.js';
-import { el } from '../ui/dom.js';
+import { el, setRich } from '../ui/dom.js';
 
 export class Dial extends PuzzleBase {
   constructor(game, id) {
@@ -19,7 +19,9 @@ export class Dial extends PuzzleBase {
       el('button', { 'data-wheel': i, 'data-dir': 'up', 'aria-label': '加', onclick: () => this.spin(i, 1) }, '▲'),
       el('div', { class: 'digit', text: String(d) }),
       el('button', { 'data-wheel': i, 'data-dir': 'down', 'aria-label': '减', onclick: () => this.spin(i, -1) }, '▼'))));
-    this.hint.textContent = this.p.hintFlag && S.flags[this.p.hintFlag] ? C.uiText.dialHint ?? '' : '';
+    const fh = this.feedbackHint();
+    if (fh) setRich(this.hint, fh);
+    else this.hint.textContent = this.p.hintFlag && S.flags[this.p.hintFlag] ? C.uiText.dialHint ?? '' : '';
   }
   spin(i, d) { if (this.solved) return; this.digits[i] = (this.digits[i] + d + 10) % 10; this.game.sfx('dial'); this.render(); }
   confirm() {

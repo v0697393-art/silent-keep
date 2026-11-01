@@ -4,7 +4,7 @@
 //   · 对话框（打字机 + 埃德里克头像随表情/心烛档切换）、道具栏（5 格分页、选中/组合/检视）、HUD（心烛/手记角标/静音）
 //   · 音频：统一用 audio.sfx()/bgm()/amb()（AudioManager 另保留 playSfx/playBgm 别名）；心烛档 → audio.setSanityStage()
 import {
-  createState, tapAt, combineItems, useItemSelf, gotoRoom, navTargets, tierOf, tierHas, inRect, pointFor, hotspotActive,
+  createState, tapAt, combineItems, useItemSelf, gotoRoom, navTargets, tierOf, tierHas, inRect, pointFor, hotspotActive, interact, reqOk,
 } from './logic.js';
 import { saveGame, loadGame, hasSave, clearSave, prefs } from './save.js';
 import { PLAY_RECT, LAYOUT } from './layout.js';
@@ -98,7 +98,8 @@ export class Game {
     this.audio.amb(r.amb ?? null);
     const next = this.C.rooms[this.C.rooms.indexOf(r) + 1];
     this.audio.preload([next?.bgm, next?.amb]);
-    this.assets.preload([this.renderer.bgId()]).then(() => this.renderer.invalidate());
+    // 预加载本房间全部背景差分 + 道具遮罩（BUGS #10：状态切换时不再出现未加载的背景）
+    this.renderer.preloadRoom().then(() => this.renderer.invalidate());
     this.updateHud();
   }
   nav(dir) {
@@ -130,7 +131,7 @@ export class Game {
     if (!r.ok) {
       if (item) {
         this.sfx('wrong'); this.expr = 'wry'; this.audio.sfx('vo_edric_sneer');
-        this.say(fmt(C.uiText.cantUse, { item: this.itemName(item) }));
+        this.say(this.cantUseText(r.hit, item));
         this.selected = null; this.renderInventory();
       }
       return;
@@ -190,12 +191,46 @@ export class Game {
       default: m?.onEvent?.(e);
     }
   }
+  reqOkNow(req) { return reqOk(this.S, req); }
+  /** 对指定热点使用道具（特写界面里的“用道具”行调用，BUGS #8）：与在场景上选中道具再点该热点完全等价 */
+  useOn(hotspotId, item) {
+    const { C, S } = this;
+    const flagsBefore = { ...S.flags };
+    const r = interact(C, S, hotspotId, item, Date.now());
+    this.selected = null; this.renderInventory();
+    if (!r.ok) { this.sfx('wrong'); this.say(this.cantUseText(hotspotId, item)); return false; }
+    this.sfx('use');
+    const extra = C.hotspotSfx[hotspotId];
+    if (extra) this.audio.sfx(extra);
+    if (!flagsBefore.got_spectacles && S.flags.got_spectacles) this.renderer.crowFlyAway();
+    this.commit(r.events);
+    return true;
+  }
+  /** 拿错道具的提示：热点补丁 cantUse[item] / cantUse['*'] 优先，否则通用 uiText.cantUse（BUGS #8） */
+  cantUseText(hotspotId, item) {
+    const { C, S } = this;
+    const h = C.roomById[S.room]?.hotspots.find((x) => x.id === hotspotId);
+    const key = h?.cantUse?.[item] ?? h?.cantUse?.['*'];
+    const t = key != null ? C.texts[key] : null;
+    return fmt(t ?? C.uiText.cantUse, { item: this.itemName(item) });
+  }
+  /** 心烛扣减的原因（试玩反馈：100→77 不知道为什么）：按当时所在界面取补丁 sanityReasons 的文案 */
+  sanityReason(e) {
+    const R = this.C.sanityReasons || {};
+    const m = this.modal?.type;
+    return e.reason ?? (m && R[m]) ?? R.scene ?? '';
+  }
   onSanity(e) {
     const { C } = this;
     const before = e.value - e.delta;
     const tb = tierOf(C, before).id, ta = tierOf(C, e.value).id;
     const f = el('div', { class: `sanity-float${e.delta < 0 ? ' neg' : ''}`, text: `${e.delta > 0 ? '+' : ''}${e.delta}` });
     this.dom.sanity.append(f); setTimeout(() => f.remove(), 1600);
+    if (e.delta < 0) {
+      const why = this.sanityReason(e);
+      this.lastSanityReason = why;
+      if (why) this.toast(`<k>心烛 ${e.delta}</k>　${why}`);
+    }
     if (e.delta < 0) { this.expr = 'shaken'; if (ta !== tb) this.audio.sfx('vo_edric_gasp'); }
     else if (e.delta > 0) {
       const msg = fmt(C.uiText.restoreOk, { delta: e.delta });
@@ -277,6 +312,7 @@ export class Game {
     dom.slots.replaceChildren(...slots);
     dom.btnInvPrev.disabled = this.invPage <= 0;
     dom.btnInvNext.disabled = this.invPage >= pages - 1;
+    dom.invLabel.classList.toggle('sel', !!this.selected); // BUGS #12：选中时字号略小 + 文案缩短，整句放得下
     if (this.selected) setRich(dom.invLabel, `<k>${this.itemName(this.selected)}</k>　${C.uiText.itemHint}`);
     else dom.invLabel.textContent = S.inventory.length ? `行囊 ${S.inventory.length} 件` : '行囊空空';
     this.freshItem = null;
@@ -443,10 +479,12 @@ export class Game {
     if (!S) return { screen: this.screen, modal: null, dialog: null, dialogQ: 0, cutscene: null, audio: this.audio.debugState() };
     return {
       room: S.room, sanity: S.sanity, tier: tierOf(this.C, S.sanity).id, inventory: [...S.inventory], evidence: [...S.evidence],
-      flags: Object.keys(S.flags), solved: [...S.solved], ended: S.ended, selected: this.selected, invPage: this.invPage,
+      flags: Object.keys(S.flags), solved: [...S.solved], seen: [...(S.seen || [])], once: Object.keys(S.once || {}), ended: S.ended, selected: this.selected, invPage: this.invPage,
       modal: this.modal ? `${this.modal.type}:${this.modal.id}` : null, stack: this.stack.map((m) => `${m.type}:${m.id}`),
       dialog: this.dialogCur?.text ?? null, dialogQ: this.dialogQ.length, cutscene: this.inCutscene ? this.dom.cutscene.dataset.id : null,
       screen: this.screen, audio: this.audio.debugState(), bg: this.renderer?.S ? this.renderer.bgId() : null,
+      drawnBg: this.renderer?.cache?.bg ?? null, overlays: this.renderer?.cache?.overlays ?? [], renderErrors: [...(window.__renderErrors || [])],
+      lastSanityReason: this.lastSanityReason ?? null,
     };
   }
 }

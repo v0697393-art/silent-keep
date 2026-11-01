@@ -660,5 +660,6 @@
    "state": "lineup",
    "purpose": "角色阵容总览（评审用，非游戏内素材）"
   }
- ]
+ ],
+ "ch2_note": "第二章不出角色立绘（按 Vicente 要求，可交互角色不单独出立绘）：char_alric_calm/wary/shaken/full 与 char_severin_calm/smile/cold/unmasked/full 共 9 项取消；审讯改用 art/bg/bg_int_alric.jpg、bg_int_severin.jpg，房间里人物直接画在 bg_r4_bedchamber / bg_r6_nursery(_drawer_open) 中。"
 }

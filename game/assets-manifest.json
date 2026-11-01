@@ -1,9 +1,17 @@
 {
- "generated": "2026-10-31T23:24:26.020Z",
+ "generated": "2026-11-01T05:46:18.863Z",
  "art": [
+  "bg/bg_c2_end_01.jpg",
+  "bg/bg_c2_end_02.jpg",
+  "bg/bg_c2_end_03.jpg",
+  "bg/bg_c2_intro_01.jpg",
+  "bg/bg_c2_intro_02.jpg",
+  "bg/bg_c2_intro_03.jpg",
   "bg/bg_end_01.jpg",
   "bg/bg_end_02.jpg",
   "bg/bg_end_03.jpg",
+  "bg/bg_int_alric.jpg",
+  "bg/bg_int_severin.jpg",
   "bg/bg_intro_01.jpg",
   "bg/bg_intro_02.jpg",
   "bg/bg_intro_03.jpg",
@@ -15,6 +23,20 @@
   "bg/bg_r2_scriptorium_window_open.jpg",
   "bg/bg_r3_crypt.jpg",
   "bg/bg_r3_crypt_well_open.jpg",
+  "bg/bg_r4_bedchamber.jpg",
+  "bg/bg_r4_bedchamber_door_open.jpg",
+  "bg/bg_r5_gallery.jpg",
+  "bg/bg_r5_gallery_door_open.jpg",
+  "bg/bg_r5_gallery_restored.jpg",
+  "bg/bg_r6_nursery.jpg",
+  "bg/bg_r6_nursery_drawer_open.jpg",
+  "bg/bg_r6_nursery_empty_chair.jpg",
+  "bg/ovl_r4_coffer_open.png",
+  "bg/ovl_r4_cup_ice.png",
+  "bg/ovl_r4_rattle_fist.png",
+  "bg/ovl_r4_window_e.png",
+  "bg/ovl_r5_easel_supplies.png",
+  "bg/ovl_r6_mobile_eyes.png",
   "characters/char_alric_avatar_256.png",
   "characters/char_alric_full.png",
   "characters/char_alric_neutral.png",
@@ -96,42 +118,81 @@
   "characters/char_ysolde_shaken.png",
   "characters/char_ysolde_shaken_portrait_384.png",
   "characters/ovl_edric_ink_s3.png",
+  "cu/cu_aelind_letter.jpg",
+  "cu/cu_alphabet_blocks.jpg",
+  "cu/cu_baptism_record.jpg",
   "cu/cu_brendan_copy.jpg",
   "cu/cu_chest_lock.jpg",
   "cu/cu_child_drawing.jpg",
+  "cu/cu_coffer_lock.jpg",
   "cu/cu_contract.jpg",
   "cu/cu_contract_fine.jpg",
   "cu/cu_contract_seal.jpg",
+  "cu/cu_cradle.jpg",
+  "cu/cu_cradle_drawer.jpg",
+  "cu/cu_cradle_drawer_open.jpg",
+  "cu/cu_cradle_lowsan.png",
   "cu/cu_crest_door.jpg",
+  "cu/cu_crest_door_bell.png",
   "cu/cu_crest_door_eye_closed.png",
   "cu/cu_crest_door_key.png",
+  "cu/cu_crest_door_lamb.png",
+  "cu/cu_crest_door_moon.png",
+  "cu/cu_crest_door_spool.png",
   "cu/cu_crest_door_water.png",
   "cu/cu_crest_door_well.png",
+  "cu/cu_easel.jpg",
+  "cu/cu_family_portrait.jpg",
+  "cu/cu_family_portrait_lowsan.png",
+  "cu/cu_family_portrait_restored.jpg",
   "cu/cu_genealogy.jpg",
   "cu/cu_genealogy_original.jpg",
   "cu/cu_genealogy_original_lowsan.png",
   "cu/cu_genealogy_original_revealed.jpg",
+  "cu/cu_nursery_door.jpg",
+  "cu/cu_portrait_1275.jpg",
+  "cu/cu_portrait_founder.jpg",
+  "cu/cu_portrait_founder_lowsan.jpg",
+  "cu/cu_prayer_book.jpg",
+  "cu/cu_prayer_book_lowsan.png",
+  "cu/cu_rattle.jpg",
   "cu/cu_relief.jpg",
   "cu/cu_relief_open.jpg",
+  "cu/cu_sewing_basket.jpg",
+  "cu/cu_sewing_basket_matched.jpg",
+  "cu/cu_swaddling.jpg",
+  "cu/cu_swaddling_lowsan.png",
+  "cu/cu_swaddling_matched.jpg",
   "cu/cu_tapestry.jpg",
   "cu/cu_tapestry_01.jpg",
   "cu/cu_tapestry_02.jpg",
   "cu/cu_tapestry_03.jpg",
   "cu/cu_tapestry_04.jpg",
   "cu/cu_well_lid.jpg",
+  "evidence/card_alric_1315.png",
   "evidence/card_blank_1312.png",
   "evidence/card_hild_1238.png",
   "evidence/card_roz_1275.png",
+  "evidence/card_well_1312.png",
   "evidence/card_year_1349.png",
+  "evidence/ev_aelind_letter.png",
+  "evidence/ev_ageless_priest.png",
+  "evidence/ev_baptism_record.png",
   "evidence/ev_black_bead.png",
   "evidence/ev_blank_coffins.png",
   "evidence/ev_brendan_notes.png",
   "evidence/ev_burnt_page.png",
   "evidence/ev_child_drawing.png",
+  "evidence/ev_cloth_match.png",
   "evidence/ev_confession.png",
+  "evidence/ev_family_portrait.png",
+  "evidence/ev_prayer_book.png",
+  "evidence/ev_rattle.png",
   "evidence/ev_revealed_tree.png",
   "evidence/ev_rosary.png",
   "evidence/ev_seal_crozier.png",
+  "evidence/ev_severin_confession.png",
+  "evidence/ev_swaddling.png",
   "evidence/ev_wet_chain.png",
   "fx/fx_candle_flicker_01.png",
   "fx/fx_candle_flicker_02.png",
@@ -145,6 +206,22 @@
   "fx/fx_candle_flicker_s3_04.png",
   "fx/fx_candle_flicker_s3_05.png",
   "fx/fx_candle_flicker_s3_06.png",
+  "fx/fx_cradle_rock_01.png",
+  "fx/fx_cradle_rock_02.png",
+  "fx/fx_cradle_rock_03.png",
+  "fx/fx_cradle_rock_04.png",
+  "fx/fx_cradle_rock_empty_01.png",
+  "fx/fx_cradle_rock_empty_02.png",
+  "fx/fx_cradle_rock_empty_03.png",
+  "fx/fx_cradle_rock_empty_04.png",
+  "fx/fx_cradle_rock_open_01.png",
+  "fx/fx_cradle_rock_open_02.png",
+  "fx/fx_cradle_rock_open_03.png",
+  "fx/fx_cradle_rock_open_04.png",
+  "fx/fx_curtain_breathe_01.png",
+  "fx/fx_curtain_breathe_02.png",
+  "fx/fx_curtain_breathe_03.png",
+  "fx/fx_curtain_breathe_04.png",
   "fx/fx_dust_01.png",
   "fx/fx_dust_02.png",
   "fx/fx_dust_mote.png",
@@ -152,6 +229,14 @@
   "fx/fx_ink_tendril_02.png",
   "fx/fx_ink_tendril_03.png",
   "fx/fx_ink_tendril_04.png",
+  "fx/fx_portrait_eyes_01.png",
+  "fx/fx_portrait_eyes_02.png",
+  "fx/fx_portrait_eyes_03.png",
+  "fx/fx_portrait_eyes_04.png",
+  "fx/fx_portrait_eyes_restored_01.png",
+  "fx/fx_portrait_eyes_restored_02.png",
+  "fx/fx_portrait_eyes_restored_03.png",
+  "fx/fx_portrait_eyes_restored_04.png",
   "fx/fx_stamp_seal_01.png",
   "fx/fx_stamp_seal_02.png",
   "fx/fx_stamp_seal_03.png",
@@ -176,13 +261,20 @@
   "items/item_charcoal_dust.png",
   "items/item_contract_half.png",
   "items/item_crank.png",
+  "items/item_cup_ice.png",
+  "items/item_cup_warm.png",
+  "items/item_gallery_key.png",
+  "items/item_pine_oil.png",
   "items/item_poker.png",
   "items/item_quill.png",
+  "items/item_rag.png",
   "items/item_reveal_brush.png",
   "items/item_rosary.png",
   "items/item_rosary_full.png",
   "items/item_scraper.png",
+  "items/item_solvent_rag.png",
   "items/item_spectacles.png",
+  "items/item_swaddling.png",
   "items/item_well_key.png",
   "ui/ui_btn_cancel.png",
   "ui/ui_btn_cancel_pressed.png",
@@ -286,6 +378,7 @@
   "ui/ui_testimony_strip_selected.png"
  ],
  "excluded": [
+  "ch2_preview.png",
   "characters/characters_lineup.png",
   "palette.png",
   "style_sample_character.png",
@@ -295,7 +388,10 @@
  "hotspots": [
   "bg/bg_r1_hall_hotspots.json",
   "bg/bg_r2_scriptorium_hotspots.json",
-  "bg/bg_r3_crypt_hotspots.json"
+  "bg/bg_r3_crypt_hotspots.json",
+  "bg/bg_r4_bedchamber_hotspots.json",
+  "bg/bg_r5_gallery_hotspots.json",
+  "bg/bg_r6_nursery_hotspots.json"
  ],
  "meta": {
   "fx_candle_flicker": {
@@ -310,6 +406,66 @@
    "loop": true,
    "note": "心烛火焰摇曳（琥珀，s1/s2 用；s2 可把 fps 提到 16 表现更不安）；_s3_01~06 为绿色版。底部中心 anchor 对齐烛芯"
   },
+  "fx_cradle_rock": {
+   "frames": 4,
+   "fps": 4,
+   "frame_w": 558,
+   "frame_h": 533,
+   "rect": [
+    154,
+    909,
+    558,
+    533
+   ],
+   "loop": true,
+   "show": "sanity<40，或神父审讯后常驻",
+   "note": "R6 空摇篮以底部为轴前后摇 ±1.1°；用于 bg_r6_nursery（抽屉关）。spec rect [330,900,420,400]，按摇篮实际位置改为此 rect"
+  },
+  "fx_cradle_rock_empty": {
+   "frames": 4,
+   "fps": 4,
+   "frame_w": 558,
+   "frame_h": 533,
+   "rect": [
+    154,
+    909,
+    558,
+    533
+   ],
+   "loop": true,
+   "show": "同上（flag dd_bloodline_solved 时）",
+   "note": "同上，神父离开后版本；用于 bg_r6_nursery_empty_chair"
+  },
+  "fx_cradle_rock_open": {
+   "frames": 4,
+   "fps": 4,
+   "frame_w": 558,
+   "frame_h": 533,
+   "rect": [
+    154,
+    909,
+    558,
+    533
+   ],
+   "loop": true,
+   "show": "同上（flag cradle_drawer_open 时）",
+   "note": "同上，抽屉拉开版；用于 bg_r6_nursery_drawer_open"
+  },
+  "fx_curtain_breathe": {
+   "frames": 4,
+   "fps": 4,
+   "frame_w": 490,
+   "frame_h": 500,
+   "rect": [
+    310,
+    610,
+    490,
+    500
+   ],
+   "loop": true,
+   "show": "sanity<40",
+   "note": "R4 床帐在心烛<40 时起伏，像在呼吸；只动帐幔与帐内暗部，老领主的头和手不动。叠在 bg_r4_bedchamber / _door_open 上都对齐（门不在区域内）。spec rect 为 [260,760,560,520]，按实际床帐位置改为此 rect"
+  },
   "fx_dust": {
    "frames": 2,
    "fps": 1,
@@ -317,6 +473,36 @@
    "frame_h": 1920,
    "loop": true,
    "note": "全屏浮尘+左上 45° 淡光柱，透明 PNG；建议两帧交叉淡入 + 缓慢 translateY(-40px)/20s；或用 fx_dust_mote 做粒子"
+  },
+  "fx_portrait_eyes": {
+   "frames": 4,
+   "fps": 3,
+   "frame_w": 320,
+   "frame_h": 493,
+   "rect": [
+    724,
+    244,
+    320,
+    493
+   ],
+   "loop": true,
+   "show": "sanity<40（去漆前）",
+   "note": "R5 全家像：戈德温与艾琳德的眼珠左右移动跟随玩家。用于 bg_r5_gallery（灰漆未去）。spec rect [740,260,300,460]，按画框实际位置改为此 rect"
+  },
+  "fx_portrait_eyes_restored": {
+   "frames": 4,
+   "fps": 3,
+   "frame_w": 320,
+   "frame_h": 493,
+   "rect": [
+    724,
+    244,
+    320,
+    493
+   ],
+   "loop": true,
+   "show": "sanity<40 或 cb_bloodline 解开后常驻（去漆后 / 门开时）",
+   "note": "同上，含婴儿的灰眼睛；叠在 bg_r5_gallery_restored 与 bg_r5_gallery_door_open 上（两图画像区域像素一致）"
   },
   "fx_stamp_seal": {
    "frames": 6,
@@ -427,12 +613,21 @@
   }
  },
  "audio": [
+  "amb/amb_bedchamber_breath.m4a",
+  "amb/amb_bedchamber_breath.mp3",
+  "amb/amb_bedchamber_breath.ogg",
   "amb/amb_crypt_drip.m4a",
   "amb/amb_crypt_drip.mp3",
   "amb/amb_crypt_drip.ogg",
+  "amb/amb_gallery_draft.m4a",
+  "amb/amb_gallery_draft.mp3",
+  "amb/amb_gallery_draft.ogg",
   "amb/amb_hall_fire.m4a",
   "amb/amb_hall_fire.mp3",
   "amb/amb_hall_fire.ogg",
+  "amb/amb_nursery_creak.m4a",
+  "amb/amb_nursery_creak.mp3",
+  "amb/amb_nursery_creak.ogg",
   "amb/amb_tower_wind.m4a",
   "amb/amb_tower_wind.mp3",
   "amb/amb_tower_wind.ogg",
@@ -448,6 +643,9 @@
   "bgm/bgm_ending_ch1.m4a",
   "bgm/bgm_ending_ch1.mp3",
   "bgm/bgm_ending_ch1.ogg",
+  "bgm/bgm_ending_ch2.m4a",
+  "bgm/bgm_ending_ch2.mp3",
+  "bgm/bgm_ending_ch2.ogg",
   "bgm/bgm_interrogation.m4a",
   "bgm/bgm_interrogation.mp3",
   "bgm/bgm_interrogation.ogg",
@@ -460,12 +658,24 @@
   "bgm/bgm_r3_crypt.m4a",
   "bgm/bgm_r3_crypt.mp3",
   "bgm/bgm_r3_crypt.ogg",
+  "bgm/bgm_r4_bedchamber.m4a",
+  "bgm/bgm_r4_bedchamber.mp3",
+  "bgm/bgm_r4_bedchamber.ogg",
+  "bgm/bgm_r5_gallery.m4a",
+  "bgm/bgm_r5_gallery.mp3",
+  "bgm/bgm_r5_gallery.ogg",
+  "bgm/bgm_r6_nursery.m4a",
+  "bgm/bgm_r6_nursery.mp3",
+  "bgm/bgm_r6_nursery.ogg",
   "bgm/bgm_title.m4a",
   "bgm/bgm_title.mp3",
   "bgm/bgm_title.ogg",
   "sfx/sfx_box_open.m4a",
   "sfx/sfx_box_open.mp3",
   "sfx/sfx_box_open.ogg",
+  "sfx/sfx_brazier_crackle.m4a",
+  "sfx/sfx_brazier_crackle.mp3",
+  "sfx/sfx_brazier_crackle.ogg",
   "sfx/sfx_candle_light.m4a",
   "sfx/sfx_candle_light.mp3",
   "sfx/sfx_candle_light.ogg",
@@ -487,6 +697,9 @@
   "sfx/sfx_combine_success.m4a",
   "sfx/sfx_combine_success.mp3",
   "sfx/sfx_combine_success.ogg",
+  "sfx/sfx_cradle_creak.m4a",
+  "sfx/sfx_cradle_creak.mp3",
+  "sfx/sfx_cradle_creak.ogg",
   "sfx/sfx_crest_rotate.m4a",
   "sfx/sfx_crest_rotate.mp3",
   "sfx/sfx_crest_rotate.ogg",
@@ -496,18 +709,36 @@
   "sfx/sfx_dial_click.m4a",
   "sfx/sfx_dial_click.mp3",
   "sfx/sfx_dial_click.ogg",
+  "sfx/sfx_door_unlock.m4a",
+  "sfx/sfx_door_unlock.mp3",
+  "sfx/sfx_door_unlock.ogg",
+  "sfx/sfx_ice_hiss.m4a",
+  "sfx/sfx_ice_hiss.mp3",
+  "sfx/sfx_ice_hiss.ogg",
   "sfx/sfx_item_use.m4a",
   "sfx/sfx_item_use.mp3",
   "sfx/sfx_item_use.ogg",
+  "sfx/sfx_lock_unlock.m4a",
+  "sfx/sfx_lock_unlock.mp3",
+  "sfx/sfx_lock_unlock.ogg",
+  "sfx/sfx_nursery_door.m4a",
+  "sfx/sfx_nursery_door.mp3",
+  "sfx/sfx_nursery_door.ogg",
   "sfx/sfx_page_turn.m4a",
   "sfx/sfx_page_turn.mp3",
   "sfx/sfx_page_turn.ogg",
   "sfx/sfx_pickup.m4a",
   "sfx/sfx_pickup.mp3",
   "sfx/sfx_pickup.ogg",
+  "sfx/sfx_rattle.m4a",
+  "sfx/sfx_rattle.mp3",
+  "sfx/sfx_rattle.ogg",
   "sfx/sfx_sanity_restore.m4a",
   "sfx/sfx_sanity_restore.mp3",
   "sfx/sfx_sanity_restore.ogg",
+  "sfx/sfx_solvent_wipe.m4a",
+  "sfx/sfx_solvent_wipe.mp3",
+  "sfx/sfx_solvent_wipe.ogg",
   "sfx/sfx_stone_sink.m4a",
   "sfx/sfx_stone_sink.mp3",
   "sfx/sfx_stone_sink.ogg",
@@ -517,6 +748,9 @@
   "sfx/sfx_testimony_flip.m4a",
   "sfx/sfx_testimony_flip.mp3",
   "sfx/sfx_testimony_flip.ogg",
+  "sfx/sfx_thread_stitch.m4a",
+  "sfx/sfx_thread_stitch.mp3",
+  "sfx/sfx_thread_stitch.ogg",
   "sfx/sfx_well_cover.m4a",
   "sfx/sfx_well_cover.mp3",
   "sfx/sfx_well_cover.ogg",
@@ -535,6 +769,12 @@
   "sfx/stinger_deduction.m4a",
   "sfx/stinger_deduction.mp3",
   "sfx/stinger_deduction.ogg",
+  "vo/vo_alric_breath.m4a",
+  "vo/vo_alric_breath.mp3",
+  "vo/vo_alric_breath.ogg",
+  "vo/vo_alric_scoff.m4a",
+  "vo/vo_alric_scoff.mp3",
+  "vo/vo_alric_scoff.ogg",
   "vo/vo_edric_gasp.m4a",
   "vo/vo_edric_gasp.mp3",
   "vo/vo_edric_gasp.ogg",
@@ -544,9 +784,18 @@
   "vo/vo_edric_sneer.m4a",
   "vo/vo_edric_sneer.mp3",
   "vo/vo_edric_sneer.ogg",
+  "vo/vo_godwin_cough.m4a",
+  "vo/vo_godwin_cough.mp3",
+  "vo/vo_godwin_cough.ogg",
   "vo/vo_osbert_sob.m4a",
   "vo/vo_osbert_sob.mp3",
   "vo/vo_osbert_sob.ogg",
+  "vo/vo_severin_hum.m4a",
+  "vo/vo_severin_hum.mp3",
+  "vo/vo_severin_hum.ogg",
+  "vo/vo_severin_sigh.m4a",
+  "vo/vo_severin_sigh.mp3",
+  "vo/vo_severin_sigh.ogg",
   "vo/vo_ysolde_laugh_break.m4a",
   "vo/vo_ysolde_laugh_break.mp3",
   "vo/vo_ysolde_laugh_break.ogg",
@@ -1045,6 +1294,249 @@
      "mp3": "vo/vo_ysolde_laugh_break.mp3"
     },
     "duration": 3
+   },
+   "bgm_r4_bedchamber": {
+    "dir": "bgm",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "bgm/bgm_r4_bedchamber.ogg",
+     "m4a": "bgm/bgm_r4_bedchamber.m4a",
+     "mp3": "bgm/bgm_r4_bedchamber.mp3"
+    },
+    "duration": 120.001,
+    "loopStart": 0,
+    "loopEnd": 120.001
+   },
+   "bgm_r5_gallery": {
+    "dir": "bgm",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "bgm/bgm_r5_gallery.ogg",
+     "m4a": "bgm/bgm_r5_gallery.m4a",
+     "mp3": "bgm/bgm_r5_gallery.mp3"
+    },
+    "duration": 120.001,
+    "loopStart": 0,
+    "loopEnd": 120.001
+   },
+   "bgm_r6_nursery": {
+    "dir": "bgm",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "bgm/bgm_r6_nursery.ogg",
+     "m4a": "bgm/bgm_r6_nursery.m4a",
+     "mp3": "bgm/bgm_r6_nursery.mp3"
+    },
+    "duration": 150.001,
+    "loopStart": 0,
+    "loopEnd": 150.001
+   },
+   "bgm_ending_ch2": {
+    "dir": "bgm",
+    "channels": 2,
+    "loop": false,
+    "src": {
+     "ogg": "bgm/bgm_ending_ch2.ogg",
+     "m4a": "bgm/bgm_ending_ch2.m4a",
+     "mp3": "bgm/bgm_ending_ch2.mp3"
+    },
+    "duration": 50
+   },
+   "amb_bedchamber_breath": {
+    "dir": "amb",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "amb/amb_bedchamber_breath.ogg",
+     "m4a": "amb/amb_bedchamber_breath.m4a",
+     "mp3": "amb/amb_bedchamber_breath.mp3"
+    },
+    "duration": 60,
+    "loopStart": 0,
+    "loopEnd": 60
+   },
+   "amb_gallery_draft": {
+    "dir": "amb",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "amb/amb_gallery_draft.ogg",
+     "m4a": "amb/amb_gallery_draft.m4a",
+     "mp3": "amb/amb_gallery_draft.mp3"
+    },
+    "duration": 60,
+    "loopStart": 0,
+    "loopEnd": 60
+   },
+   "amb_nursery_creak": {
+    "dir": "amb",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "amb/amb_nursery_creak.ogg",
+     "m4a": "amb/amb_nursery_creak.m4a",
+     "mp3": "amb/amb_nursery_creak.mp3"
+    },
+    "duration": 60,
+    "loopStart": 0,
+    "loopEnd": 60
+   },
+   "sfx_door_unlock": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_door_unlock.ogg",
+     "m4a": "sfx/sfx_door_unlock.m4a",
+     "mp3": "sfx/sfx_door_unlock.mp3"
+    },
+    "duration": 1.6
+   },
+   "sfx_rattle": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_rattle.ogg",
+     "m4a": "sfx/sfx_rattle.m4a",
+     "mp3": "sfx/sfx_rattle.mp3"
+    },
+    "duration": 1.3
+   },
+   "sfx_ice_hiss": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_ice_hiss.ogg",
+     "m4a": "sfx/sfx_ice_hiss.m4a",
+     "mp3": "sfx/sfx_ice_hiss.mp3"
+    },
+    "duration": 2.6
+   },
+   "sfx_brazier_crackle": {
+    "dir": "sfx",
+    "channels": 2,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_brazier_crackle.ogg",
+     "m4a": "sfx/sfx_brazier_crackle.m4a",
+     "mp3": "sfx/sfx_brazier_crackle.mp3"
+    },
+    "duration": 2.2
+   },
+   "sfx_solvent_wipe": {
+    "dir": "sfx",
+    "channels": 2,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_solvent_wipe.ogg",
+     "m4a": "sfx/sfx_solvent_wipe.m4a",
+     "mp3": "sfx/sfx_solvent_wipe.mp3"
+    },
+    "duration": 2.3
+   },
+   "sfx_nursery_door": {
+    "dir": "sfx",
+    "channels": 2,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_nursery_door.ogg",
+     "m4a": "sfx/sfx_nursery_door.m4a",
+     "mp3": "sfx/sfx_nursery_door.mp3"
+    },
+    "duration": 2.8
+   },
+   "sfx_cradle_creak": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_cradle_creak.ogg",
+     "m4a": "sfx/sfx_cradle_creak.m4a",
+     "mp3": "sfx/sfx_cradle_creak.mp3"
+    },
+    "duration": 1.8
+   },
+   "sfx_thread_stitch": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_thread_stitch.ogg",
+     "m4a": "sfx/sfx_thread_stitch.m4a",
+     "mp3": "sfx/sfx_thread_stitch.mp3"
+    },
+    "duration": 3.4
+   },
+   "sfx_lock_unlock": {
+    "dir": "sfx",
+    "channels": 2,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_lock_unlock.ogg",
+     "m4a": "sfx/sfx_lock_unlock.m4a",
+     "mp3": "sfx/sfx_lock_unlock.mp3"
+    },
+    "duration": 1.5
+   },
+   "vo_alric_scoff": {
+    "dir": "vo",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "vo/vo_alric_scoff.ogg",
+     "m4a": "vo/vo_alric_scoff.m4a",
+     "mp3": "vo/vo_alric_scoff.mp3"
+    },
+    "duration": 0.497
+   },
+   "vo_alric_breath": {
+    "dir": "vo",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "vo/vo_alric_breath.ogg",
+     "m4a": "vo/vo_alric_breath.m4a",
+     "mp3": "vo/vo_alric_breath.mp3"
+    },
+    "duration": 1.8
+   },
+   "vo_severin_hum": {
+    "dir": "vo",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "vo/vo_severin_hum.ogg",
+     "m4a": "vo/vo_severin_hum.m4a",
+     "mp3": "vo/vo_severin_hum.mp3"
+    },
+    "duration": 4.22
+   },
+   "vo_severin_sigh": {
+    "dir": "vo",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "vo/vo_severin_sigh.ogg",
+     "m4a": "vo/vo_severin_sigh.m4a",
+     "mp3": "vo/vo_severin_sigh.mp3"
+    },
+    "duration": 1.5
+   },
+   "vo_godwin_cough": {
+    "dir": "vo",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "vo/vo_godwin_cough.ogg",
+     "m4a": "vo/vo_godwin_cough.m4a",
+     "mp3": "vo/vo_godwin_cough.mp3"
+    },
+    "duration": 1.6
    }
   }
  }

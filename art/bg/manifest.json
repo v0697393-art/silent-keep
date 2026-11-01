@@ -1,9 +1,69 @@
 {
- "generated": "2026-10-31T19:11:07-04:00",
+ "generated": "2026-11-01T01:42:16-04:00",
  "spec": "design/04_美术素材清单.md",
- "note": "GenerateImage 720x1280 → LANCZOS 放大 1080x1920；家徽为四分格 canonical（art_src/ui/raw/crest_v1.jpg）；差分=裁切局部重绘再羽化贴回；r2 整体上移 120px 使锁箱转盘露出道具栏上方。脚本 art_src/bg/",
- "count": 17,
+ "note": "GenerateImage 720x1280 → LANCZOS 放大 1080x1920；家徽为四分格 canonical（art_src/ui/raw/crest_v1.jpg）；差分=裁切局部重绘再羽化贴回；r2 整体上移 120px 使锁箱转盘露出道具栏上方。脚本 art_src/bg/；第二章条目由 art_src/ch2/write_json_ch2.py 追加（脚本 art_src/ch2/）",
+ "count": 42,
  "assets": [
+  {
+   "file": "art/bg/bg_c2_end_01.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "cutscene": "cs_ch2_end",
+   "shot": 1,
+   "caption": "t_cs_c2_end_1",
+   "purpose": "过场全屏 1080x1920；底部 560px 已压暗给字幕，主体在上 2/3：银线从襁褓里爬出，把 E·D·R·I·C 缝进床头空槽"
+  },
+  {
+   "file": "art/bg/bg_c2_end_02.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "cutscene": "cs_ch2_end",
+   "shot": 2,
+   "caption": "t_cs_c2_end_2",
+   "purpose": "过场全屏 1080x1920；底部 560px 已压暗给字幕，主体在上 2/3：全家像里婴儿睁开灰色的眼睛"
+  },
+  {
+   "file": "art/bg/bg_c2_end_03.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "cutscene": "cs_ch2_end",
+   "shot": 3,
+   "caption": "t_cs_c2_end_3",
+   "purpose": "过场全屏 1080x1920；底部 560px 已压暗给字幕，主体在上 2/3：墓穴井口，塞弗林的背影，井壁“埃德里克 · 莫尔德雷克”发光"
+  },
+  {
+   "file": "art/bg/bg_c2_intro_01.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "cutscene": "cs_ch2_intro",
+   "shot": 1,
+   "caption": "t_cs_c2_intro_1",
+   "purpose": "过场全屏 1080x1920；底部 560px 已压暗给字幕，主体在上 2/3：井盖合上，火把的光从上方压下来"
+  },
+  {
+   "file": "art/bg/bg_c2_intro_02.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "cutscene": "cs_ch2_intro",
+   "shot": 2,
+   "caption": "t_cs_c2_intro_2",
+   "purpose": "过场全屏 1080x1920；底部 560px 已压暗给字幕，主体在上 2/3：举火把的阿尔里克（半身，逆光）"
+  },
+  {
+   "file": "art/bg/bg_c2_intro_03.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "cutscene": "cs_ch2_intro",
+   "shot": 3,
+   "caption": "t_cs_c2_intro_3",
+   "purpose": "过场全屏 1080x1920；底部 560px 已压暗给字幕，主体在上 2/3：帐幔间伸出一只枯手抓向空中"
+  },
   {
    "file": "art/bg/bg_end_01.jpg",
    "width": 1080,
@@ -33,6 +93,22 @@
    "shot": 3,
    "caption": "t_cs_end_3",
    "purpose": "过场全屏 1080x1920；底部 560px 已压暗给字幕，主体在上 2/3：大厅挂毯被剪掉的那一枝长出新线头（绿光）"
+  },
+  {
+   "file": "art/bg/bg_int_alric.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "interrogation": "int_alric",
+   "purpose": "审讯全屏氛围图（代替阿尔里克立绘差分）：炭火边的阿尔里克，手按剑柄"
+  },
+  {
+   "file": "art/bg/bg_int_severin.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "interrogation": "int_severin",
+   "purpose": "审讯全屏氛围图（代替塞弗林立绘差分）：乳母椅上的神父，泪痣与井形戒指可见"
   },
   {
    "file": "art/bg/bg_intro_01.jpg",
@@ -160,6 +236,216 @@
    "variantOf": "bg_r3_crypt",
    "when": "flags: dd_final_solved（章末）",
    "purpose": "状态差分：以基础图为底局部修改，其余像素对齐"
+  },
+  {
+   "file": "art/bg/bg_r4_bedchamber.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "room": "r4_bedchamber",
+   "purpose": "房间背景（可拿走/会变化的物件不画在底图，见 ovl_* 与 _hotspots.json）"
+  },
+  {
+   "file": "art/bg/bg_r4_bedchamber_door_open.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "room": "r4_bedchamber",
+   "state": "door_open",
+   "variantOf": "bg_r4_bedchamber",
+   "when": "flags: gallery_open",
+   "purpose": "状态差分：以基础图为底局部修改，其余像素对齐"
+  },
+  {
+   "file": "art/bg/bg_r4_bedchamber_hotspots.json",
+   "room": "r4_bedchamber",
+   "purpose": "热区/叠加层/特效坐标（1080x1920），rect 实测 + specRect 原值"
+  },
+  {
+   "file": "art/bg/bg_r5_gallery.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "room": "r5_gallery",
+   "purpose": "房间背景（可拿走/会变化的物件不画在底图，见 ovl_* 与 _hotspots.json）"
+  },
+  {
+   "file": "art/bg/bg_r5_gallery_door_open.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "room": "r5_gallery",
+   "state": "door_open",
+   "variantOf": "bg_r5_gallery",
+   "when": "flags: nursery_open（优先，画像已去漆）",
+   "purpose": "状态差分：以基础图为底局部修改，其余像素对齐"
+  },
+  {
+   "file": "art/bg/bg_r5_gallery_hotspots.json",
+   "room": "r5_gallery",
+   "purpose": "热区/叠加层/特效坐标（1080x1920），rect 实测 + specRect 原值"
+  },
+  {
+   "file": "art/bg/bg_r5_gallery_restored.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "room": "r5_gallery",
+   "state": "restored",
+   "variantOf": "bg_r5_gallery",
+   "when": "flags: portrait_restored",
+   "purpose": "状态差分：以基础图为底局部修改，其余像素对齐"
+  },
+  {
+   "file": "art/bg/bg_r6_nursery.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "room": "r6_nursery",
+   "purpose": "房间背景（可拿走/会变化的物件不画在底图，见 ovl_* 与 _hotspots.json）"
+  },
+  {
+   "file": "art/bg/bg_r6_nursery_drawer_open.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "room": "r6_nursery",
+   "state": "drawer_open",
+   "variantOf": "bg_r6_nursery",
+   "when": "flags: cradle_drawer_open",
+   "purpose": "状态差分：以基础图为底局部修改，其余像素对齐"
+  },
+  {
+   "file": "art/bg/bg_r6_nursery_empty_chair.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "room": "r6_nursery",
+   "state": "empty_chair",
+   "variantOf": "bg_r6_nursery",
+   "when": "flags: dd_bloodline_solved（优先，抽屉亦开）",
+   "purpose": "状态差分：以基础图为底局部修改，其余像素对齐"
+  },
+  {
+   "file": "art/bg/bg_r6_nursery_hotspots.json",
+   "room": "r6_nursery",
+   "purpose": "热区/叠加层/特效坐标（1080x1920），rect 实测 + specRect 原值"
+  },
+  {
+   "file": "art/bg/ovl_r4_coffer_open.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "room": "r4_bedchamber",
+   "layer": "ovl_r4_coffer_open",
+   "bbox": [
+    539,
+    1244,
+    336,
+    277
+   ],
+   "show": {
+    "flags": [
+     "coffer_open"
+    ]
+   },
+   "purpose": "1080x1920 透明叠加层，(0,0) 对齐底图：铁匣开盖（露出走廊钥匙的空位）"
+  },
+  {
+   "file": "art/bg/ovl_r4_cup_ice.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "room": "r4_bedchamber",
+   "layer": "ovl_r4_cup_ice",
+   "bbox": [
+    95,
+    1138,
+    221,
+    272
+   ],
+   "show": {
+    "notFlags": [
+     "got_cup"
+    ]
+   },
+   "purpose": "1080x1920 透明叠加层，(0,0) 对齐底图：盥洗架上的冰杯；拿走后隐藏"
+  },
+  {
+   "file": "art/bg/ovl_r4_rattle_fist.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "room": "r4_bedchamber",
+   "layer": "ovl_r4_rattle_fist",
+   "bbox": [
+    370,
+    1079,
+    284,
+    180
+   ],
+   "show": {
+    "notFlags": [
+     "got_rattle"
+    ]
+   },
+   "purpose": "1080x1920 透明叠加层，(0,0) 对齐底图：枯手攥着银摇铃（红丝带）；喂温水后摇铃取走，隐藏此层露出底图的空手"
+  },
+  {
+   "file": "art/bg/ovl_r4_window_e.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "room": "r4_bedchamber",
+   "layer": "ovl_r4_window_e",
+   "bbox": [
+    815,
+    233,
+    121,
+    155
+   ],
+   "show": {
+    "sanityBelow": 40
+   },
+   "purpose": "1080x1920 透明叠加层，(0,0) 对齐底图：窗霜里浮出的 E"
+  },
+  {
+   "file": "art/bg/ovl_r5_easel_supplies.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "room": "r5_gallery",
+   "layer": "ovl_r5_easel_supplies",
+   "bbox": [
+    706,
+    1295,
+    308,
+    295
+   ],
+   "show": {
+    "notFlags": [
+     "got_easel"
+    ]
+   },
+   "purpose": "1080x1920 透明叠加层，(0,0) 对齐底图：画架托板上的松节油瓶与抹布；取得后隐藏（三张底图该区域像素一致）"
+  },
+  {
+   "file": "art/bg/ovl_r6_mobile_eyes.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "room": "r6_nursery",
+   "layer": "ovl_r6_mobile_eyes",
+   "bbox": [
+    386,
+    459,
+    303,
+    231
+   ],
+   "show": {
+    "sanityBelow": 40
+   },
+   "purpose": "1080x1920 透明叠加层，(0,0) 对齐底图：月亮吊饰睁眼"
   }
  ]
 }

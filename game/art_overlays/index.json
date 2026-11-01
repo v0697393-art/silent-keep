@@ -1,0 +1,100 @@
+{
+ "candle": {
+  "bg_r1_hall": {
+   "src": "art_overlays/bg_r1_hall__candle.png",
+   "rect": [
+    634,
+    1210,
+    117,
+    191
+   ]
+  },
+  "bg_r1_hall_door_open": {
+   "src": "art_overlays/bg_r1_hall_door_open__candle.png",
+   "rect": [
+    634,
+    1210,
+    117,
+    191
+   ]
+  }
+ },
+ "bread": {
+  "bg_r1_hall": {
+   "src": "art_overlays/bg_r1_hall__bread.png",
+   "rect": [
+    718,
+    1250,
+    243,
+    161
+   ]
+  },
+  "bg_r1_hall_door_open": {
+   "src": "art_overlays/bg_r1_hall_door_open__bread.png",
+   "rect": [
+    718,
+    1250,
+    243,
+    161
+   ]
+  }
+ },
+ "poker": {
+  "bg_r1_hall": {
+   "src": "art_overlays/bg_r1_hall__poker.png",
+   "rect": [
+    630,
+    1020,
+    95,
+    263
+   ]
+  },
+  "bg_r1_hall_door_open": {
+   "src": "art_overlays/bg_r1_hall_door_open__poker.png",
+   "rect": [
+    630,
+    1020,
+    95,
+    263
+   ]
+  }
+ },
+ "inkstand": {
+  "bg_r2_scriptorium": {
+   "src": "art_overlays/bg_r2_scriptorium__inkstand.png",
+   "rect": [
+    510,
+    1060,
+    243,
+    259
+   ]
+  },
+  "bg_r2_scriptorium_stair_open": {
+   "src": "art_overlays/bg_r2_scriptorium_stair_open__inkstand.png",
+   "rect": [
+    510,
+    1060,
+    243,
+    259
+   ]
+  },
+  "bg_r2_scriptorium_window_open": {
+   "src": "art_overlays/bg_r2_scriptorium_window_open__inkstand.png",
+   "rect": [
+    510,
+    1060,
+    243,
+    259
+   ]
+  },
+  "bg_r2_scriptorium_stair_window_open": {
+   "src": "art_overlays/bg_r2_scriptorium_stair_window_open__inkstand.png",
+   "rect": [
+    510,
+    1060,
+    243,
+    259
+   ]
+  }
+ }
+}

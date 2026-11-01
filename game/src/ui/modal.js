@@ -14,7 +14,15 @@ export class Modal {
       el('div', { class: 'modal-head' }, el('div', { style: { flex: 1 } }, this.titleEl, this.subEl), this.closeBtn),
       this.body, this.msg);
   }
-  mount() { this.game.dom.modalRoot.append(this.root); this.render?.(); return this; }
+  mount() {
+    // 防“幽灵点击”：在场景上轻触打开界面时，同一次触摸的 click 会落到刚弹出的界面里（例如直接选中线索板上同位置的卡片）。
+    // 打开后 350ms 内的 click / pointerup 在捕获阶段吞掉。
+    const t0 = performance.now();
+    const guard = (e) => { if (performance.now() - t0 < 350) { e.stopPropagation(); e.preventDefault(); } };
+    this.root.addEventListener('click', guard, true);
+    this.root.addEventListener('pointerup', guard, true);
+    this.game.dom.modalRoot.append(this.root); this.render?.(); return this;
+  }
   close() {
     if (this.closed) return;
     this.closed = true;

@@ -4,6 +4,20 @@
 
 export const CHAPTER_URL = '../design/data/chapter1.json';
 export const PATCH_URL = 'data/chapter1.patch.json';
+/** 与章节无关的引擎默认（人物表现、心烛扣减原因、试玩后修订的通用界面文案）。每章都先套它，再套本章补丁；
+ *  第二章（06 §13，无补丁）直接继承这些行为。 */
+export const DEFAULTS_URL = 'data/engine-defaults.json';
+
+/** 引擎默认 + 本章补丁：对象字段浅合并（本章优先），其余字段本章补丁直接覆盖 */
+export function mergePatch(defaults = {}, patch = {}) {
+  const out = { ...noMetaKeep(defaults), ...patch };
+  for (const k of ['npcPresentation', 'sanityReasons', 'uiTextOverrides', 'uiText', 'moodLabels']) {
+    if (defaults[k] && typeof defaults[k] === 'object') out[k] = { ...defaults[k], ...(patch[k] || {}) };
+  }
+  if (defaults.npcPresentation?.moodLabels) out.npcPresentation.moodLabels = { ...defaults.npcPresentation.moodLabels, ...(patch.npcPresentation?.moodLabels || {}) };
+  return out;
+}
+const noMetaKeep = (o) => Object.fromEntries(Object.entries(o || {}).filter(([k]) => !k.startsWith('_')));
 
 const KEY_RE = /^[a-z][a-z0-9]*(_[a-z0-9]+)+$/; // 形如 t_r1_table 的文本 key
 
@@ -35,7 +49,8 @@ export function normalizeChapter(raw, patch = {}) {
     npcNames: { ...(patch.npcNames || {}) },
     cutsceneCaptions: { ...(patch.cutsceneCaptions || {}) },
     audioAlias: { ...(patch.audioAlias || {}) },
-    uiText: { ...(patch.uiText || {}), ...(raw.uiText || {}) }, // v1.2 起 json 有全部 27 条，补丁仅兜底
+    // v1.2 起 json 有全部 27 条，补丁 uiText 仅兜底；uiTextOverrides 是试玩反馈后的界面文案修订（待策划确认，见补丁 _说明）
+    uiText: { ...(patch.uiText || {}), ...(raw.uiText || {}), ...noMeta(patch.uiTextOverrides) },
     intro: raw.meta?.intro ?? patch.intro ?? null,
     ending: raw.meta?.ending ?? patch.ending ?? null,
     endingTitle: raw.meta?.endingTitle != null ? tx(raw.meta.endingTitle) : patch.endingTitle ?? '',
@@ -65,9 +80,101 @@ export function normalizeChapter(raw, patch = {}) {
   for (const [id, it] of Object.entries(C.items)) if (!it.desc && patch.itemDesc?.[id]) it.desc = patch.itemDesc[id];
   for (const [id, ev] of Object.entries(C.evidence)) if (!ev.desc && patch.evidenceDesc?.[id]) ev.desc = patch.evidenceDesc[id];
   C.roomById = Object.fromEntries(C.rooms.map((r) => [r.id, r]));
+  applyHotspotPatches(C, patch.hotspots, patch.addHotspots);
+  // 在指定效果之间精确插入效果（Pip：开锁音效/字幕；策划日后可原样并入 json，并入后这里自动跳过）
+  applyEffectPatches(C, patch.effectPatches);
+  // 道具拿走后的背景遮罩（BUGS #2/#3）：[{id, room, req, variants: {bgId: {src, rect}}}]，src 相对 game/
+  C.bgOverlays = (patch.bgOverlays || []).filter((o) => o && o.room && o.variants);
+  // 心烛扣减原因提示（试玩反馈：扣了心烛不知道为什么）：来源 → 文案
+  C.sanityReasons = noMeta(patch.sanityReasons);
+  // 谜题解开反馈（BUGS #6）：pz_id → {solvedText}：解开时先在弹窗里显示，再执行 onSolved 的 goto 等
+  C.puzzleFeedback = noMeta(patch.puzzleFeedback);
+  // 人物表现（补丁 npcPresentation）：mode 'sprite' = 场景里画 NPC 全身立绘、审讯画半身像（旧做法）；
+  // 'hotspot' = 不用人物贴图：场景只留可点区域 + 名牌提示 + 字幕，审讯用名牌 + 神色文字。缺省 'sprite'。
+  const np = patch.npcPresentation || {};
+  C.npcPresentation = { mode: np.mode === 'hotspot' ? 'hotspot' : 'sprite', moodLabels: noMeta(np.moodLabels), tag: np.tag !== false };
   C.conclusionOf = {}; // 推理题 id → 所属线索板 id
   for (const [cbId, cb] of Object.entries(C.clueboards)) if (cb.conclusion) C.conclusionOf[cb.conclusion] = cbId;
   return C;
+}
+
+/**
+ * 补丁 hotspots：{ h_id: { prepend?: [interaction], hideWhen?: req } }。
+ * chapter1.json 是权威，不改它的交互，只能：① 在交互表最前面插入“完成后”交互（按顺序首个满足 req 的生效，
+ * 所以带完成条件的插入项会盖过 json 里交互前的那条）；② hideWhen 满足时热点隐藏（logic.hotspotHidden）。
+ * ③ cantUse 给错用道具的针对性提示。插入的交互带 _patch: true，便于 verify/调试区分来源。
+ */
+export function applyHotspotPatches(C, hp, add) {
+  C.hotspotPatches = [];
+  // addHotspots：{ room: [hotspot] }，追加在房间热点表末尾（= 最上层），用来给背景里会被误点的物件一个自己的反应（BUGS #11 壁上烛台）
+  for (const [rid, list] of Object.entries(noMeta(add))) {
+    const r = C.rooms.find((x) => x.id === rid);
+    if (!r) { C.hotspotPatches.push({ id: rid, missing: true }); continue; }
+    for (const h0 of list || []) {
+      if ((r.hotspots ||= []).some((h) => h.id === h0.id)) continue;
+      r.hotspots.push({ ...h0, _patchAdded: true, interactions: (h0.interactions || []).map((it) => ({ ...it, _patch: true })) });
+      if (h0.label) C.hotspotLabels[h0.id] = h0.label;
+      C.hotspotPatches.push({ id: h0.id, room: rid, added: true });
+    }
+  }
+  for (const [id, p] of Object.entries(noMeta(hp))) {
+    let found = null;
+    for (const r of C.rooms) for (const h of r.hotspots || []) if (h.id === id) found = { r, h };
+    if (!found) { C.hotspotPatches.push({ id, missing: true }); continue; }
+    const { r, h } = found;
+    if (h._patched) continue; // 同一份数据重复 normalize 时不叠加
+    const pre = (p.prepend || []).map((it) => ({ ...it, _patch: true }));
+    if (pre.length) h.interactions = [...pre, ...(h.interactions || [])];
+    if (p.hideWhen) h.hideWhen = p.hideWhen;
+    // cantUse：{ item: textKey }——拿错道具时给针对性的提示，而不是通用的“这里用不上”（BUGS #8）
+    if (p.cantUse) h.cantUse = { ...noMeta(p.cantUse) };
+    h._patched = true;
+    C.hotspotPatches.push({ id, room: r.id, prepend: pre.length, hideWhen: p.hideWhen ?? null });
+  }
+}
+
+/**
+ * 补丁 effectPatches：[{ target, after?, before?, insert: [effect] }]
+ *   target：{ hotspot, useItem? | default?: true }（只在 json 原有交互里找，不含补丁 prepend 的）
+ *           或 { puzzle | deduction | clueboard: id, field?: 'onSolved' }
+ *   after / before：用“字段全等”匹配 effects 里的某一条（after 定位插入点：插在它后面；
+ *           before 是校验：插入点后面紧接着必须是它；只给 before 时插在它前面；都不给则追加到末尾）。
+ *   insert 里的效果若已在该列表中（策划已并入 json）则跳过，不会重复。
+ *   结果记在 C.effectPatchLog（verify 列出；定位失败为 error）。
+ */
+export function applyEffectPatches(C, list) {
+  C.effectPatchLog = [];
+  const same = (a, b) => b && Object.entries(b).every(([k, v]) => JSON.stringify(a?.[k]) === JSON.stringify(v));
+  const eqEff = (a, b) => JSON.stringify(Object.entries(a).sort()) === JSON.stringify(Object.entries(b).sort());
+  for (const [n, ep] of (Array.isArray(list) ? list : []).entries()) {
+    const t = ep.target || {}, rec = { n, target: t, insert: ep.insert || [] };
+    C.effectPatchLog.push(rec);
+    let owner = null, field = 'effects', where = '';
+    if (t.hotspot) {
+      const h = findHotspot(C, t.hotspot);
+      const cands = (h?.interactions || []).filter((it) => !it._patch && (t.useItem ? it.useItem === t.useItem : t.default ? it.default : true));
+      if (!h) rec.error = `找不到热点 ${t.hotspot}`;
+      else if (cands.length !== 1) rec.error = `${t.hotspot} 里匹配 ${JSON.stringify(t)} 的交互有 ${cands.length} 条（需唯一）`;
+      else { owner = cands[0]; where = `${t.hotspot}${t.useItem ? `<${t.useItem}` : ''}`; }
+    } else {
+      const kind = ['puzzle', 'deduction', 'clueboard'].find((k) => t[k]);
+      const table = { puzzle: C.puzzles, deduction: C.deductions, clueboard: C.clueboards }[kind];
+      owner = kind ? table[t[kind]] : null; field = t.field || 'onSolved'; where = `${kind}:${t[kind]}.${field}`;
+      if (!owner) { rec.error = `找不到目标 ${JSON.stringify(t)}`; owner = null; }
+    }
+    rec.where = where;
+    if (!owner) continue;
+    const effs = [...(owner[field] || [])];
+    const todo = rec.insert.filter((e) => !effs.some((x) => eqEff(x, e)));
+    if (!todo.length) { rec.status = 'already'; continue; }
+    let at = effs.length;
+    if (ep.after) { const i = effs.findIndex((e) => same(e, ep.after)); if (i < 0) { rec.error = `${where} 里找不到 after ${JSON.stringify(ep.after)}`; continue; } at = i + 1; }
+    else if (ep.before) { const i = effs.findIndex((e) => same(e, ep.before)); if (i < 0) { rec.error = `${where} 里找不到 before ${JSON.stringify(ep.before)}`; continue; } at = i; }
+    if (ep.after && ep.before && !same(effs[at], ep.before)) { rec.error = `${where}：after 后面紧接的不是 before ${JSON.stringify(ep.before)}（json 已变动，请重新确认插入位置）`; continue; }
+    effs.splice(at, 0, ...todo.map((e) => ({ ...e, _patch: true })));
+    owner[field] = effs;
+    rec.status = 'inserted'; rec.at = at; rec.result = effs.map((e) => e.type + (e.id ? `:${e.id}` : e.key ? `:${e.key}` : e.room ? `:${e.room}` : e.set ? `:${e.set}` : e.item ? `:${e.item}` : ''));
+  }
 }
 
 /**
@@ -88,7 +195,7 @@ export function resolveNpcLayers(C) {
     for (const r of C.rooms) for (const h of r.hotspots || []) {
       if (!entry && (h.interactions || []).some((it) => (it.effects || []).some((e) => e.type === 'open' && e.ui === 'interrogation' && intIds.includes(e.id)))) entry = { room: r.id, h };
     }
-    let room = j.room ?? null, rect = Array.isArray(j.rect) ? j.rect : null, src = rect ? 'chapter1.json npcs' : null;
+    let room = j.room ?? null, rect = Array.isArray(j.rect) ? j.rect : null, src = rect ? '章节 json npcs' : null;
     if (!rect) for (const [rid, layers] of Object.entries(C.artLayers)) {
       const l = layers.find((x) => x.id === img && Array.isArray(x.rect));
       if (l && (!room || room === rid)) { room = rid; rect = l.rect; src = '美术热区文件 layers'; break; }
@@ -99,15 +206,20 @@ export function resolveNpcLayers(C) {
     if (!room || !rect) continue;
     out.push({ npc, img, room, rect, src, hotspot: entry?.h.id ?? null, req: j.req ?? pl.req ?? null });
   }
-  C.npcLayers = out;
-  return out;
+  // 人物不用贴图（npcPresentation.mode = 'hotspot'）：不画立绘，只记下人物所在的可点区域，渲染器在那里画名牌提示
+  C.npcSpots = out.map((l) => ({ npc: l.npc, room: l.room, hotspot: l.hotspot, rect: (l.hotspot && findHotspot(C, l.hotspot)?.rect) || l.rect, req: l.req }));
+  C.npcLayers = C.npcPresentation?.mode === 'hotspot' ? [] : out;
+  return C.npcLayers;
 }
 
-export async function loadChapter(readJson) {
-  const raw = await readJson(CHAPTER_URL);
-  let patch = {};
-  try { patch = await readJson(PATCH_URL); } catch { /* 无补丁也能跑 */ }
-  return normalizeChapter(raw, patch);
+const findHotspot = (C, id) => { for (const r of C.rooms) for (const h of r.hotspots || []) if (h.id === id) return h; return null; };
+
+export async function loadChapter(readJson, { url = CHAPTER_URL, patchUrl = PATCH_URL } = {}) {
+  const raw = await readJson(url);
+  let patch = {}, defaults = {};
+  if (patchUrl) try { patch = await readJson(patchUrl); } catch { /* 无补丁也能跑 */ }
+  try { defaults = await readJson(DEFAULTS_URL); } catch { /* 无默认也能跑 */ }
+  return normalizeChapter(raw, mergePatch(defaults, patch));
 }
 
 export const isTextKey = (s) => typeof s === 'string' && KEY_RE.test(s);

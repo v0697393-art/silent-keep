@@ -1,0 +1,405 @@
+{
+ "_说明": "第二章解法链（与 07 §解法链一致）。格式同 game/tools/walkthrough-ch1.json；开发接入时放到 game/tools/walkthrough-ch2.json 或让 lib.mjs 按章节号读取。",
+ "steps": [
+  {
+   "do": "shot",
+   "name": "c2-01-room-r4_bedchamber"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r4_mirror",
+   "expectOpen": "closeup:cu_swaddling",
+   "note": "襁褓残片 → ev_swaddling，心烛 -5"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r4_coffer",
+   "expectText": "t_r4_coffer_locked",
+   "note": "没有银摇铃：只看到刻字"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r4_gallery_door",
+   "expectText": "t_r4_door_locked"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r4_bed",
+   "note": "老领主咳嗽，心烛 -5"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r4_priedieu",
+   "expectOpen": "closeup:cu_prayer_book",
+   "note": "ev_prayer_book，心烛 -5"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r4_washstand",
+   "note": "冰杯"
+  },
+  {
+   "do": "use",
+   "item": "cup_ice",
+   "hotspot": "h_r4_brazier",
+   "note": "温水"
+  },
+  {
+   "do": "use",
+   "item": "cup_warm",
+   "hotspot": "h_r4_bed",
+   "expectOpen": "closeup:cu_rattle",
+   "note": "银摇铃 → ev_rattle"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r4_brazier",
+   "note": "回复点 +10"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r4_coffer",
+   "expectOpen": "puzzle:pz_coffer"
+  },
+  {
+   "do": "puzzle",
+   "id": "pz_coffer",
+   "answer": "1203",
+   "wrongFirst": "0312",
+   "shot": "c2-02-puzzle-coffer",
+   "note": "XII·III → 月在前日在后 = 1203"
+  },
+  {
+   "do": "use",
+   "item": "gallery_key",
+   "hotspot": "h_r4_gallery_door",
+   "expectText": "t_r4_door_blocked",
+   "note": "阿尔里克挡门"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r4_alric",
+   "expectOpen": "interrogation:int_alric"
+  },
+  {
+   "do": "present",
+   "int": "int_alric",
+   "statement": "s1",
+   "evidence": "ev_swaddling",
+   "expect": "nearMiss"
+  },
+  {
+   "do": "present",
+   "int": "int_alric",
+   "statement": "s1",
+   "evidence": "ev_prayer_book",
+   "expect": "wrong",
+   "note": "错证据：心烛 -3"
+  },
+  {
+   "do": "present",
+   "int": "int_alric",
+   "statement": "s1",
+   "evidence": "ev_rattle"
+  },
+  {
+   "do": "present",
+   "int": "int_alric",
+   "statement": "s2",
+   "evidence": "ev_aelind_letter"
+  },
+  {
+   "do": "present",
+   "int": "int_alric",
+   "statement": "p1",
+   "evidence": "ev_swaddling",
+   "shot": "c2-03-interrogation-alric"
+  },
+  {
+   "do": "close"
+  },
+  {
+   "do": "use",
+   "item": "gallery_key",
+   "hotspot": "h_r4_gallery_door",
+   "note": "进入长廊"
+  },
+  {
+   "do": "shot",
+   "name": "c2-04-room-r5_gallery",
+   "expectBg": "bg_r5_gallery"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r5_nursery_door",
+   "expectText": "t_r5_door_locked"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r5_founder",
+   "expectOpen": "closeup:cu_portrait_founder",
+   "note": "1238 神父泪痣，心烛 -5"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r5_rozelyn",
+   "note": "心烛 -5"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r5_family",
+   "expectText": "t_r5_family"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r5_easel",
+   "note": "松脂油、破布"
+  },
+  {
+   "do": "combine",
+   "a": "pine_oil",
+   "b": "rag",
+   "note": "浸油的布"
+  },
+  {
+   "do": "use",
+   "item": "solvent_rag",
+   "hotspot": "h_r5_family",
+   "expectOpen": "closeup:cu_family_portrait",
+   "note": "ev_family_portrait，心烛 -10"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r5_founder",
+   "expectText": "t_r5_ageless",
+   "note": "ev_ageless_priest，心烛 -10"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r5_lamp",
+   "note": "回复点 +10"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r5_board",
+   "expectOpen": "clueboard:cb_bloodline"
+  },
+  {
+   "do": "link",
+   "cb": "cb_bloodline",
+   "a": "c_rattle",
+   "b": "c_alric",
+   "option": 0,
+   "expect": "wrong",
+   "note": "故意选错：心烛 -3"
+  },
+  {
+   "do": "link",
+   "cb": "cb_bloodline",
+   "a": "c_alric",
+   "b": "c_well",
+   "expect": "norelation"
+  },
+  {
+   "do": "link",
+   "cb": "cb_bloodline",
+   "a": "c_rattle",
+   "b": "c_alric",
+   "option": 1
+  },
+  {
+   "do": "link",
+   "cb": "cb_bloodline",
+   "a": "c_rattle",
+   "b": "c_portrait",
+   "option": 0
+  },
+  {
+   "do": "link",
+   "cb": "cb_bloodline",
+   "a": "c_portrait",
+   "b": "c_letter",
+   "option": 2
+  },
+  {
+   "do": "link",
+   "cb": "cb_bloodline",
+   "a": "c_prayer",
+   "b": "c_well",
+   "option": 0
+  },
+  {
+   "do": "link",
+   "cb": "cb_bloodline",
+   "a": "c_cloth",
+   "b": "c_portrait",
+   "option": 1,
+   "shot": "c2-05-clueboard"
+  },
+  {
+   "do": "deduce",
+   "id": "dd_who_1312",
+   "answers": [
+    1
+   ]
+  },
+  {
+   "do": "nav",
+   "dir": "prev",
+   "note": "回寝室（往返检查）"
+  },
+  {
+   "do": "nav",
+   "dir": "next"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r5_nursery_door",
+   "expectOpen": "puzzle:pz_nursery_door"
+  },
+  {
+   "do": "puzzle",
+   "id": "pz_nursery_door",
+   "answer": [
+    "spool",
+    "bell",
+    "lamb",
+    "moon"
+   ],
+   "shot": "c2-06-puzzle-nursery-door",
+   "note": "摇篮曲：线轴转，银铃响，小羊睡，月亮闭眼"
+  },
+  {
+   "do": "shot",
+   "name": "c2-07-room-r6_nursery",
+   "expectBg": "bg_r6_nursery"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r6_cradle",
+   "expectOpen": "closeup:cu_cradle",
+   "note": "床头空槽与 E，心烛 -5"
+  },
+  {
+   "do": "use",
+   "item": "swaddling",
+   "hotspot": "h_r6_cradle",
+   "expectText": "t_r6_cradle_notyet"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r6_basket",
+   "expectText": "t_r6_basket"
+  },
+  {
+   "do": "use",
+   "item": "swaddling",
+   "hotspot": "h_r6_basket",
+   "expectOpen": "closeup:cu_sewing_basket",
+   "note": "ev_cloth_match，心烛 -10"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r6_mobile"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r6_window",
+   "note": "回复点 +15"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r6_blocks",
+   "expectOpen": "closeup:cu_alphabet_blocks"
+  },
+  {
+   "do": "reload",
+   "note": "中途刷新 → 存档一致"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r6_cradle",
+   "expectOpen": "puzzle:pz_cradle_drawer"
+  },
+  {
+   "do": "puzzle",
+   "id": "pz_cradle_drawer",
+   "answer": "37194",
+   "wrongFirst": "28194",
+   "shot": "c2-08-puzzle-drawer",
+   "note": "EDRIC → 3·7·1·9·4；ALRIC=28194 是错误答案"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r6_severin",
+   "expectOpen": "interrogation:int_severin"
+  },
+  {
+   "do": "present",
+   "int": "int_severin",
+   "statement": "s1",
+   "evidence": "ev_swaddling",
+   "expect": "nearMiss"
+  },
+  {
+   "do": "present",
+   "int": "int_severin",
+   "statement": "s1",
+   "evidence": "ev_cloth_match"
+  },
+  {
+   "do": "present",
+   "int": "int_severin",
+   "statement": "s2",
+   "evidence": "ev_ageless_priest"
+  },
+  {
+   "do": "present",
+   "int": "int_severin",
+   "statement": "s3",
+   "evidence": "ev_aelind_letter"
+  },
+  {
+   "do": "present",
+   "int": "int_severin",
+   "statement": "p1",
+   "evidence": "ev_baptism_record",
+   "shot": "c2-09-interrogation-severin"
+  },
+  {
+   "do": "close"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r6_severin",
+   "expectOpen": "deduction:dd_bloodline"
+  },
+  {
+   "do": "deduce",
+   "id": "dd_bloodline",
+   "answers": [
+    1,
+    1,
+    2
+   ],
+   "wrongFirst": [
+    0,
+    1,
+    2
+   ],
+   "shot": "c2-10-deduction-bloodline"
+  },
+  {
+   "do": "tap",
+   "hotspot": "h_r6_severin",
+   "expectText": "t_severin_gone"
+  },
+  {
+   "do": "use",
+   "item": "swaddling",
+   "hotspot": "h_r6_cradle",
+   "note": "襁褓放回摇篮 → 章末过场",
+   "expectEnd": true
+  }
+ ]
+}

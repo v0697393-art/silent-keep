@@ -93,7 +93,14 @@ async function boot() {
     if (document.hidden) audio.ctx?.suspend().catch(() => {}); else audio.ctx?.resume().catch(() => {});
   });
 
-  const loop = (t) => { renderer.S && game.screen === 'game' && renderer.frame(t); requestAnimationFrame(loop); };
+  // BUGS #10：先排下一帧再画——某一帧抛异常也不会让渲染循环停掉（以前画面会定格在上一个房间，而 HUD 照常更新）
+  const loop = (t) => {
+    requestAnimationFrame(loop);
+    try { if (renderer.S && game.screen === 'game') renderer.frame(t); } catch (err) {
+      (window.__renderErrors ??= []).push(`frame: ${err?.message || err}`);
+      if (window.__renderErrors.length < 4) console.error('[loop]', err);
+    }
+  };
   requestAnimationFrame(loop);
   game.toTitle();
   window.__game = { game, C, stage, assets, audio, snap: () => game.snapshot(), point: (id, item) => game.clientPointFor(id, item) };

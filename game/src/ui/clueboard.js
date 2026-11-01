@@ -58,8 +58,11 @@ export class Clueboard extends Modal {
   renderLocked() {
     const { C, S } = this.game;
     const need = this.cb.unlock?.evidence || [];
-    this.board.append(el('div', { class: 'cb-locked' }, el('div', { text: C.uiText.cbLockedTab }),
-      el('div', { class: 'slots-need' }, need.map((e) => el('div', { text: S.evidence.includes(e) ? `✓ ${C.evidence[e]?.name}` : '？' })))));
+    // BUGS #9：标题放进独立的羊皮纸标签（不再压在虚线格上），格子用浅底深字；另给“已找到 n/3”
+    const got = need.filter((e) => S.evidence.includes(e)).length;
+    this.board.append(el('div', { class: 'cb-locked' },
+      el('div', { class: 'cb-locked-title' }, C.uiText.cbLockedTab.replace(/[：:]\s*$/, ''), el('small', { text: `已找到 ${got} / ${need.length}` })),
+      el('div', { class: 'slots-need' }, need.map((e) => el('div', { class: S.evidence.includes(e) ? 'got' : '', text: S.evidence.includes(e) ? `✓ ${C.evidence[e]?.name}` : '？' })))));
     this.message(C.uiText.cbLocked);
   }
   center(id) { const [x, y] = this.pos[id]; return [x + CARD_W / 2, y + CARD_H / 2]; }

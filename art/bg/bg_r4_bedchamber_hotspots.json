@@ -1,0 +1,290 @@
+{
+ "room": "r4_bedchamber",
+ "bg": "bg_r4_bedchamber",
+ "size": [
+  1080,
+  1920
+ ],
+ "playArea": [
+  0,
+  120,
+  1080,
+  1540
+ ],
+ "variants": [
+  {
+   "id": "bg_r4_bedchamber_door_open",
+   "when": "flag gallery_open"
+  }
+ ],
+ "hotspots": [
+  {
+   "id": "h_r4_gallery_door",
+   "rect": [
+    395,
+    130,
+    290,
+    415
+   ],
+   "specRect": [
+    400,
+    160,
+    300,
+    540
+   ],
+   "changed": true,
+   "note": "后墙正中拱门"
+  },
+  {
+   "id": "h_r4_window",
+   "rect": [
+    795,
+    100,
+    180,
+    410
+   ],
+   "specRect": [
+    740,
+    180,
+    270,
+    400
+   ],
+   "changed": true,
+   "note": "右上结霜窗；心烛<40 时窗霜上出现 E（ovl_r4_window_e）"
+  },
+  {
+   "id": "h_r4_mirror",
+   "rect": [
+    80,
+    185,
+    210,
+    415
+   ],
+   "specRect": [
+    60,
+    260,
+    230,
+    360
+   ],
+   "changed": true,
+   "note": "左墙铜镜；襁褓藏在镜后，背景里不画（取得后无需改图）"
+  },
+  {
+   "id": "h_r4_priedieu",
+   "rect": [
+    45,
+    965,
+    215,
+    330
+   ],
+   "specRect": [
+    60,
+    680,
+    200,
+    340
+   ],
+   "changed": true,
+   "note": "左侧祈祷台/小几，上面放着祷告簿；祷告簿只翻看不拿走，故画在底图"
+  },
+  {
+   "id": "h_r4_bed",
+   "rect": [
+    260,
+    545,
+    575,
+    935
+   ],
+   "specRect": [
+    290,
+    760,
+    540,
+    560
+   ],
+   "changed": true,
+   "note": "四柱床；枯手握摇铃为叠加层 ovl_r4_rattle_fist"
+  },
+  {
+   "id": "h_r4_alric",
+   "rect": [
+    830,
+    600,
+    230,
+    660
+   ],
+   "specRect": [
+    860,
+    760,
+    200,
+    580
+   ],
+   "changed": true,
+   "note": "阿尔里克画在背景里（床右，逆光剪影）；不另出站姿立绘"
+  },
+  {
+   "id": "h_r4_washstand",
+   "rect": [
+    0,
+    1130,
+    330,
+    580
+   ],
+   "specRect": [
+    40,
+    1080,
+    220,
+    300
+   ],
+   "changed": true,
+   "note": "左下盥洗架；冻住的水杯为叠加层 ovl_r4_cup_ice"
+  },
+  {
+   "id": "h_r4_brazier",
+   "rect": [
+    370,
+    1480,
+    280,
+    420
+   ],
+   "specRect": [
+    330,
+    1400,
+    300,
+    230
+   ],
+   "changed": true,
+   "note": "底部炭火盆（暖色光源）"
+  },
+  {
+   "id": "h_r4_coffer",
+   "rect": [
+    540,
+    1240,
+    335,
+    285
+   ],
+   "specRect": [
+    700,
+    1400,
+    320,
+    230
+   ],
+   "changed": true,
+   "note": "床尾铁匣；打开后叠 ovl_r4_coffer_open"
+  }
+ ],
+ "overlays": [
+  {
+   "id": "ovl_r4_cup_ice",
+   "file": "art/bg/ovl_r4_cup_ice.png",
+   "size": [
+    1080,
+    1920
+   ],
+   "bbox": [
+    95,
+    1138,
+    221,
+    272
+   ],
+   "show": {
+    "notFlags": [
+     "got_cup"
+    ]
+   },
+   "note": "盥洗架上的冰杯；拿走后隐藏"
+  },
+  {
+   "id": "ovl_r4_rattle_fist",
+   "file": "art/bg/ovl_r4_rattle_fist.png",
+   "size": [
+    1080,
+    1920
+   ],
+   "bbox": [
+    370,
+    1079,
+    284,
+    180
+   ],
+   "show": {
+    "notFlags": [
+     "got_rattle"
+    ]
+   },
+   "note": "枯手攥着银摇铃（红丝带）；喂温水后摇铃取走，隐藏此层露出底图的空手"
+  },
+  {
+   "id": "ovl_r4_coffer_open",
+   "file": "art/bg/ovl_r4_coffer_open.png",
+   "size": [
+    1080,
+    1920
+   ],
+   "bbox": [
+    539,
+    1244,
+    336,
+    277
+   ],
+   "show": {
+    "flags": [
+     "coffer_open"
+    ]
+   },
+   "note": "铁匣开盖（露出走廊钥匙的空位）"
+  },
+  {
+   "id": "ovl_r4_window_e",
+   "file": "art/bg/ovl_r4_window_e.png",
+   "size": [
+    1080,
+    1920
+   ],
+   "bbox": [
+    815,
+    233,
+    121,
+    155
+   ],
+   "show": {
+    "sanityBelow": 40
+   },
+   "note": "窗霜里浮出的 E"
+  }
+ ],
+ "fx": [
+  {
+   "id": "fx_curtain_breathe",
+   "frames": [
+    "art/fx/fx_curtain_breathe_01.png",
+    "art/fx/fx_curtain_breathe_02.png",
+    "art/fx/fx_curtain_breathe_03.png",
+    "art/fx/fx_curtain_breathe_04.png"
+   ],
+   "rect": [
+    310,
+    610,
+    490,
+    500
+   ],
+   "specRect": [
+    260,
+    760,
+    560,
+    520
+   ],
+   "fps": 4,
+   "show": {
+    "sanityBelow": 40
+   },
+   "onBg": [
+    "bg_r4_bedchamber",
+    "bg_r4_bedchamber_door_open"
+   ],
+   "note": "床帐呼吸；与 _door_open 底图同样对齐"
+  }
+ ],
+ "layers": [],
+ "drawOrder": "bg/variant → overlays（按上表顺序）→ fx",
+ "note": "rect=按成图实测；specRect=07/chapter2.json 原值。程序可继续用 specRect，但实测更贴合画面（尤其窗、铁匣、阿尔里克）。叠加层均为 1080x1920 透明 PNG，直接盖在 (0,0)。"
+}

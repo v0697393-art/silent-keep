@@ -1,0 +1,15 @@
+{
+ "frames": 4,
+ "fps": 4,
+ "frame_w": 490,
+ "frame_h": 500,
+ "rect": [
+  310,
+  610,
+  490,
+  500
+ ],
+ "loop": true,
+ "show": "sanity<40",
+ "note": "R4 床帐在心烛<40 时起伏，像在呼吸；只动帐幔与帐内暗部，老领主的头和手不动。叠在 bg_r4_bedchamber / _door_open 上都对齐（门不在区域内）。spec rect 为 [260,760,560,520]，按实际床帐位置改为此 rect"
+}

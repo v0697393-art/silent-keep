@@ -1,0 +1,15 @@
+{
+ "frames": 4,
+ "fps": 4,
+ "frame_w": 558,
+ "frame_h": 533,
+ "rect": [
+  154,
+  909,
+  558,
+  533
+ ],
+ "loop": true,
+ "show": "sanity<40，或神父审讯后常驻",
+ "note": "R6 空摇篮以底部为轴前后摇 ±1.1°；用于 bg_r6_nursery（抽屉关）。spec rect [330,900,420,400]，按摇篮实际位置改为此 rect"
+}

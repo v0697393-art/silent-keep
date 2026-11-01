@@ -21,22 +21,34 @@ export function createState(C) {
     once: {},        // once:true 的心烛扣减记录：`${来源}#${effect序号}`
     interrogations: {}, // id → { broken: [statementId] }
     clueboards: {},  // id → { links: [linkId] }
+    seen: [],        // 交互过的热点：'h_id'（点过）与 'h_id:t_key'（在该热点显示过的文本），供 req.seen / notSeen 切换“看过之后”的台词
     ended: false,
   };
 }
 export const cloneState = (S) => JSON.parse(JSON.stringify(S));
 
 // ---------- 条件 ----------
-/** req: { items:[], flags:[], notFlags:[], evidence:[] }，全部满足才为真；缺省为真 */
+/**
+ * req: { items:[], flags:[], notFlags:[], evidence:[] }（06 §10）全部满足才为真；缺省为真。
+ * 引擎扩展（供补丁 hotspots 的“完成后状态”用）：notItems / notEvidence，以及 seen / notSeen
+ * （S.seen 里的 'h_id' = 点过该热点，'h_id:t_key' = 该热点显示过这条文本）。
+ */
 export function reqOk(S, req) {
   if (!req) return true;
   if (req.items && !req.items.every((i) => S.inventory.includes(i))) return false;
+  if (req.notItems && req.notItems.some((i) => S.inventory.includes(i))) return false;
   if (req.flags && !req.flags.every((f) => S.flags[f])) return false;
   if (req.notFlags && req.notFlags.some((f) => S.flags[f])) return false;
   if (req.evidence && !req.evidence.every((e) => S.evidence.includes(e))) return false;
+  if (req.notEvidence && req.notEvidence.some((e) => S.evidence.includes(e))) return false;
+  if (req.seen && !req.seen.every((k) => (S.seen || []).includes(k))) return false;
+  if (req.notSeen && req.notSeen.some((k) => (S.seen || []).includes(k))) return false;
   return true;
 }
-export const REQ_KEYS = ['items', 'flags', 'notFlags', 'evidence'];
+export const REQ_KEYS_DOC = ['items', 'flags', 'notFlags', 'evidence']; // 06 §10 正式定义
+export const REQ_KEYS = [...REQ_KEYS_DOC, 'notItems', 'notEvidence', 'seen', 'notSeen'];
+/** 只看表现、不影响通关的条件键（solver 状态指纹不含 S.seen，所以 seen/notSeen 只能用在纯表现交互上，verify 会检查） */
+export const PRESENTATION_REQ_KEYS = ['seen', 'notSeen'];
 /** 06 §12：{req?, sanityBelow?} 两者都满足（缺省为真）；sanityBelow N = 当前心烛 < N */
 export const condOk = (S, c) => reqOk(S, c?.req) && (c?.sanityBelow == null || S.sanity < c.sanityBelow);
 
@@ -166,7 +178,9 @@ export function matchInteraction(S, hotspot, item = null) {
   return null;
 }
 /** 热点当前是否“有反应”（有任何满足 req 的交互）。没有反应的热点在点击时视为透明，点击落到下层热点。 */
-export const hotspotActive = (S, h) => (h.interactions || []).some((it) => reqOk(S, it.req));
+/** 补丁可给热点加 hideWhen（req）：满足即“交互已完成、热点隐藏”（不响应、不闪提示、点击落到下层）。 */
+export const hotspotHidden = (S, h) => !!h.hideWhen && reqOk(S, h.hideWhen);
+export const hotspotActive = (S, h) => !hotspotHidden(S, h) && (h.interactions || []).some((it) => reqOk(S, it.req));
 
 export const room = (C, S) => C.roomById[S.room];
 
@@ -188,11 +202,20 @@ export function interact(C, S, hotspotId, item = null, now) {
   const it = matchInteraction(S, h, item);
   if (!it) return { ok: false, events: [] };
   const events = runEffects(C, S, it.effects, { source: `${r.id}/${h.id}`, now });
+  markSeen(S, h.id, events);
   // 心烛 <below 时的隐藏文字
   for (const rv of C.sanity.lowSanityReveals || []) {
     if (rv.room === r.id && rv.hotspot === h.id && S.sanity < rv.below) events.push({ type: 'text', text: rv.text, reveal: true });
   }
   return { ok: true, events };
+}
+
+/** 记录“点过该热点 / 在该热点显示过哪条文本”，供 req.seen 切换完成后台词；存档里随 S 保存 */
+export function markSeen(S, hotspotId, events = []) {
+  const seen = (S.seen ??= []);
+  const add = (k) => { if (!seen.includes(k)) seen.push(k); };
+  add(hotspotId);
+  for (const e of events) if (e.type === 'text' && e.key) add(`${hotspotId}:${e.key}`);
 }
 
 /** 在 (x,y) 点击：选中道具时，取最上层能接受该道具的热点；否则取最上层有 default 交互的热点 */

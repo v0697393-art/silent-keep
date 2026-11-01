@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-31T19:11:07-04:00",
+ "generated": "2026-11-01T01:42:16-04:00",
  "spec": "design/04_美术素材清单.md",
- "note": "程序生成。fx_ink_tendril_01~04：心烛 s3 全屏叠加 4 帧循环（renderer.drawTendrils 直接读取）；fx_vignette_s2/s3：暗角叠加；fx_thread_wriggle/candle_flicker/text_eye/dust/stamp_seal 为序列帧，参数见同名 .json（12fps 规范，线头 6fps）。脚本 art_src/fx/build_fx.py + build_fx2.py",
- "count": 39,
+ "note": "程序生成。fx_ink_tendril_01~04：心烛 s3 全屏叠加 4 帧循环（renderer.drawTendrils 直接读取）；fx_vignette_s2/s3：暗角叠加；fx_thread_wriggle/candle_flicker/text_eye/dust/stamp_seal 为序列帧，参数见同名 .json（12fps 规范，线头 6fps）。脚本 art_src/fx/build_fx.py + build_fx2.py；第二章：art_src/ch2/build_fx_ch2.py（床帐呼吸/画像眼珠/摇篮自摇）",
+ "count": 69,
  "assets": [
   {
    "file": "art/fx/fx_candle_flicker.json",
@@ -106,6 +106,154 @@
    "purpose": "特效叠加（透明 PNG）"
   },
   {
+   "file": "art/fx/fx_cradle_rock.json",
+   "sequence": null,
+   "purpose": "特效参数（rect/fps/显示条件）"
+  },
+  {
+   "file": "art/fx/fx_cradle_rock_01.png",
+   "width": 558,
+   "height": 533,
+   "transparent": true,
+   "sequence": "fx_cradle_rock",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_cradle_rock_02.png",
+   "width": 558,
+   "height": 533,
+   "transparent": true,
+   "sequence": "fx_cradle_rock",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_cradle_rock_03.png",
+   "width": 558,
+   "height": 533,
+   "transparent": true,
+   "sequence": "fx_cradle_rock",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_cradle_rock_04.png",
+   "width": 558,
+   "height": 533,
+   "transparent": true,
+   "sequence": "fx_cradle_rock",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_cradle_rock_empty.json",
+   "sequence": null,
+   "purpose": "特效参数（rect/fps/显示条件）"
+  },
+  {
+   "file": "art/fx/fx_cradle_rock_empty_01.png",
+   "width": 558,
+   "height": 533,
+   "transparent": true,
+   "sequence": "fx_cradle_rock_empty",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_cradle_rock_empty_02.png",
+   "width": 558,
+   "height": 533,
+   "transparent": true,
+   "sequence": "fx_cradle_rock_empty",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_cradle_rock_empty_03.png",
+   "width": 558,
+   "height": 533,
+   "transparent": true,
+   "sequence": "fx_cradle_rock_empty",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_cradle_rock_empty_04.png",
+   "width": 558,
+   "height": 533,
+   "transparent": true,
+   "sequence": "fx_cradle_rock_empty",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_cradle_rock_open.json",
+   "sequence": null,
+   "purpose": "特效参数（rect/fps/显示条件）"
+  },
+  {
+   "file": "art/fx/fx_cradle_rock_open_01.png",
+   "width": 558,
+   "height": 533,
+   "transparent": true,
+   "sequence": "fx_cradle_rock_open",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_cradle_rock_open_02.png",
+   "width": 558,
+   "height": 533,
+   "transparent": true,
+   "sequence": "fx_cradle_rock_open",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_cradle_rock_open_03.png",
+   "width": 558,
+   "height": 533,
+   "transparent": true,
+   "sequence": "fx_cradle_rock_open",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_cradle_rock_open_04.png",
+   "width": 558,
+   "height": 533,
+   "transparent": true,
+   "sequence": "fx_cradle_rock_open",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_curtain_breathe.json",
+   "sequence": null,
+   "purpose": "特效参数（rect/fps/显示条件）"
+  },
+  {
+   "file": "art/fx/fx_curtain_breathe_01.png",
+   "width": 490,
+   "height": 500,
+   "transparent": true,
+   "sequence": "fx_curtain_breathe",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_curtain_breathe_02.png",
+   "width": 490,
+   "height": 500,
+   "transparent": true,
+   "sequence": "fx_curtain_breathe",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_curtain_breathe_03.png",
+   "width": 490,
+   "height": 500,
+   "transparent": true,
+   "sequence": "fx_curtain_breathe",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_curtain_breathe_04.png",
+   "width": 490,
+   "height": 500,
+   "transparent": true,
+   "sequence": "fx_curtain_breathe",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
    "file": "art/fx/fx_dust.json",
    "sequence": null,
    "purpose": "特效叠加（透明 PNG）"
@@ -165,6 +313,80 @@
    "transparent": true,
    "sequence": "fx_ink_tendril",
    "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_portrait_eyes.json",
+   "sequence": null,
+   "purpose": "特效参数（rect/fps/显示条件）"
+  },
+  {
+   "file": "art/fx/fx_portrait_eyes_01.png",
+   "width": 320,
+   "height": 493,
+   "transparent": true,
+   "sequence": "fx_portrait_eyes",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_portrait_eyes_02.png",
+   "width": 320,
+   "height": 493,
+   "transparent": true,
+   "sequence": "fx_portrait_eyes",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_portrait_eyes_03.png",
+   "width": 320,
+   "height": 493,
+   "transparent": true,
+   "sequence": "fx_portrait_eyes",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_portrait_eyes_04.png",
+   "width": 320,
+   "height": 493,
+   "transparent": true,
+   "sequence": "fx_portrait_eyes",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_portrait_eyes_restored.json",
+   "sequence": null,
+   "purpose": "特效参数（rect/fps/显示条件）"
+  },
+  {
+   "file": "art/fx/fx_portrait_eyes_restored_01.png",
+   "width": 320,
+   "height": 493,
+   "transparent": true,
+   "sequence": "fx_portrait_eyes_restored",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_portrait_eyes_restored_02.png",
+   "width": 320,
+   "height": 493,
+   "transparent": true,
+   "sequence": "fx_portrait_eyes_restored",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_portrait_eyes_restored_03.png",
+   "width": 320,
+   "height": 493,
+   "transparent": true,
+   "sequence": "fx_portrait_eyes_restored",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
+  },
+  {
+   "file": "art/fx/fx_portrait_eyes_restored_04.png",
+   "width": 320,
+   "height": 493,
+   "transparent": true,
+   "sequence": "fx_portrait_eyes_restored",
+   "purpose": "特效叠加（透明 PNG，贴在 rect 左上角）"
   },
   {
    "file": "art/fx/fx_stamp_seal.json",

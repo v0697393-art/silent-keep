@@ -1,0 +1,15 @@
+{
+ "frames": 4,
+ "fps": 4,
+ "frame_w": 558,
+ "frame_h": 533,
+ "rect": [
+  154,
+  909,
+  558,
+  533
+ ],
+ "loop": true,
+ "show": "同上（flag dd_bloodline_solved 时）",
+ "note": "同上，神父离开后版本；用于 bg_r6_nursery_empty_chair"
+}
