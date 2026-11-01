@@ -1,0 +1,215 @@
+{
+ "room": "r1_hall",
+ "bg": "bg_r1_hall",
+ "size": [
+  1080,
+  1920
+ ],
+ "playArea": [
+  0,
+  120,
+  1080,
+  1540
+ ],
+ "variants": [
+  {
+   "id": "bg_r1_hall_door_open",
+   "when": "flag crest_solved"
+  }
+ ],
+ "hotspots": [
+  {
+   "id": "h_table",
+   "rect": [
+    60,
+    1250,
+    960,
+    230
+   ],
+   "chapter1Rect": [
+    180,
+    1050,
+    720,
+    220
+   ],
+   "changed": true,
+   "note": "unlit candle ~[640,1230,70,130], bread ~[740,1260,190,110] on the table"
+  },
+  {
+   "id": "h_table_under",
+   "rect": [
+    260,
+    1480,
+    620,
+    180
+   ],
+   "chapter1Rect": [
+    260,
+    1280,
+    560,
+    160
+   ],
+   "changed": true
+  },
+  {
+   "id": "h_fireplace",
+   "rect": [
+    675,
+    770,
+    390,
+    490
+   ],
+   "chapter1Rect": [
+    620,
+    700,
+    400,
+    420
+   ],
+   "changed": true
+  },
+  {
+   "id": "h_fireplace_warm",
+   "rect": [
+    740,
+    1090,
+    145,
+    95
+   ],
+   "chapter1Rect": [
+    700,
+    1000,
+    240,
+    120
+   ],
+   "changed": true
+  },
+  {
+   "id": "h_ashes",
+   "rect": [
+    740,
+    1190,
+    145,
+    65
+   ],
+   "chapter1Rect": [
+    680,
+    1060,
+    280,
+    80
+   ],
+   "changed": true
+  },
+  {
+   "id": "h_armor",
+   "rect": [
+    40,
+    640,
+    260,
+    610
+   ],
+   "chapter1Rect": [
+    40,
+    620,
+    220,
+    640
+   ],
+   "changed": true
+  },
+  {
+   "id": "h_tapestry",
+   "rect": [
+    272,
+    120,
+    531,
+    640
+   ],
+   "chapter1Rect": [
+    300,
+    180,
+    480,
+    520
+   ],
+   "changed": true,
+   "note": "quartered crest woven at top ~[440,150,190,236]; top-half quarters (eye, water) clear, bottom faded"
+  },
+  {
+   "id": "h_portrait",
+   "rect": [
+    820,
+    240,
+    208,
+    304
+   ],
+   "chapter1Rect": [
+    820,
+    240,
+    200,
+    260
+   ],
+   "changed": true
+  },
+  {
+   "id": "h_steward",
+   "rect": [
+    890,
+    1120,
+    190,
+    507
+   ],
+   "chapter1Rect": [
+    880,
+    1150,
+    180,
+    520
+   ],
+   "changed": true,
+   "note": "no NPC in bg: draw layer char_osbert_full here"
+  },
+  {
+   "id": "h_crest_door",
+   "rect": [
+    403,
+    797,
+    244,
+    460
+   ],
+   "chapter1Rect": [
+    380,
+    1450,
+    320,
+    260
+   ],
+   "changed": true,
+   "note": "door with the 2x2 crest disc; disc itself ~[469,897,122,131]"
+  }
+ ],
+ "layers": [
+  {
+   "id": "char_osbert_full",
+   "rect": [
+    890,
+    1120,
+    190,
+    507
+   ],
+   "note": "540x1440 scaled 0.352; feet ~y1660; only while steward present"
+  }
+ ],
+ "fakeHotspots": [
+  {
+   "rect": [
+    120,
+    1500,
+    130,
+    130
+   ],
+   "chapter1Rect": [
+    500,
+    900,
+    120,
+    120
+   ],
+   "note": "moved from [500,900,120,120] (that sits on the crest-door disc and would block it at s3); now under the left end of the table, matching the text"
+  }
+ ]
+}

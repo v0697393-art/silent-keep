@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1A1410">
+<title>缄默堡</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="safe">
+ <div id="stage" class="tier-s1">
+  <canvas id="scene"></canvas>
+  <div id="vignette"></div>
+
+  <!-- 顶部 HUD（0–140） -->
+  <div id="hud">
+   <div id="sanity" title="心烛">
+    <div class="candle"><div class="flame"></div><div class="wax"><div class="wax-fill"></div></div></div>
+    <!-- 美术心烛（ui_meta.heart_candle）：底座固定，烛身按理智从上往下裁，烛顶接在烛身上，火焰底部中心对齐烛芯 -->
+    <div class="hcandle" aria-hidden="true"><div class="hc-in"><div class="hc-flame"></div><div class="hc-top"></div><div class="hc-body"></div><div class="hc-base"></div></div></div>
+    <div class="sanity-text"><span class="label">心烛</span><span id="sanity-value">100</span></div>
+   </div>
+   <button id="btn-prev-room" class="nav-arrow prev" aria-label="上一房间"><span class="arrow">◀</span><span class="nav-name"></span></button>
+   <div id="room-name"></div>
+   <button id="btn-next-room" class="nav-arrow next" aria-label="下一房间"><span class="nav-name"></span><span class="arrow">▶</span></button>
+   <button id="btn-notebook" class="seal" aria-label="手记"><span class="txt">手记</span></button>
+   <button id="btn-mute" class="seal small" aria-label="静音"><span class="txt">♪</span></button>
+   <button id="btn-menu" class="seal small" aria-label="菜单"><span class="txt">☰</span></button>
+  </div>
+
+  <!-- 底部道具栏（1700–1920） -->
+  <div id="inventory">
+   <div id="inv-label"></div>
+   <div class="inv-row">
+    <button id="btn-inv-prev" class="inv-page" aria-label="上一页">‹</button>
+    <div id="slots"></div>
+    <button id="btn-inv-next" class="inv-page" aria-label="下一页">›</button>
+   </div>
+  </div>
+
+  <div id="dialog-layer" hidden><div id="dialog"><div id="dialog-avatar"></div><div id="dialog-body"><div id="dialog-name"></div><div id="dialog-text"></div></div><div class="dialog-more">▼</div></div></div>
+  <div id="toasts"></div>
+  <div id="modal-root"></div>
+  <div id="cutscene" hidden></div>
+
+  <div id="title-screen">
+   <div class="title-crest"></div>
+   <h1>缄默堡</h1>
+   <h2>缄默堡</h2>
+   <div class="chapter">第一章 · 抵达</div>
+   <div class="title-buttons">
+    <button id="btn-continue" class="parch-btn" hidden>继续</button>
+    <button id="btn-new" class="parch-btn">新的调查</button>
+   </div>
+   <div class="title-dust" aria-hidden="true"><i></i><i></i></div>
+   <div class="title-foot">第一章 · 试玩版</div>
+  </div>
+  <div id="loading" aria-label="载入中"><div class="ld-bar"><div class="ld-fill"></div></div><div class="ld-text">载入中……</div></div>
+  <div id="boot-error" hidden></div>
+ </div>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "rusty-game",
+  "version": "0.1.0",
+  "private": true,
+  "description": "《缄默堡》第一章 · 锈湖风格克苏鲁中世纪点击解谜（原生 ES modules + Canvas + WebAudio，无构建）",
+  "type": "module",
+  "scripts": {
+    "assets": "node tools/scan-assets.mjs",
+    "serve": "node tools/scan-assets.mjs && python3 -m http.server 8090 --directory ..",
+    "verify": "node tools/verify.mjs",
+    "test": "node tools/scan-assets.mjs && node tools/verify.mjs && node tools/smoke-test.mjs",
+    "smoke": "node tools/smoke-test.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.64.1"
+  }
+}

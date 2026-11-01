@@ -1,0 +1,167 @@
+{
+ "room": "r3_crypt",
+ "bg": "bg_r3_crypt",
+ "size": [
+  1080,
+  1920
+ ],
+ "playArea": [
+  0,
+  120,
+  1080,
+  1540
+ ],
+ "variants": [
+  {
+   "id": "bg_r3_crypt_well_open",
+   "when": "flag dd_final_solved"
+  }
+ ],
+ "hotspots": [
+  {
+   "id": "h_coffins",
+   "rect": [
+    20,
+    790,
+    260,
+    680
+   ],
+   "chapter1Rect": [
+    0,
+    700,
+    260,
+    900
+   ],
+   "changed": true,
+   "note": "3 sarcophagi in niches, blank name panels"
+  },
+  {
+   "id": "h_well_rim",
+   "rect": [
+    330,
+    1225,
+    495,
+    105
+   ],
+   "chapter1Rect": [
+    360,
+    1200,
+    360,
+    120
+   ],
+   "changed": true
+  },
+  {
+   "id": "h_chain",
+   "rect": [
+    430,
+    1040,
+    220,
+    185
+   ],
+   "chapter1Rect": [
+    430,
+    980,
+    220,
+    220
+   ],
+   "changed": true
+  },
+  {
+   "id": "h_relief",
+   "rect": [
+    90,
+    120,
+    900,
+    442
+   ],
+   "chapter1Rect": [
+    300,
+    160,
+    480,
+    420
+   ],
+   "changed": true
+  },
+  {
+   "id": "h_candles",
+   "rect": [
+    820,
+    740,
+    260,
+    500
+   ],
+   "chapter1Rect": [
+    860,
+    900,
+    200,
+    400
+   ],
+   "changed": true,
+   "note": "triangular tenebrae hearse, 7 lit candles"
+  },
+  {
+   "id": "h_winch",
+   "rect": [
+    655,
+    1030,
+    190,
+    195
+   ],
+   "chapter1Rect": [
+    720,
+    1150,
+    260,
+    300
+   ],
+   "changed": true,
+   "note": "winch has empty crank socket at axle end ~[790,1080,40,40]; well_open variant shows crank fitted"
+  },
+  {
+   "id": "h_lady",
+   "rect": [
+    70,
+    1100,
+    210,
+    560
+   ],
+   "chapter1Rect": [
+    120,
+    1250,
+    260,
+    560
+   ],
+   "changed": true,
+   "note": "no NPC in bg: draw layer char_ysolde_full (standing; no kneeling pose exists)"
+  }
+ ],
+ "layers": [
+  {
+   "id": "char_ysolde_full",
+   "rect": [
+    70,
+    1100,
+    210,
+    560
+   ],
+   "note": "540x1440 scaled 0.389; in front of lower coffins, left of the well"
+  }
+ ],
+ "fakeHotspots": [
+  {
+   "rect": [
+    560,
+    700,
+    160,
+    160
+   ],
+   "chapter1Rect": [
+    560,
+    700,
+    160,
+    160
+   ],
+   "note": "unchanged; vault/arch area above the back arch, no overlap"
+  }
+ ]
+}

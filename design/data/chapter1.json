@@ -1,0 +1,2307 @@
+{
+ "meta": {
+  "title": "缄默堡",
+  "chapter": 1,
+  "name": "抵达",
+  "resolution": [
+   1080,
+   1920
+  ],
+  "start": "r1_hall",
+  "version": "v1.2",
+  "intro": "cs_intro",
+  "ending": "cs_ch1_end",
+  "endingTitle": "t_ending_title"
+ },
+ "items": {
+  "candle": {
+   "name": "未点燃的蜡烛",
+   "icon": "item_candle",
+   "consumable": true,
+   "desc": "一根未点燃的蜡烛。"
+  },
+  "candle_lit": {
+   "name": "燃烛",
+   "icon": "item_candle_lit",
+   "consumable": false,
+   "desc": "烛火很稳，像在屏息。"
+  },
+  "bread": {
+   "name": "黑面包",
+   "icon": "item_bread",
+   "consumable": true,
+   "desc": "又黑又硬的面包。"
+  },
+  "poker": {
+   "name": "拨火棍",
+   "icon": "item_poker",
+   "consumable": false,
+   "desc": "铁拨火棍，结实，不会弯。"
+  },
+  "rosary": {
+   "name": "灰烛念珠",
+   "icon": "item_rosary",
+   "consumable": true,
+   "desc": "七颗灰珠，缺了那颗黑的。"
+  },
+  "burnt_page": {
+   "name": "焦黑的访客簿残页",
+   "icon": "item_burnt_page",
+   "consumable": false,
+   "desc": "……布伦……兄弟　十一月三日　誊抄家谱"
+  },
+  "crank": {
+   "name": "铁曲柄",
+   "icon": "item_crank",
+   "consumable": true,
+   "desc": "沉甸甸的铁曲柄，像是某种绞盘上的。"
+  },
+  "charcoal": {
+   "name": "炭条",
+   "icon": "item_charcoal",
+   "consumable": true,
+   "desc": "一根炭条。"
+  },
+  "scraper": {
+   "name": "刮刀",
+   "icon": "item_scraper",
+   "consumable": false,
+   "desc": "抄写员用来刮去错字的刮刀。"
+  },
+  "quill": {
+   "name": "鹅毛笔",
+   "icon": "item_quill",
+   "consumable": true,
+   "desc": "鹅毛笔，笔尖还沾着墨。"
+  },
+  "charcoal_dust": {
+   "name": "炭粉",
+   "icon": "item_charcoal_dust",
+   "consumable": true,
+   "desc": "细细的炭粉。"
+  },
+  "reveal_brush": {
+   "name": "显影刷",
+   "icon": "item_reveal_brush",
+   "consumable": false,
+   "desc": "沾满炭粉的羽毛——能让刮掉的字显影。"
+  },
+  "spectacles": {
+   "name": "布伦丹的眼镜",
+   "icon": "item_spectacles",
+   "consumable": false,
+   "desc": "布伦丹的眼镜，镜片上有指纹。"
+  },
+  "contract_half": {
+   "name": "半份契约",
+   "icon": "item_contract_half",
+   "consumable": false,
+   "desc": "半份契约，字小得看不清。"
+  },
+  "well_key": {
+   "name": "井形钥匙",
+   "icon": "item_well_key",
+   "consumable": true,
+   "desc": "钥匙柄铸成一口井的形状。"
+  },
+  "black_bead": {
+   "name": "黑念珠珠子",
+   "icon": "item_black_bead",
+   "consumable": true,
+   "desc": "一颗黑色的念珠珠子，湿的。"
+  },
+  "rosary_full": {
+   "name": "完整的念珠",
+   "icon": "item_rosary_full",
+   "consumable": false,
+   "use": {
+    "sanity": 15,
+    "cooldownSec": 90
+   },
+   "desc": "七灰一黑，完整了。握着它，心里稍微安定。"
+  }
+ },
+ "combine": [
+  {
+   "a": "charcoal",
+   "b": "scraper",
+   "result": "charcoal_dust",
+   "consume": [
+    "charcoal"
+   ]
+  },
+  {
+   "a": "charcoal_dust",
+   "b": "quill",
+   "result": "reveal_brush",
+   "consume": [
+    "charcoal_dust",
+    "quill"
+   ]
+  },
+  {
+   "a": "rosary",
+   "b": "black_bead",
+   "result": "rosary_full",
+   "consume": [
+    "rosary",
+    "black_bead"
+   ]
+  }
+ ],
+ "evidence": {
+  "ev_rosary": {
+   "name": "灰烛念珠",
+   "img": "ev_rosary",
+   "desc": "七颗灰珠，缺了那颗黑的。在大厅长桌下找到。"
+  },
+  "ev_burnt_page": {
+   "name": "访客簿残页",
+   "img": "ev_burnt_page",
+   "desc": "……布伦……兄弟　十一月三日　誊抄家谱"
+  },
+  "ev_revealed_tree": {
+   "name": "显影后的家谱",
+   "img": "ev_revealed_tree",
+   "desc": "1238 希尔德布兰、1275 罗泽琳、1312 ▇▇，三人都标“生卒不详”。"
+  },
+  "ev_brendan_notes": {
+   "name": "布伦丹的笔记",
+   "img": "ev_brendan_notes",
+   "desc": "“每隔……个冬天，他们就‘忘记’一个孩子。神父说今年冬至，‘轮到了’。”"
+  },
+  "ev_child_drawing": {
+   "name": "玛蒂尔的画",
+   "img": "ev_child_drawing",
+   "desc": "没有脸的高个子；穿灰袍的人被牵向黑色圆圈。"
+  },
+  "ev_seal_crozier": {
+   "name": "牧杖纹封蜡",
+   "img": "ev_seal_crozier",
+   "desc": "契约封蜡上不是家徽，而是礼拜神父的牧杖纹。"
+  },
+  "ev_black_bead": {
+   "name": "井沿的黑珠",
+   "img": "ev_black_bead",
+   "desc": "井沿裂缝里的黑珠——正是念珠缺的那颗。"
+  },
+  "ev_wet_chain": {
+   "name": "湿链条",
+   "img": "ev_wet_chain",
+   "desc": "链子是湿的，带着新鲜的黑泥。"
+  },
+  "ev_blank_coffins": {
+   "name": "空白石棺",
+   "img": "ev_blank_coffins",
+   "desc": "三具石棺，三个被磨平的名字。"
+  },
+  "ev_confession": {
+   "name": "伊瑟尔达的供词",
+   "img": "ev_confession",
+   "desc": "“塞弗林神父说，只要是名字就行……一个没人会记得的修士，正好。”"
+  }
+ },
+ "rooms": [
+  {
+   "id": "r1_hall",
+   "bg": "bg_r1_hall",
+   "bgm": "bgm_r1_hall",
+   "amb": "amb_hall_fire",
+   "hotspots": [
+    {
+     "id": "h_table",
+     "rect": [
+      60,
+      1250,
+      960,
+      230
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "give",
+         "item": "candle"
+        },
+        {
+         "type": "give",
+         "item": "bread"
+        },
+        {
+         "type": "flag",
+         "set": "got_table"
+        },
+        {
+         "type": "text",
+         "key": "t_r1_table"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "got_table"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_too_dark"
+        }
+       ]
+      }
+     ],
+     "label": "长桌"
+    },
+    {
+     "id": "h_table_under",
+     "rect": [
+      260,
+      1480,
+      620,
+      180
+     ],
+     "interactions": [
+      {
+       "useItem": "candle_lit",
+       "effects": [
+        {
+         "type": "give",
+         "item": "rosary"
+        },
+        {
+         "type": "evidence",
+         "add": "ev_rosary"
+        },
+        {
+         "type": "flag",
+         "set": "got_rosary"
+        },
+        {
+         "type": "text",
+         "key": "t_found_rosary"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "got_rosary"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_too_dark"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "got_rosary"
+        ]
+       }
+      }
+     ],
+     "label": "桌下"
+    },
+    {
+     "id": "h_fireplace",
+     "rect": [
+      675,
+      770,
+      390,
+      490
+     ],
+     "interactions": [
+      {
+       "useItem": "candle",
+       "effects": [
+        {
+         "type": "take",
+         "item": "candle"
+        },
+        {
+         "type": "give",
+         "item": "candle_lit"
+        },
+        {
+         "type": "sfx",
+         "id": "sfx_candle_light"
+        }
+       ]
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "give",
+         "item": "poker"
+        },
+        {
+         "type": "flag",
+         "set": "got_poker"
+        },
+        {
+         "type": "text",
+         "key": "t_r1_poker"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "got_poker"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_fire_warm"
+        }
+       ]
+      }
+     ],
+     "label": "壁炉"
+    },
+    {
+     "id": "h_fireplace_warm",
+     "rect": [
+      740,
+      1090,
+      145,
+      95
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "restore",
+         "point": "r1_fire"
+        }
+       ]
+      }
+     ],
+     "label": "炉前"
+    },
+    {
+     "id": "h_ashes",
+     "rect": [
+      740,
+      1190,
+      145,
+      65
+     ],
+     "interactions": [
+      {
+       "useItem": "poker",
+       "effects": [
+        {
+         "type": "give",
+         "item": "burnt_page"
+        },
+        {
+         "type": "evidence",
+         "add": "ev_burnt_page"
+        },
+        {
+         "type": "flag",
+         "set": "got_page"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "got_page"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_ashes_hint"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "got_page"
+        ]
+       }
+      }
+     ],
+     "label": "灰堆"
+    },
+    {
+     "id": "h_armor",
+     "rect": [
+      40,
+      640,
+      260,
+      610
+     ],
+     "interactions": [
+      {
+       "useItem": "poker",
+       "effects": [
+        {
+         "type": "give",
+         "item": "crank"
+        },
+        {
+         "type": "flag",
+         "set": "got_crank"
+        },
+        {
+         "type": "sanity",
+         "delta": -5,
+         "once": true
+        },
+        {
+         "type": "text",
+         "key": "t_armor_warm"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "got_crank"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_armor_stuck"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "got_crank"
+        ]
+       }
+      }
+     ],
+     "label": "盔甲"
+    },
+    {
+     "id": "h_tapestry",
+     "rect": [
+      272,
+      120,
+      531,
+      640
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "req": {
+        "flags": [
+         "cb_cycle_solved"
+        ]
+       },
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_tapestry"
+        },
+        {
+         "type": "text",
+         "key": "t_tapestry_after"
+        },
+        {
+         "type": "flag",
+         "set": "seen_tapestry"
+        }
+       ]
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "sanity",
+         "delta": -10,
+         "once": true
+        },
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_tapestry"
+        },
+        {
+         "type": "text",
+         "key": "t_tapestry"
+        },
+        {
+         "type": "flag",
+         "set": "seen_tapestry"
+        }
+       ]
+      }
+     ],
+     "label": "家谱挂毯"
+    },
+    {
+     "id": "h_portrait",
+     "rect": [
+      820,
+      240,
+      208,
+      304
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "sanity",
+         "delta": -5,
+         "once": true
+        },
+        {
+         "type": "text",
+         "key": "t_blank_portrait"
+        }
+       ]
+      }
+     ],
+     "label": "无脸肖像"
+    },
+    {
+     "id": "h_steward",
+     "rect": [
+      890,
+      1120,
+      190,
+      507
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "interrogation",
+         "id": "int_osbert"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "int_osbert_done"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_osbert_after"
+        }
+       ]
+      }
+     ],
+     "label": "奥斯博特"
+    },
+    {
+     "id": "h_crest_door",
+     "rect": [
+      403,
+      797,
+      244,
+      460
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "puzzle",
+         "id": "pz_crest"
+        }
+       ],
+       "req": {
+        "flags": [
+         "has_motto"
+        ],
+        "notFlags": [
+         "crest_solved"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "goto",
+         "room": "r2_scriptorium"
+        }
+       ],
+       "req": {
+        "flags": [
+         "crest_solved"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "req": {
+        "flags": [
+         "seen_tapestry"
+        ]
+       },
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_crest_locked_seen"
+        }
+       ]
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_crest_locked"
+        }
+       ]
+      }
+     ],
+     "label": "家徽门"
+    }
+   ],
+   "name": "大厅",
+   "fx": [
+    {
+     "id": "fx_thread_wriggle",
+     "rect": [
+      433,
+      391,
+      216,
+      216
+     ],
+     "fps": 6,
+     "loop": true,
+     "sanityBelow": 40,
+     "_说明": "挂毯破洞线头蠕动（s3 动摇档）"
+    },
+    {
+     "id": "fx_thread_wriggle",
+     "rect": [
+      433,
+      391,
+      216,
+      216
+     ],
+     "fps": 6,
+     "loop": true,
+     "req": {
+      "flags": [
+       "cb_cycle_solved"
+      ]
+     },
+     "_说明": "线索板 cb_cycle 解开后常驻"
+    }
+   ]
+  },
+  {
+   "id": "r2_scriptorium",
+   "bg": "bg_r2_scriptorium",
+   "bgm": "bgm_r2_scriptorium",
+   "amb": "amb_tower_wind",
+   "hotspots": [
+    {
+     "id": "h_desk_copy",
+     "rect": [
+      130,
+      780,
+      370,
+      310
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_brendan_copy"
+        },
+        {
+         "type": "evidence",
+         "add": "ev_brendan_notes"
+        },
+        {
+         "type": "text",
+         "key": "t_brendan_notes"
+        }
+       ]
+      }
+     ],
+     "label": "抄本"
+    },
+    {
+     "id": "h_desk_original",
+     "rect": [
+      580,
+      780,
+      380,
+      310
+     ],
+     "interactions": [
+      {
+       "useItem": "reveal_brush",
+       "effects": [
+        {
+         "type": "evidence",
+         "add": "ev_revealed_tree"
+        },
+        {
+         "type": "flag",
+         "set": "tree_revealed"
+        },
+        {
+         "type": "sanity",
+         "delta": -10,
+         "once": true
+        },
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_genealogy"
+        },
+        {
+         "type": "sfx",
+         "id": "sfx_charcoal_reveal"
+        },
+        {
+         "type": "text",
+         "key": "t_tree_revealed"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "tree_revealed"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "req": {
+        "flags": [
+         "tree_revealed"
+        ]
+       },
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_genealogy"
+        },
+        {
+         "type": "text",
+         "key": "t_tree_again"
+        }
+       ]
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_genealogy"
+        },
+        {
+         "type": "text",
+         "key": "t_scratches"
+        }
+       ]
+      }
+     ],
+     "label": "家谱原本"
+    },
+    {
+     "id": "h_inkstand",
+     "rect": [
+      400,
+      1190,
+      330,
+      150
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "give",
+         "item": "charcoal"
+        },
+        {
+         "type": "give",
+         "item": "scraper"
+        },
+        {
+         "type": "give",
+         "item": "quill"
+        },
+        {
+         "type": "flag",
+         "set": "got_ink"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "got_ink"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_inkstand_empty"
+        }
+       ]
+      }
+     ],
+     "label": "墨水台"
+    },
+    {
+     "id": "h_window",
+     "rect": [
+      650,
+      120,
+      300,
+      388
+     ],
+     "interactions": [
+      {
+       "useItem": "bread",
+       "effects": [
+        {
+         "type": "take",
+         "item": "bread"
+        },
+        {
+         "type": "give",
+         "item": "spectacles"
+        },
+        {
+         "type": "flag",
+         "set": "got_spectacles"
+        },
+        {
+         "type": "text",
+         "key": "t_crow_gift"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "got_spectacles"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_crow"
+        }
+       ]
+      }
+     ],
+     "label": "窗与乌鸦"
+    },
+    {
+     "id": "h_window_air",
+     "rect": [
+      680,
+      450,
+      240,
+      70
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "restore",
+         "point": "r2_window"
+        }
+       ]
+      }
+     ],
+     "label": "窗缝"
+    },
+    {
+     "id": "h_drawing",
+     "rect": [
+      700,
+      560,
+      245,
+      165
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_child_drawing"
+        },
+        {
+         "type": "evidence",
+         "add": "ev_child_drawing"
+        },
+        {
+         "type": "text",
+         "key": "t_drawing"
+        }
+       ]
+      }
+     ],
+     "label": "蜡笔画"
+    },
+    {
+     "id": "h_board",
+     "rect": [
+      100,
+      120,
+      470,
+      560
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "clueboard",
+         "id": "cb_cycle"
+        }
+       ]
+      }
+     ],
+     "label": "线索板"
+    },
+    {
+     "id": "h_chest",
+     "rect": [
+      80,
+      1380,
+      340,
+      270
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "req": {
+        "flags": [
+         "cb_cycle_solved"
+        ],
+        "notFlags": [
+         "chest_open"
+        ]
+       },
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_chest_ready"
+        },
+        {
+         "type": "open",
+         "ui": "puzzle",
+         "id": "pz_dial"
+        }
+       ]
+      },
+      {
+       "default": true,
+       "req": {
+        "notFlags": [
+         "chest_open"
+        ]
+       },
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_chest_locked"
+        }
+       ]
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_chest_empty"
+        }
+       ]
+      }
+     ],
+     "label": "编年史匣"
+    },
+    {
+     "id": "h_stair_door",
+     "rect": [
+      755,
+      1190,
+      275,
+      470
+     ],
+     "interactions": [
+      {
+       "useItem": "well_key",
+       "effects": [
+        {
+         "type": "take",
+         "item": "well_key"
+        },
+        {
+         "type": "flag",
+         "set": "stair_open"
+        },
+        {
+         "type": "goto",
+         "room": "r3_crypt"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "stair_open"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "goto",
+         "room": "r3_crypt"
+        }
+       ],
+       "req": {
+        "flags": [
+         "stair_open"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_stair_locked"
+        }
+       ]
+      }
+     ],
+     "label": "楼梯门"
+    }
+   ],
+   "name": "北塔缮写室"
+  },
+  {
+   "id": "r3_crypt",
+   "bg": "bg_r3_crypt",
+   "bgm": "bgm_r3_crypt",
+   "amb": "amb_crypt_drip",
+   "hotspots": [
+    {
+     "id": "h_coffins",
+     "rect": [
+      20,
+      790,
+      260,
+      680
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "evidence",
+         "add": "ev_blank_coffins"
+        },
+        {
+         "type": "text",
+         "key": "t_blank_coffins"
+        }
+       ]
+      }
+     ],
+     "label": "石棺"
+    },
+    {
+     "id": "h_well_rim",
+     "rect": [
+      330,
+      1225,
+      495,
+      105
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "give",
+         "item": "black_bead"
+        },
+        {
+         "type": "evidence",
+         "add": "ev_black_bead"
+        },
+        {
+         "type": "flag",
+         "set": "got_bead"
+        },
+        {
+         "type": "text",
+         "key": "t_black_bead"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "got_bead"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_well_whisper"
+        }
+       ]
+      }
+     ],
+     "label": "井沿"
+    },
+    {
+     "id": "h_chain",
+     "rect": [
+      430,
+      1040,
+      220,
+      185
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "req": {
+        "notFlags": [
+         "dd_final_solved"
+        ]
+       },
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_well_lid"
+        },
+        {
+         "type": "evidence",
+         "add": "ev_wet_chain"
+        },
+        {
+         "type": "text",
+         "key": "t_wet_chain"
+        }
+       ]
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "evidence",
+         "add": "ev_wet_chain"
+        },
+        {
+         "type": "text",
+         "key": "t_wet_chain"
+        }
+       ]
+      }
+     ],
+     "label": "铁链"
+    },
+    {
+     "id": "h_relief",
+     "rect": [
+      90,
+      120,
+      900,
+      442
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "req": {
+        "flags": [
+         "int_ysolde_done"
+        ]
+       },
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_relief"
+        },
+        {
+         "type": "text",
+         "key": "t_relief_open"
+        },
+        {
+         "type": "sanity",
+         "delta": -5,
+         "once": true
+        }
+       ]
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "sanity",
+         "delta": -10,
+         "once": true
+        },
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_relief"
+        },
+        {
+         "type": "text",
+         "key": "t_relief"
+        }
+       ]
+      }
+     ],
+     "label": "浮雕"
+    },
+    {
+     "id": "h_candles",
+     "rect": [
+      820,
+      740,
+      260,
+      500
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "restore",
+         "point": "r3_candles"
+        }
+       ]
+      }
+     ],
+     "label": "七烛烛架"
+    },
+    {
+     "id": "h_winch",
+     "rect": [
+      655,
+      1030,
+      190,
+      195
+     ],
+     "interactions": [
+      {
+       "useItem": "crank",
+       "effects": [
+        {
+         "type": "take",
+         "item": "crank"
+        },
+        {
+         "type": "flag",
+         "set": "crank_fitted"
+        },
+        {
+         "type": "text",
+         "key": "t_crank_fitted"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "crank_fitted"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "sfx",
+         "id": "sfx_well_cover"
+        },
+        {
+         "type": "cutscene",
+         "id": "cs_ch1_end"
+        }
+       ],
+       "req": {
+        "flags": [
+         "crank_fitted",
+         "dd_final_solved"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_not_yet"
+        }
+       ],
+       "req": {
+        "flags": [
+         "crank_fitted"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_winch_no_crank"
+        }
+       ]
+      }
+     ],
+     "label": "绞盘"
+    },
+    {
+     "id": "h_lady",
+     "rect": [
+      70,
+      1100,
+      210,
+      560
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "interrogation",
+         "id": "int_ysolde"
+        }
+       ],
+       "req": {
+        "notFlags": [
+         "int_ysolde_done"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "open",
+         "ui": "deduction",
+         "id": "dd_final"
+        }
+       ],
+       "req": {
+        "flags": [
+         "int_ysolde_done"
+        ],
+        "notFlags": [
+         "dd_final_solved"
+        ]
+       }
+      },
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_ysolde_after"
+        }
+       ]
+      }
+     ],
+     "label": "伊瑟尔达"
+    }
+   ],
+   "name": "墓穴井室"
+  }
+ ],
+ "puzzles": {
+  "pz_crest": {
+   "type": "rotate_grid",
+   "cols": 2,
+   "rows": 2,
+   "symbols": [
+    "eye_closed",
+    "water",
+    "key",
+    "well"
+   ],
+   "initial": [
+    "well",
+    "key",
+    "eye_closed",
+    "water"
+   ],
+   "answer": [
+    "eye_closed",
+    "water",
+    "key",
+    "well"
+   ],
+   "onSolved": [
+    {
+     "type": "flag",
+     "set": "crest_solved"
+    },
+    {
+     "type": "sfx",
+     "id": "sfx_stone_sink"
+    },
+    {
+     "type": "goto",
+     "room": "r2_scriptorium"
+    }
+   ],
+   "title": "家徽石门",
+   "bg": "cu_crest_door"
+  },
+  "pz_dial": {
+   "type": "dial",
+   "digits": 3,
+   "answer": "852",
+   "onSolved": [
+    {
+     "type": "give",
+     "item": "contract_half"
+    },
+    {
+     "type": "give",
+     "item": "well_key"
+    },
+    {
+     "type": "flag",
+     "set": "chest_open"
+    }
+   ],
+   "title": "铜锁箱",
+   "bg": "cu_chest_lock"
+  },
+  "pz_contract_read": {
+   "type": "use_on_item",
+   "item": "contract_half",
+   "with": "spectacles",
+   "onSolved": [
+    {
+     "type": "evidence",
+     "add": "ev_seal_crozier"
+    },
+    {
+     "type": "sanity",
+     "delta": -15,
+     "once": true
+    },
+    {
+     "type": "text",
+     "key": "t_contract_fine_print"
+    }
+   ],
+   "title": "半份契约",
+   "bg": "cu_contract"
+  }
+ },
+ "clueboards": {
+  "cb_cycle": {
+   "unlock": {
+    "evidence": [
+     "ev_revealed_tree",
+     "ev_brendan_notes",
+     "ev_child_drawing"
+    ]
+   },
+   "cards": [
+    {
+     "id": "c_hild",
+     "label": "希尔德布兰 · 1238",
+     "img": "card_hild_1238"
+    },
+    {
+     "id": "c_roz",
+     "label": "罗泽琳 · 1275",
+     "img": "card_roz_1275"
+    },
+    {
+     "id": "c_blank",
+     "label": "▇▇ · 1312",
+     "img": "card_blank_1312"
+    },
+    {
+     "id": "c_1349",
+     "label": "1349 冬",
+     "img": "card_year_1349"
+    },
+    {
+     "id": "c_notes",
+     "label": "布伦丹的笔记",
+     "img": "ev_brendan_notes"
+    },
+    {
+     "id": "c_draw",
+     "label": "玛蒂尔的画",
+     "img": "ev_child_drawing"
+    }
+   ],
+   "links": [
+    {
+     "id": "l1",
+     "a": "c_hild",
+     "b": "c_roz",
+     "options": [
+      "相隔 27 年",
+      "相隔 37 年",
+      "相隔 49 年"
+     ],
+     "answer": 1
+    },
+    {
+     "id": "l2",
+     "a": "c_roz",
+     "b": "c_blank",
+     "options": [
+      "相隔 37 年",
+      "同一人",
+      "相隔 47 年"
+     ],
+     "answer": 0
+    },
+    {
+     "id": "l3",
+     "a": "c_blank",
+     "b": "c_1349",
+     "options": [
+      "相隔 37 年",
+      "无关"
+     ],
+     "answer": 0
+    },
+    {
+     "id": "l4",
+     "a": "c_notes",
+     "b": "c_draw",
+     "options": [
+      "修士被带向井",
+      "修士离开了城堡",
+      "二者无关"
+     ],
+     "answer": 0
+    }
+   ],
+   "onWrongLink": [
+    {
+     "type": "sanity",
+     "delta": -3,
+     "once": false
+    },
+    {
+     "type": "text",
+     "key": "t_wrong_link"
+    }
+   ],
+   "conclusion": "dd_why_brendan",
+   "onSolved": [
+    {
+     "type": "flag",
+     "set": "cb_cycle_solved"
+    },
+    {
+     "type": "text",
+     "key": "t_cycle_37"
+    },
+    {
+     "type": "note",
+     "add": "被遗忘者：希尔德布兰（1238）、罗泽琳（1275）、无名之子（1312）——每 37 年一个，今年 1349 轮到下一个。"
+    }
+   ]
+  }
+ },
+ "interrogations": {
+  "int_osbert": {
+   "npc": "osbert",
+   "portraits": {
+    "calm": "char_osbert_calm",
+    "nervous": "char_osbert_nervous",
+    "broken": "char_osbert_broken"
+   },
+   "intro": "t_osbert_intro",
+   "statements": [
+    {
+     "id": "s1",
+     "text": "t_osbert_s1",
+     "lie": true,
+     "accept": [
+      "ev_rosary"
+     ],
+     "onBreak": {
+      "text": "t_osbert_b1",
+      "portrait": "nervous"
+     }
+    },
+    {
+     "id": "s2",
+     "text": "t_osbert_s2",
+     "lie": true,
+     "accept": [
+      "ev_burnt_page"
+     ],
+     "requires": [
+      "s1"
+     ],
+     "onBreak": {
+      "text": "t_osbert_b2",
+      "portrait": "broken"
+     }
+    }
+   ],
+   "onWrongEvidence": [
+    {
+     "type": "sanity",
+     "delta": -3,
+     "once": false
+    },
+    {
+     "type": "text",
+     "key": "t_wrong_evidence"
+    }
+   ],
+   "onComplete": [
+    {
+     "type": "flag",
+     "set": "int_osbert_done"
+    },
+    {
+     "type": "flag",
+     "set": "has_motto"
+    },
+    {
+     "type": "note",
+     "add": "家训：眼闭，水静，钥沉，井默"
+    }
+   ]
+  },
+  "int_ysolde": {
+   "npc": "ysolde",
+   "portraits": {
+    "calm": "char_ysolde_calm",
+    "cold": "char_ysolde_cold",
+    "shaken": "char_ysolde_shaken",
+    "broken": "char_ysolde_broken"
+   },
+   "intro": "t_ysolde_intro",
+   "statements": [
+    {
+     "id": "s1",
+     "text": "t_ysolde_s1",
+     "lie": true,
+     "accept": [
+      "ev_black_bead"
+     ],
+     "nearMiss": {
+      "ev_rosary": "t_ysolde_rosary_any"
+     },
+     "onBreak": {
+      "text": "t_ysolde_b1",
+      "portrait": "cold"
+     }
+    },
+    {
+     "id": "s2",
+     "text": "t_ysolde_s2",
+     "lie": true,
+     "accept": [
+      "ev_revealed_tree",
+      "ev_blank_coffins"
+     ],
+     "onBreak": {
+      "text": "t_ysolde_b2",
+      "portrait": "shaken"
+     }
+    },
+    {
+     "id": "s3",
+     "text": "t_ysolde_s3",
+     "lie": true,
+     "accept": [
+      "ev_wet_chain"
+     ],
+     "onBreak": {
+      "text": "t_ysolde_b3",
+      "portrait": "shaken"
+     }
+    },
+    {
+     "id": "p1",
+     "text": "t_ysolde_p1",
+     "lie": true,
+     "accept": [
+      "ev_seal_crozier"
+     ],
+     "requires": [
+      "s1",
+      "s2",
+      "s3"
+     ],
+     "onBreak": {
+      "text": "t_ysolde_confess",
+      "portrait": "broken"
+     }
+    }
+   ],
+   "order": "free",
+   "onWrongEvidence": [
+    {
+     "type": "sanity",
+     "delta": -3,
+     "once": false
+    },
+    {
+     "type": "text",
+     "key": "t_wrong_evidence"
+    }
+   ],
+   "onComplete": [
+    {
+     "type": "evidence",
+     "add": "ev_confession"
+    },
+    {
+     "type": "flag",
+     "set": "int_ysolde_done"
+    }
+   ]
+  }
+ },
+ "deductions": {
+  "dd_why_brendan": {
+   "questions": [
+    {
+     "q": "t_dd_why_q",
+     "options": [
+      "他自己逃走了",
+      "他发现了周期，被选为今年的祭品",
+      "他死于瘟疫"
+     ],
+     "answer": 1
+    }
+   ],
+   "onWrong": [
+    {
+     "type": "sanity",
+     "delta": -3,
+     "once": false
+    }
+   ],
+   "onSolved": []
+  },
+  "dd_final": {
+   "req": {
+    "flags": [
+     "int_ysolde_done"
+    ]
+   },
+   "submit": "all",
+   "questions": [
+    {
+     "q": "t_dd_final_q1",
+     "options": [
+      "伊瑟尔达夫人",
+      "管家奥斯博特",
+      "塞弗林神父",
+      "老领主"
+     ],
+     "answer": 2,
+     "hint": "t_hint_seal"
+    },
+    {
+     "q": "t_dd_final_q2",
+     "options": [
+      "鲜血",
+      "名字",
+      "灵魂",
+      "金子"
+     ],
+     "answer": 1,
+     "hint": "t_hint_names"
+    },
+    {
+     "q": "t_dd_final_q3",
+     "options": [
+      "灰烛修道院",
+      "沼地",
+      "井下"
+     ],
+     "answer": 2,
+     "hint": "t_hint_chain"
+    }
+   ],
+   "onWrong": [
+    {
+     "type": "sanity",
+     "delta": -5,
+     "once": false
+    },
+    {
+     "type": "hint",
+     "mode": "firstWrong"
+    }
+   ],
+   "onSolved": [
+    {
+     "type": "flag",
+     "set": "dd_final_solved"
+    }
+   ]
+  }
+ },
+ "sanity": {
+  "max": 100,
+  "start": 100,
+  "floor": 20,
+  "chapterResetMin": 70,
+  "tiers": [
+   {
+    "id": "s1",
+    "min": 70
+   },
+   {
+    "id": "s2",
+    "min": 40,
+    "fx": [
+     "fx_vignette_s2",
+     "amb_whisper_low",
+     "portrait_s2"
+    ]
+   },
+   {
+    "id": "s3",
+    "min": 20,
+    "fx": [
+     "fx_vignette_s3",
+     "fx_ink_tendril",
+     "amb_whisper_near",
+     "portrait_s3",
+     "text_glitch",
+     "fake_hotspots"
+    ]
+   }
+  ],
+  "restorePoints": {
+   "r1_fire": {
+    "delta": 10,
+    "cooldownSec": 60
+   },
+   "r2_window": {
+    "delta": 10,
+    "cooldownSec": 60
+   },
+   "r3_candles": {
+    "delta": 15,
+    "cooldownSec": 60
+   }
+  },
+  "textGlitch": {
+   "chance": 0.15,
+   "protectKeys": true
+  },
+  "fakeHotspots": {
+   "r1_hall": [
+    {
+     "rect": [
+      120,
+      1500,
+      130,
+      130
+     ],
+     "text": "有人在桌底对你眨眼。你再看时，只有木纹。"
+    }
+   ],
+   "r2_scriptorium": [
+    {
+     "rect": [
+      100,
+      1180,
+      240,
+      150
+     ],
+     "text": "书架上一本书的书脊写着你的名字。不，是“布伦丹”。不，什么都没写。"
+    }
+   ],
+   "r3_crypt": [
+    {
+     "rect": [
+      560,
+      700,
+      160,
+      160
+     ],
+     "text": "拱顶上的水珠排成了一行字，落下前你没来得及读。"
+    }
+   ]
+  },
+  "lowSanityReveals": [
+   {
+    "room": "r2_scriptorium",
+    "hotspot": "h_desk_original",
+    "below": 40,
+    "text": "1312 那一行的刮痕里，浮出半个字母：E。"
+   }
+  ]
+ },
+ "cutscenes": {
+  "cs_intro": [
+   "bg_intro_01",
+   "bg_intro_02",
+   "bg_intro_03"
+  ],
+  "cs_ch1_end": [
+   "bg_end_01",
+   "bg_end_02",
+   "bg_end_03"
+  ]
+ },
+ "npcs": {
+  "osbert": {
+   "name": "管家奥斯博特",
+   "fullBody": "char_osbert_full"
+  },
+  "ysolde": {
+   "name": "伊瑟尔达夫人",
+   "fullBody": "char_ysolde_full"
+  }
+ },
+ "cutsceneCaptions": {
+  "cs_intro": [
+   "t_cs_intro_1",
+   "t_cs_intro_2",
+   "t_cs_intro_3"
+  ],
+  "cs_ch1_end": [
+   "t_cs_end_1",
+   "t_cs_end_2",
+   "t_cs_end_3"
+  ]
+ },
+ "texts": {
+  "t_armor_stuck": "盔甲的面罩卡死了。",
+  "t_armor_warm": "面罩被撬开——里面是空的，却是温的。卡在里面的<k>铁曲柄</k>掉了出来。",
+  "t_ashes_hint": "灰下面压着什么，得找个东西拨开。",
+  "t_black_bead": "井沿裂缝里卡着一颗<k>黑念珠珠子</k>。",
+  "t_blank_coffins": "三具石棺，三个空白。不是没刻，是被磨平的。",
+  "t_blank_portrait": "画像的脸被颜料抹平，名牌空白。画框比别的新。",
+  "t_brendan_notes": "页边笔记：“每隔……个冬天，他们就‘忘记’一个孩子。神父说今年冬至，‘轮到了’。他看我的眼神像在看一行要被刮掉的字。”",
+  "t_chest_empty": "编年史匣已经空了。",
+  "t_chest_locked": "编年史匣上一把三位黄铜转盘锁，匣盖刻着：“<k>依次念出被遗忘者离去之年的尾数</k>。”被遗忘者是谁？我还不知道该拨什么。",
+  "t_chest_ready": "“依次念出被遗忘者离去之年的尾数。”——希尔德布兰、罗泽琳、还有那个没有名字的孩子。",
+  "t_contract_fine_print": "戴上眼镜，细字浮现：“以名换名，以血守门。每三十七个冬至，献一子之名。”封蜡上不是家徽，而是<k>牧杖纹</k>。字母短暂变成了眼睛。",
+  "t_crank_fitted": "铁曲柄严丝合缝地装上了绞盘。",
+  "t_crest_locked": "门上嵌着四分家徽石盘，纹丝不动。也许有人知道该怎么转。",
+  "t_crest_locked_seen": "门上嵌着四分家徽石盘。上面两块我在挂毯上见过：<k>闭眼</k>、<k>水纹</k>。下面两块褪了色——得问问这里记得家训的人。",
+  "t_crow": "窗台上蹲着一只乌鸦，歪头看你，像在等什么吃的。冷风从窗缝钻进来。",
+  "t_crow_gift": "乌鸦叼走面包，扑翼片刻，丢下一副<k>布伦丹的眼镜</k>。",
+  "t_cs_end_1": "绞盘转动，井盖滑开。井壁上密密麻麻，都是被吃掉的名字。",
+  "t_cs_end_2": "1312 年那一行写着：埃德里克。井下传来一个声音，用他自己的嗓音说：“欢迎回家。”",
+  "t_cs_end_3": "大厅里，家谱挂毯上被剪掉的那一枝，自己长出了一根新的线头。",
+  "t_cs_intro_1": "雨夜，灰烛修道院院长把一封信交给埃德里克：“布伦丹兄弟受邀去缄默堡誊抄家谱，十一月三日之后再无音讯。”",
+  "t_cs_intro_2": "“他是你在这里唯一的朋友。”马车在雾中驶过盐沼。",
+  "t_cs_intro_3": "缄默堡的门开着。没有人来迎接。",
+  "t_cycle_37": "1238、1275、1312、1349——每隔 <k>37</k> 年。被遗忘的不是三个名字，是三个孩子。编年史匣上那行铭文，我终于读懂了。",
+  "t_dd_final_q1": "谁主持了献名？",
+  "t_dd_final_q2": "契约献出的是什么？",
+  "t_dd_final_q3": "布伦丹兄弟现在在哪？",
+  "t_dd_why_q": "布伦丹兄弟为何失踪？",
+  "t_drawing": "玛蒂尔的蜡笔画：一家人手拉手，旁边一个没有脸的高个子；另一个穿灰袍的人被牵向一个<k>黑色圆圈</k>。",
+  "t_ending_title": "第一章 · 抵达　完",
+  "t_fire_warm": "余烬微红。灰下面压着什么。",
+  "t_found_rosary": "烛光照进桌下——一串<k>灰烛念珠</k>。七颗灰珠，缺了那颗黑的。是布伦丹的。",
+  "t_hint_chain": "链子为什么是湿的？",
+  "t_hint_names": "家谱上消失的是什么？",
+  "t_hint_seal": "封蜡上是什么纹？",
+  "t_inkstand_empty": "墨水台上只剩干涸的墨渍。",
+  "t_not_yet": "还不是时候。我得先知道下面是谁。",
+  "t_osbert_after": "奥斯博特低着头搓围裙，不敢看你。",
+  "t_osbert_b1": "这……这可能是哪个路过的乞丐丢的……",
+  "t_osbert_b2": "是夫人让我烧的！那位兄弟十一月三日来抄家谱……后来夫人说他已经走了，什么都不许记。门上那块石头，按家训转：<k>眼闭，水静，钥沉，井默</k>。",
+  "t_osbert_intro": "大人，这个冬天，堡里没有来过任何客人。",
+  "t_osbert_s1": "没有任何修士来过。",
+  "t_osbert_s2": "我们从不招待外人，也没有访客记录。",
+  "t_r1_poker": "你取下一根<k>拨火棍</k>。灰下面压着什么。",
+  "t_r1_table": "冷掉的残宴，倒下的杯子。你拿走了一根<k>未点燃的蜡烛</k>和一块<k>黑面包</k>。",
+  "t_relief": "先祖与某物立约。画面上只有很多闭着的眼皮。",
+  "t_scratches": "家谱原本上有三处刮痕，肉眼看不清。",
+  "t_stair_locked": "通往楼下礼拜堂的楼梯门，被一把<k>井形锁</k>锁住。",
+  "t_tapestry": "被剪掉的一枝只剩一个破洞，几根线头垂在洞口——刚才，它们是不是动了一下？顶部家徽褪色，只能看清左上“<k>闭眼</k>”与右上“<k>水纹</k>”。",
+  "t_too_dark": "什么也看不清。",
+  "t_tree_revealed": "炭粉扫过刮痕，墨迹蠕动着浮现：<k>1238 希尔德布兰</k>、<k>1275 罗泽琳</k>、<k>1312 ▇▇</k>——三人都标“生卒不详”。",
+  "t_well_whisper": "井里很深很深的地方，有人在低声念名字。",
+  "t_wet_chain": "链子是湿的，带着新鲜的黑泥。这口井在呼吸。",
+  "t_winch_no_crank": "绞盘缺了曲柄。",
+  "t_wrong_evidence": "对方一脸迷惑。埃德里克自嘲：这可拆穿不了什么。",
+  "t_wrong_link": "红线绷断了。埃德里克揉了揉眉心：不对。",
+  "t_ysolde_after": "伊瑟尔达不再祈祷，只是盯着井口。",
+  "t_ysolde_b1": "……他的珠子，怎么会在这里。",
+  "t_ysolde_b2": "你在说那些……没有名字的人。我们不说他们。我们不能说。",
+  "t_ysolde_b3": "（她第一次看向井，声音发抖）别那么大声。它在听。",
+  "t_ysolde_confess": "哈……<k>塞弗林神父</k>说，只要是名字就行——不一定是我们的孩子。一个没人会记得的修士，正好。",
+  "t_ysolde_intro": "侦探？这里只有祈祷的人。",
+  "t_ysolde_p1": "你没有任何东西能证明是谁下的令。",
+  "t_ysolde_rosary_any": "念珠？修士谁没有一串。",
+  "t_ysolde_s1": "那位修士十一月就离开了，我亲自送他出门。",
+  "t_ysolde_s2": "莫尔德雷克家族从未失去过一个孩子。",
+  "t_ysolde_s3": "这口井干涸一百年了，只是个祈祷的地方。",
+  "t_tapestry_after": "现在我知道那个破洞是什么了：每三十七年，从这棵树上剪掉一个孩子。洞口的线头在蠕动，像要把名字缝回去。",
+  "t_tree_again": "显影的墨迹还在：<k>1238 希尔德布兰</k>、<k>1275 罗泽琳</k>、<k>1312 ▇▇</k>。刮痕吃不进炭粉，名字就留在了刮痕里。",
+  "t_relief_open": "眼皮……全都睁开了。它们不看先祖，也不看我——它们看着井。"
+ },
+ "closeups": {
+  "_说明": "特写表（v1.2）。由效果 {type:'open', ui:'closeup', id} 打开。states 自上而下取第一条满足的（req 同 06 §2；sanityBelow=当前心烛 < 该值）；img=静态图，anim=自动循环帧（不是翻页）。overlays 为叠加透明层，条件同上，可多条。pages 为点按翻页的追加页（本章未用）。详见 06 §12。",
+  "cu_tapestry": {
+   "title": "家谱挂毯",
+   "states": [
+    {
+     "req": {
+      "flags": [
+       "cb_cycle_solved"
+      ]
+     },
+     "anim": {
+      "frames": [
+       "cu_tapestry_01",
+       "cu_tapestry_02",
+       "cu_tapestry_03",
+       "cu_tapestry_04"
+      ],
+      "fps": 6,
+      "loop": true
+     }
+    },
+    {
+     "sanityBelow": 70,
+     "anim": {
+      "frames": [
+       "cu_tapestry_01",
+       "cu_tapestry_02",
+       "cu_tapestry_03",
+       "cu_tapestry_04"
+      ],
+      "fps": 6,
+      "loop": true
+     }
+    },
+    {
+     "img": "cu_tapestry_01"
+    }
+   ]
+  },
+  "cu_genealogy": {
+   "title": "家谱原本",
+   "states": [
+    {
+     "req": {
+      "flags": [
+       "tree_revealed"
+      ]
+     },
+     "img": "cu_genealogy_original_revealed"
+    },
+    {
+     "img": "cu_genealogy_original"
+    }
+   ],
+   "overlays": [
+    {
+     "img": "cu_genealogy_original_lowsan",
+     "sanityBelow": 40
+    }
+   ]
+  },
+  "cu_brendan_copy": {
+   "title": "布伦丹的抄本",
+   "states": [
+    {
+     "img": "cu_brendan_copy"
+    }
+   ]
+  },
+  "cu_child_drawing": {
+   "title": "玛蒂尔的蜡笔画",
+   "states": [
+    {
+     "img": "cu_child_drawing"
+    }
+   ]
+  },
+  "cu_relief": {
+   "title": "立约浮雕",
+   "states": [
+    {
+     "req": {
+      "flags": [
+       "int_ysolde_done"
+      ]
+     },
+     "img": "cu_relief_open"
+    },
+    {
+     "sanityBelow": 40,
+     "img": "cu_relief_open"
+    },
+    {
+     "img": "cu_relief"
+    }
+   ]
+  },
+  "cu_well_lid": {
+   "title": "井盖与铁链",
+   "states": [
+    {
+     "img": "cu_well_lid"
+    }
+   ]
+  }
+ },
+ "uiText": {
+  "cantUse": "这里用不上【{item}】。",
+  "cantCombine": "【{a}】和【{b}】组合不到一起。",
+  "nothing": "",
+  "restoreOk": "心神稍定。（心烛 +{delta}）",
+  "restoreCooldown": "还需要再缓一缓（约 {sec} 秒）。",
+  "cbLocked": "线索还不够，板上空空如也。",
+  "cbNoRelation": "这两件事之间看不出关系。",
+  "missingEvidence": "还缺一件关键证据。",
+  "dialWrong": "铜锁纹丝不动。",
+  "crestHint": "家训：眼闭，水静，钥沉，井默。",
+  "crestTap": "轻触石盘旋转图案",
+  "intDone": "（对方已经无话可说。）",
+  "intSelect": "先选一条证词，再出示证据。",
+  "presentNone": "你手里还没有任何证据。",
+  "cbPick": "依次轻触（或拖动）两张卡片，牵一条红线。",
+  "cbAlready": "这两张已经连上了。",
+  "cbConclusion": "得出结论",
+  "cbDone": "线索板已完成。",
+  "ddPick": "每个问题选一个答案，然后提交。",
+  "ddWrong": "推理不成立。",
+  "ddSolved": "推理成立",
+  "itemHint": "轻触场景使用 · 轻触另一件道具组合 · 再点一次查看",
+  "useItem": "使用",
+  "noEvidence": "手记里还没有证据。",
+  "noNotes": "还没有记下什么。",
+  "cbLockedTab": "线索板需要三件关键证据：",
+  "noDeduction": "还没有可以推理的问题。"
+ },
+ "bgVariants": {
+  "r1_hall": [
+   {
+    "req": {
+     "flags": [
+      "crest_solved"
+     ]
+    },
+    "bg": "bg_r1_hall_door_open"
+   }
+  ],
+  "r2_scriptorium": [
+   {
+    "req": {
+     "flags": [
+      "stair_open",
+      "got_spectacles"
+     ]
+    },
+    "bg": "bg_r2_scriptorium_stair_window_open"
+   },
+   {
+    "req": {
+     "flags": [
+      "stair_open"
+     ]
+    },
+    "bg": "bg_r2_scriptorium_stair_open"
+   },
+   {
+    "req": {
+     "flags": [
+      "got_spectacles"
+     ]
+    },
+    "bg": "bg_r2_scriptorium_window_open"
+   }
+  ],
+  "r3_crypt": [
+   {
+    "req": {
+     "flags": [
+      "dd_final_solved"
+     ]
+    },
+    "bg": "bg_r3_crypt_well_open"
+   }
+  ]
+ },
+ "symbolNames": {
+  "eye_closed": "闭眼",
+  "water": "静水",
+  "key": "沉钥",
+  "well": "井"
+ },
+ "uiSfx": {
+  "tap": "sfx_tap",
+  "pickup": "sfx_pickup",
+  "evidence": "sfx_page_turn",
+  "combineOk": "sfx_combine_success",
+  "combineFail": "sfx_combine_fail",
+  "use": "sfx_item_use",
+  "wrong": "sfx_wrong",
+  "clueOk": "sfx_clue_connect",
+  "clueFail": "sfx_clue_fail",
+  "testimony": "sfx_testimony_flip",
+  "break": "stinger_contradiction",
+  "deduce": "stinger_deduction",
+  "dial": "sfx_dial_click",
+  "rotate": "sfx_crest_rotate",
+  "boxOpen": "sfx_box_open",
+  "restore": "sfx_sanity_restore",
+  "page": "sfx_page_turn"
+ },
+ "uiBgm": {
+  "title": "bgm_title",
+  "interrogation": "bgm_interrogation",
+  "clueboard": "bgm_clueboard",
+  "ending": "bgm_ending_ch1"
+ },
+ "hotspotSfx": {
+  "h_window": "sfx_crow",
+  "h_window_air": "sfx_window_wind",
+  "h_winch": "sfx_winch_chain"
+ }
+}

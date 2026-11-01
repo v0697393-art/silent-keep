@@ -1,0 +1,305 @@
+{
+ "generated": "2026-10-31T19:11:07-04:00",
+ "spec": "design/04_美术素材清单.md",
+ "note": "程序生成。fx_ink_tendril_01~04：心烛 s3 全屏叠加 4 帧循环（renderer.drawTendrils 直接读取）；fx_vignette_s2/s3：暗角叠加；fx_thread_wriggle/candle_flicker/text_eye/dust/stamp_seal 为序列帧，参数见同名 .json（12fps 规范，线头 6fps）。脚本 art_src/fx/build_fx.py + build_fx2.py",
+ "count": 39,
+ "assets": [
+  {
+   "file": "art/fx/fx_candle_flicker.json",
+   "sequence": null,
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_candle_flicker_01.png",
+   "width": 64,
+   "height": 128,
+   "transparent": true,
+   "sequence": "fx_candle_flicker",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_candle_flicker_02.png",
+   "width": 64,
+   "height": 128,
+   "transparent": true,
+   "sequence": "fx_candle_flicker",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_candle_flicker_03.png",
+   "width": 64,
+   "height": 128,
+   "transparent": true,
+   "sequence": "fx_candle_flicker",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_candle_flicker_04.png",
+   "width": 64,
+   "height": 128,
+   "transparent": true,
+   "sequence": "fx_candle_flicker",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_candle_flicker_05.png",
+   "width": 64,
+   "height": 128,
+   "transparent": true,
+   "sequence": "fx_candle_flicker",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_candle_flicker_06.png",
+   "width": 64,
+   "height": 128,
+   "transparent": true,
+   "sequence": "fx_candle_flicker",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_candle_flicker_s3_01.png",
+   "width": 64,
+   "height": 128,
+   "transparent": true,
+   "sequence": "fx_candle_flicker_s3",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_candle_flicker_s3_02.png",
+   "width": 64,
+   "height": 128,
+   "transparent": true,
+   "sequence": "fx_candle_flicker_s3",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_candle_flicker_s3_03.png",
+   "width": 64,
+   "height": 128,
+   "transparent": true,
+   "sequence": "fx_candle_flicker_s3",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_candle_flicker_s3_04.png",
+   "width": 64,
+   "height": 128,
+   "transparent": true,
+   "sequence": "fx_candle_flicker_s3",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_candle_flicker_s3_05.png",
+   "width": 64,
+   "height": 128,
+   "transparent": true,
+   "sequence": "fx_candle_flicker_s3",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_candle_flicker_s3_06.png",
+   "width": 64,
+   "height": 128,
+   "transparent": true,
+   "sequence": "fx_candle_flicker_s3",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_dust.json",
+   "sequence": null,
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_dust_01.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "sequence": "fx_dust",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_dust_02.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "sequence": "fx_dust",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_dust_mote.png",
+   "width": 32,
+   "height": 32,
+   "transparent": true,
+   "sequence": null,
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_ink_tendril_01.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "sequence": "fx_ink_tendril",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_ink_tendril_02.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "sequence": "fx_ink_tendril",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_ink_tendril_03.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "sequence": "fx_ink_tendril",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_ink_tendril_04.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "sequence": "fx_ink_tendril",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_stamp_seal.json",
+   "sequence": null,
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_stamp_seal_01.png",
+   "width": 512,
+   "height": 512,
+   "transparent": true,
+   "sequence": "fx_stamp_seal",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_stamp_seal_02.png",
+   "width": 512,
+   "height": 512,
+   "transparent": true,
+   "sequence": "fx_stamp_seal",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_stamp_seal_03.png",
+   "width": 512,
+   "height": 512,
+   "transparent": true,
+   "sequence": "fx_stamp_seal",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_stamp_seal_04.png",
+   "width": 512,
+   "height": 512,
+   "transparent": true,
+   "sequence": "fx_stamp_seal",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_stamp_seal_05.png",
+   "width": 512,
+   "height": 512,
+   "transparent": true,
+   "sequence": "fx_stamp_seal",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_stamp_seal_06.png",
+   "width": 512,
+   "height": 512,
+   "transparent": true,
+   "sequence": "fx_stamp_seal",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_text_eye.json",
+   "sequence": null,
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_text_eye_01.png",
+   "width": 128,
+   "height": 128,
+   "transparent": true,
+   "sequence": "fx_text_eye",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_text_eye_02.png",
+   "width": 128,
+   "height": 128,
+   "transparent": true,
+   "sequence": "fx_text_eye",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_text_eye_03.png",
+   "width": 128,
+   "height": 128,
+   "transparent": true,
+   "sequence": "fx_text_eye",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_thread_wriggle.json",
+   "sequence": null,
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_thread_wriggle_01.png",
+   "width": 440,
+   "height": 440,
+   "transparent": true,
+   "sequence": "fx_thread_wriggle",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_thread_wriggle_02.png",
+   "width": 440,
+   "height": 440,
+   "transparent": true,
+   "sequence": "fx_thread_wriggle",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_thread_wriggle_03.png",
+   "width": 440,
+   "height": 440,
+   "transparent": true,
+   "sequence": "fx_thread_wriggle",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_thread_wriggle_04.png",
+   "width": 440,
+   "height": 440,
+   "transparent": true,
+   "sequence": "fx_thread_wriggle",
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_vignette_s2.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "sequence": null,
+   "purpose": "特效叠加（透明 PNG）"
+  },
+  {
+   "file": "art/fx/fx_vignette_s3.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "sequence": null,
+   "purpose": "特效叠加（透明 PNG）"
+  }
+ ]
+}

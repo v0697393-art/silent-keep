@@ -1,0 +1,207 @@
+{
+ "room": "r2_scriptorium",
+ "bg": "bg_r2_scriptorium",
+ "size": [
+  1080,
+  1920
+ ],
+ "playArea": [
+  0,
+  120,
+  1080,
+  1540
+ ],
+ "variants": [
+  {
+   "id": "bg_r2_scriptorium_window_open",
+   "when": "flag got_spectacles"
+  },
+  {
+   "id": "bg_r2_scriptorium_stair_open",
+   "when": "flag stair_open (priority over window_open per patch)"
+  },
+  {
+   "id": "bg_r2_scriptorium_stair_window_open",
+   "when": "flags stair_open + got_spectacles (window and stair door both open; pixel-aligned merge)"
+  }
+ ],
+ "hotspots": [
+  {
+   "id": "h_desk_copy",
+   "rect": [
+    130,
+    780,
+    370,
+    310
+   ],
+   "chapter1Rect": [
+    120,
+    1000,
+    380,
+    300
+   ],
+   "changed": true
+  },
+  {
+   "id": "h_desk_original",
+   "rect": [
+    580,
+    780,
+    380,
+    310
+   ],
+   "chapter1Rect": [
+    540,
+    1000,
+    420,
+    300
+   ],
+   "changed": true,
+   "note": "3 abraded (scraped) circles at lower right of the tree"
+  },
+  {
+   "id": "h_inkstand",
+   "rect": [
+    400,
+    1190,
+    330,
+    150
+   ],
+   "chapter1Rect": [
+    400,
+    1320,
+    280,
+    160
+   ],
+   "changed": true
+  },
+  {
+   "id": "h_window",
+   "rect": [
+    650,
+    120,
+    300,
+    388
+   ],
+   "chapter1Rect": [
+    640,
+    220,
+    320,
+    420
+   ],
+   "changed": true,
+   "note": "rect bottom set so renderer.drawCrow (px=x+w/2-96, py=y+hh-230, 192x192) puts the crow on the sill: draws at [704,278,192,192]"
+  },
+  {
+   "id": "h_window_air",
+   "rect": [
+    680,
+    450,
+    240,
+    70
+   ],
+   "chapter1Rect": [
+    680,
+    640,
+    240,
+    80
+   ],
+   "changed": true
+  },
+  {
+   "id": "h_drawing",
+   "rect": [
+    700,
+    560,
+    245,
+    165
+   ],
+   "chapter1Rect": [
+    700,
+    720,
+    200,
+    160
+   ],
+   "changed": true
+  },
+  {
+   "id": "h_board",
+   "rect": [
+    100,
+    120,
+    470,
+    560
+   ],
+   "chapter1Rect": [
+    80,
+    260,
+    480,
+    560
+   ],
+   "changed": true
+  },
+  {
+   "id": "h_chest",
+   "rect": [
+    80,
+    1380,
+    340,
+    270
+   ],
+   "chapter1Rect": [
+    100,
+    1500,
+    320,
+    240
+   ],
+   "changed": true,
+   "note": "chest front + brass dial at ~[190,1480,110,110] (R2 art shifted up 120px so it clears the bar)"
+  },
+  {
+   "id": "h_stair_door",
+   "rect": [
+    755,
+    1190,
+    275,
+    470
+   ],
+   "chapter1Rect": [
+    760,
+    1400,
+    260,
+    420
+   ],
+   "changed": true,
+   "note": "door bottom ~y1680, just at the bar"
+  }
+ ],
+ "layers": [
+  {
+   "id": "char_crow_perch",
+   "rect": [
+    704,
+    278,
+    192,
+    192
+   ],
+   "note": "auto-positioned by renderer from h_window; hidden after got_spectacles"
+  }
+ ],
+ "fakeHotspots": [
+  {
+   "rect": [
+    100,
+    1180,
+    240,
+    150
+   ],
+   "chapter1Rect": [
+    300,
+    700,
+    140,
+    140
+   ],
+   "note": "moved from [300,700,140,140] (that is on the pin board) to the book shelf, matching the text"
+  }
+ ]
+}

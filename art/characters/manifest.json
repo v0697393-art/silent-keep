@@ -1,0 +1,664 @@
+{
+ "generated": "2026-10-31T19:10:22-04:00",
+ "spec": "design/04_美术素材清单.md",
+ "note": "源图由 GenerateImage 生成(768x1024/720x1280)，LANCZOS 放大至目标尺寸；rembg isnet-general-use 抠图 + 去羊皮纸色边",
+ "count": 82,
+ "assets": [
+  {
+   "file": "art/characters/char_edric_neutral.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "neutral",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 neutral"
+  },
+  {
+   "file": "art/characters/char_edric_neutral_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "neutral",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_edric_neutral_s2.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "neutral_s2",
+   "purpose": "心烛理智差分 s2（脸色灰、眼下更暗、整体更暗）；表情 neutral"
+  },
+  {
+   "file": "art/characters/char_edric_neutral_s2_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "neutral_s2",
+   "purpose": "对话框头像 384 理智差分 s2"
+  },
+  {
+   "file": "art/characters/char_edric_neutral_s3.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "neutral_s3",
+   "purpose": "心烛理智差分 s3（线条晕墨抖动、多一道错位影子、泛黄、墨渍）；表情 neutral"
+  },
+  {
+   "file": "art/characters/char_edric_neutral_s3_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "neutral_s3",
+   "purpose": "对话框头像 384 理智差分 s3"
+  },
+  {
+   "file": "art/characters/char_edric_think.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "think",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 think"
+  },
+  {
+   "file": "art/characters/char_edric_think_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "think",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_edric_think_s2.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "think_s2",
+   "purpose": "心烛理智差分 s2（脸色灰、眼下更暗、整体更暗）；表情 think"
+  },
+  {
+   "file": "art/characters/char_edric_think_s2_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "think_s2",
+   "purpose": "对话框头像 384 理智差分 s2"
+  },
+  {
+   "file": "art/characters/char_edric_think_s3.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "think_s3",
+   "purpose": "心烛理智差分 s3（线条晕墨抖动、多一道错位影子、泛黄、墨渍）；表情 think"
+  },
+  {
+   "file": "art/characters/char_edric_think_s3_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "think_s3",
+   "purpose": "对话框头像 384 理智差分 s3"
+  },
+  {
+   "file": "art/characters/char_edric_press.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "press",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 press"
+  },
+  {
+   "file": "art/characters/char_edric_press_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "press",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_edric_press_s2.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "press_s2",
+   "purpose": "心烛理智差分 s2（脸色灰、眼下更暗、整体更暗）；表情 press"
+  },
+  {
+   "file": "art/characters/char_edric_press_s2_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "press_s2",
+   "purpose": "对话框头像 384 理智差分 s2"
+  },
+  {
+   "file": "art/characters/char_edric_press_s3.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "press_s3",
+   "purpose": "心烛理智差分 s3（线条晕墨抖动、多一道错位影子、泛黄、墨渍）；表情 press"
+  },
+  {
+   "file": "art/characters/char_edric_press_s3_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "press_s3",
+   "purpose": "对话框头像 384 理智差分 s3"
+  },
+  {
+   "file": "art/characters/char_edric_wry.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "wry",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 wry"
+  },
+  {
+   "file": "art/characters/char_edric_wry_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "wry",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_edric_wry_s2.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "wry_s2",
+   "purpose": "心烛理智差分 s2（脸色灰、眼下更暗、整体更暗）；表情 wry"
+  },
+  {
+   "file": "art/characters/char_edric_wry_s2_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "wry_s2",
+   "purpose": "对话框头像 384 理智差分 s2"
+  },
+  {
+   "file": "art/characters/char_edric_wry_s3.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "wry_s3",
+   "purpose": "心烛理智差分 s3（线条晕墨抖动、多一道错位影子、泛黄、墨渍）；表情 wry"
+  },
+  {
+   "file": "art/characters/char_edric_wry_s3_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "wry_s3",
+   "purpose": "对话框头像 384 理智差分 s3"
+  },
+  {
+   "file": "art/characters/char_edric_shaken.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "shaken",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 shaken"
+  },
+  {
+   "file": "art/characters/char_edric_shaken_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "shaken",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_edric_shaken_s2.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "shaken_s2",
+   "purpose": "心烛理智差分 s2（脸色灰、眼下更暗、整体更暗）；表情 shaken"
+  },
+  {
+   "file": "art/characters/char_edric_shaken_s2_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "shaken_s2",
+   "purpose": "对话框头像 384 理智差分 s2"
+  },
+  {
+   "file": "art/characters/char_edric_shaken_s3.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "shaken_s3",
+   "purpose": "心烛理智差分 s3（线条晕墨抖动、多一道错位影子、泛黄、墨渍）；表情 shaken"
+  },
+  {
+   "file": "art/characters/char_edric_shaken_s3_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "shaken_s3",
+   "purpose": "对话框头像 384 理智差分 s3"
+  },
+  {
+   "file": "art/characters/char_edric_relief.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "relief",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 relief"
+  },
+  {
+   "file": "art/characters/char_edric_relief_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "relief",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_edric_relief_s2.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "relief_s2",
+   "purpose": "心烛理智差分 s2（脸色灰、眼下更暗、整体更暗）；表情 relief"
+  },
+  {
+   "file": "art/characters/char_edric_relief_s2_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "relief_s2",
+   "purpose": "对话框头像 384 理智差分 s2"
+  },
+  {
+   "file": "art/characters/char_edric_relief_s3.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "relief_s3",
+   "purpose": "心烛理智差分 s3（线条晕墨抖动、多一道错位影子、泛黄、墨渍）；表情 relief"
+  },
+  {
+   "file": "art/characters/char_edric_relief_s3_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "edric",
+   "state": "relief_s3",
+   "purpose": "对话框头像 384 理智差分 s3"
+  },
+  {
+   "file": "art/characters/char_edric_avatar_256.png",
+   "width": 256,
+   "height": 256,
+   "character": "edric",
+   "state": "neutral",
+   "purpose": "手记/存档/线索板头像 256x256"
+  },
+  {
+   "file": "art/characters/char_edric_full.png",
+   "width": 540,
+   "height": 1440,
+   "character": "edric",
+   "state": "full",
+   "purpose": "全身立绘 540x1440 透明（过场/场景内站位/人物阵容）"
+  },
+  {
+   "file": "art/characters/char_osbert_calm.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "osbert",
+   "state": "calm",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 calm"
+  },
+  {
+   "file": "art/characters/char_osbert_calm_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "osbert",
+   "state": "calm",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_osbert_nervous.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "osbert",
+   "state": "nervous",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 nervous"
+  },
+  {
+   "file": "art/characters/char_osbert_nervous_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "osbert",
+   "state": "nervous",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_osbert_broken.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "osbert",
+   "state": "broken",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 broken"
+  },
+  {
+   "file": "art/characters/char_osbert_broken_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "osbert",
+   "state": "broken",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_osbert_avatar_256.png",
+   "width": 256,
+   "height": 256,
+   "character": "osbert",
+   "state": "calm",
+   "purpose": "手记/存档/线索板头像 256x256"
+  },
+  {
+   "file": "art/characters/char_osbert_full.png",
+   "width": 540,
+   "height": 1440,
+   "character": "osbert",
+   "state": "full",
+   "purpose": "全身立绘 540x1440 透明（过场/场景内站位/人物阵容）"
+  },
+  {
+   "file": "art/characters/char_ysolde_calm.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "ysolde",
+   "state": "calm",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 calm"
+  },
+  {
+   "file": "art/characters/char_ysolde_calm_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "ysolde",
+   "state": "calm",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_ysolde_cold.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "ysolde",
+   "state": "cold",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 cold"
+  },
+  {
+   "file": "art/characters/char_ysolde_cold_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "ysolde",
+   "state": "cold",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_ysolde_shaken.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "ysolde",
+   "state": "shaken",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 shaken"
+  },
+  {
+   "file": "art/characters/char_ysolde_shaken_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "ysolde",
+   "state": "shaken",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_ysolde_broken.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "ysolde",
+   "state": "broken",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 broken"
+  },
+  {
+   "file": "art/characters/char_ysolde_broken_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "ysolde",
+   "state": "broken",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_ysolde_avatar_256.png",
+   "width": 256,
+   "height": 256,
+   "character": "ysolde",
+   "state": "calm",
+   "purpose": "手记/存档/线索板头像 256x256"
+  },
+  {
+   "file": "art/characters/char_ysolde_full.png",
+   "width": 540,
+   "height": 1440,
+   "character": "ysolde",
+   "state": "full",
+   "purpose": "全身立绘 540x1440 透明（过场/场景内站位/人物阵容）"
+  },
+  {
+   "file": "art/characters/char_godwin_neutral.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "godwin",
+   "state": "neutral",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 neutral"
+  },
+  {
+   "file": "art/characters/char_godwin_neutral_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "godwin",
+   "state": "neutral",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_godwin_avatar_256.png",
+   "width": 256,
+   "height": 256,
+   "character": "godwin",
+   "state": "neutral",
+   "purpose": "手记/存档/线索板头像 256x256"
+  },
+  {
+   "file": "art/characters/char_godwin_full.png",
+   "width": 540,
+   "height": 1440,
+   "character": "godwin",
+   "state": "full",
+   "purpose": "全身立绘 540x1440 透明（过场/场景内站位/人物阵容）"
+  },
+  {
+   "file": "art/characters/char_alric_neutral.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "alric",
+   "state": "neutral",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 neutral"
+  },
+  {
+   "file": "art/characters/char_alric_neutral_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "alric",
+   "state": "neutral",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_alric_avatar_256.png",
+   "width": 256,
+   "height": 256,
+   "character": "alric",
+   "state": "neutral",
+   "purpose": "手记/存档/线索板头像 256x256"
+  },
+  {
+   "file": "art/characters/char_alric_full.png",
+   "width": 540,
+   "height": 1440,
+   "character": "alric",
+   "state": "full",
+   "purpose": "全身立绘 540x1440 透明（过场/场景内站位/人物阵容）"
+  },
+  {
+   "file": "art/characters/char_mathilde_neutral.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "mathilde",
+   "state": "neutral",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 neutral"
+  },
+  {
+   "file": "art/characters/char_mathilde_neutral_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "mathilde",
+   "state": "neutral",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_mathilde_avatar_256.png",
+   "width": 256,
+   "height": 256,
+   "character": "mathilde",
+   "state": "neutral",
+   "purpose": "手记/存档/线索板头像 256x256"
+  },
+  {
+   "file": "art/characters/char_mathilde_full.png",
+   "width": 540,
+   "height": 1440,
+   "character": "mathilde",
+   "state": "full",
+   "purpose": "全身立绘 540x1440 透明（过场/场景内站位/人物阵容）"
+  },
+  {
+   "file": "art/characters/char_severin_neutral.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "severin",
+   "state": "neutral",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 neutral"
+  },
+  {
+   "file": "art/characters/char_severin_neutral_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "severin",
+   "state": "neutral",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_severin_avatar_256.png",
+   "width": 256,
+   "height": 256,
+   "character": "severin",
+   "state": "neutral",
+   "purpose": "手记/存档/线索板头像 256x256"
+  },
+  {
+   "file": "art/characters/char_severin_full.png",
+   "width": 540,
+   "height": 1440,
+   "character": "severin",
+   "state": "full",
+   "purpose": "全身立绘 540x1440 透明（过场/场景内站位/人物阵容）"
+  },
+  {
+   "file": "art/characters/char_brendan_neutral.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "brendan",
+   "state": "neutral",
+   "purpose": "对话立绘 半身 1024x1536 透明（人物占高90%，顶部留白5%）；表情 neutral"
+  },
+  {
+   "file": "art/characters/char_brendan_neutral_portrait_384.png",
+   "width": 384,
+   "height": 384,
+   "character": "brendan",
+   "state": "neutral",
+   "purpose": "对话框头像 384x384（由半身裁切）"
+  },
+  {
+   "file": "art/characters/char_brendan_avatar_256.png",
+   "width": 256,
+   "height": 256,
+   "character": "brendan",
+   "state": "neutral",
+   "purpose": "手记/存档/线索板头像 256x256"
+  },
+  {
+   "file": "art/characters/char_brendan_full.png",
+   "width": 540,
+   "height": 1440,
+   "character": "brendan",
+   "state": "full",
+   "purpose": "全身立绘 540x1440 透明（过场/场景内站位/人物阵容）"
+  },
+  {
+   "file": "art/characters/ovl_edric_ink_s3.png",
+   "width": 1024,
+   "height": 1536,
+   "character": "edric",
+   "state": "overlay_s3",
+   "purpose": "s3 晕墨叠加层（可叠在任意 Edric 立绘上，引擎端控制透明度）"
+  },
+  {
+   "file": "art/characters/char_crow_perch.png",
+   "width": 192,
+   "height": 192,
+   "character": "crow",
+   "state": "perch",
+   "purpose": "乌鸦精灵 192x192 帧：perch"
+  },
+  {
+   "file": "art/characters/char_crow_tilt.png",
+   "width": 192,
+   "height": 192,
+   "character": "crow",
+   "state": "tilt",
+   "purpose": "乌鸦精灵 192x192 帧：tilt"
+  },
+  {
+   "file": "art/characters/char_crow_fly.png",
+   "width": 192,
+   "height": 192,
+   "character": "crow",
+   "state": "fly",
+   "purpose": "乌鸦精灵 192x192 帧：fly"
+  },
+  {
+   "file": "art/characters/char_crow_sheet.png",
+   "width": 576,
+   "height": 192,
+   "character": "crow",
+   "state": "sheet",
+   "purpose": "乌鸦精灵图集 3帧横排 576x192（perch/tilt/fly）"
+  },
+  {
+   "file": "art/characters/characters_lineup.png",
+   "width": 3200,
+   "height": 1500,
+   "character": "all",
+   "state": "lineup",
+   "purpose": "角色阵容总览（评审用，非游戏内素材）"
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+  "_说明": "开发补丁：只放 design/data/chapter1.json 里没有对应字段的数据。v1.1 起文本表、房间名、热点名、NPC 名、过场字幕、结局标题、卡片图、谜题标题/背景改读 json（06 §11）；v1.2 起 uiText、bgVariants、symbolNames、uiSfx、uiBgm、hotspotSfx 也并入 json（06 §12.3），本文件对应字段已删除。现只剩 audioAlias 与 npcLayers（兜底站位）。引擎仍保留“json 优先、补丁兜底”的合并逻辑。",
+  "audioAlias": {},
+  "_说明_audioAlias": "audioAlias：音频 id 别名（chapter1.json 引用 id → audio_manifest.json 里的 id）。音频第一版 id 已与 chapter1.json 完全一致，故清空；verify 会检查所有引用都在清单里。",
+  "npcLayers": {
+    "_说明": "NPC 全身站姿图层的兜底站位（仅当 chapter1.json npcs 没有 rect、美术热区文件 layers 里也没有该站姿图时才用）。rect 与审讯入口热点一致，底边贴地；立绘只画在画布上，不参与点击判定。",
+    "osbert": {
+      "room": "r1_hall",
+      "rect": [
+        890,
+        1120,
+        190,
+        507
+      ]
+    },
+    "ysolde": {
+      "room": "r3_crypt",
+      "rect": [
+        70,
+        1100,
+        210,
+        560
+      ]
+    }
+  }
+}

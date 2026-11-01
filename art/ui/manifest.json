@@ -1,0 +1,646 @@
+{
+ "generated": "2026-10-31T19:11:07-04:00",
+ "spec": "design/04_美术素材清单.md",
+ "note": "UI 素材：手绘抠图（rembg isnet）+ 程序生成；图标为 24 网格 2px 描边 SVG（含 _light 浅色版）+ PNG 48/96；坐标/拼装参数见 ui_meta.json。中文为 Noto Serif SC（OFL）。脚本 art_src/ui/build_ui.py",
+ "count": 101,
+ "assets": [
+  {
+   "file": "art/ui/ui_btn_cancel.png",
+   "width": 390,
+   "height": 158,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_btn_cancel_pressed.png",
+   "width": 390,
+   "height": 158,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_btn_confirm.png",
+   "width": 390,
+   "height": 158,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_btn_confirm_pressed.png",
+   "width": 390,
+   "height": 158,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_btn_present.png",
+   "width": 490,
+   "height": 158,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_btn_present_pressed.png",
+   "width": 490,
+   "height": 158,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_btn_round_iron.png",
+   "width": 128,
+   "height": 128,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_btn_round_seal.png",
+   "width": 128,
+   "height": 132,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_button.png",
+   "width": 450,
+   "height": 158,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_cork_board.jpg",
+   "width": 1080,
+   "height": 1600,
+   "transparent": false,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_crest_v1.png",
+   "width": 846,
+   "height": 931,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_crest_v1.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_crest_v1_256.png",
+   "width": 233,
+   "height": 256,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_crest_v2.png",
+   "width": 845,
+   "height": 933,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_crest_v2.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_crest_v2_256.png",
+   "width": 232,
+   "height": 256,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_crest_v3.png",
+   "width": 847,
+   "height": 934,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_crest_v3.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_crest_v3_256.png",
+   "width": 232,
+   "height": 256,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_dialog_box.png",
+   "width": 1030,
+   "height": 390,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_dialog_name.png",
+   "width": 320,
+   "height": 80,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_flame_s1.png",
+   "width": 64,
+   "height": 128,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_flame_s2.png",
+   "width": 64,
+   "height": 128,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_flame_s3.png",
+   "width": 64,
+   "height": 128,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_heart_candle.png",
+   "width": 166,
+   "height": 485,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_heart_candle_base.png",
+   "width": 166,
+   "height": 175,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_heart_candle_body.png",
+   "width": 166,
+   "height": 260,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_heart_candle_top.png",
+   "width": 166,
+   "height": 50,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_back.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_back_48.png",
+   "width": 48,
+   "height": 48,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_back_96.png",
+   "width": 96,
+   "height": 96,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_back_light.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_back_light_96.png",
+   "width": 96,
+   "height": 96,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_board.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_board_48.png",
+   "width": 48,
+   "height": 48,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_board_96.png",
+   "width": 96,
+   "height": 96,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_board_light.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_board_light_96.png",
+   "width": 96,
+   "height": 96,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_close.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_close_48.png",
+   "width": 48,
+   "height": 48,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_close_96.png",
+   "width": 96,
+   "height": 96,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_close_light.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_close_light_96.png",
+   "width": 96,
+   "height": 96,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_evidence.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_evidence_48.png",
+   "width": 48,
+   "height": 48,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_evidence_96.png",
+   "width": 96,
+   "height": 96,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_evidence_light.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_evidence_light_96.png",
+   "width": 96,
+   "height": 96,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_gear.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_gear_48.png",
+   "width": 48,
+   "height": 48,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_gear_96.png",
+   "width": 96,
+   "height": 96,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_gear_light.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_gear_light_96.png",
+   "width": 96,
+   "height": 96,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_hint.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_hint_48.png",
+   "width": 48,
+   "height": 48,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_hint_96.png",
+   "width": 96,
+   "height": 96,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_hint_light.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_hint_light_96.png",
+   "width": 96,
+   "height": 96,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_journal.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_journal_48.png",
+   "width": 48,
+   "height": 48,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_journal_96.png",
+   "width": 96,
+   "height": 96,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_journal_light.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_journal_light_96.png",
+   "width": 96,
+   "height": 96,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_skip.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_skip_48.png",
+   "width": 48,
+   "height": 48,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_skip_96.png",
+   "width": 96,
+   "height": 96,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_skip_light.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_icon_skip_light_96.png",
+   "width": 96,
+   "height": 96,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_inventory_bar.jpg",
+   "width": 1080,
+   "height": 220,
+   "transparent": false,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_journal_bg.jpg",
+   "width": 1080,
+   "height": 1600,
+   "transparent": false,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_loading.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_loading_bar_bg.png",
+   "width": 600,
+   "height": 28,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_loading_bar_fill.png",
+   "width": 592,
+   "height": 20,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_loading_with_text.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_meta.json",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_pin.png",
+   "width": 48,
+   "height": 48,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_portrait_frame.png",
+   "width": 280,
+   "height": 340,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_portrait_mask.png",
+   "width": 280,
+   "height": 340,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_red_line.png",
+   "width": 512,
+   "height": 24,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_red_line.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_red_line_broken.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_red_line_broken_l.png",
+   "width": 256,
+   "height": 40,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_red_line_broken_r.png",
+   "width": 256,
+   "height": 40,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_relation_tag.png",
+   "width": 240,
+   "height": 88,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_relation_tag_kin.png",
+   "width": 240,
+   "height": 88,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_relation_tag_lie.png",
+   "width": 240,
+   "height": 88,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_relation_tag_motive.png",
+   "width": 240,
+   "height": 88,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_relation_tag_witness.png",
+   "width": 240,
+   "height": 88,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_slot_empty.png",
+   "width": 160,
+   "height": 160,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_slot_selected.png",
+   "width": 160,
+   "height": 160,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_slot_selected.svg",
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_stamp_seal.png",
+   "width": 420,
+   "height": 433,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_tab_blank.png",
+   "width": 300,
+   "height": 120,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_tab_board.png",
+   "width": 300,
+   "height": 120,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_tab_board_on.png",
+   "width": 300,
+   "height": 120,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_tab_deduce.png",
+   "width": 300,
+   "height": 120,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_tab_deduce_on.png",
+   "width": 300,
+   "height": 120,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_tab_evidence.png",
+   "width": 300,
+   "height": 120,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_tab_evidence_on.png",
+   "width": 300,
+   "height": 120,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_testimony_strip.png",
+   "width": 960,
+   "height": 250,
+   "transparent": true,
+   "purpose": "UI"
+  },
+  {
+   "file": "art/ui/ui_testimony_strip_selected.png",
+   "width": 960,
+   "height": 250,
+   "transparent": true,
+   "purpose": "UI"
+  }
+ ]
+}

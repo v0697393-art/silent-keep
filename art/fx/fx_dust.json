@@ -1,0 +1,8 @@
+{
+ "frames": 2,
+ "fps": 1,
+ "frame_w": 1080,
+ "frame_h": 1920,
+ "loop": true,
+ "note": "全屏浮尘+左上 45° 淡光柱，透明 PNG；建议两帧交叉淡入 + 缓慢 translateY(-40px)/20s；或用 fx_dust_mote 做粒子"
+}

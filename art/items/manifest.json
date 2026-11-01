@@ -1,0 +1,161 @@
+{
+ "generated": "2026-10-31T19:11:07-04:00",
+ "spec": "design/04_美术素材清单.md",
+ "note": "256x256 透明 PNG；GenerateImage 图标表切格 + rembg(isnet) 抠图；念珠由珠子精灵程序拼（rosary 7 灰缺 1；rosary_full 7 灰+1 黑）。阴影统一落向右下。脚本 art_src/items/build_items.py",
+ "count": 17,
+ "assets": [
+  {
+   "file": "art/items/item_black_bead.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "black_bead",
+   "name": "黑念珠珠子",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_bread.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "bread",
+   "name": "黑面包",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_burnt_page.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "burnt_page",
+   "name": "焦黑的访客簿残页",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_candle.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "candle",
+   "name": "未点燃的蜡烛",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_candle_lit.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "candle_lit",
+   "name": "燃烛",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_charcoal.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "charcoal",
+   "name": "炭条",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_charcoal_dust.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "charcoal_dust",
+   "name": "炭粉",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_contract_half.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "contract_half",
+   "name": "半份契约",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_crank.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "crank",
+   "name": "铁曲柄",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_poker.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "poker",
+   "name": "拨火棍",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_quill.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "quill",
+   "name": "鹅毛笔",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_reveal_brush.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "reveal_brush",
+   "name": "显影刷",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_rosary.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "rosary",
+   "name": "灰烛念珠",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_rosary_full.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "rosary_full",
+   "name": "完整的念珠",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_scraper.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "scraper",
+   "name": "刮刀",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_spectacles.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "spectacles",
+   "name": "布伦丹的眼镜",
+   "purpose": "道具栏图标"
+  },
+  {
+   "file": "art/items/item_well_key.png",
+   "width": 256,
+   "height": 256,
+   "transparent": true,
+   "item": "well_key",
+   "name": "井形钥匙",
+   "purpose": "道具栏图标"
+  }
+ ]
+}
