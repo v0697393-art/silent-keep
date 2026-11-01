@@ -43,7 +43,7 @@ npm test                    # 以上三步
 ## 素材约定（美术）
 
 - **文件名**：文件名就是数据里的 id，后面可以带尺寸后缀，放在 `art/` 的任意子目录都可以。
-  - 例：`art/bg/bg_r1_hall_1080x1920.png`、`art/characters/char_osbert_calm.png`。
+  - 例：`art/bg/bg_r1_hall_1080x1920.png`、`art/characters/char_edric_neutral.png`。
 - **自动替换占位**：图片到位后跑 `npm run assets`，占位图就会被换掉。
 - **热区坐标**：放 `art/**/<房间或背景名>_hotspots.json`，格式是 `{ "room": "r1_hall", "hotspots": { "h_table": [x,y,w,h] } }`，坐标用 1080×1920 逻辑像素，会覆盖策划坐标。`verify` 会报告覆盖了哪些热点、有哪些未知 id。
 - **游戏区**：热点要放在 y 120–1660 之间，超出的部分会被 HUD 或道具栏挡住，`verify` 会给出 WARN。

@@ -7,7 +7,7 @@ import { PLAY_RECT } from './layout.js';
 /** 章节表（06 §13.1）。patch 为 null = 该章不需要开发补丁（显示字段 json 里都有）；walkthrough 是工具用的回放脚本（相对 game/） */
 export const CHAPTERS = [
   { n: 1, url: '../design/data/chapter1.json', patch: 'data/chapter1.patch.json', walkthrough: 'tools/walkthrough-ch1.json' },
-  // { n: 2, url: '../design/data/chapter2.json', patch: null, walkthrough: 'tools/walkthrough-ch2.json' }, // 发布快照：第二章未完成，暂不开放
+  { n: 2, url: '../design/data/chapter2.json', patch: null, walkthrough: 'tools/walkthrough-ch2.json' },
 ];
 export const chapterInfo = (n) => CHAPTERS.find((c) => c.n === Number(n)) ?? null;
 export const CHAPTER_URL = CHAPTERS[0].url;   // 兼容旧调用（= 第一章）

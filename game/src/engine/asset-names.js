@@ -1,8 +1,8 @@
 // 素材查找约定（浏览器与 Node 工具共用）。
-// chapter1.json 里的素材都用 id 引用（bg_r1_hall、item_candle、char_osbert_calm、ev_rosary、bgm_r1_hall、sfx_stone_sink…）。
+// chapter1.json 里的素材都用 id 引用（bg_r1_hall、item_candle、char_edric_neutral、ev_rosary、bgm_r1_hall、sfx_stone_sink…）。
 // 文件名 = id 本身，或 id 后加尺寸/规格后缀；放在 art/ 或 audio/ 的任意子目录都行：
 //   art/bg/bg_r1_hall.png  或  art/bg/bg_r1_hall_1080x1920.png  （style-guide：类别_对象_变体_宽x高.png）
-//   art/characters/char_osbert_calm.png（美术现有交付）
+//   art/characters/char_edric_neutral.png（美术现有交付）
 //   audio/sfx/sfx_stone_sink.m4a|ogg|mp3
 // 音频优先按 audio/audio_manifest.json 的 files[id].src 查找（只采用磁盘上确实存在的文件）。
 export const IMG_EXT = ['webp', 'png', 'jpg', 'jpeg', 'svg'];

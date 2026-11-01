@@ -8,7 +8,7 @@
    1920
   ],
   "start": "r4_bedchamber",
-  "version": "v2.2",
+  "version": "v2.3",
   "intro": "cs_ch2_intro",
   "ending": "cs_ch2_end",
   "endingTitle": "t_ch2_ending_title"
@@ -307,7 +307,7 @@
         },
         {
          "type": "sanity",
-         "delta": -5,
+         "delta": -3,
          "once": true
         },
         {
@@ -365,7 +365,7 @@
         },
         {
          "type": "sanity",
-         "delta": -5,
+         "delta": -3,
          "once": true
         },
         {
@@ -728,7 +728,7 @@
         },
         {
          "type": "sanity",
-         "delta": -10,
+         "delta": -5,
          "once": true
         },
         {
@@ -879,7 +879,7 @@
         },
         {
          "type": "sanity",
-         "delta": -10,
+         "delta": -5,
          "once": true
         },
         {
@@ -911,7 +911,7 @@
         },
         {
          "type": "sanity",
-         "delta": -10,
+         "delta": -5,
          "once": true
         },
         {
@@ -1150,26 +1150,6 @@
       ]
      },
      "_说明": "抽屉关（底图 bg_r6_nursery）：空摇篮自己摇（s3）"
-    },
-    {
-     "id": "fx_cradle_rock",
-     "rect": [
-      154,
-      909,
-      558,
-      533
-     ],
-     "fps": 4,
-     "loop": true,
-     "req": {
-      "flags": [
-       "int_severin_done"
-      ],
-      "notFlags": [
-       "cradle_drawer_open"
-      ]
-     },
-     "_说明": "抽屉关、神父审讯后常驻"
     },
     {
      "id": "fx_cradle_rock_open",
@@ -1497,7 +1477,7 @@
         },
         {
          "type": "sanity",
-         "delta": -10,
+         "delta": -5,
          "once": true
         },
         {
@@ -1694,7 +1674,7 @@
     },
     {
      "type": "sanity",
-     "delta": -5,
+     "delta": -3,
      "once": true
     },
     {
@@ -2029,7 +2009,7 @@
     },
     {
      "type": "sanity",
-     "delta": -10,
+     "delta": -5,
      "once": true
     }
    ]
@@ -2130,7 +2110,7 @@
  },
  "sanity": {
   "max": 100,
-  "start": 100,
+  "start": 70,
   "floor": 20,
   "chapterResetMin": 70,
   "tiers": [
@@ -2170,7 +2150,7 @@
     "cooldownSec": 60
    },
    "r6_window": {
-    "delta": 15,
+    "delta": 10,
     "cooldownSec": 60
    }
   },
