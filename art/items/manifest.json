@@ -118,7 +118,7 @@
    "height": 256,
    "transparent": true,
    "item": "pine_oil",
-   "name": "松节油",
+   "name": "松脂油",
    "purpose": "道具栏图标"
   },
   {
@@ -190,7 +190,7 @@
    "height": 256,
    "transparent": true,
    "item": "solvent_rag",
-   "name": "浸了松节油的布",
+   "name": "浸了松脂油的布",
    "purpose": "道具栏图标"
   },
   {

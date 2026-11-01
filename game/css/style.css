@@ -517,3 +517,18 @@ button:disabled { opacity: .35; cursor: default; }
 @keyframes stmtNext { 0%,100% { box-shadow: 0 0 0 0 rgba(212,160,74,0); } 50% { box-shadow: 0 0 0 6px rgba(212,160,74,.75); } }
 /* BUGS #6：谜题解开时底部提示变色 */
 .pz-hint.done { color: var(--amber); }
+
+/* 第二章：审讯氛围图（interrogations.*.bg，06 §14）全屏铺在审讯界面最底层；人物上半身露在肖像区，证词区与底部提示压暗保证可读 */
+.m-int.has-int-bg { background: #0d0a08; }
+.int-bg { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: 50% 0; transition: filter .6s; pointer-events: none; }
+.int-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(13,10,8,.55) 0, rgba(13,10,8,0) 7%, rgba(13,10,8,0) 30%, rgba(13,10,8,.82) 44%, rgba(13,10,8,.9) 100%); }
+.m-int.has-int-bg > :not(.int-bg) { position: relative; z-index: 1; }
+.m-int.has-int-bg .modal-head { background: rgba(13,10,8,.55); }
+.m-int.has-int-bg .int-portrait { background: none; height: 620px; }
+.m-int.has-int-bg .int-nameplate { margin-left: auto; margin-right: 36px; margin-top: 36px; }
+.int-nameplate.mood-wary { border-color: var(--amber); }
+.int-nameplate.mood-smile { border-color: #8a7a5a; }
+.int-nameplate.mood-unmasked { border-color: var(--blood); box-shadow: 0 0 46px rgba(122,46,37,.45); }
+.int-nameplate.mood-unmasked .int-np-mood { color: #c0645a; }
+.tier-s2 .int-bg { filter: saturate(.75) contrast(1.08); }
+.tier-s3 .int-bg { filter: saturate(.45) hue-rotate(30deg) contrast(1.2); }

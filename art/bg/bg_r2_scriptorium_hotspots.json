@@ -184,7 +184,8 @@
     192,
     192
    ],
-   "note": "auto-positioned by renderer from h_window; hidden after got_spectacles"
+   "note": "已画进 bg_r2_scriptorium / _stair_open 窗台（inScene），渲染器不要再叠 perch/tilt；got_spectacles 后底图无乌鸦（原注：auto-positioned by renderer from h_window; hidden after got_spectacles）",
+   "inScene": true
   }
  ],
  "fakeHotspots": [
@@ -202,6 +203,121 @@
     140
    ],
    "note": "moved from [300,700,140,140] (that is on the pin board) to the book shelf, matching the text"
+  }
+ ],
+ "overlays": [
+  {
+   "id": "ovl_r2_quill_taken",
+   "file": "art/bg/ovl_r2_quill_taken.png",
+   "size": [
+    1080,
+    1920
+   ],
+   "bbox": [
+    618,
+    1070,
+    125,
+    207
+   ],
+   "show": {
+    "flags": [
+     "got_ink"
+    ]
+   },
+   "note": "墨水台上的羽毛笔被拿走（got_ink：炭条/刮刀/羽毛笔同时入包）",
+   "replaces": "inkstand"
+  },
+  {
+   "id": "ovl_r2_charcoal_taken",
+   "file": "art/bg/ovl_r2_charcoal_taken.png",
+   "size": [
+    1080,
+    1920
+   ],
+   "bbox": [
+    642,
+    1234,
+    73,
+    71
+   ],
+   "show": {
+    "flags": [
+     "got_ink"
+    ]
+   },
+   "note": "炭条被拿走"
+  },
+  {
+   "id": "ovl_r2_scraper_taken",
+   "file": "art/bg/ovl_r2_scraper_taken.png",
+   "size": [
+    1080,
+    1920
+   ],
+   "bbox": [
+    511,
+    1225,
+    137,
+    87
+   ],
+   "show": {
+    "flags": [
+     "got_ink"
+    ]
+   },
+   "note": "刮刀被拿走"
+  },
+  {
+   "id": "ovl_r2_chest_open",
+   "file": "art/bg/ovl_r2_chest_open.png",
+   "size": [
+    1080,
+    1920
+   ],
+   "bbox": [
+    70,
+    1360,
+    371,
+    331
+   ],
+   "show": {
+    "flags": [
+     "chest_open"
+    ]
+   },
+   "note": "编年史匣打开后（空匣）"
+  }
+ ],
+ "npcInScene": [
+  {
+   "npc": "crow",
+   "hotspot": "h_window",
+   "rect": [
+    650,
+    120,
+    300,
+    388
+   ],
+   "paintedBBox": [
+    704,
+    313,
+    157,
+    159
+   ],
+   "variants": [
+    "bg_r2_scriptorium",
+    "bg_r2_scriptorium_stair_open"
+   ],
+   "show": {
+    "notFlags": [
+     "got_spectacles"
+    ]
+   },
+   "absentVariants": [
+    "bg_r2_scriptorium_window_open",
+    "bg_r2_scriptorium_stair_window_open"
+   ],
+   "note": "乌鸦画在窗台上（got_spectacles 前的两张状态图）；got_spectacles 后底图切到 *_window_open，窗台为空＝乌鸦已飞走。飞走动画仍可用 char_crow_fly 从 paintedBBox 起飞，但不要再叠 char_crow_perch/tilt。"
   }
  ]
 }

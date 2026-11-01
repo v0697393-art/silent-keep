@@ -8,7 +8,7 @@
    1920
   ],
   "start": "r1_hall",
-  "version": "v1.2",
+  "version": "v1.4",
   "intro": "cs_intro",
   "ending": "cs_ch1_end",
   "endingTitle": "t_ending_title"
@@ -219,6 +219,20 @@
      "interactions": [
       {
        "default": true,
+       "req": {
+        "flags": [
+         "got_table"
+        ]
+       },
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_table_after"
+        }
+       ]
+      },
+      {
+       "default": true,
        "effects": [
         {
          "type": "give",
@@ -305,7 +319,12 @@
        }
       }
      ],
-     "label": "桌下"
+     "label": "桌下",
+     "hideWhen": {
+      "flags": [
+       "got_rosary"
+      ]
+     }
     },
     {
      "id": "h_fireplace",
@@ -316,6 +335,21 @@
       490
      ],
      "interactions": [
+      {
+       "default": true,
+       "req": {
+        "flags": [
+         "got_poker",
+         "got_page"
+        ]
+       },
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_fire_after"
+        }
+       ]
+      },
       {
        "useItem": "candle",
        "effects": [
@@ -434,7 +468,12 @@
        }
       }
      ],
-     "label": "灰堆"
+     "label": "灰堆",
+     "hideWhen": {
+      "flags": [
+       "got_page"
+      ]
+     }
     },
     {
      "id": "h_armor",
@@ -445,6 +484,20 @@
       610
      ],
      "interactions": [
+      {
+       "default": true,
+       "req": {
+        "flags": [
+         "got_crank"
+        ]
+       },
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_armor_after"
+        }
+       ]
+      },
       {
        "useItem": "poker",
        "effects": [
@@ -498,6 +551,28 @@
       640
      ],
      "interactions": [
+      {
+       "default": true,
+       "req": {
+        "flags": [
+         "seen_tapestry"
+        ],
+        "notFlags": [
+         "cb_cycle_solved"
+        ]
+       },
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_tapestry"
+        },
+        {
+         "type": "text",
+         "key": "t_tapestry_seen"
+        }
+       ]
+      },
       {
        "default": true,
        "req": {
@@ -556,6 +631,20 @@
       304
      ],
      "interactions": [
+      {
+       "default": true,
+       "req": {
+        "seen": [
+         "h_portrait"
+        ]
+       },
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_portrait_again"
+        }
+       ]
+      },
       {
        "default": true,
        "effects": [
@@ -675,6 +764,30 @@
       }
      ],
      "label": "家徽门"
+    },
+    {
+     "id": "h_torch",
+     "label": "壁上烛台",
+     "rect": [
+      0,
+      585,
+      78,
+      190
+     ],
+     "interactions": [
+      {
+       "default": true,
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_torch"
+        }
+       ]
+      }
+     ],
+     "cantUse": {
+      "candle": "t_torch_cant_candle"
+     }
     }
    ],
    "name": "大厅",
@@ -728,6 +841,25 @@
      "interactions": [
       {
        "default": true,
+       "req": {
+        "evidence": [
+         "ev_brendan_notes"
+        ]
+       },
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_brendan_copy"
+        },
+        {
+         "type": "text",
+         "key": "t_brendan_notes_again"
+        }
+       ]
+      },
+      {
+       "default": true,
        "effects": [
         {
          "type": "open",
@@ -756,6 +888,73 @@
       310
      ],
      "interactions": [
+      {
+       "default": true,
+       "req": {
+        "notFlags": [
+         "tree_revealed",
+         "got_ink"
+        ]
+       },
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_genealogy"
+        },
+        {
+         "type": "text",
+         "key": "t_scratches_hint_ink"
+        }
+       ]
+      },
+      {
+       "default": true,
+       "req": {
+        "flags": [
+         "got_ink"
+        ],
+        "notFlags": [
+         "tree_revealed"
+        ],
+        "notItems": [
+         "reveal_brush"
+        ]
+       },
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_genealogy"
+        },
+        {
+         "type": "text",
+         "key": "t_scratches_hint_brush"
+        }
+       ]
+      },
+      {
+       "default": true,
+       "req": {
+        "items": [
+         "reveal_brush"
+        ],
+        "notFlags": [
+         "tree_revealed"
+        ]
+       },
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_genealogy"
+        },
+        {
+         "type": "text",
+         "key": "t_scratches_hint_ready"
+        }
+       ]
+      },
       {
        "useItem": "reveal_brush",
        "effects": [
@@ -826,7 +1025,16 @@
        ]
       }
      ],
-     "label": "家谱原本"
+     "label": "家谱原本",
+     "cantUse": {
+      "spectacles": "t_scratches_cant_spectacles",
+      "candle_lit": "t_scratches_cant_candle",
+      "candle": "t_scratches_cant_candle",
+      "charcoal": "t_scratches_cant_charcoal",
+      "charcoal_dust": "t_scratches_cant_dust",
+      "scraper": "t_scratches_cant_scraper",
+      "quill": "t_scratches_cant_quill"
+     }
     },
     {
      "id": "h_inkstand",
@@ -920,7 +1128,12 @@
        ]
       }
      ],
-     "label": "窗与乌鸦"
+     "label": "窗与乌鸦",
+     "hideWhen": {
+      "flags": [
+       "got_spectacles"
+      ]
+     }
     },
     {
      "id": "h_window_air",
@@ -952,6 +1165,25 @@
       165
      ],
      "interactions": [
+      {
+       "default": true,
+       "req": {
+        "evidence": [
+         "ev_child_drawing"
+        ]
+       },
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_child_drawing"
+        },
+        {
+         "type": "text",
+         "key": "t_drawing_again"
+        }
+       ]
+      },
       {
        "default": true,
        "effects": [
@@ -1004,6 +1236,24 @@
       270
      ],
      "interactions": [
+      {
+       "default": true,
+       "req": {
+        "flags": [
+         "tree_revealed"
+        ],
+        "notFlags": [
+         "cb_cycle_solved",
+         "chest_open"
+        ]
+       },
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_chest_hint_tree"
+        }
+       ]
+      },
       {
        "default": true,
        "req": {
@@ -1062,6 +1312,40 @@
      ],
      "interactions": [
       {
+       "default": true,
+       "req": {
+        "notFlags": [
+         "stair_open"
+        ],
+        "notItems": [
+         "well_key"
+        ]
+       },
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_stair_hint_nokey"
+        }
+       ]
+      },
+      {
+       "default": true,
+       "req": {
+        "notFlags": [
+         "stair_open"
+        ],
+        "items": [
+         "well_key"
+        ]
+       },
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_stair_hint_key"
+        }
+       ]
+      },
+      {
        "useItem": "well_key",
        "effects": [
         {
@@ -1071,6 +1355,10 @@
         {
          "type": "flag",
          "set": "stair_open"
+        },
+        {
+         "type": "sfx",
+         "id": "sfx_lock_unlock"
         },
         {
          "type": "goto",
@@ -1107,7 +1395,10 @@
        ]
       }
      ],
-     "label": "楼梯门"
+     "label": "楼梯门",
+     "cantUse": {
+      "*": "t_stair_cant"
+     }
     }
    ],
    "name": "北塔缮写室"
@@ -1127,6 +1418,20 @@
       680
      ],
      "interactions": [
+      {
+       "default": true,
+       "req": {
+        "evidence": [
+         "ev_blank_coffins"
+        ]
+       },
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_coffins_again"
+        }
+       ]
+      },
       {
        "default": true,
        "effects": [
@@ -1202,6 +1507,45 @@
       {
        "default": true,
        "req": {
+        "evidence": [
+         "ev_wet_chain"
+        ],
+        "notFlags": [
+         "dd_final_solved"
+        ]
+       },
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_well_lid"
+        },
+        {
+         "type": "text",
+         "key": "t_chain_again"
+        }
+       ]
+      },
+      {
+       "default": true,
+       "req": {
+        "flags": [
+         "dd_final_solved"
+        ],
+        "evidence": [
+         "ev_wet_chain"
+        ]
+       },
+       "effects": [
+        {
+         "type": "text",
+         "key": "t_chain_open"
+        }
+       ]
+      },
+      {
+       "default": true,
+       "req": {
         "notFlags": [
          "dd_final_solved"
         ]
@@ -1247,6 +1591,50 @@
       442
      ],
      "interactions": [
+      {
+       "default": true,
+       "req": {
+        "flags": [
+         "int_ysolde_done"
+        ],
+        "seen": [
+         "h_relief:t_relief_open"
+        ]
+       },
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_relief"
+        },
+        {
+         "type": "text",
+         "key": "t_relief_open_again"
+        }
+       ]
+      },
+      {
+       "default": true,
+       "req": {
+        "notFlags": [
+         "int_ysolde_done"
+        ],
+        "seen": [
+         "h_relief:t_relief"
+        ]
+       },
+       "effects": [
+        {
+         "type": "open",
+         "ui": "closeup",
+         "id": "cu_relief"
+        },
+        {
+         "type": "text",
+         "key": "t_relief_again"
+        }
+       ]
+      },
       {
        "default": true,
        "req": {
@@ -1504,6 +1892,14 @@
     {
      "type": "flag",
      "set": "chest_open"
+    },
+    {
+     "type": "sfx",
+     "id": "sfx_lock_unlock"
+    },
+    {
+     "type": "text",
+     "key": "t_dial_unlock"
     }
    ],
    "title": "铜锁箱",
@@ -1649,10 +2045,16 @@
  "interrogations": {
   "int_osbert": {
    "npc": "osbert",
+   "bg": "bg_int_osbert",
    "portraits": {
-    "calm": "char_osbert_calm",
-    "nervous": "char_osbert_nervous",
-    "broken": "char_osbert_broken"
+    "calm": "bg_int_osbert",
+    "nervous": "bg_int_osbert",
+    "broken": "bg_int_osbert"
+   },
+   "moodLabels": {
+    "calm": "垂手而立",
+    "nervous": "搓着围裙",
+    "broken": "老泪纵横"
    },
    "intro": "t_osbert_intro",
    "statements": [
@@ -1712,11 +2114,18 @@
   },
   "int_ysolde": {
    "npc": "ysolde",
+   "bg": "bg_int_ysolde",
    "portraits": {
-    "calm": "char_ysolde_calm",
-    "cold": "char_ysolde_cold",
-    "shaken": "char_ysolde_shaken",
-    "broken": "char_ysolde_broken"
+    "calm": "bg_int_ysolde",
+    "cold": "bg_int_ysolde",
+    "shaken": "bg_int_ysolde",
+    "broken": "bg_int_ysolde"
+   },
+   "moodLabels": {
+    "calm": "手按念珠",
+    "cold": "神色冰冷",
+    "shaken": "神色动摇",
+    "broken": "崩溃大笑"
    },
    "intro": "t_ysolde_intro",
    "statements": [
@@ -1978,6 +2387,14 @@
    }
   ]
  },
+ "sanityReasons": {
+  "interrogation": "这件证据驳不倒那句话。对方的神色松了下来，我心里却一虚。",
+  "clueboard": "线连错了。思路一乱，心里更慌。",
+  "deduction": "推理出了岔子。离真相又远了一步，烛火跟着一晃。",
+  "puzzle": "机关纹丝不动，寒意顺着指尖爬上来。",
+  "closeup": "我看见了不该看见的东西。",
+  "scene": "这里有什么东西，让我脊背发凉。"
+ },
  "cutscenes": {
   "cs_intro": [
    "bg_intro_01",
@@ -1993,11 +2410,13 @@
  "npcs": {
   "osbert": {
    "name": "管家奥斯博特",
-   "fullBody": "char_osbert_full"
+   "inScene": true,
+   "_说明": "画在 bg_r1_hall / _door_open 桌尾右侧、壁炉右柱前（热区 h_steward 890,1120,190,507）；全章不离场，int_osbert_done 后仍在原地，只换台词 t_osbert_after"
   },
   "ysolde": {
    "name": "伊瑟尔达夫人",
-   "fullBody": "char_ysolde_full"
+   "inScene": true,
+   "_说明": "画在 bg_r3_crypt / _well_open 最下层石棺龛前（热区 h_lady 70,1100,210,560）；dd_final_solved 后仍在场，h_lady 换台词 t_ysolde_after"
   }
  },
  "cutsceneCaptions": {
@@ -2081,7 +2500,39 @@
   "t_ysolde_s3": "这口井干涸一百年了，只是个祈祷的地方。",
   "t_tapestry_after": "现在我知道那个破洞是什么了：每三十七年，从这棵树上剪掉一个孩子。洞口的线头在蠕动，像要把名字缝回去。",
   "t_tree_again": "显影的墨迹还在：<k>1238 希尔德布兰</k>、<k>1275 罗泽琳</k>、<k>1312 ▇▇</k>。刮痕吃不进炭粉，名字就留在了刮痕里。",
-  "t_relief_open": "眼皮……全都睁开了。它们不看先祖，也不看我——它们看着井。"
+  "t_relief_open": "眼皮……全都睁开了。它们不看先祖，也不看我——它们看着井。",
+  "t_table_after": "残宴冷透了。能用的我都拿走了，只剩倒下的杯子和没人动过的菜。",
+  "t_fire_after": "余烬微红。灰堆已经被我拨开了，下面什么也不剩。",
+  "t_armor_after": "面罩敞开着，盔甲里空空的——摸上去却还是温的。",
+  "t_tapestry_seen": "挂毯上那个破洞还在。家徽只看得清左上“<k>闭眼</k>”与右上“<k>水纹</k>”。那些线头……我不想再盯着看。",
+  "t_portrait_again": "那张被抹平的脸还朝着我。名牌依旧空白。",
+  "t_brendan_notes_again": "布伦丹的页边笔记，我已经记进手记了：“今年冬至，‘轮到了’。”",
+  "t_drawing_again": "玛蒂尔的蜡笔画，我已经记下了：没有脸的高个子，被牵向<k>黑色圆圈</k>的灰袍人。",
+  "t_coffins_again": "三具被磨平名字的石棺。我已经记下了。",
+  "t_chain_again": "链子上的黑泥还是湿的。井在下面一呼一吸。",
+  "t_chain_open": "井盖已经吊起，湿链子绷得笔直，垂进黑暗里。",
+  "t_relief_again": "浮雕上那些闭着的眼皮一动不动。我还读不懂它们在等什么。",
+  "t_relief_open_again": "睁开的眼皮依旧齐齐望着井口。",
+  "t_scratches_hint_ink": "家谱原本上有三处刮痕，肉眼看不清。可刮痕里还留着细细的凹槽——要是有什么细粉能扫进去，字迹也许会自己显出来。门边的<k>墨水台</k>上摆着<k>炭条</k>和几样工具。",
+  "t_scratches_hint_brush": "三处刮痕，凹槽很浅。炭条太粗，得先用<k>刮刀</k>把<k>炭条</k>刮成粉，再用<k>鹅毛笔</k>的羽毛蘸着扫上去。（在道具栏点一件道具，再点另一件即可组合）",
+  "t_scratches_hint_ready": "刮痕就在眼前。该让<k>显影刷</k>扫过去了。（在下方道具栏点它；或回到场景选中它，再点家谱）",
+  "t_scratches_cant_spectacles": "眼镜让字更清楚，可刮掉的地方本来就没有字——得让凹槽自己显出来。也许<k>炭粉</k>能行。",
+  "t_scratches_cant_candle": "烛光斜照，只看出凹槽的走向，还是读不出字。得把什么<k>扫进</k>凹槽里。",
+  "t_scratches_cant_charcoal": "炭条太粗，直接涂会把整页涂黑。先用<k>刮刀</k>把它刮成粉。",
+  "t_scratches_cant_dust": "炭粉直接撒上去会糊成一片——得有支软羽把它<k>扫</k>进刮痕。<k>鹅毛笔</k>？",
+  "t_scratches_cant_scraper": "再刮下去，最后一点凹痕也没了。刮刀该用来刮<k>炭条</k>。",
+  "t_scratches_cant_quill": "空羽毛扫过去，什么也没留下。得先蘸上<k>炭粉</k>。",
+  "t_chest_hint_tree": "匣盖上刻着“<k>依次念出被遗忘者离去之年的尾数</k>”。被遗忘者……家谱上被刮掉的那三个人？可我还没想清他们为什么会被抹去——先在<k>线索板</k>上把证据连起来。",
+  "t_dial_hint_years": "“被遗忘者离去之年”——那三个年份，手记里都记着。“尾数”，大概是说每个年份的<k>最后一位</k>。",
+  "t_crest_solved": "<k>眼闭，水静，钥沉，井默</k>。四块石盘缓缓陷进门里，门开了。冷风扑面，吹灭了所有蜡烛——一息之后，它们又自己亮了。",
+  "t_stair_hint_nokey": "通往楼下礼拜堂的楼梯门，被一把<k>井形锁</k>锁住——锁孔是一口小井的形状，和家徽上的井一样。这么要紧的钥匙，大概锁在这屋里某个<k>上锁的匣子</k>里。",
+  "t_stair_hint_key": "锁孔的形状，和编年史匣里那把<k>井形钥匙</k>一模一样。（选中钥匙，再点这扇门）",
+  "t_stair_cant": "这把<k>井形锁</k>只认井形的钥匙。",
+  "t_torch": "墙上的铁烛台，只插着一支蜡烛，烛托焊死在石缝里，拿不下来。这点火光暖不了人——要取暖，还是去壁炉边。",
+  "t_crest_hint_order": "按家训的顺序，从左上起逐块转对。",
+  "t_crest_hint_nomotto": "下面两块褪了色，认不出该转成什么——先去问问记得家训的人。",
+  "t_dial_unlock": "咔嗒。三枚转盘一齐落定，匣盖弹开：里面是<k>半份契约</k>和一把<k>井形钥匙</k>。",
+  "t_torch_cant_candle": "烛台挂得太高，够不着火苗。要点蜡烛，壁炉里的余烬也行。"
  },
  "closeups": {
   "_说明": "特写表（v1.2）。由效果 {type:'open', ui:'closeup', id} 打开。states 自上而下取第一条满足的（req 同 06 §2；sanityBelow=当前心烛 < 该值）；img=静态图，anim=自动循环帧（不是翻页）。overlays 为叠加透明层，条件同上，可多条。pages 为点按翻页的追加页（本章未用）。详见 06 §12。",

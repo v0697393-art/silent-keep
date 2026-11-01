@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-01T05:46:18.863Z",
+ "generated": "2026-11-01T08:57:14.991Z",
  "art": [
   "bg/bg_c2_end_01.jpg",
   "bg/bg_c2_end_02.jpg",
@@ -11,7 +11,9 @@
   "bg/bg_end_02.jpg",
   "bg/bg_end_03.jpg",
   "bg/bg_int_alric.jpg",
+  "bg/bg_int_osbert.jpg",
   "bg/bg_int_severin.jpg",
+  "bg/bg_int_ysolde.jpg",
   "bg/bg_intro_01.jpg",
   "bg/bg_intro_02.jpg",
   "bg/bg_intro_03.jpg",
@@ -31,16 +33,22 @@
   "bg/bg_r6_nursery.jpg",
   "bg/bg_r6_nursery_drawer_open.jpg",
   "bg/bg_r6_nursery_empty_chair.jpg",
+  "bg/ovl_r1_ashes_raked.png",
+  "bg/ovl_r1_bread_taken.png",
+  "bg/ovl_r1_candle_taken.png",
+  "bg/ovl_r1_poker_taken.png",
+  "bg/ovl_r1_poker_taken__door_open.png",
+  "bg/ovl_r2_charcoal_taken.png",
+  "bg/ovl_r2_chest_open.png",
+  "bg/ovl_r2_quill_taken.png",
+  "bg/ovl_r2_scraper_taken.png",
+  "bg/ovl_r3_crank_fitted.png",
   "bg/ovl_r4_coffer_open.png",
   "bg/ovl_r4_cup_ice.png",
   "bg/ovl_r4_rattle_fist.png",
   "bg/ovl_r4_window_e.png",
   "bg/ovl_r5_easel_supplies.png",
   "bg/ovl_r6_mobile_eyes.png",
-  "characters/char_alric_avatar_256.png",
-  "characters/char_alric_full.png",
-  "characters/char_alric_neutral.png",
-  "characters/char_alric_neutral_portrait_384.png",
   "characters/char_brendan_avatar_256.png",
   "characters/char_brendan_full.png",
   "characters/char_brendan_neutral.png",
@@ -103,10 +111,6 @@
   "characters/char_osbert_full.png",
   "characters/char_osbert_nervous.png",
   "characters/char_osbert_nervous_portrait_384.png",
-  "characters/char_severin_avatar_256.png",
-  "characters/char_severin_full.png",
-  "characters/char_severin_neutral.png",
-  "characters/char_severin_neutral_portrait_384.png",
   "characters/char_ysolde_avatar_256.png",
   "characters/char_ysolde_broken.png",
   "characters/char_ysolde_broken_portrait_384.png",
@@ -378,7 +382,10 @@
   "ui/ui_testimony_strip_selected.png"
  ],
  "excluded": [
+  "ch1_chars_preview.png",
+  "ch1_ovl_preview.png",
   "ch2_preview.png",
+  "ch2_safearea_preview.png",
   "characters/characters_lineup.png",
   "palette.png",
   "style_sample_character.png",
@@ -392,6 +399,283 @@
   "bg/bg_r4_bedchamber_hotspots.json",
   "bg/bg_r5_gallery_hotspots.json",
   "bg/bg_r6_nursery_hotspots.json"
+ ],
+ "overlayDefs": [
+  {
+   "id": "ovl_r1_ashes_raked",
+   "room": "r1_hall",
+   "show": {
+    "flags": [
+     "got_page"
+    ]
+   },
+   "file": "art/bg/ovl_r1_ashes_raked.png",
+   "bbox": [
+    742,
+    1206,
+    210,
+    61
+   ],
+   "source": "art/bg/manifest.json"
+  },
+  {
+   "id": "ovl_r1_bread_taken",
+   "room": "r1_hall",
+   "show": {
+    "flags": [
+     "got_table"
+    ]
+   },
+   "file": "art/bg/ovl_r1_bread_taken.png",
+   "bbox": [
+    726,
+    1262,
+    227,
+    141
+   ],
+   "source": "art/bg/manifest.json"
+  },
+  {
+   "id": "ovl_r1_candle_taken",
+   "room": "r1_hall",
+   "show": {
+    "flags": [
+     "got_table"
+    ]
+   },
+   "file": "art/bg/ovl_r1_candle_taken.png",
+   "bbox": [
+    660,
+    1228,
+    67,
+    165
+   ],
+   "source": "art/bg/manifest.json"
+  },
+  {
+   "id": "ovl_r1_poker_taken",
+   "room": "r1_hall",
+   "show": {
+    "flags": [
+     "got_poker"
+    ],
+    "notFlags": [
+     "crest_solved"
+    ]
+   },
+   "file": "art/bg/ovl_r1_poker_taken.png",
+   "bbox": [
+    644,
+    1038,
+    69,
+    230
+   ],
+   "source": "art/bg/manifest.json"
+  },
+  {
+   "id": "ovl_r1_poker_taken__door_open",
+   "room": "r1_hall",
+   "show": {
+    "flags": [
+     "got_poker",
+     "crest_solved"
+    ]
+   },
+   "file": "art/bg/ovl_r1_poker_taken__door_open.png",
+   "bbox": [
+    645,
+    1039,
+    66,
+    227
+   ],
+   "source": "art/bg/manifest.json"
+  },
+  {
+   "id": "ovl_r2_charcoal_taken",
+   "room": "r2_scriptorium",
+   "show": {
+    "flags": [
+     "got_ink"
+    ]
+   },
+   "file": "art/bg/ovl_r2_charcoal_taken.png",
+   "bbox": [
+    642,
+    1234,
+    73,
+    71
+   ],
+   "source": "art/bg/manifest.json"
+  },
+  {
+   "id": "ovl_r2_chest_open",
+   "room": "r2_scriptorium",
+   "show": {
+    "flags": [
+     "chest_open"
+    ]
+   },
+   "file": "art/bg/ovl_r2_chest_open.png",
+   "bbox": [
+    70,
+    1360,
+    371,
+    331
+   ],
+   "source": "art/bg/manifest.json"
+  },
+  {
+   "id": "ovl_r2_quill_taken",
+   "room": "r2_scriptorium",
+   "show": {
+    "flags": [
+     "got_ink"
+    ]
+   },
+   "file": "art/bg/ovl_r2_quill_taken.png",
+   "bbox": [
+    618,
+    1070,
+    125,
+    207
+   ],
+   "source": "art/bg/manifest.json"
+  },
+  {
+   "id": "ovl_r2_scraper_taken",
+   "room": "r2_scriptorium",
+   "show": {
+    "flags": [
+     "got_ink"
+    ]
+   },
+   "file": "art/bg/ovl_r2_scraper_taken.png",
+   "bbox": [
+    511,
+    1225,
+    137,
+    87
+   ],
+   "source": "art/bg/manifest.json"
+  },
+  {
+   "id": "ovl_r3_crank_fitted",
+   "room": "r3_crypt",
+   "show": {
+    "flags": [
+     "crank_fitted"
+    ],
+    "notFlags": [
+     "dd_final_solved"
+    ]
+   },
+   "file": "art/bg/ovl_r3_crank_fitted.png",
+   "bbox": [
+    808,
+    1084,
+    77,
+    129
+   ],
+   "source": "art/bg/manifest.json"
+  },
+  {
+   "id": "ovl_r4_coffer_open",
+   "room": "r4_bedchamber",
+   "show": {
+    "flags": [
+     "coffer_open"
+    ]
+   },
+   "file": "art/bg/ovl_r4_coffer_open.png",
+   "bbox": [
+    539,
+    1244,
+    336,
+    277
+   ],
+   "source": "art/bg/manifest.json"
+  },
+  {
+   "id": "ovl_r4_cup_ice",
+   "room": "r4_bedchamber",
+   "show": {
+    "notFlags": [
+     "got_cup"
+    ]
+   },
+   "file": "art/bg/ovl_r4_cup_ice.png",
+   "bbox": [
+    95,
+    1138,
+    221,
+    272
+   ],
+   "source": "art/bg/manifest.json"
+  },
+  {
+   "id": "ovl_r4_rattle_fist",
+   "room": "r4_bedchamber",
+   "show": {
+    "notFlags": [
+     "got_rattle"
+    ]
+   },
+   "file": "art/bg/ovl_r4_rattle_fist.png",
+   "bbox": [
+    370,
+    1079,
+    284,
+    180
+   ],
+   "source": "art/bg/manifest.json"
+  },
+  {
+   "id": "ovl_r4_window_e",
+   "room": "r4_bedchamber",
+   "show": {
+    "sanityBelow": 40
+   },
+   "file": "art/bg/ovl_r4_window_e.png",
+   "bbox": [
+    815,
+    263,
+    121,
+    155
+   ],
+   "source": "art/bg/manifest.json"
+  },
+  {
+   "id": "ovl_r5_easel_supplies",
+   "room": "r5_gallery",
+   "show": {
+    "notFlags": [
+     "got_easel"
+    ]
+   },
+   "file": "art/bg/ovl_r5_easel_supplies.png",
+   "bbox": [
+    706,
+    1295,
+    308,
+    295
+   ],
+   "source": "art/bg/manifest.json"
+  },
+  {
+   "id": "ovl_r6_mobile_eyes",
+   "room": "r6_nursery",
+   "show": {
+    "sanityBelow": 40
+   },
+   "file": "art/bg/ovl_r6_mobile_eyes.png",
+   "bbox": [
+    386,
+    459,
+    303,
+    231
+   ],
+   "source": "art/bg/manifest.json"
+  }
  ],
  "meta": {
   "fx_candle_flicker": {

@@ -3,10 +3,13 @@
 //   · 模态栈（审讯/线索板/推理/谜题/手记/道具/菜单），game.modal = 栈顶
 //   · 对话框（打字机 + 埃德里克头像随表情/心烛档切换）、道具栏（5 格分页、选中/组合/检视）、HUD（心烛/手记角标/静音）
 //   · 音频：统一用 audio.sfx()/bgm()/amb()（AudioManager 另保留 playSfx/playBgm 别名）；心烛档 → audio.setSanityStage()
+//   · 章节（06 §13.1）：结局页“继续：第二章”→ prepareChapter(n+1) → createState + chapterReset（心烛继承、至少 chapterResetMin）；
+//     存档按章分键 + hushwold_progress（save.js）；?ch=N（chParam）直接开第 N 章，新开局心烛按 sanity.start
 import {
-  createState, tapAt, combineItems, useItemSelf, gotoRoom, navTargets, tierOf, tierHas, inRect, pointFor, hotspotActive, interact, reqOk,
+  createState, tapAt, combineItems, useItemSelf, gotoRoom, navTargets, tierOf, tierHas, inRect, pointFor, hotspotActive, interact, reqOk, chapterReset,
 } from './logic.js';
-import { saveGame, loadGame, hasSave, clearSave, prefs } from './save.js';
+import { saveGame, loadGame, hasSave, clearSave, prefs, getProgress, setProgress, chapterOf } from './save.js';
+import { chapterInfo } from './chapter.js';
 import { PLAY_RECT, LAYOUT } from './layout.js';
 import { itemIcon, evidenceCard, portrait } from './assets.js';
 import { edricIds } from './characters.js';
@@ -23,8 +26,8 @@ const PAGE = 6; // 道具栏 ui_inventory_bar 画了 6 格（ui_meta.inventory_s
 const MUSIC_UI = { interrogation: 'interrogation', clueboard: 'clueboard', deduction: 'clueboard' };
 
 export class Game {
-  constructor({ C, assets, audio, renderer, stage, dom }) {
-    Object.assign(this, { C, assets, audio, renderer, stage, dom });
+  constructor({ C, assets, audio, renderer, stage, dom, prepareChapter = null, chParam = null }) {
+    Object.assign(this, { C, assets, audio, renderer, stage, dom, prepareChapter, chParam });
     this.S = null; this.stack = []; this.pending = [];
     this.selected = null; this.invPage = 0; this.freshItem = null; this.badge = false;
     this.dialogQ = []; this.dialogCur = null; this.expr = 'neutral';
@@ -61,25 +64,73 @@ export class Game {
   itemEl(id) { const it = this.C.items[id] || {}; return this.assets.element(it.icon ?? `item_${id}`, () => itemIcon(id, it.name ?? id)); }
   itemName(id) { return this.C.items[id]?.name ?? id; }
 
+  // ---------- 章节 ----------
+  get chapter() { return chapterOf(this.C); }
+  /** 换章节数据：渲染器、音频别名都跟着换（状态 S 由调用方重建） */
+  setChapter(C) {
+    this.C = C; this.audio.alias = C.audioAlias || {};
+    if (this.S) this.renderer.bind(C, this.S);
+  }
+  async switchChapter(n) {
+    if (chapterOf(this.C) === n) return this.C;
+    if (!this.prepareChapter || !chapterInfo(n)) throw new Error(`没有第 ${n} 章`);
+    this.loadingChapter = n;
+    try { this.setChapter(await this.prepareChapter(n)); } finally { this.loadingChapter = null; }
+    return this.C;
+  }
+  /** 新开第 n 章（已切到该章数据）：inherit 为上一章心烛时按 chapterReset 继承（至少 chapterResetMin），否则按 sanity.start */
+  freshChapterState(inherit = null) {
+    const S = createState(this.C);
+    if (Number.isFinite(inherit)) { S.sanity = inherit; chapterReset(this.C, S); }
+    return S;
+  }
+  /** 标题页“继续”：本章有档读档；否则进度里有已解锁的后续章节 → 以继承心烛新开该章 */
+  continueTarget() {
+    const p = getProgress();
+    if (this.chParam != null) return hasSave(this.C) || (this.chParam > 1 && (p?.maxChapter ?? 1) >= this.chParam) ? this.chParam : null;
+    if (hasSave(this.C)) return this.chapter;
+    if (p && p.maxChapter > 1 && chapterInfo(p.maxChapter)) return p.maxChapter;
+    return null;
+  }
+
   // ---------- 标题 / 开局 ----------
   toTitle() {
     this.screen = 'title';
     while (this.stack.length) this.stack.pop().root.remove();
     this.dom.title.hidden = false;
-    this.dom.btnContinue.hidden = !hasSave(this.C);
+    this.dom.btnContinue.hidden = this.continueTarget() == null;
+    const ch = this.dom.title.querySelector('.chapter'), cn = '一二三四五六七八九'[this.chapter - 1] ?? this.chapter;
+    if (ch) ch.textContent = `第${cn}章 · ${this.C.meta.name ?? ''}`;
+    const foot = this.dom.title.querySelector('.title-foot'); if (foot) foot.textContent = '试玩版';
+    this.dom.title.dataset.chapter = this.chapter;
     this.audio.amb(null); this.audio.setSanityStage(0);
     this.audio.bgm(this.C.uiBgm.title ?? null);
   }
-  newGame() {
-    this.sfx('tap'); clearSave();
-    this.S = createState(this.C);
+  async newGame() {
+    this.sfx('tap');
+    if (this.chParam != null) clearSave(this.C);          // ?ch=N：只清本章的档，按 sanity.start 新开本章
+    else { clearSave('all'); await this.switchChapter(1); } // 标题“新的调查”：从第一章重开，清掉所有章节存档与进度
+    this.S = this.freshChapterState();
     this.start(true);
   }
-  continueGame() {
+  async continueGame() {
     this.sfx('tap');
+    const n = this.continueTarget();
+    if (n == null) return this.newGame();
+    await this.switchChapter(n);
     const S = loadGame(this.C);
-    if (!S) return this.newGame();
-    this.S = S; this.start(false);
+    if (S && !S.ended) { this.S = S; return this.start(false); }
+    // 本章没有档（上一章结局后回了标题）或档已是本章结局：以进度里的心烛新开本章
+    this.S = this.freshChapterState(getProgress()?.sanity ?? null);
+    setProgress({ maxChapter: this.chapter, sanity: this.S.sanity, start: { [this.chapter]: this.S.sanity } });
+    this.start(true);
+  }
+  /** 菜单“重新开始本章”：只清本章存档；第 2 章起沿用进入本章时继承的心烛（?ch=N 直开的按 sanity.start） */
+  restartChapter() {
+    this.sfx('tap'); clearSave(this.C);
+    const inherit = this.chParam == null && this.chapter > 1 ? getProgress()?.starts?.[this.chapter] ?? null : null;
+    this.S = this.freshChapterState(inherit);
+    this.start(true);
   }
   start(intro) {
     this.dom.title.hidden = true;
@@ -94,6 +145,7 @@ export class Game {
   enterRoom() {
     const r = this.C.roomById[this.S.room];
     this.renderer.bind(this.C, this.S); this.renderer.transition();
+    this.renderer.npcTag = null; // 换房间收起人物名牌
     if (!this.musicModal()) this.audio.bgm(r.bgm ?? null);
     this.audio.amb(r.amb ?? null);
     const next = this.C.rooms[this.C.rooms.indexOf(r) + 1];
@@ -121,7 +173,10 @@ export class Game {
     }
     const item = this.selected;
     const flagsBefore = { ...S.flags };
+    const spots = this.renderer.npcSpotsHere?.() || [];
     const r = tapAt(C, S, x, y, item, Date.now());
+    const who = r.hit && spots.find((sp) => sp.hotspot === r.hit);
+    if (who) this.renderer.showNpcTag(who.npc); // 名牌不常驻：点到人物才短暂显示（对白期间保持）
     if (!r.hit) {
       if (item) { this.selected = null; this.renderInventory(); return; }
       // 点空：闪一下当前有反应的热点（轻提示）
@@ -142,6 +197,7 @@ export class Game {
     if (extra) this.audio.sfx(extra);
     if (!flagsBefore.got_spectacles && S.flags.got_spectacles) this.renderer.crowFlyAway();
     this.commit(r.events);
+    if (who && this.renderer.npcTag) this.renderer.npcTag.hold = !!this.dialogCur;
   }
 
   // ---------- 事件 ----------
@@ -385,7 +441,7 @@ export class Game {
     this.sfx('tap');
     this.nextDialog();
   }
-  hideDialog() { clearInterval(this.typer); this.dialogCur = null; this.dom.dialogLayer.hidden = true; }
+  hideDialog() { clearInterval(this.typer); this.dialogCur = null; this.dom.dialogLayer.hidden = true; if (this.renderer?.npcTag) this.renderer.npcTag.hold = false; }
 
   toast(html) {
     const t = el('div', { class: 'toast' }); setRich(t, html);
@@ -453,6 +509,8 @@ export class Game {
   }
   ending() {
     this.S.ended = true; saveGame(this.C, this.S);
+    const n = this.chapter, next = chapterInfo(n + 1) && this.prepareChapter ? n + 1 : null;
+    setProgress({ maxChapter: next ?? n, sanity: this.S.sanity, cleared: n });
     this.audio.amb(null); this.audio.setSanityStage(0);
     this.audio.bgm(this.C.uiBgm.ending ?? null);
     this.cutscene(this.C.ending, () => {
@@ -460,10 +518,26 @@ export class Game {
       const box = this.dom.cutscene;
       box.hidden = false; box.onpointerup = null; box.dataset.id = 'end';
       const crest = this.assets.has('ui_crest_v3_256') ? el('img', { class: 'cs-crest', src: `../art/${this.assets.path('ui_crest_v3_256')}`, alt: '' }) : null;
-      const card = el('div', { class: 'cs-end' }, crest, el('h2', { text: this.C.endingTitle || '第一章 · 完' }), el('p', { text: '未完待续。' }),
-        el('button', { class: 'parch-btn', id: 'btn-end-title', onclick: () => { box.hidden = true; box.replaceChildren(); this.inCutscene = false; clearSave(); this.toTitle(); } }, '回到标题'));
+      const U = this.C.uiText, cn = '一二三四五六七八九'[n] ?? n + 1;
+      const close = () => { box.hidden = true; box.replaceChildren(); this.inCutscene = false; };
+      const card = el('div', { class: 'cs-end', 'data-chapter': n }, crest, el('h2', { text: this.C.endingTitle || `第${'一二三四五六七八九'[n - 1] ?? n}章 · 完` }),
+        el('p', { text: next ? (U.chapterNextSub ?? '故事还没有结束。') : (U.chapterEnd ?? '未完待续。') }),
+        next ? el('button', { class: 'parch-btn primary', id: 'btn-next-chapter', onclick: () => { close(); this.nextChapter(); } }, fmt(U.chapterNext ?? '继续：第{cn}章', { cn, n: n + 1 })) : null,
+        // 回到标题：清掉本章（已结局）的档；进度已记下，标题页“继续”会进下一章
+        el('button', { class: 'parch-btn', id: 'btn-end-title', onclick: () => { close(); clearSave(this.C); this.toTitle(); } }, U.backToTitle ?? '回到标题'));
       box.replaceChildren(card);
     });
+  }
+
+  /** 第一章结局 →“继续：第二章”：载入下一章，心烛继承（至少 chapterResetMin），背包/证据/flag 不继承（06 §13.1） */
+  async nextChapter() {
+    const sanity = this.S?.sanity ?? null, prev = this.C;
+    this.sfx('tap');
+    await this.switchChapter(this.chapter + 1);
+    clearSave(prev);               // 上一章已结局，档不再需要（进度里留着 maxChapter/sanity）
+    this.S = this.freshChapterState(sanity);
+    setProgress({ maxChapter: this.chapter, sanity: this.S.sanity, start: { [this.chapter]: this.S.sanity } });
+    this.start(true);
   }
 
   // ---------- 测试 / 调试接口 ----------
@@ -476,14 +550,14 @@ export class Game {
   }
   snapshot() {
     const S = this.S;
-    if (!S) return { screen: this.screen, modal: null, dialog: null, dialogQ: 0, cutscene: null, audio: this.audio.debugState() };
+    if (!S) return { chapter: this.chapter, screen: this.screen, modal: null, dialog: null, dialogQ: 0, cutscene: null, audio: this.audio.debugState() };
     return {
-      room: S.room, sanity: S.sanity, tier: tierOf(this.C, S.sanity).id, inventory: [...S.inventory], evidence: [...S.evidence],
+      chapter: this.chapter, room: S.room, sanity: S.sanity, tier: tierOf(this.C, S.sanity).id, inventory: [...S.inventory], evidence: [...S.evidence],
       flags: Object.keys(S.flags), solved: [...S.solved], seen: [...(S.seen || [])], once: Object.keys(S.once || {}), ended: S.ended, selected: this.selected, invPage: this.invPage,
       modal: this.modal ? `${this.modal.type}:${this.modal.id}` : null, stack: this.stack.map((m) => `${m.type}:${m.id}`),
       dialog: this.dialogCur?.text ?? null, dialogQ: this.dialogQ.length, cutscene: this.inCutscene ? this.dom.cutscene.dataset.id : null,
       screen: this.screen, audio: this.audio.debugState(), bg: this.renderer?.S ? this.renderer.bgId() : null,
-      drawnBg: this.renderer?.cache?.bg ?? null, overlays: this.renderer?.cache?.overlays ?? [], renderErrors: [...(window.__renderErrors || [])],
+      drawnBg: this.renderer?.cache?.bg ?? null, overlays: this.renderer?.cache?.overlays ?? [], artOverlays: this.renderer?.cache?.artOverlays ?? [], fx: [...(this.renderer?.drawnFx || [])], npcTags: [...(this.renderer?.drawnNpcTags || [])], npcSpots: [...(this.renderer?.drawnNpcSpots || [])], crow: this.renderer?.drawnCrow ?? null, renderErrors: [...(window.__renderErrors || [])],
       lastSanityReason: this.lastSanityReason ?? null,
     };
   }
