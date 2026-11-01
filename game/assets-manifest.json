@@ -1,0 +1,1051 @@
+{
+ "generated": "2026-10-31T23:24:26.020Z",
+ "art": [
+  "bg/bg_end_01.jpg",
+  "bg/bg_end_02.jpg",
+  "bg/bg_end_03.jpg",
+  "bg/bg_intro_01.jpg",
+  "bg/bg_intro_02.jpg",
+  "bg/bg_intro_03.jpg",
+  "bg/bg_r1_hall.jpg",
+  "bg/bg_r1_hall_door_open.jpg",
+  "bg/bg_r2_scriptorium.jpg",
+  "bg/bg_r2_scriptorium_stair_open.jpg",
+  "bg/bg_r2_scriptorium_stair_window_open.jpg",
+  "bg/bg_r2_scriptorium_window_open.jpg",
+  "bg/bg_r3_crypt.jpg",
+  "bg/bg_r3_crypt_well_open.jpg",
+  "characters/char_alric_avatar_256.png",
+  "characters/char_alric_full.png",
+  "characters/char_alric_neutral.png",
+  "characters/char_alric_neutral_portrait_384.png",
+  "characters/char_brendan_avatar_256.png",
+  "characters/char_brendan_full.png",
+  "characters/char_brendan_neutral.png",
+  "characters/char_brendan_neutral_portrait_384.png",
+  "characters/char_crow_fly.png",
+  "characters/char_crow_perch.png",
+  "characters/char_crow_sheet.png",
+  "characters/char_crow_tilt.png",
+  "characters/char_edric_avatar_256.png",
+  "characters/char_edric_full.png",
+  "characters/char_edric_neutral.png",
+  "characters/char_edric_neutral_portrait_384.png",
+  "characters/char_edric_neutral_s2.png",
+  "characters/char_edric_neutral_s2_portrait_384.png",
+  "characters/char_edric_neutral_s3.png",
+  "characters/char_edric_neutral_s3_portrait_384.png",
+  "characters/char_edric_press.png",
+  "characters/char_edric_press_portrait_384.png",
+  "characters/char_edric_press_s2.png",
+  "characters/char_edric_press_s2_portrait_384.png",
+  "characters/char_edric_press_s3.png",
+  "characters/char_edric_press_s3_portrait_384.png",
+  "characters/char_edric_relief.png",
+  "characters/char_edric_relief_portrait_384.png",
+  "characters/char_edric_relief_s2.png",
+  "characters/char_edric_relief_s2_portrait_384.png",
+  "characters/char_edric_relief_s3.png",
+  "characters/char_edric_relief_s3_portrait_384.png",
+  "characters/char_edric_shaken.png",
+  "characters/char_edric_shaken_portrait_384.png",
+  "characters/char_edric_shaken_s2.png",
+  "characters/char_edric_shaken_s2_portrait_384.png",
+  "characters/char_edric_shaken_s3.png",
+  "characters/char_edric_shaken_s3_portrait_384.png",
+  "characters/char_edric_think.png",
+  "characters/char_edric_think_portrait_384.png",
+  "characters/char_edric_think_s2.png",
+  "characters/char_edric_think_s2_portrait_384.png",
+  "characters/char_edric_think_s3.png",
+  "characters/char_edric_think_s3_portrait_384.png",
+  "characters/char_edric_wry.png",
+  "characters/char_edric_wry_portrait_384.png",
+  "characters/char_edric_wry_s2.png",
+  "characters/char_edric_wry_s2_portrait_384.png",
+  "characters/char_edric_wry_s3.png",
+  "characters/char_edric_wry_s3_portrait_384.png",
+  "characters/char_godwin_avatar_256.png",
+  "characters/char_godwin_full.png",
+  "characters/char_godwin_neutral.png",
+  "characters/char_godwin_neutral_portrait_384.png",
+  "characters/char_mathilde_avatar_256.png",
+  "characters/char_mathilde_full.png",
+  "characters/char_mathilde_neutral.png",
+  "characters/char_mathilde_neutral_portrait_384.png",
+  "characters/char_osbert_avatar_256.png",
+  "characters/char_osbert_broken.png",
+  "characters/char_osbert_broken_portrait_384.png",
+  "characters/char_osbert_calm.png",
+  "characters/char_osbert_calm_portrait_384.png",
+  "characters/char_osbert_full.png",
+  "characters/char_osbert_nervous.png",
+  "characters/char_osbert_nervous_portrait_384.png",
+  "characters/char_severin_avatar_256.png",
+  "characters/char_severin_full.png",
+  "characters/char_severin_neutral.png",
+  "characters/char_severin_neutral_portrait_384.png",
+  "characters/char_ysolde_avatar_256.png",
+  "characters/char_ysolde_broken.png",
+  "characters/char_ysolde_broken_portrait_384.png",
+  "characters/char_ysolde_calm.png",
+  "characters/char_ysolde_calm_portrait_384.png",
+  "characters/char_ysolde_cold.png",
+  "characters/char_ysolde_cold_portrait_384.png",
+  "characters/char_ysolde_full.png",
+  "characters/char_ysolde_shaken.png",
+  "characters/char_ysolde_shaken_portrait_384.png",
+  "characters/ovl_edric_ink_s3.png",
+  "cu/cu_brendan_copy.jpg",
+  "cu/cu_chest_lock.jpg",
+  "cu/cu_child_drawing.jpg",
+  "cu/cu_contract.jpg",
+  "cu/cu_contract_fine.jpg",
+  "cu/cu_contract_seal.jpg",
+  "cu/cu_crest_door.jpg",
+  "cu/cu_crest_door_eye_closed.png",
+  "cu/cu_crest_door_key.png",
+  "cu/cu_crest_door_water.png",
+  "cu/cu_crest_door_well.png",
+  "cu/cu_genealogy.jpg",
+  "cu/cu_genealogy_original.jpg",
+  "cu/cu_genealogy_original_lowsan.png",
+  "cu/cu_genealogy_original_revealed.jpg",
+  "cu/cu_relief.jpg",
+  "cu/cu_relief_open.jpg",
+  "cu/cu_tapestry.jpg",
+  "cu/cu_tapestry_01.jpg",
+  "cu/cu_tapestry_02.jpg",
+  "cu/cu_tapestry_03.jpg",
+  "cu/cu_tapestry_04.jpg",
+  "cu/cu_well_lid.jpg",
+  "evidence/card_blank_1312.png",
+  "evidence/card_hild_1238.png",
+  "evidence/card_roz_1275.png",
+  "evidence/card_year_1349.png",
+  "evidence/ev_black_bead.png",
+  "evidence/ev_blank_coffins.png",
+  "evidence/ev_brendan_notes.png",
+  "evidence/ev_burnt_page.png",
+  "evidence/ev_child_drawing.png",
+  "evidence/ev_confession.png",
+  "evidence/ev_revealed_tree.png",
+  "evidence/ev_rosary.png",
+  "evidence/ev_seal_crozier.png",
+  "evidence/ev_wet_chain.png",
+  "fx/fx_candle_flicker_01.png",
+  "fx/fx_candle_flicker_02.png",
+  "fx/fx_candle_flicker_03.png",
+  "fx/fx_candle_flicker_04.png",
+  "fx/fx_candle_flicker_05.png",
+  "fx/fx_candle_flicker_06.png",
+  "fx/fx_candle_flicker_s3_01.png",
+  "fx/fx_candle_flicker_s3_02.png",
+  "fx/fx_candle_flicker_s3_03.png",
+  "fx/fx_candle_flicker_s3_04.png",
+  "fx/fx_candle_flicker_s3_05.png",
+  "fx/fx_candle_flicker_s3_06.png",
+  "fx/fx_dust_01.png",
+  "fx/fx_dust_02.png",
+  "fx/fx_dust_mote.png",
+  "fx/fx_ink_tendril_01.png",
+  "fx/fx_ink_tendril_02.png",
+  "fx/fx_ink_tendril_03.png",
+  "fx/fx_ink_tendril_04.png",
+  "fx/fx_stamp_seal_01.png",
+  "fx/fx_stamp_seal_02.png",
+  "fx/fx_stamp_seal_03.png",
+  "fx/fx_stamp_seal_04.png",
+  "fx/fx_stamp_seal_05.png",
+  "fx/fx_stamp_seal_06.png",
+  "fx/fx_text_eye_01.png",
+  "fx/fx_text_eye_02.png",
+  "fx/fx_text_eye_03.png",
+  "fx/fx_thread_wriggle_01.png",
+  "fx/fx_thread_wriggle_02.png",
+  "fx/fx_thread_wriggle_03.png",
+  "fx/fx_thread_wriggle_04.png",
+  "fx/fx_vignette_s2.png",
+  "fx/fx_vignette_s3.png",
+  "items/item_black_bead.png",
+  "items/item_bread.png",
+  "items/item_burnt_page.png",
+  "items/item_candle.png",
+  "items/item_candle_lit.png",
+  "items/item_charcoal.png",
+  "items/item_charcoal_dust.png",
+  "items/item_contract_half.png",
+  "items/item_crank.png",
+  "items/item_poker.png",
+  "items/item_quill.png",
+  "items/item_reveal_brush.png",
+  "items/item_rosary.png",
+  "items/item_rosary_full.png",
+  "items/item_scraper.png",
+  "items/item_spectacles.png",
+  "items/item_well_key.png",
+  "ui/ui_btn_cancel.png",
+  "ui/ui_btn_cancel_pressed.png",
+  "ui/ui_btn_confirm.png",
+  "ui/ui_btn_confirm_pressed.png",
+  "ui/ui_btn_present.png",
+  "ui/ui_btn_present_pressed.png",
+  "ui/ui_btn_round_iron.png",
+  "ui/ui_btn_round_seal.png",
+  "ui/ui_button.png",
+  "ui/ui_cork_board.jpg",
+  "ui/ui_crest_v1.png",
+  "ui/ui_crest_v1.svg",
+  "ui/ui_crest_v1_256.png",
+  "ui/ui_crest_v2.png",
+  "ui/ui_crest_v2.svg",
+  "ui/ui_crest_v2_256.png",
+  "ui/ui_crest_v3.png",
+  "ui/ui_crest_v3.svg",
+  "ui/ui_crest_v3_256.png",
+  "ui/ui_dialog_box.png",
+  "ui/ui_dialog_name.png",
+  "ui/ui_flame_s1.png",
+  "ui/ui_flame_s2.png",
+  "ui/ui_flame_s3.png",
+  "ui/ui_heart_candle.png",
+  "ui/ui_heart_candle_base.png",
+  "ui/ui_heart_candle_body.png",
+  "ui/ui_heart_candle_top.png",
+  "ui/ui_icon_back.svg",
+  "ui/ui_icon_back_48.png",
+  "ui/ui_icon_back_96.png",
+  "ui/ui_icon_back_light.svg",
+  "ui/ui_icon_back_light_96.png",
+  "ui/ui_icon_board.svg",
+  "ui/ui_icon_board_48.png",
+  "ui/ui_icon_board_96.png",
+  "ui/ui_icon_board_light.svg",
+  "ui/ui_icon_board_light_96.png",
+  "ui/ui_icon_close.svg",
+  "ui/ui_icon_close_48.png",
+  "ui/ui_icon_close_96.png",
+  "ui/ui_icon_close_light.svg",
+  "ui/ui_icon_close_light_96.png",
+  "ui/ui_icon_evidence.svg",
+  "ui/ui_icon_evidence_48.png",
+  "ui/ui_icon_evidence_96.png",
+  "ui/ui_icon_evidence_light.svg",
+  "ui/ui_icon_evidence_light_96.png",
+  "ui/ui_icon_gear.svg",
+  "ui/ui_icon_gear_48.png",
+  "ui/ui_icon_gear_96.png",
+  "ui/ui_icon_gear_light.svg",
+  "ui/ui_icon_gear_light_96.png",
+  "ui/ui_icon_hint.svg",
+  "ui/ui_icon_hint_48.png",
+  "ui/ui_icon_hint_96.png",
+  "ui/ui_icon_hint_light.svg",
+  "ui/ui_icon_hint_light_96.png",
+  "ui/ui_icon_journal.svg",
+  "ui/ui_icon_journal_48.png",
+  "ui/ui_icon_journal_96.png",
+  "ui/ui_icon_journal_light.svg",
+  "ui/ui_icon_journal_light_96.png",
+  "ui/ui_icon_skip.svg",
+  "ui/ui_icon_skip_48.png",
+  "ui/ui_icon_skip_96.png",
+  "ui/ui_icon_skip_light.svg",
+  "ui/ui_icon_skip_light_96.png",
+  "ui/ui_inventory_bar.jpg",
+  "ui/ui_journal_bg.jpg",
+  "ui/ui_loading.jpg",
+  "ui/ui_loading_bar_bg.png",
+  "ui/ui_loading_bar_fill.png",
+  "ui/ui_loading_with_text.jpg",
+  "ui/ui_pin.png",
+  "ui/ui_portrait_frame.png",
+  "ui/ui_portrait_mask.png",
+  "ui/ui_red_line.png",
+  "ui/ui_red_line.svg",
+  "ui/ui_red_line_broken.svg",
+  "ui/ui_red_line_broken_l.png",
+  "ui/ui_red_line_broken_r.png",
+  "ui/ui_relation_tag.png",
+  "ui/ui_relation_tag_kin.png",
+  "ui/ui_relation_tag_lie.png",
+  "ui/ui_relation_tag_motive.png",
+  "ui/ui_relation_tag_witness.png",
+  "ui/ui_slot_empty.png",
+  "ui/ui_slot_selected.png",
+  "ui/ui_slot_selected.svg",
+  "ui/ui_stamp_seal.png",
+  "ui/ui_tab_blank.png",
+  "ui/ui_tab_board.png",
+  "ui/ui_tab_board_on.png",
+  "ui/ui_tab_deduce.png",
+  "ui/ui_tab_deduce_on.png",
+  "ui/ui_tab_evidence.png",
+  "ui/ui_tab_evidence_on.png",
+  "ui/ui_testimony_strip.png",
+  "ui/ui_testimony_strip_selected.png"
+ ],
+ "excluded": [
+  "characters/characters_lineup.png",
+  "palette.png",
+  "style_sample_character.png",
+  "style_sample_character_1080x1920.png",
+  "style_sample_room_1080x1920.png"
+ ],
+ "hotspots": [
+  "bg/bg_r1_hall_hotspots.json",
+  "bg/bg_r2_scriptorium_hotspots.json",
+  "bg/bg_r3_crypt_hotspots.json"
+ ],
+ "meta": {
+  "fx_candle_flicker": {
+   "frames": 6,
+   "fps": 12,
+   "frame_w": 64,
+   "frame_h": 128,
+   "anchor": [
+    32,
+    114
+   ],
+   "loop": true,
+   "note": "心烛火焰摇曳（琥珀，s1/s2 用；s2 可把 fps 提到 16 表现更不安）；_s3_01~06 为绿色版。底部中心 anchor 对齐烛芯"
+  },
+  "fx_dust": {
+   "frames": 2,
+   "fps": 1,
+   "frame_w": 1080,
+   "frame_h": 1920,
+   "loop": true,
+   "note": "全屏浮尘+左上 45° 淡光柱，透明 PNG；建议两帧交叉淡入 + 缓慢 translateY(-40px)/20s；或用 fx_dust_mote 做粒子"
+  },
+  "fx_stamp_seal": {
+   "frames": 6,
+   "fps": 12,
+   "frame_w": 512,
+   "frame_h": 512,
+   "loop": false,
+   "hold_last": true,
+   "note": "“拆穿！”蜡封印章从放大半透明砸下→落地压扁(04 帧带蜡屑)→回弹→定格；居中叠在被拆穿的证词条上"
+  },
+  "fx_text_eye": {
+   "frames": 3,
+   "fps": 12,
+   "frame_w": 128,
+   "frame_h": 128,
+   "loop": false,
+   "hold_last": true,
+   "note": "低理智时文本中的字母 o 长成眼睛：01 哥特 o → 02 半睁 → 03 睁开。按文字字号缩放叠在字符位置"
+  },
+  "fx_thread_wriggle": {
+   "frames": 4,
+   "fps": 6,
+   "frame_w": 440,
+   "frame_h": 440,
+   "anchor_in_cu_tapestry": [
+    339,
+    886
+   ],
+   "loop": true,
+   "note": "挂毯被剪开洞口的线头蠕动；叠在 cu_tapestry 上（左上角坐标 anchor），或直接轮播 cu_tapestry_01~04（6fps）"
+  },
+  "ui_meta": {
+   "inventory_slots": [
+    {
+     "x": 134,
+     "y": 110,
+     "size": 121
+    },
+    {
+     "x": 297,
+     "y": 110,
+     "size": 120
+    },
+    {
+     "x": 458,
+     "y": 110,
+     "size": 118
+    },
+    {
+     "x": 621,
+     "y": 110,
+     "size": 118
+    },
+    {
+     "x": 785,
+     "y": 110,
+     "size": 118
+    },
+    {
+     "x": 950,
+     "y": 110,
+     "size": 121
+    }
+   ],
+   "journal": {
+    "tablet_top": [
+     0,
+     174
+    ],
+    "note": "上片蜡板约占 y 260-930，下片 y 960-1560（1600 高画布）；可写区以实测为准"
+   },
+   "heart_candle": {
+    "wick": [
+     83,
+     3
+    ],
+    "pieces": {
+     "top": [
+      0,
+      0,
+      166,
+      50
+     ],
+     "body": [
+      0,
+      50,
+      166,
+      310
+     ],
+     "base": [
+      0,
+      310,
+      166,
+      485
+     ]
+    }
+   },
+   "heart_candle_note": "烛高=理智：底座固定，烛身 body 按理智百分比纵向裁切（从上往下裁）或缩放，再把 top 接在烛身顶端，火焰 ui_flame_s1/s2/s3 底部中心对齐 wick",
+   "flame_anchor": "火焰 PNG 64x128，底部中心 (32,114) 对齐烛芯",
+   "crest": "ui_crest_v1/v2/v3.png 为手绘抠图（含箴言绶带，衬线体）；.svg 为矢量简版",
+   "colors": {
+    "ink": "#2B2119",
+    "parchment": "#D9C7A3",
+    "red_line": "#7A2E25",
+    "amber": "#C9A25A",
+    "flame_s3": "#6E7A5A"
+   }
+  }
+ },
+ "audio": [
+  "amb/amb_crypt_drip.m4a",
+  "amb/amb_crypt_drip.mp3",
+  "amb/amb_crypt_drip.ogg",
+  "amb/amb_hall_fire.m4a",
+  "amb/amb_hall_fire.mp3",
+  "amb/amb_hall_fire.ogg",
+  "amb/amb_tower_wind.m4a",
+  "amb/amb_tower_wind.mp3",
+  "amb/amb_tower_wind.ogg",
+  "amb/amb_whisper_low.m4a",
+  "amb/amb_whisper_low.mp3",
+  "amb/amb_whisper_low.ogg",
+  "amb/amb_whisper_near.m4a",
+  "amb/amb_whisper_near.mp3",
+  "amb/amb_whisper_near.ogg",
+  "bgm/bgm_clueboard.m4a",
+  "bgm/bgm_clueboard.mp3",
+  "bgm/bgm_clueboard.ogg",
+  "bgm/bgm_ending_ch1.m4a",
+  "bgm/bgm_ending_ch1.mp3",
+  "bgm/bgm_ending_ch1.ogg",
+  "bgm/bgm_interrogation.m4a",
+  "bgm/bgm_interrogation.mp3",
+  "bgm/bgm_interrogation.ogg",
+  "bgm/bgm_r1_hall.m4a",
+  "bgm/bgm_r1_hall.mp3",
+  "bgm/bgm_r1_hall.ogg",
+  "bgm/bgm_r2_scriptorium.m4a",
+  "bgm/bgm_r2_scriptorium.mp3",
+  "bgm/bgm_r2_scriptorium.ogg",
+  "bgm/bgm_r3_crypt.m4a",
+  "bgm/bgm_r3_crypt.mp3",
+  "bgm/bgm_r3_crypt.ogg",
+  "bgm/bgm_title.m4a",
+  "bgm/bgm_title.mp3",
+  "bgm/bgm_title.ogg",
+  "sfx/sfx_box_open.m4a",
+  "sfx/sfx_box_open.mp3",
+  "sfx/sfx_box_open.ogg",
+  "sfx/sfx_candle_light.m4a",
+  "sfx/sfx_candle_light.mp3",
+  "sfx/sfx_candle_light.ogg",
+  "sfx/sfx_candle_out.m4a",
+  "sfx/sfx_candle_out.mp3",
+  "sfx/sfx_candle_out.ogg",
+  "sfx/sfx_charcoal_reveal.m4a",
+  "sfx/sfx_charcoal_reveal.mp3",
+  "sfx/sfx_charcoal_reveal.ogg",
+  "sfx/sfx_clue_connect.m4a",
+  "sfx/sfx_clue_connect.mp3",
+  "sfx/sfx_clue_connect.ogg",
+  "sfx/sfx_clue_fail.m4a",
+  "sfx/sfx_clue_fail.mp3",
+  "sfx/sfx_clue_fail.ogg",
+  "sfx/sfx_combine_fail.m4a",
+  "sfx/sfx_combine_fail.mp3",
+  "sfx/sfx_combine_fail.ogg",
+  "sfx/sfx_combine_success.m4a",
+  "sfx/sfx_combine_success.mp3",
+  "sfx/sfx_combine_success.ogg",
+  "sfx/sfx_crest_rotate.m4a",
+  "sfx/sfx_crest_rotate.mp3",
+  "sfx/sfx_crest_rotate.ogg",
+  "sfx/sfx_crow.m4a",
+  "sfx/sfx_crow.mp3",
+  "sfx/sfx_crow.ogg",
+  "sfx/sfx_dial_click.m4a",
+  "sfx/sfx_dial_click.mp3",
+  "sfx/sfx_dial_click.ogg",
+  "sfx/sfx_item_use.m4a",
+  "sfx/sfx_item_use.mp3",
+  "sfx/sfx_item_use.ogg",
+  "sfx/sfx_page_turn.m4a",
+  "sfx/sfx_page_turn.mp3",
+  "sfx/sfx_page_turn.ogg",
+  "sfx/sfx_pickup.m4a",
+  "sfx/sfx_pickup.mp3",
+  "sfx/sfx_pickup.ogg",
+  "sfx/sfx_sanity_restore.m4a",
+  "sfx/sfx_sanity_restore.mp3",
+  "sfx/sfx_sanity_restore.ogg",
+  "sfx/sfx_stone_sink.m4a",
+  "sfx/sfx_stone_sink.mp3",
+  "sfx/sfx_stone_sink.ogg",
+  "sfx/sfx_tap.m4a",
+  "sfx/sfx_tap.mp3",
+  "sfx/sfx_tap.ogg",
+  "sfx/sfx_testimony_flip.m4a",
+  "sfx/sfx_testimony_flip.mp3",
+  "sfx/sfx_testimony_flip.ogg",
+  "sfx/sfx_well_cover.m4a",
+  "sfx/sfx_well_cover.mp3",
+  "sfx/sfx_well_cover.ogg",
+  "sfx/sfx_winch_chain.m4a",
+  "sfx/sfx_winch_chain.mp3",
+  "sfx/sfx_winch_chain.ogg",
+  "sfx/sfx_window_wind.m4a",
+  "sfx/sfx_window_wind.mp3",
+  "sfx/sfx_window_wind.ogg",
+  "sfx/sfx_wrong.m4a",
+  "sfx/sfx_wrong.mp3",
+  "sfx/sfx_wrong.ogg",
+  "sfx/stinger_contradiction.m4a",
+  "sfx/stinger_contradiction.mp3",
+  "sfx/stinger_contradiction.ogg",
+  "sfx/stinger_deduction.m4a",
+  "sfx/stinger_deduction.mp3",
+  "sfx/stinger_deduction.ogg",
+  "vo/vo_edric_gasp.m4a",
+  "vo/vo_edric_gasp.mp3",
+  "vo/vo_edric_gasp.ogg",
+  "vo/vo_edric_hm.m4a",
+  "vo/vo_edric_hm.mp3",
+  "vo/vo_edric_hm.ogg",
+  "vo/vo_edric_sneer.m4a",
+  "vo/vo_edric_sneer.mp3",
+  "vo/vo_edric_sneer.ogg",
+  "vo/vo_osbert_sob.m4a",
+  "vo/vo_osbert_sob.mp3",
+  "vo/vo_osbert_sob.ogg",
+  "vo/vo_ysolde_laugh_break.m4a",
+  "vo/vo_ysolde_laugh_break.mp3",
+  "vo/vo_ysolde_laugh_break.ogg",
+  "vo/vo_ysolde_sneer.m4a",
+  "vo/vo_ysolde_sneer.mp3",
+  "vo/vo_ysolde_sneer.ogg"
+ ],
+ "audioManifest": {
+  "sample_rate": 44100,
+  "formats_by_preference_ios_first": [
+   "m4a",
+   "ogg",
+   "mp3"
+  ],
+  "files": {
+   "bgm_title": {
+    "dir": "bgm",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "bgm/bgm_title.ogg",
+     "m4a": "bgm/bgm_title.m4a",
+     "mp3": "bgm/bgm_title.mp3"
+    },
+    "duration": 90.001,
+    "loopStart": 0,
+    "loopEnd": 90.001
+   },
+   "bgm_r1_hall": {
+    "dir": "bgm",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "bgm/bgm_r1_hall.ogg",
+     "m4a": "bgm/bgm_r1_hall.m4a",
+     "mp3": "bgm/bgm_r1_hall.mp3"
+    },
+    "duration": 120.001,
+    "loopStart": 0,
+    "loopEnd": 120.001
+   },
+   "bgm_r2_scriptorium": {
+    "dir": "bgm",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "bgm/bgm_r2_scriptorium.ogg",
+     "m4a": "bgm/bgm_r2_scriptorium.m4a",
+     "mp3": "bgm/bgm_r2_scriptorium.mp3"
+    },
+    "duration": 120.001,
+    "loopStart": 0,
+    "loopEnd": 120.001
+   },
+   "bgm_r3_crypt": {
+    "dir": "bgm",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "bgm/bgm_r3_crypt.ogg",
+     "m4a": "bgm/bgm_r3_crypt.m4a",
+     "mp3": "bgm/bgm_r3_crypt.mp3"
+    },
+    "duration": 150.001,
+    "loopStart": 0,
+    "loopEnd": 150.001
+   },
+   "bgm_interrogation": {
+    "dir": "bgm",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "bgm/bgm_interrogation.ogg",
+     "m4a": "bgm/bgm_interrogation.m4a",
+     "mp3": "bgm/bgm_interrogation.mp3"
+    },
+    "duration": 90.001,
+    "loopStart": 0,
+    "loopEnd": 90.001
+   },
+   "bgm_clueboard": {
+    "dir": "bgm",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "bgm/bgm_clueboard.ogg",
+     "m4a": "bgm/bgm_clueboard.m4a",
+     "mp3": "bgm/bgm_clueboard.mp3"
+    },
+    "duration": 90.001,
+    "loopStart": 0,
+    "loopEnd": 90.001
+   },
+   "bgm_ending_ch1": {
+    "dir": "bgm",
+    "channels": 2,
+    "loop": false,
+    "src": {
+     "ogg": "bgm/bgm_ending_ch1.ogg",
+     "m4a": "bgm/bgm_ending_ch1.m4a",
+     "mp3": "bgm/bgm_ending_ch1.mp3"
+    },
+    "duration": 45
+   },
+   "amb_hall_fire": {
+    "dir": "amb",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "amb/amb_hall_fire.ogg",
+     "m4a": "amb/amb_hall_fire.m4a",
+     "mp3": "amb/amb_hall_fire.mp3"
+    },
+    "duration": 60,
+    "loopStart": 0,
+    "loopEnd": 60
+   },
+   "amb_tower_wind": {
+    "dir": "amb",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "amb/amb_tower_wind.ogg",
+     "m4a": "amb/amb_tower_wind.m4a",
+     "mp3": "amb/amb_tower_wind.mp3"
+    },
+    "duration": 60,
+    "loopStart": 0,
+    "loopEnd": 60
+   },
+   "amb_crypt_drip": {
+    "dir": "amb",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "amb/amb_crypt_drip.ogg",
+     "m4a": "amb/amb_crypt_drip.m4a",
+     "mp3": "amb/amb_crypt_drip.mp3"
+    },
+    "duration": 60,
+    "loopStart": 0,
+    "loopEnd": 60
+   },
+   "amb_whisper_low": {
+    "dir": "amb",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "amb/amb_whisper_low.ogg",
+     "m4a": "amb/amb_whisper_low.m4a",
+     "mp3": "amb/amb_whisper_low.mp3"
+    },
+    "duration": 40.008,
+    "loopStart": 0,
+    "loopEnd": 40.008
+   },
+   "amb_whisper_near": {
+    "dir": "amb",
+    "channels": 2,
+    "loop": true,
+    "src": {
+     "ogg": "amb/amb_whisper_near.ogg",
+     "m4a": "amb/amb_whisper_near.m4a",
+     "mp3": "amb/amb_whisper_near.mp3"
+    },
+    "duration": 40.008,
+    "loopStart": 0,
+    "loopEnd": 40.008
+   },
+   "stinger_contradiction": {
+    "dir": "sfx",
+    "channels": 2,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/stinger_contradiction.ogg",
+     "m4a": "sfx/stinger_contradiction.m4a",
+     "mp3": "sfx/stinger_contradiction.mp3"
+    },
+    "duration": 2
+   },
+   "stinger_deduction": {
+    "dir": "sfx",
+    "channels": 2,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/stinger_deduction.ogg",
+     "m4a": "sfx/stinger_deduction.m4a",
+     "mp3": "sfx/stinger_deduction.mp3"
+    },
+    "duration": 3.2
+   },
+   "sfx_pickup": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_pickup.ogg",
+     "m4a": "sfx/sfx_pickup.m4a",
+     "mp3": "sfx/sfx_pickup.mp3"
+    },
+    "duration": 0.897
+   },
+   "sfx_combine_success": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_combine_success.ogg",
+     "m4a": "sfx/sfx_combine_success.m4a",
+     "mp3": "sfx/sfx_combine_success.mp3"
+    },
+    "duration": 0.997
+   },
+   "sfx_combine_fail": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_combine_fail.ogg",
+     "m4a": "sfx/sfx_combine_fail.m4a",
+     "mp3": "sfx/sfx_combine_fail.mp3"
+    },
+    "duration": 0.57
+   },
+   "sfx_item_use": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_item_use.ogg",
+     "m4a": "sfx/sfx_item_use.m4a",
+     "mp3": "sfx/sfx_item_use.mp3"
+    },
+    "duration": 0.997
+   },
+   "sfx_stone_sink": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_stone_sink.ogg",
+     "m4a": "sfx/sfx_stone_sink.m4a",
+     "mp3": "sfx/sfx_stone_sink.mp3"
+    },
+    "duration": 2.6
+   },
+   "sfx_crest_rotate": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_crest_rotate.ogg",
+     "m4a": "sfx/sfx_crest_rotate.m4a",
+     "mp3": "sfx/sfx_crest_rotate.mp3"
+    },
+    "duration": 1.5
+   },
+   "sfx_dial_click": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_dial_click.ogg",
+     "m4a": "sfx/sfx_dial_click.m4a",
+     "mp3": "sfx/sfx_dial_click.mp3"
+    },
+    "duration": 0.117
+   },
+   "sfx_box_open": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_box_open.ogg",
+     "m4a": "sfx/sfx_box_open.m4a",
+     "mp3": "sfx/sfx_box_open.mp3"
+    },
+    "duration": 0.997
+   },
+   "sfx_page_turn": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_page_turn.ogg",
+     "m4a": "sfx/sfx_page_turn.m4a",
+     "mp3": "sfx/sfx_page_turn.mp3"
+    },
+    "duration": 0.721
+   },
+   "sfx_charcoal_reveal": {
+    "dir": "sfx",
+    "channels": 2,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_charcoal_reveal.ogg",
+     "m4a": "sfx/sfx_charcoal_reveal.m4a",
+     "mp3": "sfx/sfx_charcoal_reveal.mp3"
+    },
+    "duration": 3.2
+   },
+   "sfx_crow": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_crow.ogg",
+     "m4a": "sfx/sfx_crow.m4a",
+     "mp3": "sfx/sfx_crow.mp3"
+    },
+    "duration": 1.8
+   },
+   "sfx_window_wind": {
+    "dir": "sfx",
+    "channels": 2,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_window_wind.ogg",
+     "m4a": "sfx/sfx_window_wind.m4a",
+     "mp3": "sfx/sfx_window_wind.mp3"
+    },
+    "duration": 2.4
+   },
+   "sfx_candle_light": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_candle_light.ogg",
+     "m4a": "sfx/sfx_candle_light.m4a",
+     "mp3": "sfx/sfx_candle_light.mp3"
+    },
+    "duration": 1.4
+   },
+   "sfx_candle_out": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_candle_out.ogg",
+     "m4a": "sfx/sfx_candle_out.m4a",
+     "mp3": "sfx/sfx_candle_out.mp3"
+    },
+    "duration": 1.1
+   },
+   "sfx_winch_chain": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_winch_chain.ogg",
+     "m4a": "sfx/sfx_winch_chain.m4a",
+     "mp3": "sfx/sfx_winch_chain.mp3"
+    },
+    "duration": 2.8
+   },
+   "sfx_well_cover": {
+    "dir": "sfx",
+    "channels": 2,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_well_cover.ogg",
+     "m4a": "sfx/sfx_well_cover.m4a",
+     "mp3": "sfx/sfx_well_cover.mp3"
+    },
+    "duration": 3.4
+   },
+   "sfx_clue_connect": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_clue_connect.ogg",
+     "m4a": "sfx/sfx_clue_connect.m4a",
+     "mp3": "sfx/sfx_clue_connect.mp3"
+    },
+    "duration": 0.797
+   },
+   "sfx_clue_fail": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_clue_fail.ogg",
+     "m4a": "sfx/sfx_clue_fail.m4a",
+     "mp3": "sfx/sfx_clue_fail.mp3"
+    },
+    "duration": 0.597
+   },
+   "sfx_testimony_flip": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_testimony_flip.ogg",
+     "m4a": "sfx/sfx_testimony_flip.m4a",
+     "mp3": "sfx/sfx_testimony_flip.mp3"
+    },
+    "duration": 0.447
+   },
+   "sfx_wrong": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_wrong.ogg",
+     "m4a": "sfx/sfx_wrong.m4a",
+     "mp3": "sfx/sfx_wrong.mp3"
+    },
+    "duration": 0.597
+   },
+   "sfx_tap": {
+    "dir": "sfx",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_tap.ogg",
+     "m4a": "sfx/sfx_tap.m4a",
+     "mp3": "sfx/sfx_tap.mp3"
+    },
+    "duration": 0.082
+   },
+   "sfx_sanity_restore": {
+    "dir": "sfx",
+    "channels": 2,
+    "loop": false,
+    "src": {
+     "ogg": "sfx/sfx_sanity_restore.ogg",
+     "m4a": "sfx/sfx_sanity_restore.m4a",
+     "mp3": "sfx/sfx_sanity_restore.mp3"
+    },
+    "duration": 3.6
+   },
+   "vo_edric_hm": {
+    "dir": "vo",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "vo/vo_edric_hm.ogg",
+     "m4a": "vo/vo_edric_hm.m4a",
+     "mp3": "vo/vo_edric_hm.mp3"
+    },
+    "duration": 0.647
+   },
+   "vo_edric_sneer": {
+    "dir": "vo",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "vo/vo_edric_sneer.ogg",
+     "m4a": "vo/vo_edric_sneer.m4a",
+     "mp3": "vo/vo_edric_sneer.mp3"
+    },
+    "duration": 0.547
+   },
+   "vo_edric_gasp": {
+    "dir": "vo",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "vo/vo_edric_gasp.ogg",
+     "m4a": "vo/vo_edric_gasp.m4a",
+     "mp3": "vo/vo_edric_gasp.mp3"
+    },
+    "duration": 0.597
+   },
+   "vo_osbert_sob": {
+    "dir": "vo",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "vo/vo_osbert_sob.ogg",
+     "m4a": "vo/vo_osbert_sob.m4a",
+     "mp3": "vo/vo_osbert_sob.mp3"
+    },
+    "duration": 2.2
+   },
+   "vo_ysolde_sneer": {
+    "dir": "vo",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "vo/vo_ysolde_sneer.ogg",
+     "m4a": "vo/vo_ysolde_sneer.m4a",
+     "mp3": "vo/vo_ysolde_sneer.mp3"
+    },
+    "duration": 0.697
+   },
+   "vo_ysolde_laugh_break": {
+    "dir": "vo",
+    "channels": 1,
+    "loop": false,
+    "src": {
+     "ogg": "vo/vo_ysolde_laugh_break.ogg",
+     "m4a": "vo/vo_ysolde_laugh_break.m4a",
+     "mp3": "vo/vo_ysolde_laugh_break.mp3"
+    },
+    "duration": 3
+   }
+  }
+ }
+}

@@ -1,0 +1,196 @@
+{
+ "generated": "2026-10-31T19:11:07-04:00",
+ "spec": "design/04_美术素材清单.md",
+ "note": "脚本 art_src/cu/build_cu.py（谜题/契约）+ build_cu2.py（挂毯/家谱/抄本/画/浮雕/井盖）；符号来自 art_src/cu/crest_tiles.py",
+ "count": 23,
+ "assets": [
+  {
+   "file": "art/cu/cu_brendan_copy.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "布伦丹抄本 + 夹页笔记（“每隔……个冬天”，无数字）"
+  },
+  {
+   "file": "art/cu/cu_chest_lock.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": "pz_dial",
+   "purpose": "pz_dial 背景：编年史匣铜锁板，三个空槽（DOM 数字轮叠在中间）"
+  },
+  {
+   "file": "art/cu/cu_child_drawing.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "玛蒂尔的画特写 1080x1080"
+  },
+  {
+   "file": "art/cu/cu_contract.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": "pz_contract_read",
+   "purpose": "半份契约 普通版（字小看不清，牧杖纹封蜡）"
+  },
+  {
+   "file": "art/cu/cu_contract_fine.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": "pz_contract_read",
+   "purpose": "戴眼镜后的细字版（镜片内：以名换名/以血守门/每三十七个冬至/献一子之名）"
+  },
+  {
+   "file": "art/cu/cu_contract_seal.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": "pz_contract_read",
+   "purpose": "牧杖纹封蜡特写"
+  },
+  {
+   "file": "art/cu/cu_crest_door.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": "pz_crest",
+   "purpose": "pz_crest 背景：空白 2x2 家徽石盘（1080x1080）"
+  },
+  {
+   "file": "art/cu/cu_crest_door_eye_closed.png",
+   "width": 260,
+   "height": 260,
+   "transparent": true,
+   "puzzle": "pz_crest",
+   "symbol": "eye_closed",
+   "purpose": "rotate_grid 格子符号 260x260 透明（叠在 CSS 苔绿/赭色格上）"
+  },
+  {
+   "file": "art/cu/cu_crest_door_key.png",
+   "width": 260,
+   "height": 260,
+   "transparent": true,
+   "puzzle": "pz_crest",
+   "symbol": "key",
+   "purpose": "rotate_grid 格子符号 260x260 透明（叠在 CSS 苔绿/赭色格上）"
+  },
+  {
+   "file": "art/cu/cu_crest_door_water.png",
+   "width": 260,
+   "height": 260,
+   "transparent": true,
+   "puzzle": "pz_crest",
+   "symbol": "water",
+   "purpose": "rotate_grid 格子符号 260x260 透明（叠在 CSS 苔绿/赭色格上）"
+  },
+  {
+   "file": "art/cu/cu_crest_door_well.png",
+   "width": 260,
+   "height": 260,
+   "transparent": true,
+   "puzzle": "pz_crest",
+   "symbol": "well",
+   "purpose": "rotate_grid 格子符号 260x260 透明（叠在 CSS 苔绿/赭色格上）"
+  },
+  {
+   "file": "art/cu/cu_genealogy.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "= cu_genealogy_original（chapter1.json 引用 id 的别名；拓显后换 cu_genealogy_original_revealed）"
+  },
+  {
+   "file": "art/cu/cu_genealogy_original.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "抄经室原版家谱：三处名字被刮掉（1238/1275/1312 位置）"
+  },
+  {
+   "file": "art/cu/cu_genealogy_original_lowsan.png",
+   "width": 1080,
+   "height": 1920,
+   "transparent": true,
+   "puzzle": null,
+   "purpose": "理智<40 叠加层（透明）：1312 处浮现半个哥特字母 E，叠在 revealed 上，像素对齐"
+  },
+  {
+   "file": "art/cu/cu_genealogy_original_revealed.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "炭粉拓显后：希尔德布兰 1238 / 罗泽琳 1275 / ▇▇ 1312，均“生卒不详”"
+  },
+  {
+   "file": "art/cu/cu_relief.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "地窖浮雕（跪像）1080x1080"
+  },
+  {
+   "file": "art/cu/cu_relief_open.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "浮雕低理智帧：墙上睁开无数眼睛，像素对齐 cu_relief"
+  },
+  {
+   "file": "art/cu/cu_tapestry.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "= cu_tapestry_01（chapter1.json 引用 id 的别名，静帧）"
+  },
+  {
+   "file": "art/cu/cu_tapestry_01.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "大厅家谱挂毯特写（洞口线头蠕动 4 帧 6fps，可轮播 _01~_04 或叠 fx_thread_wriggle）"
+  },
+  {
+   "file": "art/cu/cu_tapestry_02.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "挂毯 帧2"
+  },
+  {
+   "file": "art/cu/cu_tapestry_03.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "挂毯 帧3"
+  },
+  {
+   "file": "art/cu/cu_tapestry_04.jpg",
+   "width": 1080,
+   "height": 1920,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "挂毯 帧4"
+  },
+  {
+   "file": "art/cu/cu_well_lid.jpg",
+   "width": 1080,
+   "height": 1080,
+   "transparent": false,
+   "puzzle": null,
+   "purpose": "井盖与铁链特写 1080x1080"
+  }
+ ]
+}

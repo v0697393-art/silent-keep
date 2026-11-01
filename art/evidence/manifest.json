@@ -1,0 +1,148 @@
+{
+ "generated": "2026-10-31T19:11:07-04:00",
+ "spec": "design/04_美术素材清单.md",
+ "note": "360x480 透明 PNG（毛边羊皮纸卡 + 插图 + 标题 + 铜图钉）。脚本 art_src/evidence/build_cards.py",
+ "count": 14,
+ "assets": [
+  {
+   "file": "art/evidence/card_blank_1312.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": null,
+   "card": "c_blank",
+   "name": null,
+   "purpose": "证据卡/线索板卡"
+  },
+  {
+   "file": "art/evidence/card_hild_1238.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": null,
+   "card": "c_hild",
+   "name": null,
+   "purpose": "证据卡/线索板卡"
+  },
+  {
+   "file": "art/evidence/card_roz_1275.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": null,
+   "card": "c_roz",
+   "name": null,
+   "purpose": "证据卡/线索板卡"
+  },
+  {
+   "file": "art/evidence/card_year_1349.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": null,
+   "card": "c_1349",
+   "name": null,
+   "purpose": "证据卡/线索板卡"
+  },
+  {
+   "file": "art/evidence/ev_black_bead.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_black_bead",
+   "card": null,
+   "name": "井沿的黑珠",
+   "purpose": "证据卡/线索板卡"
+  },
+  {
+   "file": "art/evidence/ev_blank_coffins.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_blank_coffins",
+   "card": null,
+   "name": "空白石棺",
+   "purpose": "证据卡/线索板卡"
+  },
+  {
+   "file": "art/evidence/ev_brendan_notes.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_brendan_notes",
+   "card": "c_notes",
+   "name": "布伦丹的笔记",
+   "purpose": "证据卡/线索板卡"
+  },
+  {
+   "file": "art/evidence/ev_burnt_page.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_burnt_page",
+   "card": null,
+   "name": "访客簿残页",
+   "purpose": "证据卡/线索板卡"
+  },
+  {
+   "file": "art/evidence/ev_child_drawing.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_child_drawing",
+   "card": "c_draw",
+   "name": "玛蒂尔的画",
+   "purpose": "证据卡/线索板卡"
+  },
+  {
+   "file": "art/evidence/ev_confession.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_confession",
+   "card": null,
+   "name": "伊瑟尔达的供词",
+   "purpose": "证据卡/线索板卡"
+  },
+  {
+   "file": "art/evidence/ev_revealed_tree.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_revealed_tree",
+   "card": null,
+   "name": "显影后的家谱",
+   "purpose": "证据卡/线索板卡"
+  },
+  {
+   "file": "art/evidence/ev_rosary.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_rosary",
+   "card": null,
+   "name": "灰烛念珠",
+   "purpose": "证据卡/线索板卡"
+  },
+  {
+   "file": "art/evidence/ev_seal_crozier.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_seal_crozier",
+   "card": null,
+   "name": "牧杖纹封蜡",
+   "purpose": "证据卡/线索板卡"
+  },
+  {
+   "file": "art/evidence/ev_wet_chain.png",
+   "width": 360,
+   "height": 480,
+   "transparent": true,
+   "evidence": "ev_wet_chain",
+   "card": null,
+   "name": "湿链条",
+   "purpose": "证据卡/线索板卡"
+  }
+ ]
+}

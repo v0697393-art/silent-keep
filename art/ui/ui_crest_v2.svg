@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124 160" width="372" height="480" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 14 H106 V60 Q106 104 62 124 Q18 104 18 60 Z" fill="#3E4F3A" stroke="#A8865C" stroke-width="3"/>
+<path d="M62 14 V122 M18 60 H106" stroke="#A8865C" stroke-width="2"/>
+<g stroke="#C9A25A" stroke-width="2.5"><path d="M30 40 q12 8 24 0"/><path d="M42 36 l-3 6 l4 3 l-2 5"/><path d="M68 34 q5 -7 10 0 t10 0 t10 0"/><path d="M68 42 q5 -7 10 0 t10 0 t10 0"/><path d="M68 50 q5 -7 10 0 t10 0 t10 0"/><circle cx="42" cy="72" r="5"/><path d="M42 77 v18 M42 88 h5 M42 93 h4"/>
+<path d="M72 70 h22 v16 h-22z M70 70 h26 M75 76 h16 M75 81 h16"/></g>
+<path d="M4 132 q58 -10 116 0 l-6 10 l6 10 q-58 -10 -116 0 l6 -10z" fill="#D9C7A3" stroke="#2B2119" stroke-width="1.5"/><text x="62" y="146" font-family="Noto Serif SC, serif" font-size="9" font-weight="700" text-anchor="middle" fill="#2B2119">眼闭，水静，钥沉，井默。</text></svg>

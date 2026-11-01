@@ -1,0 +1,12 @@
+{
+ "frames": 4,
+ "fps": 6,
+ "frame_w": 440,
+ "frame_h": 440,
+ "anchor_in_cu_tapestry": [
+  339,
+  886
+ ],
+ "loop": true,
+ "note": "挂毯被剪开洞口的线头蠕动；叠在 cu_tapestry 上（左上角坐标 anchor），或直接轮播 cu_tapestry_01~04（6fps）"
+}
