@@ -50,15 +50,6 @@ export class Stage {
     const el = document.getElementById('rotate-lock');
     if (el) el.hidden = !lock;
     document.body.classList.toggle('rotate-locked', lock);
-    // 桌面：线索板标签按「屏幕上大约 18px」反推逻辑字号（舞台是等比缩小的）
-    const desk = !isPhone() && window.innerWidth >= 1000 && window.matchMedia('(hover: hover)').matches && window.matchMedia('(pointer: fine)').matches;
-    document.body.classList.toggle('desk', desk);
-    if (desk && this.scale > 0) {
-      const label = Math.round(Math.min(56, Math.max(32, 18 / this.scale)));
-      const link = Math.round(Math.min(48, Math.max(30, 16 / this.scale)));
-      document.documentElement.style.setProperty('--cb-label', `${label}px`);
-      document.documentElement.style.setProperty('--cb-link', `${link}px`);
-    }
   }
   /** 屏幕 client 坐标 → 逻辑坐标 */
   toLogical(clientX, clientY) {

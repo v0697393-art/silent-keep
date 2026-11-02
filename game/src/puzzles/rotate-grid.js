@@ -36,8 +36,10 @@ export class RotateGrid extends PuzzleBase {
     // 顶部格言（uiText.crestHint）：补丁 puzzleFeedback[id].mottoReq 满足时才显示（第一章 = 已知家训 has_motto）；空串不显示
     const mr = game.C.puzzleFeedback?.[id]?.mottoReq;
     const motto = (!mr || reqOk(game.S, mr)) ? game.C.uiText.crestHint : '';
-    this.area.append(motto ? el('div', { class: 'pz-motto', text: motto }) : null, this.grid, this.hint);
-    this.area.firstChild || this.area.prepend(this.grid);
+    // append(null) 会被浏览器写成文字节点 "null"（育婴室门楣）。空格言直接不插入。
+    const nodes = [this.grid, this.hint];
+    if (motto) nodes.unshift(el('div', { class: 'pz-motto', text: motto }));
+    this.area.append(...nodes);
   }
   render() {
     const { C, assets } = this.game;

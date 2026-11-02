@@ -71,24 +71,84 @@ export class Clueboard extends Modal {
     this.message(C.uiText.cbLocked);
   }
   center(id) { const [x, y] = this.pos[id]; return [x + CARD_W / 2, y + CARD_H / 2]; }
+  /** 超过一行的关系说明从中间折成两行，底框由 CSS 按文字收缩 */
+  wrapTag(text) {
+    const chars = [...text];
+    if (chars.length <= 14) return text;
+    const cut = Math.ceil(chars.length / 2);
+    return `${chars.slice(0, cut).join('')}\n${chars.slice(cut).join('')}`;
+  }
   drawLinks() {
     const { S } = this.game;
     const done = cbState(S, this.id).links;
     this.svg.replaceChildren();
+    this.tags?.remove();
+    const tags = el('div', { class: 'cb-tags' });
+    const placed = [];
     for (const l of this.cb.links) if (done.includes(l.id)) {
       const [x1, y1] = this.center(l.a), [x2, y2] = this.center(l.b);
-      const mx = (x1 + x2) / 2, my = (y1 + y2) / 2 + 30;
+      const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
       const p = document.createElementNS(SVG, 'path');
-      p.setAttribute('d', `M${x1},${y1} Q${mx},${my + 40} ${x2},${y2}`);
+      p.setAttribute('d', `M${x1},${y1} Q${mx},${(y1 + y2) / 2 + 40} ${x2},${y2}`);
       p.setAttribute('stroke', '#7A2E25'); p.setAttribute('stroke-width', '8'); p.setAttribute('fill', 'none'); p.setAttribute('stroke-linecap', 'round');
-      const t = document.createElementNS(SVG, 'text');
-      t.setAttribute('x', mx); t.setAttribute('y', my + 20); t.setAttribute('text-anchor', 'middle'); t.setAttribute('class', 'link-tag');
-      t.textContent = l.options[l.answer];
-      const bg = document.createElementNS(SVG, 'rect');
-      const tw = Math.max(240, [...l.options[l.answer]].length * 40 + 48);
-      bg.setAttribute('x', mx - tw / 2); bg.setAttribute('y', my - 14); bg.setAttribute('width', tw); bg.setAttribute('height', 52); bg.setAttribute('rx', 8); bg.setAttribute('fill', 'rgba(26,20,16,.85)');
-      this.svg.append(p, bg, t);
+      this.svg.append(p);
+      const tag = el('div', { class: 'link-tag', text: this.wrapTag(l.options[l.answer]) });
+      tag.style.left = `${mx}px`; tag.style.top = `${my}px`;
+      tags.append(tag);
+      placed.push({ tag, x: mx, y: my, dx: x2 - x1, dy: y2 - y1 });
     }
+    this.board.append(tags); this.tags = tags;
+    this.separateTags(placed);
+  }
+  /** 标签中点靠在一起时错开，避免两层字叠在同一块上 */
+  separateTags(placed) {
+    if (placed.length < 2) return;
+    const board = this.board;
+    const boxOf = (node) => {
+      const br = board.getBoundingClientRect(), k = br.width / board.clientWidth || 1, r = node.getBoundingClientRect();
+      return { x: (r.left - br.left) / k, y: (r.top - br.top) / k, w: r.width / k, h: r.height / k };
+    };
+    const relax = () => {
+      for (let pass = 0; pass < 24; pass++) {
+        let moved = false;
+        for (let i = 0; i < placed.length; i++) {
+          for (let j = 0; j < i; j++) {
+            const a = boxOf(placed[i].tag), b = boxOf(placed[j].tag), gap = 12;
+            const ox = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x);
+            const oy = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+            if (ox <= 0 || oy <= 0) continue;
+            // 两边一起推，避免一条被上下邻居夹住时来回弹
+            if (ox < oy) {
+              const sign = (a.x + a.w / 2) >= (b.x + b.w / 2) ? 1 : -1;
+              const push = (ox + gap) / 2;
+              placed[i].x += sign * push; placed[j].x -= sign * push;
+            } else {
+              const sign = (a.y + a.h / 2) >= (b.y + b.h / 2) ? 1 : -1;
+              const push = (oy + gap) / 2;
+              placed[i].y += sign * push; placed[j].y -= sign * push;
+            }
+            placed[i].tag.style.left = `${placed[i].x}px`;
+            placed[i].tag.style.top = `${placed[i].y}px`;
+            placed[j].tag.style.left = `${placed[j].x}px`;
+            placed[j].tag.style.top = `${placed[j].y}px`;
+            moved = true;
+          }
+        }
+        if (!moved) break;
+      }
+    };
+    relax();
+    const bw = board.clientWidth, bh = board.clientHeight, pad = 10;
+    for (const p of placed) {
+      const r = boxOf(p.tag);
+      let dx = 0, dy = 0;
+      if (r.x < pad) dx = pad - r.x;
+      if (r.y < pad) dy = pad - r.y;
+      if (r.x + r.w > bw - pad) dx = (bw - pad) - (r.x + r.w);
+      if (r.y + r.h > bh - pad) dy = (bh - pad) - (r.y + r.h);
+      if (dx || dy) { p.x += dx; p.y += dy; p.tag.style.left = `${p.x}px`; p.tag.style.top = `${p.y}px`; }
+    }
+    relax();
   }
   tapCard(id) {
     if (this.suppressClick) { this.suppressClick = false; return; }
