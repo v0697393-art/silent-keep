@@ -63,6 +63,14 @@
   <div id="boot-error" hidden></div>
  </div>
 </div>
+<!-- 手机横屏：盖住整个视口（不在 #stage 里，否则会被缩成一条）。桌面不显示。 -->
+<div id="rotate-lock" hidden>
+ <div class="rl-card">
+  <div class="rl-phone" aria-hidden="true"><i></i></div>
+  <p class="rl-title">请把手机竖过来</p>
+  <p class="rl-sub">竖着看，字和按钮才够大。</p>
+ </div>
+</div>
 <script type="module" src="src/main.js"></script>
 </body>
 </html>

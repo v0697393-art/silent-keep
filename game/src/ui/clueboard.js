@@ -39,8 +39,13 @@ export class Clueboard extends Modal {
       const [x, y] = this.pos[c.id];
       const imgId = C.cardImg[c.id];
       const img = this.game.assets.element(imgId, () => evidenceCard(c.id, c.label));
+      // 卡片本身是 button，里面不能再套 button（浏览器会把内层按钮拆出去）
+      const zoom = el('span', { class: 'card-zoom', role: 'button', tabindex: '0', 'aria-label': `放大：${c.label}`, text: '看' });
+      zoom.addEventListener('pointerdown', (e) => e.stopPropagation());
+      zoom.addEventListener('pointerup', (e) => e.stopPropagation());
+      zoom.addEventListener('click', (e) => { e.stopPropagation(); e.preventDefault(); this.openZoom(c, imgId); });
       const card = el('button', { class: `card${this.sel === c.id ? ' selected' : ''}`, 'data-id': c.id, style: { left: `${x}px`, top: `${y}px` } },
-        img, el('div', { class: 'label', text: c.label }));
+        img, el('div', { class: 'label', text: c.label }), zoom);
       card.addEventListener('click', () => this.tapCard(c.id));
       card.addEventListener('pointerdown', (e) => { this.dragFrom = c.id; this.dragStart = [e.clientX, e.clientY]; });
       card.addEventListener('pointerup', (e) => this.dragEnd(e));
@@ -80,7 +85,8 @@ export class Clueboard extends Modal {
       t.setAttribute('x', mx); t.setAttribute('y', my + 20); t.setAttribute('text-anchor', 'middle'); t.setAttribute('class', 'link-tag');
       t.textContent = l.options[l.answer];
       const bg = document.createElementNS(SVG, 'rect');
-      bg.setAttribute('x', mx - 110); bg.setAttribute('y', my - 10); bg.setAttribute('width', 220); bg.setAttribute('height', 42); bg.setAttribute('rx', 8); bg.setAttribute('fill', 'rgba(26,20,16,.85)');
+      const tw = Math.max(240, [...l.options[l.answer]].length * 40 + 48);
+      bg.setAttribute('x', mx - tw / 2); bg.setAttribute('y', my - 14); bg.setAttribute('width', tw); bg.setAttribute('height', 52); bg.setAttribute('rx', 8); bg.setAttribute('fill', 'rgba(26,20,16,.85)');
       this.svg.append(p, bg, t);
     }
   }
@@ -108,6 +114,20 @@ export class Clueboard extends Modal {
       link.options.map((o, i) => el('button', { class: 'link-opt', 'data-index': i, onclick: () => { panel.remove(); this.choose(link, i); } }, o)),
       el('button', { class: 'link-opt', 'data-action': 'cancel', style: { background: 'transparent' }, onclick: () => panel.remove() }, '再想想'));
     this.board.append(panel);
+  }
+  /** 把卡片放大到几乎铺满竖屏，桌面上才能读清图里的年份和说明。点空白或 ✕ 关掉，不改变连线。 */
+  openZoom(card, imgId) {
+    this.zoomEl?.remove();
+    this.game.sfx('page');
+    const img = this.game.assets.element(imgId, () => evidenceCard(card.id, card.label));
+    const close = () => { box.remove(); if (this.zoomEl === box) this.zoomEl = null; };
+    const box = el('div', { class: 'cb-zoom', onclick: close },
+      el('div', { class: 'cb-zoom-card', onclick: (e) => e.stopPropagation() },
+        img,
+        el('div', { class: 'cb-zoom-label', text: card.label }),
+        el('button', { class: 'btn-close', type: 'button', 'aria-label': '关闭', onclick: (e) => { e.stopPropagation(); close(); } }, '✕')));
+    this.root.append(box);
+    this.zoomEl = box;
   }
   choose(link, i) {
     const r = cbChoose(this.game.C, this.game.S, this.id, link.id, i, Date.now());

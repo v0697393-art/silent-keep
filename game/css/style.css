@@ -184,6 +184,21 @@ button:disabled { opacity: .35; cursor: default; }
 .cb-options .q { font-size: 36px; text-align: center; margin-bottom: 8px; }
 .link-opt { padding: 24px; font-size: 38px; color: var(--umber); background: #eadcbc; border: 3px solid var(--ink); border-radius: 6px; }
 .link-tag { font-family: var(--serif); font-size: 28px; fill: var(--bone); }
+.card-zoom { position: absolute; right: 0; top: 0; z-index: 2; width: 84px; height: 84px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  background: rgba(26,20,16,.88); border: 3px solid var(--amber); color: var(--parch); font-size: 32px; letter-spacing: 2px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.55); }
+.card-zoom:active { background: var(--blood); }
+.cb-zoom { position: absolute; inset: 0; z-index: 8; background: rgba(13,10,8,.9); display: flex; align-items: center; justify-content: center; animation: fadeIn .2s; }
+.cb-zoom-card { position: relative; width: 900px; display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 20px 20px 40px; }
+.cb-zoom-card img, .cb-zoom-card canvas { width: 820px; height: auto; max-height: 1280px; object-fit: contain; filter: drop-shadow(0 16px 28px rgba(0,0,0,.75)); }
+.cb-zoom-label { font-size: 52px; line-height: 1.35; text-align: center; color: var(--parch); letter-spacing: 2px; text-shadow: 0 2px 8px #000; max-width: 860px; }
+.cb-zoom .btn-close { position: absolute; right: -8px; top: -8px; }
+/* 桌面：卡片图里的字被缩到几个像素。把标签铺在卡片底部（约 18 屏幕像素），连线说明约 16 屏幕像素。字号由 stage.js 按缩放反推。 */
+body.desk .cb-board .card:has(> img) .label { display: block; position: absolute; left: 4px; right: 4px; bottom: 0; z-index: 1;
+  font-size: var(--cb-label, 40px); line-height: 1.25; padding: 10px 12px 12px; background: rgba(233,216,178,.95); color: #2a1d12;
+  border-radius: 4px; text-shadow: none; box-shadow: 0 4px 10px rgba(0,0,0,.35); }
+body.desk .link-tag { font-size: var(--cb-link, 36px); }
 .cb-foot { display: flex; justify-content: center; align-items: center; gap: 24px; padding: 0 30px 20px; min-height: 140px; }
 .cb-progress { font-size: 30px; color: var(--straw); }
 
@@ -268,6 +283,21 @@ button:disabled { opacity: .35; cursor: default; }
 .title-buttons .parch-btn { width: 480px; }
 .title-foot { position: absolute; bottom: 60px; font-size: 26px; color: var(--walnut); }
 #boot-error { position: absolute; inset: 200px 60px auto; z-index: 99; padding: 40px; background: var(--parch); color: var(--blood); font-size: 34px; white-space: pre-wrap; }
+
+/* 手机横屏提示：视口坐标，不跟着 9:16 舞台缩小。烛光、羊皮纸色，和标题页同一套。 */
+#rotate-lock { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(ellipse at 50% 38%, rgba(201,162,90,.2), transparent 46%), radial-gradient(ellipse at 50% 120%, #1f2b22, transparent 58%), #0d0a08;
+  color: var(--bone); font-family: var(--serif); }
+#rotate-lock[hidden] { display: none !important; }
+body.rotate-locked #safe { pointer-events: none; }
+.rl-card { text-align: center; padding: 24px 32px; max-width: min(440px, 92vw); }
+.rl-phone { width: 72px; height: 118px; margin: 0 auto 22px; border: 3px solid var(--amber); border-radius: 14px; position: relative;
+  box-shadow: 0 0 28px rgba(201,162,90,.45), inset 0 0 18px rgba(201,162,90,.2); animation: rl-turn 2.6s ease-in-out infinite; }
+.rl-phone i { position: absolute; left: 50%; top: 12px; width: 26px; height: 4px; margin-left: -13px; border-radius: 2px; background: var(--straw); }
+.rl-phone::after { content: ''; position: absolute; left: 50%; bottom: 8px; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; border: 2px solid var(--straw); }
+@keyframes rl-turn { 0%, 18% { transform: rotate(90deg); } 48%, 100% { transform: rotate(0deg); } }
+.rl-title { margin: 0 0 12px; font-size: 28px; letter-spacing: 4px; color: var(--parch); text-shadow: 0 2px 14px #000; }
+.rl-sub { margin: 0; font-size: 16px; line-height: 1.5; color: var(--straw); letter-spacing: 1px; }
 
 /* 调试 */
 .debug-on #scene { outline: 2px solid red; }
@@ -538,3 +568,6 @@ button:disabled { opacity: .35; cursor: default; }
 .int-nameplate.mood-unmasked .int-np-mood { color: #c0645a; }
 .tier-s2 .int-bg { filter: saturate(.75) contrast(1.08); }
 .tier-s3 .int-bg { filter: saturate(.45) hue-rotate(30deg) contrast(1.2); }
+
+/* 放大卡片的关闭钮：ui-art 把 .btn-close 设成 position:relative，会掉到说明文字下面。压过那条。 */
+body.ui-art .cb-zoom .btn-close { position: absolute; top: 16px; right: 16px; z-index: 3; }

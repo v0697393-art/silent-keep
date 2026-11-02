@@ -106,10 +106,16 @@ export function tierOf(C, v) {
 }
 export const tierHas = (C, S, fx) => (tierOf(C, S.sanity).fx || []).includes(fx);
 
-function changeSanity(C, S, delta, events) {
+function changeSanity(C, S, delta, events, ctx = {}) {
   const before = S.sanity;
   S.sanity = clampSanity(C, S.sanity + delta);
-  if (S.sanity !== before || delta) events.push({ type: 'sanity', delta: S.sanity - before, requested: delta, value: S.sanity });
+  if (S.sanity !== before || delta) {
+    const ev = { type: 'sanity', delta: S.sanity - before, requested: delta, value: S.sanity };
+    // tone: 'fail' 出示错/连错/答错；'truth' 拆穿、解开后的冲击。不标的是场景里的发现。
+    if (ctx.sanityTone) ev.tone = ctx.sanityTone;
+    if (ctx.sanityUi) ev.ui = ctx.sanityUi;
+    events.push(ev);
+  }
 }
 
 function restore(C, S, pointId, delta, cooldownSec, now, events) {
@@ -151,7 +157,7 @@ export function runEffects(C, S, effects = [], ctx = {}) {
           if (S.once[key]) break;
           S.once[key] = true;
         }
-        changeSanity(C, S, e.delta ?? 0, events);
+        changeSanity(C, S, e.delta ?? 0, events, ctx);
         break;
       }
       case 'restore': {
@@ -300,7 +306,7 @@ export function solvePuzzle(C, S, id, now) {
   const p = C.puzzles[id];
   if (!p || S.solved.includes(id)) return [];
   S.solved.push(id);
-  return [{ type: 'solved', id }, ...runEffects(C, S, p.onSolved, { source: `puzzle:${id}`, now })];
+  return [{ type: 'solved', id }, ...runEffects(C, S, p.onSolved, { source: `puzzle:${id}`, now, sanityTone: 'truth' })];
 }
 
 // ---------- 审讯 ----------
@@ -331,11 +337,11 @@ export function presentEvidence(C, S, intId, stmtId, evId, now) {
     st.broken.push(stmtId);
     const events = [{ type: 'break', statement: stmtId, text: resolveText(C, stmt.onBreak?.text), portrait: stmt.onBreak?.portrait }];
     const complete = intDone(C, S, intId);
-    if (complete) events.push(...runEffects(C, S, it.onComplete, { source: `int:${intId}:complete`, now }));
+    if (complete) events.push(...runEffects(C, S, it.onComplete, { source: `int:${intId}:complete`, now, sanityTone: 'truth' }));
     return { result: 'break', events, complete };
   }
   if (stmt.nearMiss?.[evId]) return { result: 'nearMiss', events: [{ type: 'text', text: resolveText(C, stmt.nearMiss[evId]) }] };
-  return { result: 'wrong', events: runEffects(C, S, it.onWrongEvidence, { source: `int:${intId}:wrong`, now }) };
+  return { result: 'wrong', events: runEffects(C, S, it.onWrongEvidence, { source: `int:${intId}:wrong`, now, sanityTone: 'fail', sanityUi: 'interrogation' }) };
 }
 
 // ---------- 线索板 ----------
@@ -363,12 +369,12 @@ export function cbChoose(C, S, id, linkId, option, now) {
     if (allLinked && !cb.conclusion) events.push(...finishClueboard(C, S, id, now));
     return { ok: true, events, allLinked };
   }
-  return { ok: false, events: runEffects(C, S, cb.onWrongLink, { source: `cb:${id}:wrong`, now }) };
+  return { ok: false, events: runEffects(C, S, cb.onWrongLink, { source: `cb:${id}:wrong`, now, sanityTone: 'fail', sanityUi: 'clueboard' }) };
 }
 function finishClueboard(C, S, id, now) {
   if (S.solved.includes(id)) return [];
   S.solved.push(id);
-  return runEffects(C, S, C.clueboards[id].onSolved, { source: `cb:${id}`, now });
+  return runEffects(C, S, C.clueboards[id].onSolved, { source: `cb:${id}`, now, sanityTone: 'truth' });
 }
 
 // ---------- 推理 ----------
@@ -388,13 +394,13 @@ export function ddSubmit(C, S, id, answers, now) {
   const firstWrong = d.questions.findIndex((q, i) => answers[i] !== q.answer);
   if (firstWrong === -1) {
     S.solved.push(id);
-    const events = [{ type: 'solved', id }, ...runEffects(C, S, d.onSolved, { source: `dd:${id}`, now })];
+    const events = [{ type: 'solved', id }, ...runEffects(C, S, d.onSolved, { source: `dd:${id}`, now, sanityTone: 'truth' })];
     const cb = C.conclusionOf[id];
     if (cb) events.push(...finishClueboard(C, S, cb, now));
     return { ok: true, firstWrong: -1, events };
   }
   const q = d.questions[firstWrong];
-  const events = runEffects(C, S, d.onWrong, { source: `dd:${id}:wrong`, now, hint: { question: firstWrong, text: q.hint ? resolveText(C, q.hint) : '' } });
+  const events = runEffects(C, S, d.onWrong, { source: `dd:${id}:wrong`, now, sanityTone: 'fail', sanityUi: 'deduction', hint: { question: firstWrong, text: q.hint ? resolveText(C, q.hint) : '' } });
   return { ok: false, firstWrong, events };
 }
 
