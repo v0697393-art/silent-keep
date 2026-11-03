@@ -28,12 +28,13 @@ const MUSIC_UI = { interrogation: 'interrogation', clueboard: 'clueboard', deduc
 export class Game {
   /** 提示条禁区（界面内）：整个审讯人物区（立绘或氛围图上的人物、名牌、侦探头像、对方当前台词都在里面）、出示证据按钮。
    *  证词卡片不在其中（放不下时允许压在卡片上）。场景对话框 #dialog 另算。 */
-  static TOAST_KEEP_OUT = '.int-portrait, #btn-present';
+  static TOAST_KEEP_OUT = '.int-portrait, #btn-present, .dd-q';
   constructor({ C, assets, audio, renderer, stage, dom, prepareChapter = null, chParam = null }) {
     Object.assign(this, { C, assets, audio, renderer, stage, dom, prepareChapter, chParam });
     this.S = null; this.stack = []; this.pending = [];
     this.selected = null; this.invPage = 0; this.freshItem = null; this.badge = false;
     this.dialogQ = []; this.dialogCur = null; this.expr = 'neutral';
+    this.afterDialog = []; // 同一批事件里排在对白后面的过场，等对白点掉再播
     this.inCutscene = false; this.screen = 'title';
     this.bindDom();
   }
@@ -99,6 +100,7 @@ export class Game {
   // ---------- 标题 / 开局 ----------
   toTitle() {
     this.screen = 'title';
+    this.afterDialog = []; this.dialogQ = []; this.hideDialog();
     while (this.stack.length) this.stack.pop().root.remove();
     this.dom.title.hidden = false;
     this.dom.btnContinue.hidden = this.continueTarget() == null;
@@ -108,6 +110,7 @@ export class Game {
     this.dom.title.dataset.chapter = this.chapter;
     this.audio.amb(null); this.audio.setSanityStage(0);
     this.audio.bgm(this.C.uiBgm.title ?? null);
+    this.setAmbiance(this.assets.has('ui_loading') ? 'ui_loading' : null);
   }
   async newGame() {
     this.sfx('tap');
@@ -137,7 +140,8 @@ export class Game {
   }
   start(intro) {
     this.dom.title.hidden = true;
-    this.screen = 'game'; this.selected = null; this.invPage = 0; this.dialogQ = []; this.hideDialog();
+    this.screen = 'game'; this.selected = null; this.invPage = 0;
+    this.afterDialog = []; this.dialogQ = []; this.hideDialog();
     this.renderer.bind(this.C, this.S);
     saveGame(this.C, this.S);
     if (intro && this.C.intro) this.cutscene(this.C.intro, () => this.enterRoom());
@@ -167,6 +171,7 @@ export class Game {
 
   // ---------- 场景点击 ----------
   onTap(x, y) {
+    if (document.body.classList.contains('rotate-locked')) return;
     if (this.busy) return;
     if (y < LAYOUT.hudBottom || y > LAYOUT.playBottom) return;
     const { C, S } = this;
@@ -207,12 +212,17 @@ export class Game {
   /** 存档 + 表现事件。deferText：文本等模态关闭后在场景对话框显示；deferAll：全部事件延后 */
   commit(events = [], { deferText = false, deferAll = false } = {}) {
     saveGame(this.C, this.S);
+    // 同一批里既有场景对白又有过场（低心烛点摇篮：幻觉句在 cutscene 之后才推进事件列表）时，
+    // 先把对白播完，过场等玩家点掉再开始。否则过场（z-index 60）会把 #dialog 盖住，状态一直留着。
+    const holdCut = !deferAll && !this.modal && events.some((e) => e.type === 'text');
     for (const e of events) {
       if (deferAll || (deferText && e.type === 'text')) this.pending.push(e);
+      else if (holdCut && e.type === 'cutscene') this.afterDialog.push(e);
       else this.handle(e);
     }
     this.renderer.invalidate();
     this.updateHud();
+    this.pumpAfterDialog();
   }
   handle(e) {
     const { C } = this, m = this.modal;
@@ -273,11 +283,15 @@ export class Game {
     const t = key != null ? C.texts[key] : null;
     return fmt(t ?? C.uiText.cantUse, { item: this.itemName(item) });
   }
-  /** 心烛扣减的原因（试玩反馈：100→77 不知道为什么）：按当时所在界面取补丁 sanityReasons 的文案 */
+  /** 心烛扣减的原因。失败（出示错、连错、答错）用该界面的失败文案；
+   *  拆穿 / 解开带来的扣减用 truth（真相的冲击），不用失败句。
+   *  场景里看见东西用 scene。不能只看「当前弹窗类型」——成功时弹窗往往还开着。 */
   sanityReason(e) {
     const R = this.C.sanityReasons || {};
-    const m = this.modal?.type;
-    return e.reason ?? (m && R[m]) ?? R.scene ?? '';
+    if (e.reason) return e.reason;
+    if (e.tone === 'truth') return R.truth || '';
+    if (e.tone === 'fail') return R[e.ui] || R[this.modal?.type] || '';
+    return R.scene || '';
   }
   onSanity(e) {
     const { C } = this;
@@ -294,6 +308,7 @@ export class Game {
     if (e.delta < 0) {
       const why = this.sanityReason(e);
       this.lastSanityReason = why;
+      this.lastSanityTone = e.tone || 'scene';
       if (why) this.toast(`<k>心烛 ${e.delta}</k>　${why}`);
     }
     if (e.delta < 0) { this.expr = 'shaken'; if (ta !== tb) this.audio.sfx('vo_edric_gasp'); }
@@ -355,6 +370,7 @@ export class Game {
       else this.handle(e);
     }
     this.updateHud();
+    this.pumpAfterDialog();
   }
   musicModal() { return [...this.stack].reverse().find((m) => MUSIC_UI[m.type]); }
   music() {
@@ -450,7 +466,19 @@ export class Game {
     this.sfx('tap');
     this.nextDialog();
   }
-  hideDialog() { clearInterval(this.typer); this.dialogCur = null; this.dom.dialogLayer.hidden = true; if (this.renderer?.npcTag) this.renderer.npcTag.hold = false; }
+  hideDialog() {
+    clearInterval(this.typer); this.dialogCur = null; this.dom.dialogLayer.hidden = true;
+    if (this.renderer?.npcTag) this.renderer.npcTag.hold = false;
+    this.pumpAfterDialog();
+  }
+  /** 对白点完（或这一批根本没有对白）再播压后的过场 */
+  pumpAfterDialog() {
+    if (!this.afterDialog?.length) return;
+    if (this.dialogCur || this.dialogQ.length) return;
+    if (this.modal && this.modal.type !== 'notebook') return;
+    const evs = this.afterDialog; this.afterDialog = [];
+    for (const e of evs) this.handle(e);
+  }
 
   // ---------- 提示条（toast）：排队 + 竖向错开 ----------
   // 所有提示（获得道具、新证据、心烛 -N、记下……）都走这里，保证任意两条提示之间、提示和顶部标签栏（HUD / 界面标题栏 / 手记分页）、
@@ -460,6 +488,11 @@ export class Game {
     const t = el('div', { class: 'toast' }); setRich(t, html);
     (this.toastQ ??= []).push(t);
     this.pumpToasts();
+  }
+  /** 丢掉还在显示和排队的提示（推理答对后，不要留着上一拍的失败句） */
+  clearToasts() {
+    for (const t of this.toastOn ?? []) t.remove();
+    this.toastOn = []; this.toastQ = [];
   }
   /** 提示条可用的纵向区间（舞台坐标）+ 区间里的禁区。
    *  顶：HUD 或当前界面的标题栏/手记标签；底：道具栏、界面底部消息框。
@@ -476,18 +509,18 @@ export class Game {
     const GAP = 20;
     let top = Math.max(120, ...tops.map((n) => box(n).bottom)) + GAP;
     let bottom = Math.min(1700, ...bots.map((n) => box(n).top).filter((v) => v > top + 80)) - GAP;
-    const fromBottom = !!modal?.matches('.m-item, .m-int');
+    const fromBottom = !!modal?.matches('.m-item, .m-int, .m-dd');
     if (modal?.matches('.m-item')) bottom = Math.min(bottom, 1920 - 310);
     const keep = [...(modal ? modal.querySelectorAll(Game.TOAST_KEEP_OUT) : []), document.getElementById('dialog')].filter(shown);
     const hard = keep.map(box).filter((b) => b.bottom > top && b.top < bottom).map((b) => [b.top - GAP, b.bottom + GAP]).sort((a, b) => a[0] - b[0]);
-    return { top, bottom, fromBottom, hard, k };
+    return { top, bottom, fromBottom, hard, k, single: !!modal?.matches('.m-dd') };
   }
   pumpToasts() {
     const q = this.toastQ ??= [], on = this.toastOn ??= [], box = this.dom.toasts;
     if (!q.length && !on.length) return;
     // 界面（审讯/手记等）开关或换页时立刻重排，不等下一帧，避免有一帧压住新出现的标题栏
     if (!this.toastMO) { this.toastMO = new MutationObserver(() => this.pumpToasts()); this.toastMO.observe(this.dom.modalRoot, { childList: true, subtree: true }); }
-    const band = this.toastBand(), GAP = 16, MAX = 3;
+    const band = this.toastBand(), GAP = 16, MAX = band.single ? 1 : 3;
     // 已显示的重新排一遍（界面开关后可用区间会变）；碰到禁区就跳到禁区另一侧
     let y = band.fromBottom ? band.bottom : band.top;
     const place = (t) => {
@@ -538,7 +571,8 @@ export class Game {
     dom.sanity.style.setProperty('--san', Math.max(0, Math.min(100, S.sanity)) / 100);
     dom.sanity.dataset.tier = tier;
     this.setFlame(tier);
-    dom.roomName.textContent = C.roomNames[S.room] ?? S.room;
+    const roomLabel = C.roomNames[S.room] ?? S.room;
+    dom.roomName.replaceChildren(el('span', { class: 'room-name-text', text: roomLabel }));
     dom.btnNotebook.classList.toggle('notebook-badge', this.badge);
     const nav = navTargets(C, S);
     for (const [btn, to] of [[dom.btnPrev, nav.prev], [dom.btnNext, nav.next]]) {
@@ -546,7 +580,19 @@ export class Game {
       btn.title = to ? `前往${C.roomNames[to] ?? to}` : '';
     }
     this.audio.setSanityStage(this.screen === 'game' ? this.audioStage() : 0);
+    this.setAmbiance(this.screen === 'game' ? this.renderer?.bgId?.() : (this.assets.has('ui_loading') ? 'ui_loading' : null));
     this.renderInventory();
+  }
+  /** 桌面两侧：当前画面的模糊暗底。同一张图不重复设置。 */
+  setAmbiance(id) {
+    const el = document.getElementById('ambiance');
+    if (!el) return;
+    const key = id || '';
+    if (el.dataset.bg === key) return;
+    el.dataset.bg = key;
+    const p = id && this.assets.has(id) ? this.assets.path(id) : null;
+    const img = el.querySelector('.amb-img');
+    if (img) img.style.backgroundImage = p ? `url("../art/${p}")` : '';
   }
   /** 心烛火焰（style-guide §6）：s1 稳定暗琥珀 = ui_flame_s1 静帧；s2 摇曳 = fx_candle_flicker 16fps；s3 发绿 = fx_candle_flicker_s3 12fps */
   setFlame(tier) {
@@ -585,6 +631,7 @@ export class Game {
     this.audio.bgm(this.C.uiBgm.ending ?? null);
     this.cutscene(this.C.ending, () => {
       this.inCutscene = true;
+      this.afterDialog = []; this.dialogQ = []; this.hideDialog();
       const box = this.dom.cutscene;
       box.hidden = false; box.onpointerup = null; box.dataset.id = 'end';
       const crest = this.assets.has('ui_crest_v3_256') ? el('img', { class: 'cs-crest', src: `../art/${this.assets.path('ui_crest_v3_256')}`, alt: '' }) : null;
@@ -628,7 +675,7 @@ export class Game {
       dialog: this.dialogCur?.text ?? null, dialogQ: this.dialogQ.length, cutscene: this.inCutscene ? this.dom.cutscene.dataset.id : null,
       screen: this.screen, audio: this.audio.debugState(), bg: this.renderer?.S ? this.renderer.bgId() : null,
       drawnBg: this.renderer?.cache?.bg ?? null, overlays: this.renderer?.cache?.overlays ?? [], artOverlays: this.renderer?.cache?.artOverlays ?? [], fx: [...(this.renderer?.drawnFx || [])], npcTags: [...(this.renderer?.drawnNpcTags || [])], npcSpots: [...(this.renderer?.drawnNpcSpots || [])], crow: this.renderer?.drawnCrow ?? null, renderErrors: [...(window.__renderErrors || [])],
-      lastSanityReason: this.lastSanityReason ?? null,
+      lastSanityReason: this.lastSanityReason ?? null, lastSanityTone: this.lastSanityTone ?? null,
     };
   }
 }

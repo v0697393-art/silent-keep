@@ -39,8 +39,13 @@ export class Clueboard extends Modal {
       const [x, y] = this.pos[c.id];
       const imgId = C.cardImg[c.id];
       const img = this.game.assets.element(imgId, () => evidenceCard(c.id, c.label));
+      // 卡片本身是 button，里面不能再套 button（浏览器会把内层按钮拆出去）
+      const zoom = el('span', { class: 'card-zoom', role: 'button', tabindex: '0', 'aria-label': `放大：${c.label}`, text: '看' });
+      zoom.addEventListener('pointerdown', (e) => e.stopPropagation());
+      zoom.addEventListener('pointerup', (e) => e.stopPropagation());
+      zoom.addEventListener('click', (e) => { e.stopPropagation(); e.preventDefault(); this.openZoom(c, imgId); });
       const card = el('button', { class: `card${this.sel === c.id ? ' selected' : ''}`, 'data-id': c.id, style: { left: `${x}px`, top: `${y}px` } },
-        img, el('div', { class: 'label', text: c.label }));
+        img, el('div', { class: 'label', text: c.label }), zoom);
       card.addEventListener('click', () => this.tapCard(c.id));
       card.addEventListener('pointerdown', (e) => { this.dragFrom = c.id; this.dragStart = [e.clientX, e.clientY]; });
       card.addEventListener('pointerup', (e) => this.dragEnd(e));
@@ -66,23 +71,84 @@ export class Clueboard extends Modal {
     this.message(C.uiText.cbLocked);
   }
   center(id) { const [x, y] = this.pos[id]; return [x + CARD_W / 2, y + CARD_H / 2]; }
+  /** 超过一行的关系说明从中间折成两行，底框由 CSS 按文字收缩 */
+  wrapTag(text) {
+    const chars = [...text];
+    if (chars.length <= 14) return text;
+    const cut = Math.ceil(chars.length / 2);
+    return `${chars.slice(0, cut).join('')}\n${chars.slice(cut).join('')}`;
+  }
   drawLinks() {
     const { S } = this.game;
     const done = cbState(S, this.id).links;
     this.svg.replaceChildren();
+    this.tags?.remove();
+    const tags = el('div', { class: 'cb-tags' });
+    const placed = [];
     for (const l of this.cb.links) if (done.includes(l.id)) {
       const [x1, y1] = this.center(l.a), [x2, y2] = this.center(l.b);
-      const mx = (x1 + x2) / 2, my = (y1 + y2) / 2 + 30;
+      const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
       const p = document.createElementNS(SVG, 'path');
-      p.setAttribute('d', `M${x1},${y1} Q${mx},${my + 40} ${x2},${y2}`);
+      p.setAttribute('d', `M${x1},${y1} Q${mx},${(y1 + y2) / 2 + 40} ${x2},${y2}`);
       p.setAttribute('stroke', '#7A2E25'); p.setAttribute('stroke-width', '8'); p.setAttribute('fill', 'none'); p.setAttribute('stroke-linecap', 'round');
-      const t = document.createElementNS(SVG, 'text');
-      t.setAttribute('x', mx); t.setAttribute('y', my + 20); t.setAttribute('text-anchor', 'middle'); t.setAttribute('class', 'link-tag');
-      t.textContent = l.options[l.answer];
-      const bg = document.createElementNS(SVG, 'rect');
-      bg.setAttribute('x', mx - 110); bg.setAttribute('y', my - 10); bg.setAttribute('width', 220); bg.setAttribute('height', 42); bg.setAttribute('rx', 8); bg.setAttribute('fill', 'rgba(26,20,16,.85)');
-      this.svg.append(p, bg, t);
+      this.svg.append(p);
+      const tag = el('div', { class: 'link-tag', text: this.wrapTag(l.options[l.answer]) });
+      tag.style.left = `${mx}px`; tag.style.top = `${my}px`;
+      tags.append(tag);
+      placed.push({ tag, x: mx, y: my, dx: x2 - x1, dy: y2 - y1 });
     }
+    this.board.append(tags); this.tags = tags;
+    this.separateTags(placed);
+  }
+  /** 标签中点靠在一起时错开，避免两层字叠在同一块上 */
+  separateTags(placed) {
+    if (placed.length < 2) return;
+    const board = this.board;
+    const boxOf = (node) => {
+      const br = board.getBoundingClientRect(), k = br.width / board.clientWidth || 1, r = node.getBoundingClientRect();
+      return { x: (r.left - br.left) / k, y: (r.top - br.top) / k, w: r.width / k, h: r.height / k };
+    };
+    const relax = () => {
+      for (let pass = 0; pass < 24; pass++) {
+        let moved = false;
+        for (let i = 0; i < placed.length; i++) {
+          for (let j = 0; j < i; j++) {
+            const a = boxOf(placed[i].tag), b = boxOf(placed[j].tag), gap = 12;
+            const ox = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x);
+            const oy = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+            if (ox <= 0 || oy <= 0) continue;
+            // 两边一起推，避免一条被上下邻居夹住时来回弹
+            if (ox < oy) {
+              const sign = (a.x + a.w / 2) >= (b.x + b.w / 2) ? 1 : -1;
+              const push = (ox + gap) / 2;
+              placed[i].x += sign * push; placed[j].x -= sign * push;
+            } else {
+              const sign = (a.y + a.h / 2) >= (b.y + b.h / 2) ? 1 : -1;
+              const push = (oy + gap) / 2;
+              placed[i].y += sign * push; placed[j].y -= sign * push;
+            }
+            placed[i].tag.style.left = `${placed[i].x}px`;
+            placed[i].tag.style.top = `${placed[i].y}px`;
+            placed[j].tag.style.left = `${placed[j].x}px`;
+            placed[j].tag.style.top = `${placed[j].y}px`;
+            moved = true;
+          }
+        }
+        if (!moved) break;
+      }
+    };
+    relax();
+    const bw = board.clientWidth, bh = board.clientHeight, pad = 10;
+    for (const p of placed) {
+      const r = boxOf(p.tag);
+      let dx = 0, dy = 0;
+      if (r.x < pad) dx = pad - r.x;
+      if (r.y < pad) dy = pad - r.y;
+      if (r.x + r.w > bw - pad) dx = (bw - pad) - (r.x + r.w);
+      if (r.y + r.h > bh - pad) dy = (bh - pad) - (r.y + r.h);
+      if (dx || dy) { p.x += dx; p.y += dy; p.tag.style.left = `${p.x}px`; p.tag.style.top = `${p.y}px`; }
+    }
+    relax();
   }
   tapCard(id) {
     if (this.suppressClick) { this.suppressClick = false; return; }
@@ -108,6 +174,20 @@ export class Clueboard extends Modal {
       link.options.map((o, i) => el('button', { class: 'link-opt', 'data-index': i, onclick: () => { panel.remove(); this.choose(link, i); } }, o)),
       el('button', { class: 'link-opt', 'data-action': 'cancel', style: { background: 'transparent' }, onclick: () => panel.remove() }, '再想想'));
     this.board.append(panel);
+  }
+  /** 把卡片放大到几乎铺满竖屏，桌面上才能读清图里的年份和说明。点空白或 ✕ 关掉，不改变连线。 */
+  openZoom(card, imgId) {
+    this.zoomEl?.remove();
+    this.game.sfx('page');
+    const img = this.game.assets.element(imgId, () => evidenceCard(card.id, card.label));
+    const close = () => { box.remove(); if (this.zoomEl === box) this.zoomEl = null; };
+    const box = el('div', { class: 'cb-zoom', onclick: close },
+      el('div', { class: 'cb-zoom-card', onclick: (e) => e.stopPropagation() },
+        img,
+        el('div', { class: 'cb-zoom-label', text: card.label }),
+        el('button', { class: 'btn-close', type: 'button', 'aria-label': '关闭', onclick: (e) => { e.stopPropagation(); close(); } }, '✕')));
+    this.root.append(box);
+    this.zoomEl = box;
   }
   choose(link, i) {
     const r = cbChoose(this.game.C, this.game.S, this.id, link.id, i, Date.now());

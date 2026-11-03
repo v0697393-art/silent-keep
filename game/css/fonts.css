@@ -1,0 +1,37 @@
+/* 自托管子集字体（SIL OFL）。运行时不请求外部 CDN。
+   字表来自章节文案和界面字符串。授权全文见同目录 OFL-*.txt。 */
+@font-face {
+  font-family: "Noto Serif SC";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/noto-serif-sc-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Noto Serif SC";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../fonts/noto-serif-sc-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "LXGW WenKai";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/lxgw-wenkai-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IM Fell English";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/im-fell-english-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "UnifrakturMaguntia";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/unifrakturmaguntia-400.woff2") format("woff2");
+}

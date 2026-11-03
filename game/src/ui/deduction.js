@@ -30,6 +30,7 @@ export class Deduction extends Modal {
     const r = ddSubmit(game.C, game.S, this.id, this.answers, Date.now());
     if (r.ok) {
       this.solved = true; game.sfx('deduce');
+      game.clearToasts(); // 答错时的「推理出了岔子」不要和「推理成立」叠在同一屏
       this.message(`<k>${game.C.uiText.ddSolved}</k>`);
       this.render();
       // 成功：盖章停留后关闭，后续文本（如线索板结论）转到场景对话框

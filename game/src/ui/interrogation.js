@@ -149,10 +149,11 @@ export class Interrogation extends Modal {
       const fx = el('div', { class: 'stamp-fx', 'data-fx': 'fx_stamp_seal' }, imgs);
       row.append(fx);
       playFrames(imgs, { fps: meta.fps ?? 12, loop: meta.loop ?? false });
-      setTimeout(() => fx.remove(), 1000 * (frames.length / (meta.fps ?? 12)) + 700);
+      // 大印章约 0.8 秒后缩向右侧小蜡封并淡出，不再盖住证词
+      setTimeout(() => { fx.classList.add('gone'); setTimeout(() => fx.remove(), 480); }, 800);
       return;
     }
     const s = el('div', { class: 'int-stamp-big', text: '拆穿！' });
-    this.portraitBox.append(s); setTimeout(() => s.remove(), 1400);
+    this.portraitBox.append(s); setTimeout(() => s.remove(), 800);
   }
 }

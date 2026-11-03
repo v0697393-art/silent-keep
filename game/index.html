@@ -8,9 +8,12 @@
 <meta name="theme-color" content="#1A1410">
 <title>缄默堡</title>
 <link rel="icon" href="data:,">
+<link rel="preload" href="fonts/noto-serif-sc-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div id="ambiance" aria-hidden="true"><div class="amb-img"></div><div class="amb-shade"></div></div>
 <div id="safe">
  <div id="stage" class="tier-s1">
   <canvas id="scene"></canvas>
@@ -61,6 +64,14 @@
   </div>
   <div id="loading" aria-label="载入中"><div class="ld-bar"><div class="ld-fill"></div></div><div class="ld-text">载入中……</div></div>
   <div id="boot-error" hidden></div>
+ </div>
+</div>
+<!-- 手机横屏：盖住整个视口（不在 #stage 里，否则会被缩成一条）。桌面不显示。 -->
+<div id="rotate-lock" hidden>
+ <div class="rl-card">
+  <div class="rl-phone" aria-hidden="true"><i></i></div>
+  <p class="rl-title">请把手机竖过来</p>
+  <p class="rl-sub">竖着看，字和按钮才够大。</p>
  </div>
 </div>
 <script type="module" src="src/main.js"></script>
